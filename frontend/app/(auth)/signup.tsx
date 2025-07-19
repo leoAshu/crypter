@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable } from 'react-native';
+import { View, Text, Image, Pressable, useColorScheme } from 'react-native';
 import { images } from '@/assets';
 import { strings } from '@/constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,6 +6,8 @@ import { PrimaryButton, InputField, IconButton } from '@/components';
 import { router } from 'expo-router';
 
 const Signup = () => {
+  const colorScheme = useColorScheme();
+
   return (
     <View className='flex-1 bg-bg-light dark:bg-bg-dark'>
       <SafeAreaView className='flex-1 px-6'>
@@ -35,7 +37,7 @@ const Signup = () => {
             </View>
             <View className='flex-row gap-x-4'>
               <IconButton icon={images.google} onPress={() => {}} />
-              <IconButton icon={images.apple} onPress={() => {}} />
+              <IconButton icon={images.apple} tintColor={colorScheme === 'dark' ? '#FFF' : '#000'} onPress={() => {}} />
             </View>
             <View className='flex-row justify-center gap-x-1'>
               <Text className='text-sm font-poppins-medium dark:text-white'>{strings.signup.NO_ACCOUNT_TEXT}</Text>
