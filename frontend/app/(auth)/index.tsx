@@ -4,8 +4,13 @@ import { strings } from '@/constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PrimaryButton, InputField, IconButton } from '@/components';
 import { router } from 'expo-router';
+import { useColorScheme } from 'react-native';
+
+
 
 const Login = () => {
+  const colorScheme = useColorScheme();
+  const appleIconColor = colorScheme === 'dark' ? '#FFF' : '#000';
   return (
     <View className='flex-1 bg-bg-light dark:bg-bg-dark'>
       <SafeAreaView className='flex-1 px-6'>
@@ -36,7 +41,7 @@ const Login = () => {
             </View>
             <View className='flex-row gap-x-4'>
               <IconButton icon={images.google} onPress={() => {}} />
-              <IconButton icon={images.apple} onPress={() => {}} />
+              <IconButton icon={images.apple} onPress={() => {}} tintColor={appleIconColor}/>
             </View>
             <View className='flex-row justify-center gap-x-1'>
               <Text className='text-sm font-poppins-medium dark:text-white'>{strings.login.NO_ACCOUNT_TEXT}</Text>

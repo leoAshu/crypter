@@ -5,6 +5,7 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from '
 interface IconButtonProps {
   icon: ImageSourcePropType;
   onPress?: (event: GestureResponderEvent) => void;
+  tintColor?: string;
 }
 
 const IconButton = (props: IconButtonProps) => {
@@ -50,11 +51,11 @@ const IconButton = (props: IconButtonProps) => {
     <Pressable
       onPress={props.onPress}
       onPressIn={handlePressIn}
-      className='flex-1 py-6 rounded-2xl items-center justify-center overflow-hidden bg-card-bg-dark border-[0.2px] border-text-secondary-light dark:border-text-primary-dark'
+      className='flex-1 py-6 rounded-2xl items-center justify-center overflow-hidden bg-card-bg-light dark:bg-card-bg-dark border-[0.2px] border-text-secondary-light dark:border-text-primary-dark'
     >
       <View ref={containerRef} className='flex-1 justify-center items-center w-full h-full'>
         <Animated.View style={animatedRippleStyle} />
-        <Image source={props.icon} className='h-5 w-5' resizeMode='contain' />
+        <Image source={props.icon} className='h-5 w-5' resizeMode='contain' style={props.tintColor ? { tintColor: props.tintColor } : undefined}/>
       </View>
     </Pressable>
   );
