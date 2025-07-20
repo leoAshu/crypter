@@ -9,10 +9,15 @@ interface InputFieldProps {
   keyboardType: KeyboardTypeOptions;
   placeholder?: string;
   secured?: boolean;
+  value?: string;
+  onChangeText?: (value: string) => void;
+  error?: string;
 }
 
 const InputField = (props: InputFieldProps) => {
-  const [value, setValue] = useState('');
+  const [internalValue, setInternalValue] = useState('');
+  const value = props.value !== undefined ? props.value : internalValue;
+  const onChangeText = props.onChangeText || setInternalValue;
   const [showPassword, setShowPassword] = useState(false);
   const isFocused = useSharedValue(false);
   const iconOpacity = useSharedValue(0);
@@ -53,36 +58,63 @@ const InputField = (props: InputFieldProps) => {
     if (props.secured) {
       setShowPassword((prev) => !prev);
     } else {
-      setValue('');
+      if (props.onChangeText) {
+        props.onChangeText('');
+      } else {
+        setInternalValue('');
+      }
     }
   };
 
+  // Error animation shared value
+  const errorVisible = useSharedValue(!!props.error ? 1 : 0);
+
+  useEffect(() => {
+    errorVisible.value = !!props.error ? 1 : 0;
+  }, [props.error]);
+
+  const errorStyle = useAnimatedStyle(() => ({
+    opacity: withTiming(errorVisible.value, { duration: 250 }),
+    transform: [
+      {
+        translateY: withTiming(errorVisible.value ? 0 : -8, { duration: 250 }),
+      },
+    ],
+  }));
+
   return (
-    <Animated.View className='input-wrapper' style={borderStyle}>
-      <Animated.Text className='input-label' style={[labelStyle]}>
-        {props.label}
-      </Animated.Text>
+    <>
+      <Animated.View className='input-wrapper' style={borderStyle}>
+        <Animated.Text className='input-label' style={[labelStyle]}>
+          {props.label}
+        </Animated.Text>
 
-      <TextInput
-        className='input-txt'
-        value={value}
-        onChangeText={setValue}
-        onFocus={() => (isFocused.value = true)}
-        onBlur={() => (isFocused.value = false)}
-        cursorColor='#0066FF'
-        secureTextEntry={props.secured ? !showPassword : false}
-        keyboardType={props.keyboardType}
-      />
+        <TextInput
+          className='input-txt'
+          value={value}
+          onChangeText={onChangeText}
+          onFocus={() => (isFocused.value = true)}
+          onBlur={() => (isFocused.value = false)}
+          cursorColor='#0066FF'
+          secureTextEntry={props.secured ? !showPassword : false}
+          keyboardType={props.keyboardType}
+        />
 
-      {value.length > 0 && (
-        <Animated.View className='input-icon-wrapper' style={[animatedIconStyle]}>
-          <RoundIconButton
-            primaryIcon={props.secured ? (showPassword ? images.eyeOff : images.eye) : images.x}
-            onPress={handlePress}
-          />
-        </Animated.View>
-      )}
-    </Animated.View>
+        {value.length > 0 && (
+          <Animated.View className='input-icon-wrapper' style={[animatedIconStyle]}>
+            <RoundIconButton
+              primaryIcon={props.secured ? (showPassword ? images.eyeOff : images.eye) : images.x}
+              onPress={handlePress}
+            />
+          </Animated.View>
+        )}
+      </Animated.View>
+      {props.error ? (
+        <Animated.Text style={[{ color: 'red', fontSize: 12, marginTop: 4, marginLeft: 2 }, errorStyle]}>
+          {props.error || ''}
+        </Animated.Text>
+      ) : null}
+    </>
   );
 };
 
