@@ -58,25 +58,28 @@ const InputField = (props: InputFieldProps) => {
   };
 
   return (
-    <Animated.View className='relative border-b-2 pb-1' style={borderStyle}>
-      <Animated.Text style={[labelStyle]} className={'font-poppins-medium'}>
+    <Animated.View className='input-wrapper' style={borderStyle}>
+      <Animated.Text className='input-label' style={[labelStyle]}>
         {props.label}
       </Animated.Text>
 
       <TextInput
+        className='input-txt'
         value={value}
         onChangeText={setValue}
         onFocus={() => (isFocused.value = true)}
         onBlur={() => (isFocused.value = false)}
-        className='text-base pt-6 pb-3 pr-10 text-text-primary-light dark:text-text-primary-dark'
         cursorColor='#0066FF'
         secureTextEntry={props.secured ? !showPassword : false}
         keyboardType={props.keyboardType}
       />
 
       {value.length > 0 && (
-        <Animated.View style={[animatedIconStyle]} className='absolute right-0 top-6'>
-          <RoundIconButton primaryIcon={props.secured ? (showPassword ? images.eyeOff : images.eye) : images.x} onPress={handlePress} />
+        <Animated.View className='input-icon-wrapper' style={[animatedIconStyle]}>
+          <RoundIconButton
+            primaryIcon={props.secured ? (showPassword ? images.eyeOff : images.eye) : images.x}
+            onPress={handlePress}
+          />
         </Animated.View>
       )}
     </Animated.View>

@@ -7,23 +7,16 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0066FF',
-        bg: {
-          light: '#FFFFFF',
-          dark: '#101018',
-        },
-        'text-primary': {
-          light: '#23262F',
-          dark: '#FFFFFF',
-        },
-        'text-secondary': {
-          light: '#969AA0',
-          dark: '#969AA0',
-        },
-        'card-bg': {
-          light: '#F4F6F9',
-          dark: '#2C2E3B',
-        },
+        surface: '#FFFFFF',
+        'surface-dark': '#101018',
+        'on-surface': '#23262F',
+        'on-surface-dark': '#FFFFFF',
+        muted: '#969AA0',
+        'muted-dark': '#969AA0',
+        card: '#F4F6F9',
+        'card-dark': '#2C2E3B',
       },
+
       fontFamily: {
         // Poppins
         'poppins-thin': ['Poppins-Thin'],

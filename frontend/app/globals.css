@@ -1,3 +1,127 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .screen-wrapper {
+    @apply flex-1 bg-surface dark:bg-surface-dark;
+  }
+
+  .content-wrapper {
+    @apply flex-1 justify-center gap-y-8 px-6;
+  }
+
+  /* Header and logo section */
+  .header-wrapper {
+    @apply flex gap-y-16;
+  }
+
+  .logo-wrapper {
+    @apply flex justify-center items-center;
+  }
+
+  .header-logo {
+    @apply size-24;
+  }
+
+  .header-txt {
+    @apply text-4xl font-heebo-medium dark:text-white;
+  }
+
+  /* Form & action sections */
+  .form-group {
+    @apply flex gap-y-6;
+  }
+
+  /* Separator section */
+  .divider-row {
+    @apply flex-row justify-center items-center;
+  }
+
+  .divider-line {
+    @apply flex-1 h-px rounded-full opacity-35 bg-muted dark:bg-muted-dark;
+  }
+
+  .divider-txt {
+    @apply flex mx-4 text-sm font-poppins-medium text-muted dark:text-muted-dark;
+  }
+
+  /* Social login row */
+  .social-auth-row {
+    @apply flex-row gap-x-4;
+  }
+
+  /* Footer link row */
+  .footer-wrapper {
+    @apply flex-row justify-center gap-x-1;
+  }
+
+  .footer-txt {
+    @apply text-sm font-poppins-medium dark:text-white;
+  }
+
+  .footer-link {
+    @apply text-sm text-primary underline;
+  }
+
+  /* IconButton */
+  .icon-btn-wrapper {
+    @apply flex-1 p-px rounded-2xl items-center justify-center overflow-hidden bg-card dark:bg-card-dark;
+  }
+
+  .icon-btn-inner {
+    @apply w-full py-5 rounded-2xl border border-muted dark:border-muted-dark;
+  }
+
+  .icon-btn-img {
+    @apply h-5 w-5 mx-auto;
+  }
+
+  /* === InputField Wrapper === */
+  .input-wrapper {
+    @apply relative border-b-2 pb-1;
+  }
+
+  /* === Input Label === */
+  .input-label {
+    @apply font-poppins-medium;
+  }
+
+  /* === TextInput Styling === */
+  .input-txt {
+    @apply text-base pt-6 pb-3 pr-10 text-on-surface dark:text-on-surface-dark;
+  }
+
+  /* === Action Icon Container (e.g., eye / close icon) === */
+  .input-icon-wrapper {
+    @apply absolute right-0 top-6;
+  }
+
+  .btn-primary {
+    @apply py-4 px-6 justify-center items-center rounded-2xl bg-primary;
+  }
+
+  /* === Button Label Text === */
+  .btn-primary-label {
+    @apply text-lg font-inter-bold text-white;
+  }
+
+  .round-icon-btn {
+    @apply p-1.5 rounded-full;
+  }
+
+  /* === Background Layer (opaque by default, style opacity conditionally) === */
+  .round-icon-btn-bg {
+    @apply absolute inset-0 rounded-full bg-[#ECEDF1] dark:bg-[#3E436D];
+  }
+
+  /* === Icon Centering Container === */
+  .round-icon-btn-img-wrapper {
+    @apply items-center justify-center;
+  }
+
+  /* === Icon Image === */
+  .round-icon-btn-img {
+    @apply h-4 w-4;
+  }
+}

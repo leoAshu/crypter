@@ -21,12 +21,11 @@ const RoundIconButton = (props: RoundIconButtonProps) => {
   const currentIcon = isPrimary ? props.primaryIcon : props.secondaryIcon!;
 
   return (
-    <Pressable onPress={handlePress} className='p-1.5 rounded-full'>
-      {/* Background layer with opacity */}
-      <View className='absolute inset-0 rounded-full bg-[#ECEDF1] dark:bg-[#3E436D]' style={colorScheme == 'dark' ? { opacity: 0.3 } : { opacity: 1 }} />
+    <Pressable className='round-icon-btn' onPress={handlePress}>
+      <View className='round-icon-btn-bg' style={colorScheme == 'dark' ? { opacity: 0.3 } : { opacity: 1 }} />
 
-      <View className='items-center justify-center'>
-        <Image source={currentIcon} className='h-4 w-4' resizeMode='contain' />
+      <View className='round-icon-btn-img-wrapper'>
+        <Image className='round-icon-btn-img' source={currentIcon} resizeMode='contain' />
       </View>
     </Pressable>
   );
