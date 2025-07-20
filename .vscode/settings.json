@@ -5,6 +5,5 @@
     "source.sortMembers": "explicit"
   },
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
