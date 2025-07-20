@@ -36,13 +36,13 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
   return (
     <Animated.View style={animatedStyle}>
       <Pressable
+        className='btn-primary'
         onPress={props.disabled ? undefined : props.onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         disabled={props.disabled}
-        className='py-4 px-6 justify-center items-center rounded-2xl bg-primary'
       >
-        <Text className='text-lg font-inter-bold text-white'>{props.label}</Text>
+        <Text className='btn-primary-label'>{props.label}</Text>
       </Pressable>
     </Animated.View>
   );
