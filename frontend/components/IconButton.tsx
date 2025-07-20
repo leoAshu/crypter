@@ -51,9 +51,9 @@ const IconButton = (props: IconButtonProps) => {
     <Pressable
       onPress={props.onPress}
       onPressIn={handlePressIn}
-      className='flex-1 p-px rounded-2xl items-center justify-center overflow-hidden bg-card-bg-light dark:bg-card-bg-dark'
+      className='flex-1 p-px rounded-2xl items-center justify-center overflow-hidden bg-card dark:bg-card-dark'
     >
-      <View ref={containerRef} className='w-full py-5 rounded-2xl border border-text-secondary-light dark:border-text-secondary-dark'>
+      <View ref={containerRef} className='w-full py-5 rounded-2xl border border-muted dark:border-muted-dark'>
         <Animated.View style={animatedRippleStyle} />
         <Image source={props.icon} className='h-5 w-5 mx-auto' resizeMode='contain' style={props.tintColor ? { tintColor: props.tintColor } : undefined} />
       </View>

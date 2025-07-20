@@ -68,7 +68,7 @@ const InputField = (props: InputFieldProps) => {
         onChangeText={setValue}
         onFocus={() => (isFocused.value = true)}
         onBlur={() => (isFocused.value = false)}
-        className='text-base pt-6 pb-3 pr-10 text-text-primary-light dark:text-text-primary-dark'
+        className='text-base pt-6 pb-3 pr-10 text-on-surface dark:text-on-surface-dark'
         cursorColor='#0066FF'
         secureTextEntry={props.secured ? !showPassword : false}
         keyboardType={props.keyboardType}

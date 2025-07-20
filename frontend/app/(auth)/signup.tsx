@@ -9,7 +9,7 @@ const Signup = () => {
   const colorScheme = useColorScheme();
 
   return (
-    <View className='flex-1 bg-bg-light dark:bg-bg-dark'>
+    <View className='flex-1 bg-surface dark:bg-surface-dark'>
       <SafeAreaView className='flex-1 px-6'>
         <View className='flex-1 justify-center gap-y-8'>
           {/* Group 1: Logo & Screen Title */}
@@ -29,11 +29,9 @@ const Signup = () => {
           {/* Group 3: Alternate Login & Signup */}
           <View className='flex gap-y-6'>
             <View className='flex-row justify-center items-center'>
-              <View className='flex-1 h-px rounded-full opacity-35 bg-text-secondary-light dark:bg-text-secondary-dark' />
-              <Text className='flex mx-4 text-sm font-poppins-medium text-text-secondary-light dark:text-text-secondary-dark'>
-                {strings.signup.OR_CONTINUE_WITH}
-              </Text>
-              <View className='flex-1 h-px rounded-full opacity-35 bg-text-secondary-light dark:bg-text-secondary-dark' />
+              <View className='flex-1 h-px rounded-full opacity-35 bg-muted dark:bg-muted-dark' />
+              <Text className='flex mx-4 text-sm font-poppins-medium text-muted dark:text-muted-dark'>{strings.signup.OR_CONTINUE_WITH}</Text>
+              <View className='flex-1 h-px rounded-full opacity-35 bg-muted dark:bg-muted-dark' />
             </View>
             <View className='flex-row gap-x-4'>
               <IconButton icon={images.google} onPress={() => {}} />
