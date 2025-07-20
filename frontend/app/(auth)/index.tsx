@@ -5,9 +5,38 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { PrimaryButton, InputField, IconButton } from '@/components';
 import { router } from 'expo-router';
 import { useColorScheme } from 'react-native';
+import { useState } from 'react';
+import { emailRegex } from '@/constants/regex';
+
+
 
 const Login = () => {
   const colorScheme = useColorScheme();
+  //state for email and error
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  //state for password
+  const [password, setPassword] = useState('');
+
+  //email change handler
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+    if (!value) {
+      setEmailError('');
+    } else if (!emailRegex.test(value)) {
+      setEmailError(strings.errors.EMAIL_ERROR);
+    } else {
+      setEmailError('');
+    }
+  };
+  
+  //login button handler
+  const handleLogin = () => {
+    if (!emailRegex.test(email)) {
+      setEmailError(strings.errors.EMAIL_ERROR);
+    }
+  }
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -22,9 +51,9 @@ const Login = () => {
 
         {/* Group 2: Login Form */}
         <View className='form-group'>
-          <InputField label={strings.login.EMAIL_LABEL} keyboardType='email-address' />
-          <InputField label={strings.login.PASSWORD_LABEL} keyboardType='default' secured />
-          <PrimaryButton label={strings.login.BUTTON_LABEL} onPress={() => {}} />
+        <InputField label={strings.login.EMAIL_LABEL} keyboardType='email-address' value={email} onChangeText={handleEmailChange} error={emailError} />
+        <InputField label={strings.login.PASSWORD_LABEL} keyboardType='default' secured value={password} onChangeText={setPassword} />
+        <PrimaryButton label={strings.login.BUTTON_LABEL} onPress={handleLogin} disabled={!!emailError || !email || !password} />
         </View>
 
         {/* Group 3: Socials Login & Footer Signup */}
