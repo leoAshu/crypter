@@ -1,12 +1,10 @@
-import { View, Text, Image, Pressable } from 'react-native';
 import { images } from '@/assets';
-import { strings } from '@/constants';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButton, InputField, IconButton } from '@/components';
+import { IconButton, InputField, PrimaryButton } from '@/components';
+import { emailRegex, strings } from '@/constants';
 import { router } from 'expo-router';
-import { useColorScheme } from 'react-native';
 import { useState } from 'react';
-import { emailRegex } from '@/constants/regex';
+import { Image, Pressable, Text, useColorScheme, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Login = () => {
   const colorScheme = useColorScheme();
