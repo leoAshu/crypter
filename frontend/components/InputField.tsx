@@ -1,23 +1,25 @@
-import { useEffect, useState } from 'react';
-import { TextInput, KeyboardTypeOptions } from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
-import RoundIconButton from './RoundIconButton';
 import { images } from '@/assets';
+import { useEffect, useState } from 'react';
+import { KeyboardTypeOptions, TextInput } from 'react-native';
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import RoundIconButton from './RoundIconButton';
 
 interface InputFieldProps {
   label: string;
   keyboardType: KeyboardTypeOptions;
   placeholder?: string;
   secured?: boolean;
-  value?: string;
-  onChangeText?: (value: string) => void;
+  value: string;
+  onChangeText: (value: string) => void;
   error?: string;
 }
 
 const InputField = (props: InputFieldProps) => {
-  const [internalValue, setInternalValue] = useState('');
-  const value = props.value !== undefined ? props.value : internalValue;
-  const onChangeText = props.onChangeText || setInternalValue;
+  // const [internalValue, setInternalValue] = useState('');
+  // const value = props.value !== undefined ? props.value : internalValue;
+  // const onChangeText = props.onChangeText || setInternalValue;
+  const value = props.value ?? '';
+  const onChangeText = props.onChangeText;
   const [showPassword, setShowPassword] = useState(false);
   const isFocused = useSharedValue(false);
   const iconOpacity = useSharedValue(0);
@@ -58,11 +60,7 @@ const InputField = (props: InputFieldProps) => {
     if (props.secured) {
       setShowPassword((prev) => !prev);
     } else {
-      if (props.onChangeText) {
-        props.onChangeText('');
-      } else {
-        setInternalValue('');
-      }
+      onChangeText('');
     }
   };
 
