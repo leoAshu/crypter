@@ -39,7 +39,7 @@ const InputField = (props: InputFieldProps) => {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
-    color: withTiming(isFocused.value ? '#0066FF' : '#969AA0', {
+    color: withTiming(props.error ? 'red' :isFocused.value ? '#0066FF' : '#969AA0', {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
@@ -107,11 +107,11 @@ const InputField = (props: InputFieldProps) => {
           </Animated.View>
         )}
       </Animated.View>
-      {props.error ? (
-        <Animated.Text style={[{ color: 'red', fontSize: 12, marginTop: 4, marginLeft: 2 }, errorStyle]}>
+      {/* {
+        <Animated.Text style={[{ color: 'red', fontSize: 12, marginTop: 4, marginLeft: 2, minHeight: 16 }, errorStyle]}>
           {props.error || ''}
         </Animated.Text>
-      ) : null}
+      } */}
     </>
   );
 };
