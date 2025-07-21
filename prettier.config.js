@@ -8,5 +8,5 @@ module.exports = {
   printWidth: 120,
   jsxSingleQuote: true,
   plugins: ['prettier-plugin-tailwindcss'],
-  tailwindConfig: path.resolve(__dirname, 'frontend/tailwind.config.js'),
+  tailwindConfig: path.resolve(__dirname, 'apps/frontend/tailwind.config.js'),
 };
