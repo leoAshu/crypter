@@ -39,7 +39,7 @@ const InputField = (props: InputFieldProps) => {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
-    color: withTiming(props.error ? 'red' :isFocused.value ? '#0066FF' : '#969AA0', {
+    color: withTiming(props.error ? 'red' : isFocused.value ? '#0066FF' : '#969AA0', {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
