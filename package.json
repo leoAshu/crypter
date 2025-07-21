@@ -13,5 +13,8 @@
   "devDependencies": {
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.5.11"
+  },
+  "dependencies": {
+    "nativewind": "^4.1.23"
   }
 }
