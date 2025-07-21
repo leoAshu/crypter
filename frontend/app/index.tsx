@@ -12,7 +12,7 @@ const Index = () => {
   }, []);
 
   return (
-    <View className='flex-1 justify-center items-center bg-surface dark:bg-surface-dark'>
+    <View className='flex-1 items-center justify-center bg-surface dark:bg-surface-dark'>
       <Text className='text-5xl dark:text-white'>Welcome</Text>
     </View>
   );

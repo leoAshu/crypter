@@ -1,0 +1,18 @@
+# Ignore folder in root
+.github
+node_modules
+
+# Ignore folders inside frontend
+frontend/node_modules
+frontend/build
+frontend/.expo
+frontend/.vscode
+
+# Ignore config and generated files inside frontend
+frontend/expo-env.d.ts
+frontend/package-lock.json
+frontend/tsconfig.json
+frontend/eslint.config.js
+frontend/babel.config.js
+frontend/metro.config.js
+frontend/nativewind-env.d.ts

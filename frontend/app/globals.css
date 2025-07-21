@@ -17,7 +17,7 @@
   }
 
   .logo-wrapper {
-    @apply flex justify-center items-center;
+    @apply flex items-center justify-center;
   }
 
   .header-logo {
@@ -25,7 +25,7 @@
   }
 
   .header-txt {
-    @apply text-4xl font-heebo-medium dark:text-white;
+    @apply font-heebo-medium text-4xl dark:text-white;
   }
 
   /* Form & action sections */
@@ -35,15 +35,15 @@
 
   /* Separator section */
   .divider-row {
-    @apply flex-row justify-center items-center;
+    @apply flex-row items-center justify-center;
   }
 
   .divider-line {
-    @apply flex-1 h-px rounded-full opacity-35 bg-muted dark:bg-muted-dark;
+    @apply h-px flex-1 rounded-full bg-muted opacity-35 dark:bg-muted-dark;
   }
 
   .divider-txt {
-    @apply flex mx-4 text-sm font-poppins-medium text-muted dark:text-muted-dark;
+    @apply mx-4 flex font-poppins-medium text-sm text-muted dark:text-muted-dark;
   }
 
   /* Social login row */
@@ -57,7 +57,7 @@
   }
 
   .footer-txt {
-    @apply text-sm font-poppins-medium dark:text-white;
+    @apply font-poppins-medium text-sm dark:text-white;
   }
 
   .footer-link {
@@ -66,15 +66,15 @@
 
   /* IconButton */
   .icon-btn-wrapper {
-    @apply flex-1 p-px rounded-2xl items-center justify-center overflow-hidden bg-card dark:bg-card-dark;
+    @apply flex-1 items-center justify-center overflow-hidden rounded-2xl bg-card p-px dark:bg-card-dark;
   }
 
   .icon-btn-inner {
-    @apply w-full py-5 rounded-2xl border border-muted dark:border-muted-dark;
+    @apply w-full rounded-2xl border border-muted py-5 dark:border-muted-dark;
   }
 
   .icon-btn-img {
-    @apply h-5 w-5 mx-auto;
+    @apply mx-auto h-5 w-5;
   }
 
   /* === InputField Wrapper === */
@@ -89,7 +89,7 @@
 
   /* === TextInput Styling === */
   .input-txt {
-    @apply text-base pt-6 pb-3 pr-10 text-on-surface dark:text-on-surface-dark;
+    @apply pb-3 pr-10 pt-6 text-base text-on-surface dark:text-on-surface-dark;
   }
 
   /* === Action Icon Container (e.g., eye / close icon) === */
@@ -98,16 +98,16 @@
   }
 
   .btn-primary {
-    @apply py-4 px-6 justify-center items-center rounded-2xl bg-primary;
+    @apply items-center justify-center rounded-2xl bg-primary px-6 py-4;
   }
 
   /* === Button Label Text === */
   .btn-primary-label {
-    @apply text-lg font-inter-bold text-white;
+    @apply font-inter-bold text-lg text-white;
   }
 
   .round-icon-btn {
-    @apply p-1.5 rounded-full;
+    @apply rounded-full p-1.5;
   }
 
   /* === Background Layer (opaque by default, style opacity conditionally) === */
