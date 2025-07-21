@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev:app": "cd apps/frontend && npm start",
+    "dev:app-clean": "cd apps/frontend && npm run start:clean",
     "dev:server": "",
     "dev": "npm-run-all --parallel dev:*",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
