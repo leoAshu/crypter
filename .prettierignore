@@ -3,16 +3,16 @@
 node_modules
 
 # Ignore folders inside frontend
-frontend/node_modules
-frontend/build
-frontend/.expo
-frontend/.vscode
+apps/frontend/node_modules
+apps/frontend/build
+apps/frontend/.expo
+apps/frontend/.vscode
 
 # Ignore config and generated files inside frontend
-frontend/expo-env.d.ts
-frontend/package-lock.json
-frontend/tsconfig.json
-frontend/eslint.config.js
-frontend/babel.config.js
-frontend/metro.config.js
-frontend/nativewind-env.d.ts
+apps/frontend/expo-env.d.ts
+apps/frontend/package-lock.json
+apps/frontend/tsconfig.json
+apps/frontend/eslint.config.js
+apps/frontend/babel.config.js
+apps/frontend/metro.config.js
+apps/frontend/nativewind-env.d.ts
