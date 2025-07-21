@@ -8,7 +8,7 @@ type Props = {
 const TabScreenWrapper = ({ children }: Props) => {
   return (
     <SafeAreaView className='flex-1'>
-      <View className='flex-1 justify-center items-center'>{children}</View>
+      <View className='flex-1 items-center justify-center'>{children}</View>
     </SafeAreaView>
   );
 };

@@ -1,13 +1,14 @@
+# Ignore folders inside frontend
 node_modules
 build
 .expo
 .vscode
-.prettierrc
-package.json
+
+# Ignore config and generated files inside frontend
+expo-env.d.ts
 package-lock.json
 tsconfig.json
 eslint.config.js
-README.md
 babel.config.js
 metro.config.js
 nativewind-env.d.ts
