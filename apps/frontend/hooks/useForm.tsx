@@ -1,14 +1,14 @@
-import { ValidationResult } from '@/constants/validations';
+import { ValidationResult } from '@/types';
 import { useCallback, useState } from 'react';
 
-export interface FieldValidation {
+interface FieldValidation {
   value: string;
   error: string;
   isValid: boolean;
   showError: boolean;
 }
 
-export interface FormValidationConfig {
+interface FormValidationConfig {
   [fieldName: string]: {
     initialValue?: string;
     validator: (value: string, formValues?: Record<string, string>) => ValidationResult;
@@ -16,17 +16,7 @@ export interface FormValidationConfig {
   };
 }
 
-export interface UseFormValidationReturn {
-  fields: Record<string, FieldValidation>;
-  updateField: (fieldName: string, value: string) => void;
-  validateField: (fieldName: string) => boolean;
-  validateAllFields: () => boolean;
-  isFormValid: boolean;
-  resetForm: () => void;
-  getFormValues: () => Record<string, string>;
-}
-
-export const useFormValidation = (config: FormValidationConfig): UseFormValidationReturn => {
+const useForm = (config: FormValidationConfig) => {
   const [fields, setFields] = useState<Record<string, FieldValidation>>(() => {
     const initialFields: Record<string, FieldValidation> = {};
 
@@ -146,3 +136,5 @@ export const useFormValidation = (config: FormValidationConfig): UseFormValidati
     getFormValues,
   };
 };
+
+export default useForm;

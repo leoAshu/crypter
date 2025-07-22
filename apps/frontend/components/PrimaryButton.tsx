@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { Text, Pressable } from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle, withSpring, withTiming } from 'react-native-reanimated';
+import { Pressable, Text } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 
 interface PrimaryButtonProps {
   label: string;

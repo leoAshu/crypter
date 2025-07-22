@@ -1,4 +1,4 @@
-const strings = {
+const Strings = {
   appName: 'Dream Supplier',
   login: {
     SCREEN_TITLE: "Let's sign you in!",
@@ -22,4 +22,4 @@ const strings = {
   },
 };
 
-export default strings;
+export default Strings;

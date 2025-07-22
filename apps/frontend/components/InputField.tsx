@@ -2,27 +2,23 @@ import { images } from '@/assets';
 import { useEffect, useState } from 'react';
 import { KeyboardTypeOptions, TextInput } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import RoundIconButton from './RoundIconButton';
+import { RoundIconButton } from '.';
 
 interface InputFieldProps {
   label: string;
-  keyboardType: KeyboardTypeOptions;
-  placeholder?: string;
-  secured?: boolean;
   value: string;
-  onChangeText: (value: string) => void;
+  keyboardType: KeyboardTypeOptions;
   error?: string;
+  secured?: boolean;
+  placeholder?: string;
+  onChangeText?: (value: string) => void;
 }
 
 const InputField = (props: InputFieldProps) => {
-  // const [internalValue, setInternalValue] = useState('');
-  // const value = props.value !== undefined ? props.value : internalValue;
-  // const onChangeText = props.onChangeText || setInternalValue;
-  const value = props.value ?? '';
-  const onChangeText = props.onChangeText;
-  const [showPassword, setShowPassword] = useState(false);
-  const isFocused = useSharedValue(false);
+  const value = props.value;
   const iconOpacity = useSharedValue(0);
+  const isFocused = useSharedValue(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     iconOpacity.value = withTiming(value ? 1 : 0, { duration: 200 });
@@ -60,7 +56,7 @@ const InputField = (props: InputFieldProps) => {
     if (props.secured) {
       setShowPassword((prev) => !prev);
     } else {
-      onChangeText('');
+      if (props.onChangeText) props.onChangeText('');
     }
   };
 
@@ -71,48 +67,32 @@ const InputField = (props: InputFieldProps) => {
     errorVisible.value = !!props.error ? 1 : 0;
   }, [props.error]);
 
-  const errorStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(errorVisible.value, { duration: 250 }),
-    transform: [
-      {
-        translateY: withTiming(errorVisible.value ? 0 : -8, { duration: 250 }),
-      },
-    ],
-  }));
-
   return (
-    <>
-      <Animated.View className='input-wrapper' style={borderStyle}>
-        <Animated.Text className='input-label' style={[labelStyle]}>
-          {props.label}
-        </Animated.Text>
+    <Animated.View className='input-wrapper' style={borderStyle}>
+      <Animated.Text className='input-label' style={[labelStyle]}>
+        {props.label}
+      </Animated.Text>
 
-        <TextInput
-          className='input-txt'
-          value={value}
-          onChangeText={onChangeText}
-          onFocus={() => (isFocused.value = true)}
-          onBlur={() => (isFocused.value = false)}
-          cursorColor='#0066FF'
-          secureTextEntry={props.secured ? !showPassword : false}
-          keyboardType={props.keyboardType}
-        />
+      <TextInput
+        className='input-txt'
+        value={value}
+        onChangeText={props.onChangeText}
+        onFocus={() => (isFocused.value = true)}
+        onBlur={() => (isFocused.value = false)}
+        cursorColor='#0066FF'
+        secureTextEntry={props.secured ? !showPassword : false}
+        keyboardType={props.keyboardType}
+      />
 
-        {value.length > 0 && (
-          <Animated.View className='input-icon-wrapper' style={[animatedIconStyle]}>
-            <RoundIconButton
-              primaryIcon={props.secured ? (showPassword ? images.eyeOff : images.eye) : images.x}
-              onPress={handlePress}
-            />
-          </Animated.View>
-        )}
-      </Animated.View>
-      {/* {
-        <Animated.Text style={[{ color: 'red', fontSize: 12, marginTop: 4, marginLeft: 2, minHeight: 16 }, errorStyle]}>
-          {props.error || ''}
-        </Animated.Text>
-      } */}
-    </>
+      {value.length > 0 && (
+        <Animated.View className='input-icon-wrapper' style={[animatedIconStyle]}>
+          <RoundIconButton
+            primaryIcon={props.secured ? (showPassword ? images.eyeOff : images.eye) : images.x}
+            onPress={handlePress}
+          />
+        </Animated.View>
+      )}
+    </Animated.View>
   );
 };
 

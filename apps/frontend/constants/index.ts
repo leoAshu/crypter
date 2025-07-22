@@ -1,4 +1,4 @@
-import strings from './strings';
-import { emailRegex } from './validations';
+import Strings from './strings';
+import { EMAIL_REGEX, PASSWORD_REGEX } from './validations';
 
-export { emailRegex, strings };
+export { EMAIL_REGEX, PASSWORD_REGEX, Strings };

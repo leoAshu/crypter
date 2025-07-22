@@ -1,5 +1,5 @@
 import useRipple from './animations/useRipple';
 import useCustomFonts from './useFonts';
-import { useFormValidation } from './useFormValidation';
+import useForm from './useForm';
 
-export { useCustomFonts, useFormValidation, useRipple };
+export { useCustomFonts, useForm, useRipple };
