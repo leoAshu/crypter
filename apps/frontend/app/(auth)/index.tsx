@@ -17,7 +17,7 @@ const Login = () => {
     },
     password: {
       validator: (value) => validateRequired(value, 'Password'),
-      validateOnChange: false,
+      validateOnChange: true,
     },
   });
 
