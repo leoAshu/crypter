@@ -1,36 +1,33 @@
 import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
-import { emailRegex, strings } from '@/constants';
+import { strings } from '@/constants';
+import { validateEmail, validateRequired } from '@/constants/validations';
+import { useFormValidation } from '@/hooks';
 import { router } from 'expo-router';
-import { useState } from 'react';
 import { Image, Pressable, Text, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Login = () => {
   const colorScheme = useColorScheme();
-  //state for email and error
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
 
-  //state for password
-  const [password, setPassword] = useState('');
+  const { fields, updateField, isFormValid, validateAllFields } = useFormValidation({
+    email: {
+      validator: validateEmail,
+      validateOnChange: true,
+    },
+    password: {
+      validator: (value) => validateRequired(value, 'Password'),
+      validateOnChange: false,
+    },
+  });
 
-  //email change handler
-  const handleEmailChange = (value: string) => {
-    setEmail(value);
-    if (!value) {
-      setEmailError('');
-    } else if (!emailRegex.test(value)) {
-      setEmailError(strings.errors.EMAIL_ERROR);
-    } else {
-      setEmailError('');
-    }
-  };
-
-  //login button handler
   const handleLogin = () => {
-    if (!emailRegex.test(email)) {
-      setEmailError(strings.errors.EMAIL_ERROR);
+    if (validateAllFields()) {
+      // Handle successful login
+      console.log('Login with:', {
+        email: fields.email.value,
+        password: fields.password.value,
+      });
     }
   };
 
@@ -50,22 +47,19 @@ const Login = () => {
           <InputField
             label={strings.login.EMAIL_LABEL}
             keyboardType='email-address'
-            value={email}
-            onChangeText={handleEmailChange}
-            error={emailError}
+            value={fields.email.value}
+            onChangeText={(value) => updateField('email', value)}
+            error={fields.email.showError ? fields.email.error : ''}
           />
           <InputField
             label={strings.login.PASSWORD_LABEL}
             keyboardType='default'
             secured
-            value={password}
-            onChangeText={setPassword}
+            value={fields.password.value}
+            onChangeText={(value) => updateField('password', value)}
+            error={fields.password.showError ? fields.password.error : ''}
           />
-          <PrimaryButton
-            label={strings.login.BUTTON_LABEL}
-            onPress={handleLogin}
-            disabled={!!emailError || !email || !password}
-          />
+          <PrimaryButton label={strings.login.BUTTON_LABEL} onPress={handleLogin} disabled={!isFormValid} />
         </View>
 
         {/* Group 3: Socials Login & Footer Signup */}
