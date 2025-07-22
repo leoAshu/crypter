@@ -2,14 +2,14 @@ import { useRef } from 'react';
 import { GestureResponderEvent, View } from 'react-native';
 import { Easing, useAnimatedStyle, useSharedValue, withTiming, WithTimingConfig } from 'react-native-reanimated';
 
-type RippleAnimationConfig = {
+interface RippleAnimationConfig {
   color?: string;
   opacity?: { from: number; to: number };
   scale?: { from: number; to: number };
   duration?: number;
   radius?: number;
   easing?: WithTimingConfig['easing'];
-};
+}
 
 const useRippleAnimation = (config?: RippleAnimationConfig) => {
   const {
