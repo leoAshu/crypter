@@ -1,12 +1,28 @@
-import { View, Text, Image, Pressable, useColorScheme } from 'react-native';
 import { images } from '@/assets';
+import { IconButton, InputField, PrimaryButton } from '@/components';
 import { strings } from '@/constants';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { PrimaryButton, InputField, IconButton } from '@/components';
+import { validateEmail } from '@/constants/validations';
+import { useFormValidation } from '@/hooks';
 import { router } from 'expo-router';
+import { Image, Pressable, Text, useColorScheme, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Signup = () => {
   const colorScheme = useColorScheme();
+
+  const { fields, updateField, isFormValid, validateAllFields } = useFormValidation({
+    email: {
+      validator: validateEmail,
+      validateOnChange: true,
+    },
+  });
+
+  const handleSignup = () => {
+    if (validateAllFields()) {
+      // Handle successful signup
+      console.log('Signup with email:', fields.email.value);
+    }
+  };
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -21,8 +37,14 @@ const Signup = () => {
 
         {/* Group 2: Signup Fields & Button */}
         <View className='form-group'>
-          <InputField label={strings.signup.EMAIL_LABEL} keyboardType='email-address' />
-          <PrimaryButton label={strings.signup.BUTTON_LABEL} onPress={() => {}} />
+          <InputField
+            label={strings.signup.EMAIL_LABEL}
+            keyboardType='email-address'
+            value={fields.email.value}
+            onChangeText={(value) => updateField('email', value)}
+            error={fields.email.showError ? fields.email.error : ''}
+          />
+          <PrimaryButton label={strings.signup.BUTTON_LABEL} onPress={handleSignup} disabled={!isFormValid} />
         </View>
 
         {/* Group 3: Socials Signup & Footer Login */}
