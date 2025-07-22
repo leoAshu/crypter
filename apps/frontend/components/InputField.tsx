@@ -46,7 +46,7 @@ const InputField = (props: InputFieldProps) => {
   }));
 
   const borderStyle = useAnimatedStyle(() => ({
-    borderBottomColor: withTiming(isFocused.value ? '#0066FF' : '#2C2E3B', {
+    borderBottomColor: withTiming(props.error ? 'red' : isFocused.value ? '#0066FF' : '#2C2E3B', {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
