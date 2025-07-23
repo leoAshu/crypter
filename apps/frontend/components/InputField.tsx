@@ -21,7 +21,7 @@ const InputField = (props: InputFieldProps) => {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
-    color: withTiming(props.error ? 'red' : isFocused ? '#0066FF' : '#969AA0', {
+    color: withTiming(isFocused ? '#0066FF' : '#969AA0', {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
@@ -50,6 +50,8 @@ const InputField = (props: InputFieldProps) => {
         cursorColor='#0066FF'
         secureTextEntry={props.secureTextEntry ? !showPassword : false}
         keyboardType={props.keyboardType}
+        editable={!props.disabled}
+        selectTextOnFocus={!props.disabled}
       />
 
       {value.length > 0 && isFocused && (

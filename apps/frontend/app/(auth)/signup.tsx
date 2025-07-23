@@ -2,25 +2,38 @@ import { images } from '@/assets';
 import { IconButton, PrimaryButton } from '@/components';
 import InputField from '@/components/InputField';
 import { Strings } from '@/constants';
-import { useForm } from '@/hooks';
 import { validateEmail } from '@/utils';
 import { router } from 'expo-router';
-import { Image, Pressable, Text, useColorScheme, View } from 'react-native';
+import { useState } from 'react';
+import { Alert, Image, Pressable, Text, useColorScheme, View } from 'react-native';
 
 const Signup = () => {
   const colorScheme = useColorScheme();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [form, setForm] = useState({ email: '' });
 
-  const { fields, updateField, isFormValid, validateAllFields } = useForm({
-    email: {
-      validator: validateEmail,
-      validateOnChange: true,
-    },
-  });
+  const resetForm = () => {
+    setForm({ email: '' });
+  };
 
-  const handleSignup = () => {
-    if (validateAllFields()) {
-      console.log('Signup with email:', fields.email.value);
-    }
+  const submitForm = async () => {
+    const { email } = form;
+    const emailValidationResult = validateEmail(email);
+
+    if (!emailValidationResult.isValid) return Alert.alert('Error', emailValidationResult.error);
+
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      try {
+        Alert.alert('Success', 'Sign Up Successful!');
+        resetForm();
+      } catch (err: any) {
+        Alert.alert('Error', err.message);
+      } finally {
+        setIsSubmitting(false);
+      }
+    }, 5000);
   };
 
   return (
@@ -32,14 +45,14 @@ const Signup = () => {
         <InputField
           label={Strings.signup.EMAIL_LABEL}
           keyboardType='email-address'
-          value={fields.email.value}
-          onChangeText={(value) => updateField('email', value)}
-          error={fields.email.showError ? fields.email.error : ''}
+          value={form.email}
+          disabled={isSubmitting}
+          onChangeText={(value) => setForm((prev) => ({ ...prev, email: value }))}
         />
         <PrimaryButton
           title={Strings.signup.BUTTON_LABEL}
-          isLoading={false}
-          onPress={handleSignup}
+          isLoading={isSubmitting}
+          onPress={submitForm}
           leftIcon={<Image className='size-4' resizeMode='contain' source={images.mail}></Image>}
         />
       </View>
@@ -52,12 +65,17 @@ const Signup = () => {
           <View className='divider-line' />
         </View>
         <View className='social-auth-row'>
-          <IconButton icon={images.google} onPress={() => {}} />
-          <IconButton icon={images.apple} tintColor={colorScheme === 'dark' ? '#FFF' : '#000'} onPress={() => {}} />
+          <IconButton icon={images.google} disabled={isSubmitting} onPress={() => {}} />
+          <IconButton
+            icon={images.apple}
+            tintColor={colorScheme === 'dark' ? '#FFF' : '#000'}
+            disabled={isSubmitting}
+            onPress={() => {}}
+          />
         </View>
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.signup.NO_ACCOUNT_TEXT}</Text>
-          <Pressable onPress={() => router.replace('/signin')}>
+          <Pressable disabled={isSubmitting} onPress={() => router.replace('/signin')}>
             <Text className='footer-link'>{Strings.signup.SIGNIN_CTA}</Text>
           </Pressable>
         </View>
