@@ -4,24 +4,15 @@
 
 @layer components {
   .screen-wrapper {
-    @apply flex-1 bg-surface dark:bg-surface-dark;
+    @apply h-full bg-surface dark:bg-surface-dark;
   }
 
   .content-wrapper {
     @apply flex-1 justify-center gap-y-8 px-6;
   }
 
-  /* Header and logo section */
-  .header-wrapper {
-    @apply flex gap-y-16;
-  }
-
-  .logo-wrapper {
-    @apply flex items-center justify-center;
-  }
-
   .header-logo {
-    @apply size-24;
+    @apply absolute bottom-24 z-10 size-24 self-center;
   }
 
   .header-txt {
