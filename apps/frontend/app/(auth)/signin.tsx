@@ -1,5 +1,6 @@
 import { images } from '@/assets';
-import { IconButton, InputField, PrimaryButton } from '@/components';
+import { IconButton, PrimaryButton } from '@/components';
+import InputField from '@/components/InputField';
 import { Strings } from '@/constants';
 import { useForm } from '@/hooks';
 import { validateEmail, validatePassword } from '@/utils';
@@ -46,7 +47,7 @@ const SignIn = () => {
         <InputField
           label={Strings.login.PASSWORD_LABEL}
           keyboardType='default'
-          secured
+          secureTextEntry
           value={fields.password.value}
           onChangeText={(value) => updateField('password', value)}
           error={fields.password.showError ? fields.password.error : ''}

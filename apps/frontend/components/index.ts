@@ -1,6 +1,5 @@
-import InputField from './InputField';
-import PrimaryButton from './PrimaryButton';
 import IconButton from './IconButton';
+import PrimaryButton from './PrimaryButton';
 import RoundIconButton from './RoundIconButton';
 
-export { InputField, PrimaryButton, IconButton, RoundIconButton };
+export { IconButton, PrimaryButton, RoundIconButton };

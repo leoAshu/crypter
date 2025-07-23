@@ -1,5 +1,6 @@
 import { images } from '@/assets';
-import { IconButton, InputField, PrimaryButton } from '@/components';
+import { IconButton, PrimaryButton } from '@/components';
+import InputField from '@/components/InputField';
 import { Strings } from '@/constants';
 import { useForm } from '@/hooks';
 import { validateEmail } from '@/utils';
