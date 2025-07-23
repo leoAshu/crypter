@@ -5,6 +5,7 @@ const images = {
   x: require('./images/x.png'),
   eye: require('./images/eye.png'),
   eyeOff: require('./images/eye-off.png'),
+  mail: require('./images/mail.png'),
 };
 
 export { images };

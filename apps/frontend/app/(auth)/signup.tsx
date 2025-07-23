@@ -43,7 +43,12 @@ const Signup = () => {
             onChangeText={(value) => updateField('email', value)}
             error={fields.email.showError ? fields.email.error : ''}
           />
-          <PrimaryButton label={Strings.signup.BUTTON_LABEL} onPress={handleSignup} disabled={!isFormValid} />
+          <PrimaryButton
+            title={Strings.signup.BUTTON_LABEL}
+            isLoading={false}
+            onPress={handleSignup}
+            leftIcon={<Image className='size-4' resizeMode='contain' source={images.mail}></Image>}
+          />
         </View>
 
         {/* Group 3: Socials Signup & Footer Login */}

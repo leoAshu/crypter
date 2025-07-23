@@ -59,7 +59,7 @@ const Login = () => {
             onChangeText={(value) => updateField('password', value)}
             error={fields.password.showError ? fields.password.error : ''}
           />
-          <PrimaryButton label={Strings.login.BUTTON_LABEL} onPress={handleLogin} disabled={!isFormValid} />
+          <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={false} onPress={handleLogin} />
         </View>
 
         {/* Group 3: Socials Login & Footer Signup */}

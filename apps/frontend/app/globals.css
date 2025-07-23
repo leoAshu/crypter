@@ -98,7 +98,11 @@
   }
 
   .btn-primary {
-    @apply items-center justify-center rounded-2xl bg-primary px-6 py-4;
+    @apply rounded-2xl bg-primary px-6 py-4;
+  }
+
+  .btn-primary-inner {
+    @apply flex-row items-center justify-center;
   }
 
   /* === Button Label Text === */
