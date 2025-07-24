@@ -1,28 +1,19 @@
 import { useRef } from 'react';
 import { GestureResponderEvent, View } from 'react-native';
-import { Easing, useAnimatedStyle, useSharedValue, withTiming, WithTimingConfig } from 'react-native-reanimated';
-
-interface RippleAnimationConfig {
-  color?: string;
-  opacity?: { from: number; to: number };
-  scale?: { from: number; to: number };
-  duration?: number;
-  radius?: number;
-  easing?: WithTimingConfig['easing'];
-}
+import { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 const useRippleAnimation = (config?: RippleAnimationConfig) => {
   const {
     color = '#FFFFFF',
-    opacity = { from: 0.45, to: 0 },
-    scale = { from: 0, to: 3 },
+    opacity = 0.45,
+    scale = 3,
     duration = 500,
     radius = 50,
     easing = Easing.out(Easing.ease),
   } = config || {};
 
-  const scaleValue = useSharedValue(scale.from);
-  const opacityValue = useSharedValue(opacity.from);
+  const scaleValue = useSharedValue(0);
+  const opacityValue = useSharedValue(0);
   const rippleX = useSharedValue(0);
   const rippleY = useSharedValue(0);
   const rippleContainerRef = useRef<View>(null);
@@ -33,10 +24,10 @@ const useRippleAnimation = (config?: RippleAnimationConfig) => {
       const localY = e.nativeEvent.pageY - pageY;
       rippleX.value = localX;
       rippleY.value = localY;
-      scaleValue.value = scale.from;
-      opacityValue.value = opacity.from;
-      scaleValue.value = withTiming(scale.to, { duration, easing });
-      opacityValue.value = withTiming(opacity.to, { duration, easing });
+      scaleValue.value = 0;
+      opacityValue.value = opacity;
+      scaleValue.value = withTiming(scale, { duration, easing });
+      opacityValue.value = withTiming(0, { duration, easing });
     });
   };
 

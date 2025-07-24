@@ -1,19 +1,14 @@
 import { EMAIL_REGEX } from '@/constants';
-import { ValidationResult } from '@/types';
 
 const isEmpty = (value: string): boolean => !value.trim();
 
-const createValidationResult = (
-  isValid: boolean,
-  error: string = '',
-  isEmptyField: boolean = false,
-): ValidationResult => ({ isValid, error, isEmpty: isEmptyField });
+const createValidationResult = (isValid: boolean, error: string = ''): ValidationResult => ({ isValid, error });
 
 const validateEmail = (email: string): ValidationResult => {
   const trimmedEmail = email.trim();
 
   if (isEmpty(trimmedEmail)) {
-    return createValidationResult(false, 'Email is required!', true);
+    return createValidationResult(false, 'Email is required!');
   }
 
   if (!EMAIL_REGEX.test(trimmedEmail)) {
@@ -25,7 +20,7 @@ const validateEmail = (email: string): ValidationResult => {
 
 const validatePassword = (password: string): ValidationResult => {
   if (isEmpty(password)) {
-    return createValidationResult(false, 'Password is required!', true);
+    return createValidationResult(false, 'Password is required!');
   }
 
   if (password.length < 8) {

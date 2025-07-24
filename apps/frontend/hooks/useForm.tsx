@@ -1,4 +1,3 @@
-import { ValidationResult } from '@/types';
 import { useCallback, useState } from 'react';
 
 interface FieldValidation {
@@ -47,7 +46,7 @@ const useForm = (config: FormValidationConfig) => {
       const validationResult = fieldConfig.validator(fieldValue, formValues);
 
       // Show error only if submitted or forced, and for non-empty invalid fields
-      const shouldShowError = forceShowError || isSubmitted || (!validationResult.isEmpty && !validationResult.isValid);
+      const shouldShowError = forceShowError || isSubmitted || !validationResult.isValid;
 
       setFields((prev) => ({
         ...prev,

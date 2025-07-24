@@ -1,11 +1,5 @@
 import { useState } from 'react';
-import { Image, ImageSourcePropType, GestureResponderEvent, Pressable, View, useColorScheme } from 'react-native';
-
-interface RoundIconButtonProps {
-  primaryIcon: ImageSourcePropType;
-  secondaryIcon?: ImageSourcePropType;
-  onPress?: (e: GestureResponderEvent) => void;
-}
+import { GestureResponderEvent, Image, Pressable, View, useColorScheme } from 'react-native';
 
 const RoundIconButton = (props: RoundIconButtonProps) => {
   const [isPrimary, setIsPrimary] = useState(true);

@@ -13,6 +13,12 @@ interface PrimaryButtonProps {
   onPress?: () => void;
 }
 
+interface RoundIconButtonProps {
+  primaryIcon: ImageSourcePropType;
+  secondaryIcon?: ImageSourcePropType;
+  onPress?: (e: GestureResponderEvent) => void;
+}
+
 interface InputFieldProps {
   label: string;
   placeholder?: string;
@@ -22,4 +28,8 @@ interface InputFieldProps {
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   disabled?: boolean;
   onChangeText?: (text: string) => void;
+}
+
+interface TabScreenWrapperProps {
+  children: ReactNode;
 }
