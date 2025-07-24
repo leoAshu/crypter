@@ -1,4 +1,5 @@
 import useRipple from './animations/useRipple';
 import useCustomFonts from './useFonts';
+import useForm from './useForm';
 
-export { useCustomFonts, useRipple };
+export { useCustomFonts, useForm, useRipple };

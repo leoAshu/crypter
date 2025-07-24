@@ -1,4 +1,4 @@
-const strings = {
+const Strings = {
   appName: 'Dream Supplier',
   login: {
     SCREEN_TITLE: "Let's sign you in!",
@@ -17,6 +17,9 @@ const strings = {
     NO_ACCOUNT_TEXT: 'Already have an account?',
     SIGNIN_CTA: 'Sign In',
   },
+  errors: {
+    EMAIL_ERROR: 'Please enter a valid email address',
+  },
 };
 
-export default strings;
+export default Strings;

@@ -2,25 +2,27 @@ import { images } from '@/assets';
 import { IconButton, PrimaryButton } from '@/components';
 import InputField from '@/components/InputField';
 import { Strings } from '@/constants';
-import { validateEmail } from '@/utils';
+import { validateEmail, validatePassword } from '@/utils';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert, Image, Pressable, Text, useColorScheme, View } from 'react-native';
+import { Alert, Pressable, Text, useColorScheme, View } from 'react-native';
 
-const Signup = () => {
+const SignIn = () => {
   const colorScheme = useColorScheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState({ email: '' });
+  const [form, setForm] = useState({ email: '', password: '' });
 
   const resetForm = () => {
-    setForm({ email: '' });
+    setForm({ email: '', password: '' });
   };
 
   const submitForm = async () => {
-    const { email } = form;
+    const { email, password } = form;
     const emailValidationResult = validateEmail(email);
+    const passwordValidationResult = validatePassword(password);
 
     if (!emailValidationResult.isValid) return Alert.alert('Error', emailValidationResult.error);
+    if (!passwordValidationResult.isValid) return Alert.alert('Error', passwordValidationResult.error);
 
     setIsSubmitting(true);
 
@@ -37,30 +39,32 @@ const Signup = () => {
 
   return (
     <View className='content-wrapper'>
-      <Text className='header-txt'>{Strings.signup.SCREEN_TITLE}</Text>
+      <Text className='header-txt'>{Strings.login.SCREEN_TITLE}</Text>
 
       {/* Form */}
       <View className='form-group'>
         <InputField
-          label={Strings.signup.EMAIL_LABEL}
+          label={Strings.login.EMAIL_LABEL}
           keyboardType='email-address'
           value={form.email}
           disabled={isSubmitting}
           onChangeText={(value) => setForm((prev) => ({ ...prev, email: value }))}
         />
-        <PrimaryButton
-          title={Strings.signup.BUTTON_LABEL}
-          isLoading={isSubmitting}
-          onPress={submitForm}
-          leftIcon={<Image className='size-4' resizeMode='contain' source={images.mail}></Image>}
+        <InputField
+          label={Strings.login.PASSWORD_LABEL}
+          secureTextEntry
+          value={form.password}
+          disabled={isSubmitting}
+          onChangeText={(value) => setForm((prev) => ({ ...prev, password: value }))}
         />
+        <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={isSubmitting} onPress={submitForm} />
       </View>
 
       {/* Socials & Footer */}
       <View className='form-group'>
         <View className='divider-row'>
           <View className='divider-line' />
-          <Text className='divider-txt'>{Strings.signup.OR_CONTINUE_WITH}</Text>
+          <Text className='divider-txt'>{Strings.login.OR_CONTINUE_WITH}</Text>
           <View className='divider-line' />
         </View>
         <View className='social-auth-row'>
@@ -73,9 +77,9 @@ const Signup = () => {
           />
         </View>
         <View className='footer-wrapper'>
-          <Text className='footer-txt'>{Strings.signup.NO_ACCOUNT_TEXT}</Text>
-          <Pressable disabled={isSubmitting} onPress={() => router.replace('/signin')}>
-            <Text className='footer-link'>{Strings.signup.SIGNIN_CTA}</Text>
+          <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
+          <Pressable disabled={isSubmitting} onPress={() => router.replace('/signup')}>
+            <Text className='footer-link'>{Strings.login.SIGNUP_CTA}</Text>
           </Pressable>
         </View>
       </View>
@@ -83,4 +87,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignIn;

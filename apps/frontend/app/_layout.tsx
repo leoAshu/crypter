@@ -1,6 +1,6 @@
+import { useCustomFonts } from '@/hooks';
 import { Stack } from 'expo-router';
 import './globals.css';
-import { useCustomFonts } from '@/hooks';
 
 const RootLayout = () => {
   const [fontsLoaded] = useCustomFonts();
@@ -11,9 +11,7 @@ const RootLayout = () => {
       screenOptions={{
         headerShown: false,
       }}
-    >
-      <Stack.Screen name='index' />
-    </Stack>
+    ></Stack>
   );
 };
 

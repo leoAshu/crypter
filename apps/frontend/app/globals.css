@@ -4,24 +4,15 @@
 
 @layer components {
   .screen-wrapper {
-    @apply flex-1 bg-surface dark:bg-surface-dark;
+    @apply h-full bg-surface dark:bg-surface-dark;
   }
 
   .content-wrapper {
     @apply flex-1 justify-center gap-y-8 px-6;
   }
 
-  /* Header and logo section */
-  .header-wrapper {
-    @apply flex gap-y-16;
-  }
-
-  .logo-wrapper {
-    @apply flex items-center justify-center;
-  }
-
   .header-logo {
-    @apply size-24;
+    @apply absolute bottom-24 z-10 size-24 self-center;
   }
 
   .header-txt {
@@ -79,7 +70,7 @@
 
   /* === InputField Wrapper === */
   .input-wrapper {
-    @apply relative border-b-2 pb-1;
+    @apply w-full;
   }
 
   /* === Input Label === */
@@ -89,16 +80,20 @@
 
   /* === TextInput Styling === */
   .input-txt {
-    @apply pb-3 pr-10 pt-6 text-base text-on-surface dark:text-on-surface-dark;
+    @apply border-b pb-3 pr-10 pt-6 text-base leading-5 text-on-surface dark:text-on-surface-dark;
   }
 
   /* === Action Icon Container (e.g., eye / close icon) === */
   .input-icon-wrapper {
-    @apply absolute right-0 top-6;
+    @apply absolute right-0 top-3;
   }
 
   .btn-primary {
-    @apply items-center justify-center rounded-2xl bg-primary px-6 py-4;
+    @apply rounded-2xl bg-primary px-6 py-4;
+  }
+
+  .btn-primary-inner {
+    @apply flex-row items-center justify-center;
   }
 
   /* === Button Label Text === */
