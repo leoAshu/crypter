@@ -28,8 +28,7 @@ const SignIn = () => {
 
     setTimeout(() => {
       try {
-        Alert.alert('Success', 'Sign In Successful!');
-        resetForm();
+        router.replace('/(tabs)');
       } catch (err: any) {
         Alert.alert('Error', err.message);
       } finally {

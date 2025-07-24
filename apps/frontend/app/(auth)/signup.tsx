@@ -26,8 +26,7 @@ const Signup = () => {
 
     setTimeout(() => {
       try {
-        Alert.alert('Success', 'Sign Up Successful!');
-        resetForm();
+        router.replace('/(tabs)');
       } catch (err: any) {
         Alert.alert('Error', err.message);
       } finally {
