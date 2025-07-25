@@ -42,7 +42,7 @@ const InputField = (props: InputFieldProps) => {
       </Animated.Text>
 
       <TextInput
-        className={cn('input-txt', isFocused ? 'border-b-[#0066FF]' : 'border-b-[#2C2E3B]')}
+        className={cn('input-txt', isFocused ? 'border-b-[#0066FF]' : 'border-b-[#F4F6F9] dark:border-b-[#2C2E3B]')}
         value={value}
         onChangeText={props.onChangeText}
         onFocus={() => setIsFocused(true)}

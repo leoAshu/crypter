@@ -7,7 +7,7 @@ const Index = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace('/signin');
+      router.replace('/(profile)');
     }, 1000);
   }, []);
 

@@ -8,7 +8,7 @@
   }
 
   .content-wrapper {
-    @apply flex-1 justify-center gap-y-8 px-6;
+    @apply flex-1 gap-y-8 px-8;
   }
 
   .header-logo {
@@ -87,12 +87,12 @@
 
   /* === Input Label === */
   .input-label {
-    @apply font-poppins-medium;
+    @apply pl-1 font-poppins-medium;
   }
 
   /* === TextInput Styling === */
   .input-txt {
-    @apply border-b pb-3 pr-10 pt-6 text-base leading-5 text-on-surface dark:text-on-surface-dark;
+    @apply border-b pb-4 pr-10 pt-8 font-inter-medium text-lg leading-5 text-on-surface dark:text-on-surface-dark;
   }
 
   /* === Action Icon Container (e.g., eye / close icon) === */
@@ -101,7 +101,7 @@
   }
 
   .btn-primary {
-    @apply rounded-2xl bg-primary px-6 py-4;
+    @apply rounded-2xl bg-primary px-6 py-5;
   }
 
   .btn-primary-inner {
