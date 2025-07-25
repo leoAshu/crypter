@@ -1,6 +1,6 @@
-const supabaseConfig = {
-  url: process.env.EXPO_PUBLIC_SUPABASE_URL!,
-  anonKey: process.env.EXPO_PUBLIC_SUPABASE_KEY!,
+const SupabaseConfig = {
+  URL: process.env.EXPO_PUBLIC_SUPABASE_URL!,
+  KEY: process.env.EXPO_PUBLIC_SUPABASE_KEY!,
 };
 
-export default supabaseConfig;
+export default SupabaseConfig;
