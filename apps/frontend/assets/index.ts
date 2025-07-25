@@ -1,6 +1,5 @@
 const images = {
   logo: require('./images/logo.png'),
-  apple: require('./images/apple.png'),
   google: require('./images/google.png'),
   x: require('./images/x.png'),
   eye: require('./images/eye.png'),
@@ -8,7 +7,7 @@ const images = {
   mail: require('./images/mail.png'),
   home: require('./images/home.png'),
   account: require('./images/account.png'),
-  avatar: require('./images/avatar.png'),
+  facebook: require('./images/facebook.png'),
 };
 
 export { images };

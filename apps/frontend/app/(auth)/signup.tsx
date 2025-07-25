@@ -24,15 +24,13 @@ const Signup = () => {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      try {
-        router.replace('/(tabs)');
-      } catch (err: any) {
-        Alert.alert('Error', err.message);
-      } finally {
-        setIsSubmitting(false);
-      }
-    }, 5000);
+    try {
+      router.push({ pathname: '/signupInfo', params: { email: email } });
+    } catch (err: any) {
+      Alert.alert('Error', err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -65,12 +63,7 @@ const Signup = () => {
         </View>
         <View className='social-auth-row'>
           <IconButton icon={images.google} disabled={isSubmitting} onPress={() => {}} />
-          <IconButton
-            icon={images.apple}
-            tintColor={colorScheme === 'dark' ? '#FFF' : '#000'}
-            disabled={isSubmitting}
-            onPress={() => {}}
-          />
+          <IconButton icon={images.facebook} disabled={isSubmitting} onPress={() => {}} />
         </View>
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.signup.NO_ACCOUNT_TEXT}</Text>
