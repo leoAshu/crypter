@@ -24,15 +24,13 @@ const Signup = () => {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      try {
-        router.push({ pathname: '/signupInfo', params: { email: email } });
-      } catch (err: any) {
-        Alert.alert('Error', err.message);
-      } finally {
-        setIsSubmitting(false);
-      }
-    }, 5000);
+    try {
+      router.push({ pathname: '/signupInfo', params: { email: email } });
+    } catch (err: any) {
+      Alert.alert('Error', err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
