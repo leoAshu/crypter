@@ -6,10 +6,9 @@ import { validateEmail, validatePassword } from '@/utils';
 import { signIn } from '@/utils/supabase/auth';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert, Pressable, Text, useColorScheme, View } from 'react-native';
+import { Alert, Pressable, Text, View } from 'react-native';
 
 const SignIn = () => {
-  const colorScheme = useColorScheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ email: '', password: '' });
 
@@ -29,7 +28,7 @@ const SignIn = () => {
 
     try {
       await signIn({ email, password });
-      router.replace('/(tabs)');
+      router.replace({ pathname: '/welcome', params: { name: 'John' } });
     } catch (err: any) {
       Alert.alert('Error', err.message);
     } finally {
@@ -69,12 +68,7 @@ const SignIn = () => {
         </View>
         <View className='social-auth-row'>
           <IconButton icon={images.google} disabled={isSubmitting} onPress={() => {}} />
-          <IconButton
-            icon={images.apple}
-            tintColor={colorScheme === 'dark' ? '#FFF' : '#000'}
-            disabled={isSubmitting}
-            onPress={() => {}}
-          />
+          <IconButton icon={images.facebook} disabled={isSubmitting} onPress={() => {}} />
         </View>
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>

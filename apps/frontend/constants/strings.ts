@@ -17,6 +17,21 @@ const Strings = {
     NO_ACCOUNT_TEXT: 'Already have an account?',
     SIGNIN_CTA: 'Sign In',
   },
+  signupInfo: {
+    SCREEN_TITLE: 'Almost there...',
+    EMAIL_LABEL: 'Email Address',
+    NAME_LABEL: 'First Name',
+    PHONE_LABEL: 'Phone Number',
+    PASSWORD_LABEL: 'Password',
+    CONFIRM_PASSWORD_LABEL: 'Confirm Password',
+    BUTTON_LABEL: 'Sign Up',
+  },
+  welcome: {
+    SCREEN_GREETING: 'Hello',
+    SCREEN_TITLE: 'Welcome to Crypter',
+    WELCOME_TEXT: "It's great to have you here",
+    BUTTON_LABEL: "I'm ready to start!",
+  },
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',
   },
