@@ -19,6 +19,18 @@
     @apply font-heebo-medium text-4xl dark:text-white;
   }
 
+  .welcome-header-txt {
+    @apply font-inter-semibold text-2xl text-surface-dark dark:text-surface;
+  }
+
+  .welcome-sub-header-txt {
+    @apply mt-4 font-inter-medium text-base text-muted dark:text-muted-dark;
+  }
+
+  .welcome-header-wrapper {
+    @apply flex-1 items-center;
+  }
+
   /* Form & action sections */
   .form-group {
     @apply flex gap-y-6;

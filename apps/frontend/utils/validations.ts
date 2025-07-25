@@ -1,4 +1,4 @@
-import { EMAIL_REGEX } from '@/constants';
+import { EMAIL_REGEX, NAME_REGEX, PHONE_REGEX } from '@/constants';
 
 const isEmpty = (value: string): boolean => !value.trim();
 
@@ -15,6 +15,19 @@ const validateEmail = (email: string): ValidationResult => {
     return createValidationResult(false, 'Please enter a valid email address.');
   }
 
+  return createValidationResult(true);
+};
+
+const validateName = (name: string): ValidationResult => {
+  const trimmedName = name.trim();
+
+  if (isEmpty(trimmedName)) {
+    return createValidationResult(false, 'Name is required!');
+  }
+
+  if (!NAME_REGEX.test(trimmedName)) {
+    return createValidationResult(false, 'Please enter a valid name.');
+  }
   return createValidationResult(true);
 };
 
@@ -37,4 +50,28 @@ const validatePassword = (password: string): ValidationResult => {
   return createValidationResult(true);
 };
 
-export { validateEmail, validatePassword };
+const validateConfirmPassword = (password: string, confirmPassword: string): ValidationResult => {
+  if (isEmpty(confirmPassword)) {
+    return createValidationResult(false, 'Confirm password is required!');
+  }
+
+  if (password !== confirmPassword) {
+    return createValidationResult(false, 'Passwords do not match!');
+  }
+
+  return createValidationResult(true);
+};
+
+const validatePhone = (phone: string): ValidationResult => {
+  if (isEmpty(phone)) {
+    return createValidationResult(false, 'Phone number is required!');
+  }
+
+  if (!PHONE_REGEX.test(phone)) {
+    return createValidationResult(false, 'Please enter a valid phone number.');
+  }
+
+  return createValidationResult(true);
+};
+
+export { validateConfirmPassword, validateEmail, validateName, validatePassword, validatePhone };
