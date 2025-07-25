@@ -31,5 +31,5 @@ interface InputFieldProps {
 }
 
 interface TabScreenWrapperProps {
-  children: ReactNode;
+  children?: ReactNode;
 }

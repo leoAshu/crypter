@@ -6,6 +6,9 @@ const images = {
   eye: require('./images/eye.png'),
   eyeOff: require('./images/eye-off.png'),
   mail: require('./images/mail.png'),
+  home: require('./images/home.png'),
+  account: require('./images/account.png'),
+  avatar: require('./images/avatar.png'),
 };
 
 export { images };
