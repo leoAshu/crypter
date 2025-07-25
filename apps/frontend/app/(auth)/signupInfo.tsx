@@ -26,15 +26,13 @@ const SignUpInfo = () => {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      try {
-        router.replace({ pathname: '/welcome', params: { name } });
-      } catch (err: any) {
-        Alert.alert('Error', err.message);
-      } finally {
-        setIsSubmitting(false);
-      }
-    }, 5000);
+    try {
+      router.replace({ pathname: '/welcome', params: { name } });
+    } catch (err: any) {
+      Alert.alert('Error', err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

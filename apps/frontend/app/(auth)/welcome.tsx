@@ -11,15 +11,13 @@ const Welcome = () => {
   const procced = async () => {
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      try {
-        router.replace('/(tabs)');
-      } catch (err: any) {
-        Alert.alert('Error', err.message);
-      } finally {
-        setIsSubmitting(false);
-      }
-    }, 5000);
+    try {
+      router.replace('/(tabs)');
+    } catch (err: any) {
+      Alert.alert('Error', err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

@@ -3,6 +3,7 @@ import { IconButton, PrimaryButton } from '@/components';
 import InputField from '@/components/InputField';
 import { Strings } from '@/constants';
 import { validateEmail, validatePassword } from '@/utils';
+import { signIn } from '@/utils/supabase/auth';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Pressable, Text, View } from 'react-native';
@@ -25,15 +26,14 @@ const SignIn = () => {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      try {
-        router.replace({ pathname: '/welcome', params: { name: 'John' } });
-      } catch (err: any) {
-        Alert.alert('Error', err.message);
-      } finally {
-        setIsSubmitting(false);
-      }
-    }, 5000);
+    try {
+      await signIn({ email, password });
+      router.replace({ pathname: '/welcome', params: { name: 'John' } });
+    } catch (err: any) {
+      Alert.alert('Error', err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
