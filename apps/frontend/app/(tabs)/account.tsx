@@ -1,12 +1,12 @@
 import TabScreenWrapper from '@/components/TabScreenWrapper';
-import { Text } from 'react-native';
+import { View } from 'react-native';
 
-const Trade = () => {
+const Account = () => {
   return (
     <TabScreenWrapper>
-      <Text>Trade</Text>
+      <View className='flex-row'></View>
     </TabScreenWrapper>
   );
 };
 
-export default Trade;
+export default Account;
