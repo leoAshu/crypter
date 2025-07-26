@@ -1,5 +1,5 @@
-import IconButton from './IconButton';
-import PrimaryButton from './PrimaryButton';
-import RoundIconButton from './RoundIconButton';
-
-export { IconButton, PrimaryButton, RoundIconButton };
+export * from './account';
+export * from './avatars';
+export * from './buttons';
+export * from './form';
+export * from './menu';

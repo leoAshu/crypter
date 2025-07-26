@@ -3,7 +3,7 @@ import cn from 'clsx';
 import { useState } from 'react';
 import { TextInput, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, withTiming } from 'react-native-reanimated';
-import { RoundIconButton } from '.';
+import { RoundIconButton } from '../buttons';
 
 const InputField = (props: InputFieldProps) => {
   const value = props.value ?? '';

@@ -79,6 +79,26 @@
     @apply font-inter-bold text-lg text-white;
   }
 
+  .btn-primary-load-indicator {
+    @apply color-white;
+  }
+
+  .btn-secondary {
+    @apply rounded-2xl border bg-surface px-6 py-5 dark:bg-surface-dark;
+  }
+
+  .btn-secondary-inner {
+    @apply items-center justify-center;
+  }
+
+  .btn-secondary-label {
+    @apply font-inter-bold text-lg;
+  }
+
+  .btn-secondary-load-indicator {
+    @apply color-on-surface dark:color-on-surface-dark;
+  }
+
   .round-icon-btn {
     @apply rounded-full p-1.5;
   }

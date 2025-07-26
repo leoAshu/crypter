@@ -1,11 +1,30 @@
 import { images } from '@/assets';
-import AccountInfo from '@/components/AccountInfo';
-import MenuOption from '@/components/MenuOption';
-import { defaultProfileInfo } from '@/constants';
-import { ScrollView, View } from 'react-native';
+import { AccountInfo, MenuOption, SecondaryButton } from '@/components';
+import { AlertStrings, defaultProfileInfo, Strings } from '@/constants';
+import { router } from 'expo-router';
+import { useState } from 'react';
+import { Alert, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Account = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const confirmLogout = async () => {
+    Alert.alert(AlertStrings.TITLE.LOGOUT, AlertStrings.MSG.CONFIRM_LOGOUT, [
+      { text: AlertStrings.ACTION.CANCEL, style: 'cancel' },
+      {
+        text: AlertStrings.ACTION.LOGOUT,
+        style: 'destructive',
+        onPress: () => {
+          setIsLoading(true);
+          setTimeout(() => {
+            router.replace('/signin');
+          }, 2000);
+        },
+      },
+    ]);
+  };
+
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
@@ -17,7 +36,8 @@ const Account = () => {
           />
 
           <View className='menu-group mt-4'>
-            <MenuOption title='View Profile' rightIcon={images.next} route='/(profile)' />
+            <MenuOption title={Strings.account.VIEW_PROFILE_MENU_TITLE} rightIcon={images.next} route='/(profile)' />
+            <SecondaryButton title={Strings.account.LOGOUT_BTN_TITLE} isLoading={isLoading} onPress={confirmLogout} />
           </View>
         </View>
       </ScrollView>

@@ -1,7 +1,5 @@
-import { PrimaryButton } from '@/components';
-import InitialsAvatar from '@/components/InitialsAvatar';
-import InputField from '@/components/InputField';
-import { defaultProfileInfo } from '@/constants';
+import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
+import { AlertStrings, defaultProfileInfo, Strings } from '@/constants';
 import { validateEmail, validatePassword } from '@/utils';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
@@ -25,17 +23,17 @@ const UpdateProfile = () => {
     const emailValidationResult = validateEmail(email);
     const passwordValidationResult = validatePassword(password);
 
-    if (!emailValidationResult.isValid) return Alert.alert('Error', emailValidationResult.error);
-    if (!passwordValidationResult.isValid) return Alert.alert('Error', passwordValidationResult.error);
+    if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);
+    if (!passwordValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, passwordValidationResult.error);
 
     setIsSaving(true);
 
     setTimeout(() => {
       try {
         setInitialProfileInfo(profileInfo);
-        Alert.alert('Success', 'Profile updated successfully!');
+        Alert.alert(AlertStrings.TITLE.SUCCESS, AlertStrings.MSG.PROFILE_UPDATE_SUCCESS);
       } catch (err: any) {
-        Alert.alert('Error', err.message);
+        Alert.alert(AlertStrings.TITLE.ERROR, err.message);
       } finally {
         setIsSaving(false);
       }
@@ -53,26 +51,26 @@ const UpdateProfile = () => {
 
             <View className='form-group mt-4'>
               <InputField
-                label='Your Name'
+                label={Strings.updateProfile.NAME_LABEL}
                 value={profileInfo.name}
                 disabled={isSaving}
                 onChangeText={(value) => updateInfo('name', value)}
               />
               <InputField
-                label='Email Address'
+                label={Strings.updateProfile.EMAIL_LABEL}
                 value={profileInfo.email}
                 disabled={isSaving}
                 onChangeText={(value) => updateInfo('email', value)}
               />
               <InputField
                 secureTextEntry
-                label='Your Password'
+                label={Strings.updateProfile.PASSWORD_LABEL}
                 value={profileInfo.password}
                 disabled={isSaving}
                 onChangeText={(value) => updateInfo('password', value)}
               />
               <InputField
-                label='Phone Number'
+                label={Strings.updateProfile.PHONE_LABEL}
                 value={profileInfo.phone}
                 keyboardType='phone-pad'
                 disabled={isSaving}
@@ -84,7 +82,12 @@ const UpdateProfile = () => {
       </KeyboardAvoidingView>
 
       <View className='absolute-bottom'>
-        <PrimaryButton title='Save' isLoading={isSaving} disabled={!hasChanged} onPress={saveInfo} />
+        <PrimaryButton
+          title={Strings.updateProfile.SAVE_BTN_TITLE}
+          isLoading={isSaving}
+          disabled={!hasChanged}
+          onPress={saveInfo}
+        />
       </View>
     </SafeAreaView>
   );

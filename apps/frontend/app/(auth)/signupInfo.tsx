@@ -1,5 +1,4 @@
-import { PrimaryButton } from '@/components';
-import InputField from '@/components/InputField';
+import { InputField, PrimaryButton } from '@/components';
 import { Strings } from '@/constants';
 import { validateConfirmPassword, validateName, validatePassword, validatePhone } from '@/utils';
 import { router, useLocalSearchParams } from 'expo-router';

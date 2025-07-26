@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { GestureResponderEvent, View } from 'react-native';
 import { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-const useRippleAnimation = (config?: RippleAnimationConfig) => {
+const useRipple = (config?: RippleAnimationConfig) => {
   const {
     color = '#FFFFFF',
     opacity = 0.45,
@@ -51,4 +51,4 @@ const useRippleAnimation = (config?: RippleAnimationConfig) => {
   };
 };
 
-export default useRippleAnimation;
+export default useRipple;

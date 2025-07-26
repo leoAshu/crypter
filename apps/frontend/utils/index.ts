@@ -1,5 +1,3 @@
-import { validateConfirmPassword, validateEmail, validateName, validatePassword, validatePhone } from './validations';
-
 const getInitialsFromName = (name: string) => {
   if (!name) return '';
 
@@ -9,4 +7,6 @@ const getInitialsFromName = (name: string) => {
   return initials.slice(0, 2);
 };
 
-export { getInitialsFromName, validateConfirmPassword, validateEmail, validateName, validatePassword, validatePhone };
+export * from './supabase';
+export * from './validations';
+export { getInitialsFromName };

@@ -1,6 +1,5 @@
 import { images } from '@/assets';
-import { IconButton, PrimaryButton } from '@/components';
-import InputField from '@/components/InputField';
+import { IconButton, InputField, PrimaryButton } from '@/components';
 import { Strings } from '@/constants';
 import { validateEmail } from '@/utils';
 import { router } from 'expo-router';

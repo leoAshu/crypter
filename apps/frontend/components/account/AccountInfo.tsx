@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import InitialsAvatar from './InitialsAvatar';
+import InitialsAvatar from '../avatars/InitialsAvatar';
 
 const AccountInfo = (props: AccountInfoProps) => {
   return (
