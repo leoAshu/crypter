@@ -44,3 +44,9 @@ interface InitialsAvatarProps {
   size?: AvatarSize;
   className?: string;
 }
+
+interface MenuOptionProps {
+  title: string;
+  route?: LinkProps['href'];
+  rightIcon?: ImageSourcePropType;
+}

@@ -1,7 +1,8 @@
+import { images } from '@/assets';
 import AccountInfo from '@/components/AccountInfo';
+import MenuOption from '@/components/MenuOption';
 import { defaultProfileInfo } from '@/constants';
-import { router } from 'expo-router';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Account = () => {
@@ -15,9 +16,9 @@ const Account = () => {
             yearSignedUp={defaultProfileInfo.joined}
           />
 
-          <Pressable onPress={() => router.push('/(profile)')}>
-            <Text className='text-dark dark:text-white'>View Profile</Text>
-          </Pressable>
+          <View className='menu-group mt-4'>
+            <MenuOption title='View Profile' rightIcon={images.next} route='/(profile)' />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
