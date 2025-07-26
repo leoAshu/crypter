@@ -29,7 +29,3 @@ interface InputFieldProps {
   disabled?: boolean;
   onChangeText?: (text: string) => void;
 }
-
-interface TabScreenWrapperProps {
-  children?: ReactNode;
-}

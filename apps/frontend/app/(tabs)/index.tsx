@@ -1,11 +1,15 @@
-import TabScreenWrapper from '@/components/TabScreenWrapper';
-import { Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
   return (
-    <TabScreenWrapper>
-      <Text>Home</Text>
-    </TabScreenWrapper>
+    <SafeAreaView className='screen-wrapper'>
+      <ScrollView>
+        <View className='content-wrapper mt-24'>
+          <Text className='text-black dark:text-white'>Home</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
