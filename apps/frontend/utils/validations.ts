@@ -1,4 +1,4 @@
-import { EMAIL_REGEX, NAME_REGEX, PHONE_REGEX } from '@/constants';
+import { EMAIL_REGEX, NAME_REGEX } from '@/constants';
 
 const isEmpty = (value: string): boolean => !value.trim();
 
@@ -67,9 +67,9 @@ const validatePhone = (phone: string): ValidationResult => {
     return createValidationResult(false, 'Phone number is required!');
   }
 
-  if (!PHONE_REGEX.test(phone)) {
-    return createValidationResult(false, 'Please enter a valid phone number.');
-  }
+  // if (!PHONE_REGEX.test(normalizedPhone)) {
+  //   return createValidationResult(false, 'Please enter a valid phone number.');
+  // }
 
   return createValidationResult(true);
 };

@@ -32,6 +32,17 @@ const Strings = {
     WELCOME_TEXT: "It's great to have you here",
     BUTTON_LABEL: "I'm ready to start!",
   },
+  updateProfile: {
+    NAME_LABEL: 'Your name',
+    EMAIL_LABEL: 'Email Address',
+    PASSWORD_LABEL: 'Your Password',
+    PHONE_LABEL: 'Phone Number',
+    SAVE_BTN_TITLE: 'Save',
+  },
+  account: {
+    VIEW_PROFILE_MENU_TITLE: 'View Profile',
+    LOGOUT_BTN_TITLE: 'Log Out',
+  },
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',
   },

@@ -3,7 +3,7 @@ import cn from 'clsx';
 import { useState } from 'react';
 import { TextInput, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, withTiming } from 'react-native-reanimated';
-import { RoundIconButton } from '.';
+import { RoundIconButton } from '../buttons';
 
 const InputField = (props: InputFieldProps) => {
   const value = props.value ?? '';
@@ -42,7 +42,7 @@ const InputField = (props: InputFieldProps) => {
       </Animated.Text>
 
       <TextInput
-        className={cn('input-txt', isFocused ? 'border-b-[#0066FF]' : 'border-b-[#2C2E3B]')}
+        className={cn('input-txt', isFocused ? 'border-b-[#0066FF]' : 'border-b-[#F4F6F9] dark:border-b-[#2C2E3B]')}
         value={value}
         onChangeText={props.onChangeText}
         onFocus={() => setIsFocused(true)}

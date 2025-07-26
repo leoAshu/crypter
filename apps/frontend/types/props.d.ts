@@ -1,3 +1,18 @@
+// ====================
+// 🧩 UI / Buttons
+// ====================
+
+/** Props for a primary button with optional loading, icon, and custom text styles */
+interface PrimaryButtonProps {
+  title: string;
+  isLoading?: boolean;
+  textStyle?: string;
+  leftIcon?: ReactNode;
+  disabled?: boolean;
+  onPress?: () => void;
+}
+
+/** Props for a basic icon-only button */
 interface IconButtonProps {
   icon: ImageSourcePropType;
   tintColor?: string;
@@ -5,20 +20,26 @@ interface IconButtonProps {
   onPress?: (event: GestureResponderEvent) => void;
 }
 
-interface PrimaryButtonProps {
-  title: string;
-  isLoading?: boolean;
-  textStyle?: string;
-  leftIcon?: ReactNode;
-  onPress?: () => void;
-}
-
+/** Props for a round icon button with an optional secondary icon */
 interface RoundIconButtonProps {
   primaryIcon: ImageSourcePropType;
   secondaryIcon?: ImageSourcePropType;
   onPress?: (e: GestureResponderEvent) => void;
 }
 
+/** Props for a secondary-styled button (e.g., outlined or subtle) */
+interface SecondaryButtonProps {
+  title: string;
+  disabled?: boolean;
+  isLoading?: boolean;
+  onPress?: () => void;
+}
+
+// ====================
+// 🧾 Form Fields
+// ====================
+
+/** Props for a generic input field with optional validation and keyboard settings */
 interface InputFieldProps {
   label: string;
   placeholder?: string;
@@ -30,6 +51,34 @@ interface InputFieldProps {
   onChangeText?: (text: string) => void;
 }
 
-interface TabScreenWrapperProps {
-  children?: ReactNode;
+// ====================
+// 👤 Profile / User Info
+// ====================
+
+/** Props for displaying account information like name and join date */
+interface AccountInfoProps {
+  name: string;
+  gender: string;
+  yearSignedUp: string;
+}
+
+/** Allowed size variants for avatar components */
+type AvatarSize = 'small' | 'medium' | 'large';
+
+/** Props for rendering initials-based avatar */
+interface InitialsAvatarProps {
+  name: string;
+  size?: AvatarSize;
+  className?: string;
+}
+
+// ====================
+// 📄 Navigation / Menu
+// ====================
+
+/** Props for a menu item with optional right-side icon and route navigation */
+interface MenuOptionProps {
+  title: string;
+  route?: LinkProps['href'];
+  rightIcon?: ImageSourcePropType;
 }

@@ -3,71 +3,121 @@
 @tailwind utilities;
 
 @layer components {
+  /* ──────────────────────────────
+     🎯 General Layout Containers
+  ─────────────────────────────── */
   .screen-wrapper {
     @apply h-full bg-surface dark:bg-surface-dark;
   }
 
   .content-wrapper {
-    @apply flex-1 justify-center gap-y-8 px-6;
+    @apply flex-1 gap-y-8 px-8;
   }
 
+  /* ──────────────────────────────
+     🧭 Headers
+  ─────────────────────────────── */
   .header-logo {
     @apply absolute bottom-24 z-10 size-24 self-center;
   }
 
   .header-txt {
-    @apply font-heebo-medium text-4xl dark:text-white;
-  }
-
-  .welcome-header-txt {
-    @apply font-inter-semibold text-2xl text-surface-dark dark:text-surface;
-  }
-
-  .welcome-sub-header-txt {
-    @apply mt-4 font-inter-medium text-base text-muted dark:text-muted-dark;
+    @apply font-heebo-medium text-4xl text-on-surface dark:text-on-surface-dark;
   }
 
   .welcome-header-wrapper {
     @apply flex-1 items-center;
   }
 
-  /* Form & action sections */
-  .form-group {
-    @apply flex gap-y-6;
+  .welcome-header-txt {
+    @apply font-inter-semibold text-2xl text-on-surface dark:text-on-surface-dark;
   }
 
-  /* Separator section */
-  .divider-row {
+  .welcome-sub-header-txt {
+    @apply mt-4 font-inter-medium text-base text-muted dark:text-muted-dark;
+  }
+
+  /* ──────────────────────────────
+     🔐 Forms & Input Fields
+  ─────────────────────────────── */
+  .form-group {
+    @apply gap-y-8;
+  }
+
+  .menu-group {
+    @apply gap-y-4;
+  }
+
+  .input-wrapper {
+    @apply w-full;
+  }
+
+  .input-label {
+    @apply pl-1 font-poppins-medium;
+  }
+
+  .input-txt {
+    @apply border-b pb-4 pl-1 pr-10 pt-8 font-inter-medium text-lg leading-5 text-on-surface dark:text-on-surface-dark;
+  }
+
+  .input-icon-wrapper {
+    @apply absolute right-0 top-7;
+  }
+
+  /* ──────────────────────────────
+     🔘 Buttons
+  ─────────────────────────────── */
+  .btn-primary {
+    @apply rounded-2xl px-6 py-5;
+  }
+
+  .btn-primary-inner {
     @apply flex-row items-center justify-center;
   }
 
-  .divider-line {
-    @apply h-px flex-1 rounded-full bg-muted opacity-35 dark:bg-muted-dark;
+  .btn-primary-label {
+    @apply font-inter-bold text-lg text-white;
   }
 
-  .divider-txt {
-    @apply mx-4 flex font-poppins-medium text-sm text-muted dark:text-muted-dark;
+  .btn-primary-load-indicator {
+    @apply color-white;
   }
 
-  /* Social login row */
-  .social-auth-row {
-    @apply flex-row gap-x-4;
+  .btn-secondary {
+    @apply rounded-2xl border bg-surface px-6 py-5 dark:bg-surface-dark;
   }
 
-  /* Footer link row */
-  .footer-wrapper {
-    @apply flex-row justify-center gap-x-1;
+  .btn-secondary-inner {
+    @apply items-center justify-center;
   }
 
-  .footer-txt {
-    @apply font-poppins-medium text-sm dark:text-white;
+  .btn-secondary-label {
+    @apply font-inter-bold text-lg;
   }
 
-  .footer-link {
-    @apply text-sm text-primary underline;
+  .btn-secondary-load-indicator {
+    @apply color-on-surface dark:color-on-surface-dark;
   }
 
-  /* IconButton */
+  .round-icon-btn {
+    @apply rounded-full p-1.5;
+  }
+
+  .round-icon-btn-bg {
+    @apply absolute inset-0 rounded-full bg-[#ECEDF1] dark:bg-[#3E436D];
+  }
+
+  .round-icon-btn-img-wrapper {
+    @apply items-center justify-center;
+  }
+
+  .round-icon-btn-img {
+    @apply h-4 w-4;
+  }
+
+  /* ──────────────────────────────
+     🎵 Icon Buttons
+  ─────────────────────────────── */
   .icon-btn-wrapper {
     @apply flex-1 items-center justify-center overflow-hidden rounded-2xl bg-card p-px dark:bg-card-dark;
   }
@@ -80,55 +130,66 @@
     @apply mx-auto h-5 w-5;
   }
 
-  /* === InputField Wrapper === */
-  .input-wrapper {
-    @apply w-full;
+  /* ──────────────────────────────
+     👤 Account & Avatar
+  ─────────────────────────────── */
+  .account-info-wrapper {
+    @apply flex-row items-center gap-x-4;
   }
 
-  /* === Input Label === */
-  .input-label {
-    @apply font-poppins-medium;
+  .initials-avatar-wrapper {
+    @apply items-center justify-center rounded-full bg-teal-500;
   }
 
-  /* === TextInput Styling === */
-  .input-txt {
-    @apply border-b pb-3 pr-10 pt-6 text-base leading-5 text-on-surface dark:text-on-surface-dark;
+  .initials-avatar-txt {
+    @apply font-poppins text-white;
   }
 
-  /* === Action Icon Container (e.g., eye / close icon) === */
-  .input-icon-wrapper {
-    @apply absolute right-0 top-3;
+  /* ──────────────────────────────
+     ⬇️ Absolute Positions
+  ─────────────────────────────── */
+  .absolute-bottom {
+    @apply absolute bottom-16 left-0 right-0 px-8;
   }
 
-  .btn-primary {
-    @apply rounded-2xl bg-primary px-6 py-4;
+  .app-header-icon-wrapper {
+    @apply rounded-full p-2;
   }
 
-  .btn-primary-inner {
+  /* ──────────────────────────────
+     🔗 Footer & Links
+  ─────────────────────────────── */
+  .footer-wrapper {
+    @apply flex-row justify-center gap-x-1;
+  }
+
+  .footer-txt {
+    @apply font-poppins-medium text-sm text-on-surface dark:text-on-surface-dark;
+  }
+
+  .footer-link {
+    @apply text-sm text-primary underline;
+  }
+
+  /* ──────────────────────────────
+     ➖ Divider & Separator
+  ─────────────────────────────── */
+  .divider-row {
     @apply flex-row items-center justify-center;
   }
 
-  /* === Button Label Text === */
-  .btn-primary-label {
-    @apply font-inter-bold text-lg text-white;
+  .divider-line {
+    @apply h-px flex-1 rounded-full bg-muted opacity-35 dark:bg-muted-dark;
   }
 
-  .round-icon-btn {
-    @apply rounded-full p-1.5;
+  .divider-txt {
+    @apply mx-4 flex font-poppins-medium text-sm text-muted dark:text-muted-dark;
   }
 
-  /* === Background Layer (opaque by default, style opacity conditionally) === */
-  .round-icon-btn-bg {
-    @apply absolute inset-0 rounded-full bg-[#ECEDF1] dark:bg-[#3E436D];
-  }
-
-  /* === Icon Centering Container === */
-  .round-icon-btn-img-wrapper {
-    @apply items-center justify-center;
-  }
-
-  /* === Icon Image === */
-  .round-icon-btn-img {
-    @apply h-4 w-4;
+  /* ──────────────────────────────
+     🧑‍🤝‍🧑 Social Auth Row
+  ─────────────────────────────── */
+  .social-auth-row {
+    @apply flex-row gap-x-4;
   }
 }

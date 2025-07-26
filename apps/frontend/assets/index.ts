@@ -8,6 +8,9 @@ const images = {
   home: require('./images/home.png'),
   account: require('./images/account.png'),
   facebook: require('./images/facebook.png'),
+  edit: require('./images/edit.png'),
+  arrowLeft: require('./images/arrow-left.png'),
+  next: require('./images/next.png'),
 };
 
 export { images };

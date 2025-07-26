@@ -1,14 +1,12 @@
 import { images } from '@/assets';
-import { IconButton, PrimaryButton } from '@/components';
-import InputField from '@/components/InputField';
-import { Strings } from '@/constants';
+import { IconButton, InputField, PrimaryButton } from '@/components';
+import { AlertStrings, Strings } from '@/constants';
 import { validateEmail } from '@/utils';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert, Image, Pressable, Text, useColorScheme, View } from 'react-native';
+import { Alert, Image, Pressable, Text, View } from 'react-native';
 
 const Signup = () => {
-  const colorScheme = useColorScheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ email: '' });
 
@@ -20,14 +18,14 @@ const Signup = () => {
     const { email } = form;
     const emailValidationResult = validateEmail(email);
 
-    if (!emailValidationResult.isValid) return Alert.alert('Error', emailValidationResult.error);
+    if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);
 
     setIsSubmitting(true);
 
     try {
       router.push({ pathname: '/signupInfo', params: { email: email } });
     } catch (err: any) {
-      Alert.alert('Error', err.message);
+      Alert.alert(AlertStrings.TITLE.ERROR, err.message);
     } finally {
       setIsSubmitting(false);
     }
