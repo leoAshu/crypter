@@ -18,7 +18,7 @@ const ProfileLayout = () => {
             fontWeight: '600',
           },
           headerLeft: () => (
-            <Pressable onPress={() => (isIndex ? router.replace('/signin') : router.back())}>
+            <Pressable onPress={() => router.back()}>
               <View className='rounded-full p-2'>
                 <Image
                   className='size-6'

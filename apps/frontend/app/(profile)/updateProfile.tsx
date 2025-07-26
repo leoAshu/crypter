@@ -1,8 +1,9 @@
 import { PrimaryButton } from '@/components';
+import InitialsAvatar from '@/components/InitialsAvatar';
 import InputField from '@/components/InputField';
 import { validateEmail, validatePassword } from '@/utils';
 import { useState } from 'react';
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const UpdateProfile = () => {
@@ -45,10 +46,9 @@ const UpdateProfile = () => {
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View className='content-wrapper mt-20'>
             <View className='items-center'>
-              <View className='size-28 items-center justify-center rounded-full bg-teal-500'>
-                <Text className='font-poppins text-4xl text-white'>AO</Text>
-              </View>
+              <InitialsAvatar name={profileInfo.name} size='large' />
             </View>
+
             <View className='flex gap-y-8'>
               <InputField
                 label='Your Name'
@@ -80,6 +80,7 @@ const UpdateProfile = () => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+
       <View className='absolute bottom-16 left-0 right-0 px-8'>
         <PrimaryButton title='Save' isLoading={isSaving} onPress={saveInfo} />
       </View>

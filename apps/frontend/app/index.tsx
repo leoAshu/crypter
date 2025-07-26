@@ -7,7 +7,7 @@ const Index = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace('/(profile)');
+      router.replace('/(tabs)');
     }, 1000);
   }, []);
 

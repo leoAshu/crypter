@@ -29,3 +29,17 @@ interface InputFieldProps {
   disabled?: boolean;
   onChangeText?: (text: string) => void;
 }
+
+interface AccountInfoProps {
+  name: string;
+  gender: string;
+  yearSignedUp: string;
+}
+
+type AvatarSize = 'small' | 'medium' | 'large';
+
+interface InitialsAvatarProps {
+  name: string;
+  size?: AvatarSize;
+  className?: string;
+}
