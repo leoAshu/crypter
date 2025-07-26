@@ -3,7 +3,11 @@ import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 
 const PrimaryButton = (props: PrimaryButtonProps) => {
   return (
-    <TouchableOpacity className={cn('btn-primary')} disabled={props.isLoading} onPress={props.onPress}>
+    <TouchableOpacity
+      className={cn('btn-primary', props.disabled ? 'bg-primary-disabled' : 'bg-primary')}
+      disabled={props.isLoading || props.disabled}
+      onPress={props.onPress}
+    >
       <View className='btn-primary-inner'>
         {props.isLoading ? (
           <ActivityIndicator size='small' color='white' />

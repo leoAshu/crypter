@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0066FF',
+        'primary-disabled': '#99C2FF',
         surface: '#FFFFFF',
         'surface-dark': '#101018',
         'on-surface': '#23262F',

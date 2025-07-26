@@ -16,11 +16,11 @@
   }
 
   .header-txt {
-    @apply font-heebo-medium text-4xl dark:text-white;
+    @apply font-heebo-medium text-4xl text-on-surface dark:text-on-surface-dark;
   }
 
   .welcome-header-txt {
-    @apply font-inter-semibold text-2xl text-surface-dark dark:text-surface;
+    @apply font-inter-semibold text-2xl text-on-surface dark:text-on-surface-dark;
   }
 
   .welcome-sub-header-txt {
@@ -33,7 +33,7 @@
 
   /* Form & action sections */
   .form-group {
-    @apply flex gap-y-6;
+    @apply flex gap-y-8;
   }
 
   /* Separator section */
@@ -60,7 +60,7 @@
   }
 
   .footer-txt {
-    @apply font-poppins-medium text-sm dark:text-white;
+    @apply font-poppins-medium text-sm text-on-surface dark:text-on-surface-dark;
   }
 
   .footer-link {
@@ -92,7 +92,7 @@
 
   /* === TextInput Styling === */
   .input-txt {
-    @apply border-b pb-4 pr-10 pt-8 font-inter-medium text-lg leading-5 text-on-surface dark:text-on-surface-dark;
+    @apply border-b pb-4 pl-1 pr-10 pt-8 font-inter-medium text-lg leading-5 text-on-surface dark:text-on-surface-dark;
   }
 
   /* === Action Icon Container (e.g., eye / close icon) === */
@@ -101,7 +101,7 @@
   }
 
   .btn-primary {
-    @apply rounded-2xl bg-primary px-6 py-5;
+    @apply rounded-2xl px-6 py-5;
   }
 
   .btn-primary-inner {
@@ -130,5 +130,27 @@
   /* === Icon Image === */
   .round-icon-btn-img {
     @apply h-4 w-4;
+  }
+
+  /* === AppHeader Icon Wrapper === */
+  .app-header-icon-wrapper {
+    @apply rounded-full p-2;
+  }
+
+  /* === Absolute Bottom === */
+  .absolute-bottom {
+    @apply absolute bottom-16 left-0 right-0 px-8;
+  }
+
+  .initials-avatar-wrapper {
+    @apply items-center justify-center rounded-full bg-teal-500;
+  }
+
+  .initials-avatar-txt {
+    @apply font-poppins text-white;
+  }
+
+  .account-info-wrapper {
+    @apply flex-row items-center gap-x-4;
   }
 }

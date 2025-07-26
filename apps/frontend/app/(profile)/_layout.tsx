@@ -19,7 +19,7 @@ const ProfileLayout = () => {
           },
           headerLeft: () => (
             <Pressable onPress={() => router.back()}>
-              <View className='rounded-full p-2'>
+              <View className='app-header-icon-wrapper'>
                 <Image
                   className='size-6'
                   source={images.arrowLeft}
@@ -33,7 +33,7 @@ const ProfileLayout = () => {
             <>
               {isIndex && (
                 <Pressable onPress={() => router.push('/updateProfile')}>
-                  <View className='rounded-full p-2'>
+                  <View className='app-header-icon-wrapper'>
                     <Image
                       className='size-5'
                       source={images.edit}

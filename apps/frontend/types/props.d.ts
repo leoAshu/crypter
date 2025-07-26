@@ -10,6 +10,7 @@ interface PrimaryButtonProps {
   isLoading?: boolean;
   textStyle?: string;
   leftIcon?: ReactNode;
+  disabled?: boolean;
   onPress?: () => void;
 }
 

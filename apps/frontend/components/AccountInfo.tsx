@@ -3,7 +3,7 @@ import InitialsAvatar from './InitialsAvatar';
 
 const AccountInfo = (props: AccountInfoProps) => {
   return (
-    <View className='flex-row items-center gap-x-4'>
+    <View className='account-info-wrapper'>
       <InitialsAvatar name={props.name} size='medium' />
 
       <View className='flex-1 gap-y-1'>

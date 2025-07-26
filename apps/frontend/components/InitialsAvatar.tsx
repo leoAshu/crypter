@@ -21,8 +21,8 @@ const InitialsAvatar = (props: InitialsAvatarProps) => {
   const { container, text } = SIZE_PRESETS[props.size ?? 'medium'];
 
   return (
-    <View className={cn(container, 'items-center justify-center rounded-full bg-teal-500', props.className)}>
-      <Text className={cn('font-poppins text-white', text)}>{getInitialsFromName(props.name)}</Text>
+    <View className={cn(container, 'initials-avatar-wrapper', props.className)}>
+      <Text className={cn('initials-avatar-txt', text)}>{getInitialsFromName(props.name)}</Text>
     </View>
   );
 };

@@ -1,6 +1,7 @@
 import { PrimaryButton } from '@/components';
 import InitialsAvatar from '@/components/InitialsAvatar';
 import InputField from '@/components/InputField';
+import { defaultProfileInfo } from '@/constants';
 import { validateEmail, validatePassword } from '@/utils';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
@@ -8,16 +9,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const UpdateProfile = () => {
   const [isSaving, setIsSaving] = useState(false);
-  const [profileInfo, setProfileInfo] = useState({
-    name: 'Ashutosh Ojha',
-    email: 'ashutosh.ojha2009@gmail.com',
-    password: 'password',
-    phone: '+16694996135',
-  });
+  const [initialProfileInfo, setInitialProfileInfo] = useState(defaultProfileInfo);
+  const [profileInfo, setProfileInfo] = useState(defaultProfileInfo);
 
   const updateInfo = (key: string, value: string) => {
     setProfileInfo((prev) => ({ ...prev, [key]: value }));
   };
+
+  const hasChanged = Object.entries(initialProfileInfo).some(
+    ([key, value]) => profileInfo[key as keyof typeof profileInfo] !== value,
+  );
 
   const saveInfo = async () => {
     const { name, email, password, phone } = profileInfo;
@@ -31,13 +32,14 @@ const UpdateProfile = () => {
 
     setTimeout(() => {
       try {
+        setInitialProfileInfo(profileInfo);
         Alert.alert('Success', 'Profile updated successfully!');
       } catch (err: any) {
         Alert.alert('Error', err.message);
       } finally {
         setIsSaving(false);
       }
-    }, 5000);
+    }, 2000);
   };
 
   return (
@@ -46,10 +48,10 @@ const UpdateProfile = () => {
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View className='content-wrapper mt-20'>
             <View className='items-center'>
-              <InitialsAvatar name={profileInfo.name} size='large' />
+              <InitialsAvatar name={initialProfileInfo.name} size='large' />
             </View>
 
-            <View className='flex gap-y-8'>
+            <View className='form-group mt-4'>
               <InputField
                 label='Your Name'
                 value={profileInfo.name}
@@ -81,8 +83,8 @@ const UpdateProfile = () => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <View className='absolute bottom-16 left-0 right-0 px-8'>
-        <PrimaryButton title='Save' isLoading={isSaving} onPress={saveInfo} />
+      <View className='absolute-bottom'>
+        <PrimaryButton title='Save' isLoading={isSaving} disabled={!hasChanged} onPress={saveInfo} />
       </View>
     </SafeAreaView>
   );

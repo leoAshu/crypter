@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
-        <View className='content-wrapper mt-24'>
+        <View className='content-wrapper mt-20'>
           <Text className='text-black dark:text-white'>Home</Text>
         </View>
       </ScrollView>
