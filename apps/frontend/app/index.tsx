@@ -7,7 +7,7 @@ const Index = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace('/(tabs)');
+      router.replace('/signin');
     }, 1000);
   }, []);
 

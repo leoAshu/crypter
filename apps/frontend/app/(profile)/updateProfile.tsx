@@ -1,6 +1,6 @@
 import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, defaultProfileInfo, Strings } from '@/constants';
-import { validateEmail, validatePassword } from '@/utils';
+import { formatPhoneNumber, validateEmail, validateName, validatePassword, validatePhone } from '@/utils';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -20,11 +20,15 @@ const UpdateProfile = () => {
 
   const saveInfo = async () => {
     const { name, email, password, phone } = profileInfo;
+    const nameValidationResult = validateName(name);
     const emailValidationResult = validateEmail(email);
     const passwordValidationResult = validatePassword(password);
+    const phoneValidationResult = validatePhone(phone);
 
+    if (!nameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, nameValidationResult.error);
     if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);
     if (!passwordValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, passwordValidationResult.error);
+    if (!phoneValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, phoneValidationResult.error);
 
     setIsSaving(true);
 
@@ -71,7 +75,7 @@ const UpdateProfile = () => {
               />
               <InputField
                 label={Strings.updateProfile.PHONE_LABEL}
-                value={profileInfo.phone}
+                value={formatPhoneNumber(profileInfo.phone)}
                 keyboardType='phone-pad'
                 disabled={isSaving}
                 onChangeText={(value) => updateInfo('phone', value)}

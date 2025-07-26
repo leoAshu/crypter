@@ -1,8 +1,7 @@
 import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
-import { Strings } from '@/constants';
-import { validateEmail, validatePassword } from '@/utils';
-import { signIn } from '@/utils/supabase/auth';
+import { AlertStrings, defaultProfileInfo, Strings } from '@/constants';
+import { signIn, validateEmail, validatePassword } from '@/utils';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Pressable, Text, View } from 'react-native';
@@ -20,16 +19,16 @@ const SignIn = () => {
     const emailValidationResult = validateEmail(email);
     const passwordValidationResult = validatePassword(password);
 
-    if (!emailValidationResult.isValid) return Alert.alert('Error', emailValidationResult.error);
-    if (!passwordValidationResult.isValid) return Alert.alert('Error', passwordValidationResult.error);
+    if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);
+    if (!passwordValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, passwordValidationResult.error);
 
     setIsSubmitting(true);
 
     try {
       await signIn({ email, password });
-      router.replace({ pathname: '/welcome', params: { name: 'John' } });
+      router.replace({ pathname: '/welcome', params: { name: defaultProfileInfo.name } });
     } catch (err: any) {
-      Alert.alert('Error', err.message);
+      Alert.alert(AlertStrings.TITLE.ERROR, err.message);
     } finally {
       setIsSubmitting(false);
     }

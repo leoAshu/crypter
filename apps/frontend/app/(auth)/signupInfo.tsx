@@ -1,6 +1,6 @@
 import { InputField, PrimaryButton } from '@/components';
-import { Strings } from '@/constants';
-import { validateConfirmPassword, validateName, validatePassword, validatePhone } from '@/utils';
+import { AlertStrings, Strings } from '@/constants';
+import { formatPhoneNumber, validateConfirmPassword, validateName, validatePassword, validatePhone } from '@/utils';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Text, View } from 'react-native';
@@ -18,17 +18,18 @@ const SignUpInfo = () => {
     const passwordValidationResult = validatePassword(password);
     const confirmPasswordValidationresult = validateConfirmPassword(password, confirmPassword);
 
-    if (!nameValidationResult.isValid) return Alert.alert('Error', nameValidationResult.error);
-    if (!phoneValidationResult.isValid) return Alert.alert('Error', phoneValidationResult.error);
-    if (!passwordValidationResult.isValid) return Alert.alert('Error', passwordValidationResult.error);
-    if (!confirmPasswordValidationresult.isValid) return Alert.alert('Error', confirmPasswordValidationresult.error);
+    if (!nameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, nameValidationResult.error);
+    if (!phoneValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, phoneValidationResult.error);
+    if (!passwordValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, passwordValidationResult.error);
+    if (!confirmPasswordValidationresult.isValid)
+      return Alert.alert(AlertStrings.TITLE.ERROR, confirmPasswordValidationresult.error);
 
     setIsSubmitting(true);
 
     try {
       router.replace({ pathname: '/welcome', params: { name } });
     } catch (err: any) {
-      Alert.alert('Error', err.message);
+      Alert.alert(AlertStrings.TITLE.ERROR, err.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -55,7 +56,7 @@ const SignUpInfo = () => {
         <InputField
           label={Strings.signupInfo.PHONE_LABEL}
           keyboardType='phone-pad'
-          value={form.phone}
+          value={formatPhoneNumber(form.phone)}
           disabled={isSubmitting}
           onChangeText={(value) => setForm((prev) => ({ ...prev, phone: value }))}
         />

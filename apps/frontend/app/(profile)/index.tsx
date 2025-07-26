@@ -1,5 +1,6 @@
 import { AccountInfo, InputField } from '@/components';
 import { defaultProfileInfo } from '@/constants';
+import { formatPhoneNumber } from '@/utils';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -17,7 +18,7 @@ const Profile = () => {
           <InputField label='Your Name' value={defaultProfileInfo.name} disabled={true} />
           <InputField label='Email Address' value={defaultProfileInfo.email} disabled={true} />
           <InputField label='Your Password' value={defaultProfileInfo.password} disabled={true} secureTextEntry />
-          <InputField label='Phone Number' value={defaultProfileInfo.phone} disabled={true} />
+          <InputField label='Phone Number' value={formatPhoneNumber(defaultProfileInfo.phone)} disabled={true} />
         </View>
       </View>
     </SafeAreaView>
