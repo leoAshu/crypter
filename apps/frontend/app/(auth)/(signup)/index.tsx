@@ -23,7 +23,7 @@ const Signup = () => {
     setIsSubmitting(true);
 
     try {
-      router.push({ pathname: '/signupInfo', params: { email: email } });
+      router.push({ pathname: '/info', params: { email: email } });
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);
     } finally {

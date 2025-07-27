@@ -71,7 +71,7 @@ const SignIn = () => {
         </View>
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
-          <Pressable disabled={isSubmitting} onPress={() => router.replace('/signup')}>
+          <Pressable disabled={isSubmitting} onPress={() => router.replace('/(auth)/(signup)')}>
             <Text className='footer-link'>{Strings.login.SIGNUP_CTA}</Text>
           </Pressable>
         </View>
