@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const UpdateProfile = () => {
+const Edit = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [initialProfileInfo, setInitialProfileInfo] = useState({
     name: '',
@@ -78,19 +78,19 @@ const UpdateProfile = () => {
 
             <View className='form-group mt-4'>
               <InputField
-                label={Strings.updateProfile.NAME_LABEL}
+                label={Strings.editProfile.NAME_LABEL}
                 value={profileInfo.name}
                 disabled={isSaving}
                 onChangeText={(value) => updateInfo('name', value)}
               />
               <InputField
-                label={Strings.updateProfile.EMAIL_LABEL}
+                label={Strings.editProfile.EMAIL_LABEL}
                 value={profileInfo.email}
                 disabled={isSaving}
                 onChangeText={(value) => updateInfo('email', value)}
               />
               <InputField
-                label={Strings.updateProfile.PHONE_LABEL}
+                label={Strings.editProfile.PHONE_LABEL}
                 value={formatPhoneNumber(profileInfo.phone)}
                 keyboardType='phone-pad'
                 disabled={isSaving}
@@ -103,7 +103,7 @@ const UpdateProfile = () => {
 
       <View className='absolute-bottom'>
         <PrimaryButton
-          title={Strings.updateProfile.SAVE_BTN_TITLE}
+          title={Strings.editProfile.SAVE_BTN_TITLE}
           isLoading={isSaving}
           disabled={!hasChanged}
           onPress={saveInfo}
@@ -113,4 +113,4 @@ const UpdateProfile = () => {
   );
 };
 
-export default UpdateProfile;
+export default Edit;

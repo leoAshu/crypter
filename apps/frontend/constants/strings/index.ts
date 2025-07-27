@@ -32,7 +32,7 @@ const Strings = {
     WELCOME_TEXT: "It's great to have you here",
     BUTTON_LABEL: "I'm ready to start!",
   },
-  updateProfile: {
+  editProfile: {
     NAME_LABEL: 'Your name',
     EMAIL_LABEL: 'Email Address',
     PASSWORD_LABEL: 'Your Password',
