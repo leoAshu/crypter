@@ -10,7 +10,7 @@ const AccountInfo = (props: AccountInfoProps) => {
       <View className='flex-1 gap-y-1'>
         <Text className='font-poppins-semibold text-2xl text-on-surface dark:text-on-surface-dark'>{props.name}</Text>
         <Text className='font-inter-medium text-base text-muted dark:text-muted-dark'>
-          {props.gender} • Joined {format(new Date(props.yearSignedUp), 'MMM yyyy')}
+          {props.gender} • Joined {props.yearSignedUp !== '' ? format(new Date(props.yearSignedUp), 'MMM yyyy') : ''}
         </Text>
       </View>
     </View>
