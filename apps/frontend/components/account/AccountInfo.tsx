@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { Text, View } from 'react-native';
 import InitialsAvatar from '../avatars/InitialsAvatar';
 
@@ -9,7 +10,7 @@ const AccountInfo = (props: AccountInfoProps) => {
       <View className='flex-1 gap-y-1'>
         <Text className='font-poppins-semibold text-2xl text-on-surface dark:text-on-surface-dark'>{props.name}</Text>
         <Text className='font-inter-medium text-base text-muted dark:text-muted-dark'>
-          {props.gender} • Joined {props.yearSignedUp}
+          {props.gender} • Joined {format(new Date(props.yearSignedUp), 'MMM yyyy')}
         </Text>
       </View>
     </View>

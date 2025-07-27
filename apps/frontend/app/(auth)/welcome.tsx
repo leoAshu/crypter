@@ -24,7 +24,7 @@ const Welcome = () => {
     <View className='content-wrapper'>
       <View className='welcome-header-wrapper'>
         <Text className='welcome-header-txt'>
-          {Strings.welcome.SCREEN_GREETING} {name}! 👋
+          {Strings.welcome.SCREEN_GREETING} {name.split(' ')[0]}! 👋
         </Text>
         <Text className='welcome-header-txt'>{Strings.welcome.SCREEN_TITLE}</Text>
         <Text className='welcome-sub-header-txt'>{Strings.welcome.WELCOME_TEXT}</Text>
