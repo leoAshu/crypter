@@ -34,7 +34,7 @@ const Profile = () => {
         <View className='form-group mt-4'>
           <InputField label='Your Name' value={user?.user_metadata?.name || ''} disabled={true} />
           <InputField label='Email Address' value={user?.email || ''} disabled={true} />
-          <InputField label='Phone Number' value={formatPhoneNumber(user?.phone || '')} disabled={true} />
+          <InputField label='Phone Number' value={formatPhoneNumber(user?.user_metadata?.phone || '')} disabled={true} />
         </View>
       </View>
     </SafeAreaView>
