@@ -1,14 +1,41 @@
 import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
-import { AlertStrings, defaultProfileInfo, Strings } from '@/constants';
-import { formatPhoneNumber, validateEmail, validateName, validatePassword, validatePhone } from '@/utils';
-import { useState } from 'react';
+import { AlertStrings, Strings } from '@/constants';
+import { formatPhoneNumber, getUser, updateUser, validateEmail, validateName, validatePhone } from '@/utils';
+import { useEffect, useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const UpdateProfile = () => {
   const [isSaving, setIsSaving] = useState(false);
-  const [initialProfileInfo, setInitialProfileInfo] = useState(defaultProfileInfo);
-  const [profileInfo, setProfileInfo] = useState(defaultProfileInfo);
+  const [initialProfileInfo, setInitialProfileInfo] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
+  const [profileInfo, setProfileInfo] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser();
+        const userProfileInfo = {
+          name: userData?.user_metadata?.name || '',
+          email: userData?.email || '',
+          phone: userData?.user_metadata?.phone || '',
+        };
+        setProfileInfo(userProfileInfo);
+        setInitialProfileInfo(userProfileInfo);
+      } catch (err: any) {
+        Alert.alert(AlertStrings.TITLE.ERROR, err.message);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const updateInfo = (key: string, value: string) => {
     setProfileInfo((prev) => ({ ...prev, [key]: value }));
@@ -19,29 +46,25 @@ const UpdateProfile = () => {
   );
 
   const saveInfo = async () => {
-    const { name, email, password, phone } = profileInfo;
+    const { name, email, phone } = profileInfo;
     const nameValidationResult = validateName(name);
     const emailValidationResult = validateEmail(email);
-    const passwordValidationResult = validatePassword(password);
     const phoneValidationResult = validatePhone(phone);
 
     if (!nameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, nameValidationResult.error);
     if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);
-    if (!passwordValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, passwordValidationResult.error);
     if (!phoneValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, phoneValidationResult.error);
 
     setIsSaving(true);
 
-    setTimeout(() => {
-      try {
-        setInitialProfileInfo(profileInfo);
-        Alert.alert(AlertStrings.TITLE.SUCCESS, AlertStrings.MSG.PROFILE_UPDATE_SUCCESS);
-      } catch (err: any) {
-        Alert.alert(AlertStrings.TITLE.ERROR, err.message);
-      } finally {
-        setIsSaving(false);
-      }
-    }, 2000);
+    try {
+      await updateUser({ email: profileInfo.email, name: profileInfo.name, phone: profileInfo.phone });
+      Alert.alert(AlertStrings.TITLE.SUCCESS, AlertStrings.MSG.PROFILE_UPDATE_SUCCESS);
+    } catch (err: any) {
+      Alert.alert(AlertStrings.TITLE.ERROR, err.message);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -65,13 +88,6 @@ const UpdateProfile = () => {
                 value={profileInfo.email}
                 disabled={isSaving}
                 onChangeText={(value) => updateInfo('email', value)}
-              />
-              <InputField
-                secureTextEntry
-                label={Strings.updateProfile.PASSWORD_LABEL}
-                value={profileInfo.password}
-                disabled={isSaving}
-                onChangeText={(value) => updateInfo('password', value)}
               />
               <InputField
                 label={Strings.updateProfile.PHONE_LABEL}

@@ -1,6 +1,14 @@
 import { InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { formatPhoneNumber, validateConfirmPassword, validateName, validatePassword, validatePhone } from '@/utils';
+import {
+  formatPhoneNumber,
+  getUser,
+  signUp,
+  validateConfirmPassword,
+  validateName,
+  validatePassword,
+  validatePhone,
+} from '@/utils';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Text, View } from 'react-native';
@@ -27,7 +35,9 @@ const SignUpInfo = () => {
     setIsSubmitting(true);
 
     try {
-      router.replace({ pathname: '/welcome', params: { name } });
+      await signUp({ name, phone, email, password });
+      const user = await getUser();
+      router.replace({ pathname: '/welcome', params: { name: user?.user_metadata.name || '' } });
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);
     } finally {

@@ -1,7 +1,7 @@
 import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
-import { AlertStrings, defaultProfileInfo, Strings } from '@/constants';
-import { signIn, validateEmail, validatePassword } from '@/utils';
+import { AlertStrings, Strings } from '@/constants';
+import { getUser, signIn, validateEmail, validatePassword } from '@/utils';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Pressable, Text, View } from 'react-native';
@@ -26,7 +26,8 @@ const SignIn = () => {
 
     try {
       await signIn({ email, password });
-      router.replace({ pathname: '/welcome', params: { name: defaultProfileInfo.name } });
+      const user = await getUser();
+      router.replace({ pathname: '/welcome', params: { name: user?.user_metadata.name || '' } });
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);
     } finally {
