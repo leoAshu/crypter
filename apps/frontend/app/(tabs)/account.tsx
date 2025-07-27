@@ -1,29 +1,13 @@
 import { images } from '@/assets';
 import { AccountInfo, MenuOption, SecondaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { getUser, signOut } from '@/utils';
-import { User } from '@supabase/supabase-js';
+import { useAuthStore } from '@/store';
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
 import { Alert, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Account = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData = await getUser();
-        setUser(userData);
-      } catch (err: any) {
-        Alert.alert(AlertStrings.TITLE.ERROR, err.message);
-      }
-    };
-
-    fetchUser();
-  }, []);
+  const { isLoading, user, signout } = useAuthStore();
 
   const confirmLogout = async () => {
     Alert.alert(AlertStrings.TITLE.LOGOUT, AlertStrings.MSG.CONFIRM_LOGOUT, [
@@ -32,15 +16,11 @@ const Account = () => {
         text: AlertStrings.ACTION.LOGOUT,
         style: 'destructive',
         onPress: async () => {
-          setIsLoading(true);
-
           try {
-            await signOut();
+            await signout();
             router.replace('/signin');
           } catch (err: any) {
             Alert.alert(AlertStrings.TITLE.ERROR, err.message);
-          } finally {
-            setIsLoading(false);
           }
         },
       },

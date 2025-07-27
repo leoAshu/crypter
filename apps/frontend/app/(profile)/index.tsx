@@ -1,29 +1,16 @@
-import { AccountInfo, InputField } from '@/components';
-import { AlertStrings } from '@/constants';
-import { formatPhoneNumber, getUser } from '@/utils';
-import { User } from '@supabase/supabase-js';
-import { useEffect, useState } from 'react';
-import { Alert, View } from 'react-native';
+import { AccountInfo, InputField, OverlayLoader } from '@/components';
+import { useAuthStore } from '@/store';
+import { formatPhoneNumber } from '@/utils';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Profile = () => {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData = await getUser();
-        setUser(userData);
-      } catch (err: any) {
-        Alert.alert(AlertStrings.TITLE.ERROR, err.message);
-      }
-    };
-
-    fetchUser();
-  }, []);
+  const { isLoading, user } = useAuthStore();
 
   return (
     <SafeAreaView className='screen-wrapper'>
+      <OverlayLoader visible={isLoading} />
+
       <View className='content-wrapper mt-20'>
         <AccountInfo
           name={user?.user_metadata?.name || ''}

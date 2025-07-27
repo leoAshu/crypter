@@ -82,3 +82,12 @@ interface MenuOptionProps {
   route?: LinkProps['href'];
   rightIcon?: ImageSourcePropType;
 }
+
+// ====================
+// 📄 Loaders
+// ====================
+
+/** Props for an overlay loader with blurred background */
+interface OverlayLoaderProps {
+  visible: boolean;
+}

@@ -16,10 +16,10 @@ import { Alert, Text, View } from 'react-native';
 const SignUpInfo = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { email } = useLocalSearchParams<{ email: string }>();
-  const [form, setForm] = useState({ name: '', email: email, password: '', confirmPassword: '', phone: '' });
+  const [formData, setFormData] = useState({ name: '', email: email, password: '', confirmPassword: '', phone: '' });
 
   const submitForm = async () => {
-    const { name, email, password, confirmPassword, phone } = form;
+    const { name, email, password, confirmPassword, phone } = formData;
 
     const nameValidationResult = validateName(name);
     const phoneValidationResult = validatePhone(phone);
@@ -53,36 +53,36 @@ const SignUpInfo = () => {
         <InputField
           label={Strings.signupInfo.NAME_LABEL}
           keyboardType='default'
-          value={form.name}
+          value={formData.name}
           disabled={isSubmitting}
-          onChangeText={(value) => setForm((prev) => ({ ...prev, name: value }))}
+          onChangeText={(value) => setFormData((prev) => ({ ...prev, name: value }))}
         />
         <InputField
           label={Strings.signupInfo.EMAIL_LABEL}
           keyboardType='email-address'
-          value={form.email}
+          value={formData.email}
           disabled={true}
         />
         <InputField
           label={Strings.signupInfo.PHONE_LABEL}
           keyboardType='phone-pad'
-          value={formatPhoneNumber(form.phone)}
+          value={formatPhoneNumber(formData.phone)}
           disabled={isSubmitting}
-          onChangeText={(value) => setForm((prev) => ({ ...prev, phone: value }))}
+          onChangeText={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
         />
         <InputField
           label={Strings.signupInfo.PASSWORD_LABEL}
           secureTextEntry
-          value={form.password}
+          value={formData.password}
           disabled={isSubmitting}
-          onChangeText={(value) => setForm((prev) => ({ ...prev, password: value }))}
+          onChangeText={(value) => setFormData((prev) => ({ ...prev, password: value }))}
         />
         <InputField
           label={Strings.signupInfo.CONFIRM_PASSWORD_LABEL}
           secureTextEntry
-          value={form.confirmPassword}
+          value={formData.confirmPassword}
           disabled={isSubmitting}
-          onChangeText={(value) => setForm((prev) => ({ ...prev, confirmPassword: value }))}
+          onChangeText={(value) => setFormData((prev) => ({ ...prev, confirmPassword: value }))}
         />
         <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isSubmitting} onPress={submitForm} />
       </View>

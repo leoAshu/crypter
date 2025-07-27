@@ -1,11 +1,20 @@
 import { images } from '@/assets';
+import { useAuthStore } from '@/store';
 import { Tabs } from 'expo-router';
+import { useEffect } from 'react';
 import { Image, Platform, useColorScheme } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const TabsLayout = () => {
+  // temporary - remove when Signin/Signup integrated with Zustand
+  const { fetchAuthenticatedUser } = useAuthStore();
+
   const isDark = useColorScheme() === 'dark';
   const insets = useSafeAreaInsets();
+
+  useEffect(() => {
+    fetchAuthenticatedUser();
+  }, []);
 
   return (
     <Tabs
