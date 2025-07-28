@@ -1,13 +1,14 @@
 import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { getUser, signIn, validateEmail, validatePassword } from '@/utils';
+import useAuthStore from '@/store/auth.store';
+import { validateEmail, validatePassword } from '@/utils';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Pressable, Text, View } from 'react-native';
 
 const SignIn = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { signin, isLoading, user } = useAuthStore();
   const [formData, setFormData] = useState({ email: '', password: '' });
 
   const resetForm = () => {
@@ -22,16 +23,11 @@ const SignIn = () => {
     if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);
     if (!passwordValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, passwordValidationResult.error);
 
-    setIsSubmitting(true);
-
     try {
-      await signIn({ email, password });
-      const user = await getUser();
-      router.replace({ pathname: '/welcome', params: { name: user?.user_metadata.name || '' } });
+      await signin({ email, password });
+      router.replace('/welcome');
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -45,17 +41,17 @@ const SignIn = () => {
           label={Strings.login.EMAIL_LABEL}
           keyboardType='email-address'
           value={formData.email}
-          disabled={isSubmitting}
+          disabled={isLoading}
           onChangeText={(value) => setFormData((prev) => ({ ...prev, email: value }))}
         />
         <InputField
           label={Strings.login.PASSWORD_LABEL}
           secureTextEntry
           value={formData.password}
-          disabled={isSubmitting}
+          disabled={isLoading}
           onChangeText={(value) => setFormData((prev) => ({ ...prev, password: value }))}
         />
-        <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={isSubmitting} onPress={submitForm} />
+        <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
       </View>
 
       {/* Socials & Footer */}
@@ -66,12 +62,12 @@ const SignIn = () => {
           <View className='divider-line' />
         </View>
         <View className='social-auth-row'>
-          <IconButton icon={images.google} disabled={isSubmitting} onPress={() => {}} />
-          <IconButton icon={images.facebook} disabled={isSubmitting} onPress={() => {}} />
+          <IconButton icon={images.google} disabled={isLoading} onPress={() => {}} />
+          <IconButton icon={images.facebook} disabled={isLoading} onPress={() => {}} />
         </View>
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
-          <Pressable disabled={isSubmitting} onPress={() => router.replace('/(auth)/(signup)')}>
+          <Pressable disabled={isLoading} onPress={() => router.replace('/(auth)/(signup)')}>
             <Text className='footer-link'>{Strings.login.SIGNUP_CTA}</Text>
           </Pressable>
         </View>

@@ -9,5 +9,7 @@ interface AuthState {
 
   fetchAuthenticatedUser: () => Promise<void>;
   updateProfile: (newInfo: UpdateUserParams) => Promise<void>;
-  signout: () => Promsise<void>;
+  signout: () => Promise<void>;
+  signin: (signInParams: SignInParams) => Promise<void>;
+  signup: (signUpParams: SignUpParams) => Promise<void>;
 }

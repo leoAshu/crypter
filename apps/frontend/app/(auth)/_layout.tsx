@@ -7,7 +7,7 @@ const AuthLayout = () => {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView className='screen-wrapper' keyboardShouldPersistTaps='handled'>
-        <View style={{ height: Dimensions.get('screen').height / (pathname === '/signupInfo' ? 3.5 : 2.5) }}>
+        <View style={{ height: Dimensions.get('screen').height / (pathname === '/info' ? 3.5 : 2.5) }}>
           <Image source={images.logo} className='header-logo' resizeMode='contain' />
         </View>
         <Slot />
