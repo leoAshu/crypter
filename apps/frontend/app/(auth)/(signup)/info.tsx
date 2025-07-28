@@ -1,20 +1,13 @@
 import { InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import {
-  formatPhoneNumber,
-  getUser,
-  signUp,
-  validateConfirmPassword,
-  validateName,
-  validatePassword,
-  validatePhone,
-} from '@/utils';
+import useAuthStore from '@/store/auth.store';
+import { formatPhoneNumber, validateConfirmPassword, validateName, validatePassword, validatePhone } from '@/utils';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Text, View } from 'react-native';
 
 const SignUpInfo = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { signup, isLoading } = useAuthStore();
   const { email } = useLocalSearchParams<{ email: string }>();
   const [formData, setFormData] = useState({ name: '', email: email, password: '', confirmPassword: '', phone: '' });
 
@@ -32,16 +25,11 @@ const SignUpInfo = () => {
     if (!confirmPasswordValidationresult.isValid)
       return Alert.alert(AlertStrings.TITLE.ERROR, confirmPasswordValidationresult.error);
 
-    setIsSubmitting(true);
-
     try {
-      await signUp({ name, phone, email, password });
-      const user = await getUser();
-      router.replace({ pathname: '/welcome', params: { name: user?.user_metadata.name || '' } });
+      await signup({ name, phone, email, password });
+      router.replace({ pathname: '/welcome', params: { name } });
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -54,7 +42,7 @@ const SignUpInfo = () => {
           label={Strings.signupInfo.NAME_LABEL}
           keyboardType='default'
           value={formData.name}
-          disabled={isSubmitting}
+          disabled={isLoading}
           onChangeText={(value) => setFormData((prev) => ({ ...prev, name: value }))}
         />
         <InputField
@@ -67,24 +55,24 @@ const SignUpInfo = () => {
           label={Strings.signupInfo.PHONE_LABEL}
           keyboardType='phone-pad'
           value={formatPhoneNumber(formData.phone)}
-          disabled={isSubmitting}
+          disabled={isLoading}
           onChangeText={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
         />
         <InputField
           label={Strings.signupInfo.PASSWORD_LABEL}
           secureTextEntry
           value={formData.password}
-          disabled={isSubmitting}
+          disabled={isLoading}
           onChangeText={(value) => setFormData((prev) => ({ ...prev, password: value }))}
         />
         <InputField
           label={Strings.signupInfo.CONFIRM_PASSWORD_LABEL}
           secureTextEntry
           value={formData.confirmPassword}
-          disabled={isSubmitting}
+          disabled={isLoading}
           onChangeText={(value) => setFormData((prev) => ({ ...prev, confirmPassword: value }))}
         />
-        <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isSubmitting} onPress={submitForm} />
+        <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
       </View>
     </View>
   );

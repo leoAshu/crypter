@@ -1,18 +1,10 @@
 import { images } from '@/assets';
 import { TabBarIcon } from '@/components';
-import { useAuthStore } from '@/store';
 import { Tabs } from 'expo-router';
-import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
 const TabLayout = () => {
-  // temporary - remove when Signin/Signup integrated with Zustand
-  const { fetchAuthenticatedUser } = useAuthStore();
   const isDark = useColorScheme() === 'dark';
-
-  useEffect(() => {
-    fetchAuthenticatedUser();
-  }, []);
 
   return (
     <Tabs
