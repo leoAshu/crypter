@@ -8,14 +8,14 @@ import { Alert, Pressable, Text, View } from 'react-native';
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ email: '', password: '' });
 
   const resetForm = () => {
-    setForm({ email: '', password: '' });
+    setFormData({ email: '', password: '' });
   };
 
   const submitForm = async () => {
-    const { email, password } = form;
+    const { email, password } = formData;
     const emailValidationResult = validateEmail(email);
     const passwordValidationResult = validatePassword(password);
 
@@ -44,16 +44,16 @@ const SignIn = () => {
         <InputField
           label={Strings.login.EMAIL_LABEL}
           keyboardType='email-address'
-          value={form.email}
+          value={formData.email}
           disabled={isSubmitting}
-          onChangeText={(value) => setForm((prev) => ({ ...prev, email: value }))}
+          onChangeText={(value) => setFormData((prev) => ({ ...prev, email: value }))}
         />
         <InputField
           label={Strings.login.PASSWORD_LABEL}
           secureTextEntry
-          value={form.password}
+          value={formData.password}
           disabled={isSubmitting}
-          onChangeText={(value) => setForm((prev) => ({ ...prev, password: value }))}
+          onChangeText={(value) => setFormData((prev) => ({ ...prev, password: value }))}
         />
         <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={isSubmitting} onPress={submitForm} />
       </View>
@@ -71,7 +71,7 @@ const SignIn = () => {
         </View>
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
-          <Pressable disabled={isSubmitting} onPress={() => router.replace('/signup')}>
+          <Pressable disabled={isSubmitting} onPress={() => router.replace('/(auth)/(signup)')}>
             <Text className='footer-link'>{Strings.login.SIGNUP_CTA}</Text>
           </Pressable>
         </View>

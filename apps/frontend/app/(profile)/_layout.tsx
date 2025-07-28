@@ -32,7 +32,7 @@ const ProfileLayout = () => {
           headerRight: () => (
             <>
               {isIndex && (
-                <Pressable onPress={() => router.push('/updateProfile')}>
+                <Pressable onPress={() => router.push('/(profile)/edit')}>
                   <View className='app-header-icon-wrapper'>
                     <Image
                       className='size-5'
@@ -55,7 +55,7 @@ const ProfileLayout = () => {
         }}
       />
       <Stack.Screen
-        name='updateProfile'
+        name='edit'
         options={{
           title: 'Edit',
         }}

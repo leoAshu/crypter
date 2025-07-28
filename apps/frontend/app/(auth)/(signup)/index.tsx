@@ -8,14 +8,14 @@ import { Alert, Image, Pressable, Text, View } from 'react-native';
 
 const Signup = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [form, setForm] = useState({ email: '' });
+  const [formData, setFormData] = useState({ email: '' });
 
   const resetForm = () => {
-    setForm({ email: '' });
+    setFormData({ email: '' });
   };
 
   const submitForm = async () => {
-    const { email } = form;
+    const { email } = formData;
     const emailValidationResult = validateEmail(email);
 
     if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);
@@ -23,7 +23,7 @@ const Signup = () => {
     setIsSubmitting(true);
 
     try {
-      router.push({ pathname: '/signupInfo', params: { email: email } });
+      router.push({ pathname: '/info', params: { email: email } });
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);
     } finally {
@@ -40,9 +40,9 @@ const Signup = () => {
         <InputField
           label={Strings.signup.EMAIL_LABEL}
           keyboardType='email-address'
-          value={form.email}
+          value={formData.email}
           disabled={isSubmitting}
-          onChangeText={(value) => setForm((prev) => ({ ...prev, email: value }))}
+          onChangeText={(value) => setFormData((prev) => ({ ...prev, email: value }))}
         />
         <PrimaryButton
           title={Strings.signup.BUTTON_LABEL}
