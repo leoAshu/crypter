@@ -1,5 +1,5 @@
 import { images } from '@/assets';
-import { TabBarIcon } from '@/components';
+import { FloatingActionTabButton, TabBarIcon } from '@/components';
 import { Tabs } from 'expo-router';
 import { useColorScheme, View } from 'react-native';
 
@@ -51,6 +51,10 @@ const TabLayout = () => {
           }}
         />
       </Tabs>
+
+      <View className='absolute bottom-7 z-20 self-center'>
+        <FloatingActionTabButton />
+      </View>
     </View>
   );
 };
