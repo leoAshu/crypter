@@ -6,16 +6,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // accent
         primary: '#0066FF',
         'primary-disabled': '#99C2FF',
+
+        // background
         surface: '#FFFFFF',
         'surface-dark': '#101018',
+        // surface: '#F0F2F5',
+        // 'surface-dark': '#18191A',
+
+        // text primary
         'on-surface': '#23262F',
         'on-surface-dark': '#FFFFFF',
+
+        // text secondary
         muted: '#969AA0',
         'muted-dark': '#969AA0',
+
+        // card background
         card: '#F4F6F9',
         'card-dark': '#2C2E3B',
+        // card: '#FFFFFF',
+        // 'card-dark': '#101018',
       },
 
       fontFamily: {

@@ -1,16 +1,14 @@
 import { images } from '@/assets';
+import { TabBarIcon } from '@/components';
 import { useAuthStore } from '@/store';
 import { Tabs } from 'expo-router';
 import { useEffect } from 'react';
-import { Image, Platform, useColorScheme } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useColorScheme } from 'react-native';
 
-const TabsLayout = () => {
+const TabLayout = () => {
   // temporary - remove when Signin/Signup integrated with Zustand
   const { fetchAuthenticatedUser } = useAuthStore();
-
   const isDark = useColorScheme() === 'dark';
-  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     fetchAuthenticatedUser();
@@ -18,10 +16,10 @@ const TabsLayout = () => {
 
   return (
     <Tabs
-      screenOptions={({ route }) => ({
-        animation: 'shift',
+      screenOptions={() => ({
         headerTransparent: true,
         headerTitleAlign: 'center',
+        tabBarShowLabel: false,
         headerTitleStyle: {
           color: isDark ? '#FFFFFF' : '#23262F',
           fontWeight: 'semibold',
@@ -30,33 +28,36 @@ const TabsLayout = () => {
         },
         tabBarStyle: {
           backgroundColor: isDark ? '#21212E' : '#F4F6F9',
-          borderTopLeftRadius: 36,
-          borderTopRightRadius: 36,
+          // backgroundColor: isDark ? '#101018' : '#FFFFFF',
           borderTopWidth: 0,
-          elevation: 0,
-          height: 96,
-          overflow: 'hidden',
+          borderTopLeftRadius: 50,
+          borderTopRightRadius: 50,
+          borderBottomLeftRadius: 25,
+          borderBottomRightRadius: 25,
+          marginHorizontal: 20,
+          height: 80,
           position: 'absolute',
-          paddingTop: 12,
-          paddingBottom: Platform.OS === 'ios' ? insets.bottom : 16,
+          bottom: 20,
+          elevation: 5,
         },
-        tabBarShowLabel: false,
-        tabBarIcon: ({ focused, color, size }) => {
-          switch (route.name) {
-            case 'index':
-              return <Image source={images.home} className='size-5' tintColor={color} resizeMode='contain' />;
-            case 'account':
-              return <Image source={images.account} className='size-5' tintColor={color} resizeMode='contain' />;
-          }
-        },
-        tabBarActiveTintColor: '#0066FF',
-        tabBarInactiveTintColor: '#B5B9C1',
       })}
     >
-      <Tabs.Screen name='index' options={{ title: 'Home' }} />
-      <Tabs.Screen name='account' options={{ title: 'Account' }} />
+      <Tabs.Screen
+        name='index'
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={images.home} />,
+        }}
+      />
+      <Tabs.Screen
+        name='account'
+        options={{
+          title: 'Account',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={images.account} />,
+        }}
+      />
     </Tabs>
   );
 };
 
-export default TabsLayout;
+export default TabLayout;

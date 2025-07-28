@@ -84,10 +84,19 @@ interface MenuOptionProps {
 }
 
 // ====================
-// 📄 Loaders
+// ⏳ Loaders
 // ====================
 
 /** Props for an overlay loader with blurred background */
 interface OverlayLoaderProps {
   visible: boolean;
+}
+
+// ====================
+// 🧭 Tabs
+// ====================
+/** Props for a tab bar icon */
+interface TabBarIconProps {
+  focused: boolean;
+  icon: ImageSourcePropType;
 }
