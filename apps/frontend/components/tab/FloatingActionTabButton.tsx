@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image, Platform, Pressable, useColorScheme, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
@@ -11,6 +12,7 @@ const FloatingActionTabButton = (props: FloatingActionTabButtonProps) => {
   const innerShadowOpacity = useSharedValue(1);
 
   const handlePressIn = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     scale.value = withTiming(isIOS ? 0.94 : 1, { duration: 100 });
     outerShadowOpacity.value = withTiming(1, { duration: 120 });
     innerShadowOpacity.value = withTiming(0, { duration: 120 });
