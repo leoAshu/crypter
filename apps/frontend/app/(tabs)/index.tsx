@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
   const { user } = useAuthStore();
+
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
