@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 
 const SIZE_PRESETS: Record<AvatarSize, { container: string; text: string }> = {
   small: {
-    container: 'size-12',
+    container: 'size-16',
     text: 'text-xl',
   },
   medium: {

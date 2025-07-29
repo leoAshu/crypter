@@ -11,6 +11,8 @@ const images = {
   edit: require('./images/edit.png'),
   arrowLeft: require('./images/arrow-left.png'),
   next: require('./images/next.png'),
+  walletBackground: require('./images/wallet-bg.png'),
+  exchange: require('./images/exchange.png'),
 };
 
 export { images };
