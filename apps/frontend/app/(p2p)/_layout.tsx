@@ -1,11 +1,10 @@
 import { images } from '@/assets';
-import { FloatingActionTabButton, TabBarIcon } from '@/components';
+import { FloatingActionTabButton, HeaderActionIcon, TabBarIcon } from '@/components';
 import { router, Tabs } from 'expo-router';
 import { useColorScheme, View } from 'react-native';
 
-const TabLayout = () => {
+const P2PLayout = () => {
   const isDark = useColorScheme() === 'dark';
-
   return (
     <View className='flex-1'>
       <Tabs
@@ -38,25 +37,32 @@ const TabLayout = () => {
         <Tabs.Screen
           name='index'
           options={{
-            title: 'Home',
-            headerShown: false,
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={images.home} />,
+            title: 'P2P',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={images.p2p} iconStyle='size-6' />,
+            headerLeft: () => (
+              <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
+            ),
+            headerRight: () => <HeaderActionIcon icon={images.plus} containerStyle='mr-8' />,
           }}
         />
         <Tabs.Screen
-          name='account'
+          name='myAds'
           options={{
-            title: 'Account',
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={images.account} />,
+            title: 'My Ads',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={images.ads} iconStyle='size-8' />,
+            headerLeft: () => (
+              <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
+            ),
+            headerRight: () => <HeaderActionIcon icon={images.plus} containerStyle='mr-8' />,
           }}
         />
       </Tabs>
 
       <View className='absolute-bottom-fab'>
-        <FloatingActionTabButton icon={images.exchange} onPress={() => router.push('/(p2p)')} />
+        <FloatingActionTabButton icon={images.plus} onPress={() => {}} />
       </View>
     </View>
   );
 };
 
-export default TabLayout;
+export default P2PLayout;

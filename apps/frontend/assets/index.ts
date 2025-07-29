@@ -13,6 +13,9 @@ const images = {
   next: require('./images/next.png'),
   walletBackground: require('./images/wallet-bg.png'),
   exchange: require('./images/exchange.png'),
+  p2p: require('./images/couple.png'),
+  ads: require('./images/marketing.png'),
+  plus: require('./images/plus.png'),
 };
 
 export { images };
