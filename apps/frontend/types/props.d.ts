@@ -95,8 +95,24 @@ interface OverlayLoaderProps {
 // ====================
 // 🧭 Tabs
 // ====================
+
 /** Props for a tab bar icon */
 interface TabBarIconProps {
   focused: boolean;
   icon: ImageSourcePropType;
+  iconStyle?: string;
+}
+
+/** Props for a floating action tab button */
+interface FloatingActionTabButtonProps {
+  icon: ImageSourcePropType;
+  onPress?: () => void;
+}
+
+/** Props for an app bar action icon */
+interface HeaderActionIconProps {
+  icon: ImageSourcePropType;
+  iconStyle?: string;
+  containerStyle?: string;
+  onPress?: () => void;
 }

@@ -52,8 +52,8 @@ const TabLayout = () => {
         />
       </Tabs>
 
-      <View className='absolute bottom-7 z-20 self-center'>
-        <FloatingActionTabButton />
+      <View className='absolute-bottom-fab'>
+        <FloatingActionTabButton icon={images.exchange} />
       </View>
     </View>
   );

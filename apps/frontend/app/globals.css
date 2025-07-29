@@ -156,6 +156,10 @@
     @apply absolute bottom-16 left-0 right-0 px-8;
   }
 
+  .absolute-bottom-fab {
+    @apply absolute bottom-9 z-20 self-center;
+  }
+
   .app-header-icon-wrapper {
     @apply rounded-full p-2;
   }
@@ -195,5 +199,21 @@
   ─────────────────────────────── */
   .social-auth-row {
     @apply flex-row gap-x-4;
+  }
+
+  /* ──────────────────────────────
+     FAB
+  ─────────────────────────────── */
+
+  .fab-wrapper {
+    @apply h-16 w-16 items-center justify-center overflow-hidden rounded-full;
+  }
+
+  .fab-shadow {
+    @apply absolute inset-0 rounded-full;
+  }
+
+  .fab-icon {
+    @apply z-10 h-8 w-8;
   }
 }
