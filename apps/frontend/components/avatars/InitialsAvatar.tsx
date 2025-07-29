@@ -3,22 +3,26 @@ import cn from 'clsx';
 import { Text, View } from 'react-native';
 
 const SIZE_PRESETS: Record<AvatarSize, { container: string; text: string }> = {
-  small: {
+  xs: {
+    container: 'size-6',
+    text: 'text-sm font-bold',
+  },
+  sm: {
     container: 'size-16',
     text: 'text-xl',
   },
-  medium: {
+  md: {
     container: 'size-20',
     text: 'text-2xl',
   },
-  large: {
+  lg: {
     container: 'size-28',
     text: 'text-4xl',
   },
 };
 
 const InitialsAvatar = (props: InitialsAvatarProps) => {
-  const { container, text } = SIZE_PRESETS[props.size ?? 'medium'];
+  const { container, text } = SIZE_PRESETS[props.size ?? 'md'];
 
   return (
     <View className={cn(container, 'initials-avatar-wrapper', props.className)}>

@@ -10,7 +10,7 @@ const Home = () => {
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
         <View className='content-wrapper mt-6'>
-          <InitialsAvatar name={user?.user_metadata.name} size='small' />
+          <InitialsAvatar name={user?.user_metadata.name} size='sm' />
           <Text className='header-txt font-poppins-medium'>Hello,</Text>
           <Text className='header-txt -mt-6 font-poppins-medium'>{user?.user_metadata.name} 👋</Text>
 

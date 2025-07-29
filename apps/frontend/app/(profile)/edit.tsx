@@ -42,7 +42,7 @@ const Edit = () => {
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View className='content-wrapper mt-20'>
             <View className='items-center'>
-              <InitialsAvatar name={user?.user_metadata.name} size='large' />
+              <InitialsAvatar name={user?.user_metadata.name} size='lg' />
             </View>
 
             <View className='form-group mt-4'>

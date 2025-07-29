@@ -63,7 +63,7 @@ interface AccountInfoProps {
 }
 
 /** Allowed size variants for avatar components */
-type AvatarSize = 'small' | 'medium' | 'large';
+type AvatarSize = 'xs' | 'sm' | 'md' | 'lg';
 
 /** Props for rendering initials-based avatar */
 interface InitialsAvatarProps {
