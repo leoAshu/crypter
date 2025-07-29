@@ -16,6 +16,8 @@ const images = {
   p2p: require('./images/couple.png'),
   ads: require('./images/marketing.png'),
   plus: require('./images/plus.png'),
+  like: require('./images/like.png'),
+  stopwatch: require('./images/stopwatch.png'),
 };
 
 export { images };

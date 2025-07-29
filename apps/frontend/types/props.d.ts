@@ -116,3 +116,11 @@ interface HeaderActionIconProps {
   containerStyle?: string;
   onPress?: () => void;
 }
+
+interface ToggleButtonProps<T extends string> {
+  value: T;
+  options: [T, T];
+  labels?: Record<T, string>;
+  activeColors?: Record<T, string>;
+  onChange?: (value: T) => void;
+}
