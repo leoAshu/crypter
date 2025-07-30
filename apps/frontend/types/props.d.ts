@@ -129,3 +129,9 @@ interface ToggleButtonProps<T extends string> {
 interface PaymentBadgeProps {
   paymentName: string;
 }
+
+interface AdCardProps {
+  ad: any;
+  index: number;
+  animationStyle?: AnimationStyle;
+}

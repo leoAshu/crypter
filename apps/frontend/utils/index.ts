@@ -35,6 +35,13 @@ const currencyFormatter = new Intl.NumberFormat('en-IN', {
   maximumFractionDigits: 2,
 });
 
+const capitalizeWords = (input: string): string => {
+  return input
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+};
+
 export * from './supabase';
 export * from './validations';
-export { currencyFormatter, formatPhoneNumber, getInitialsFromName };
+export { capitalizeWords, currencyFormatter, formatPhoneNumber, getInitialsFromName };

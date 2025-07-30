@@ -218,7 +218,7 @@
   }
 
   .toggle-btn-wrapper {
-    @apply flex-row rounded-3xl bg-card p-1 dark:bg-card-dark;
+    @apply flex-row rounded-md bg-card p-1 dark:bg-card-dark;
   }
 
   .toggle-btn-label-inactive {
@@ -230,7 +230,7 @@
   }
 
   .toggle-btn {
-    @apply flex-1 rounded-3xl;
+    @apply flex-1 rounded-md;
   }
 
   .ad-card-wrapper {
