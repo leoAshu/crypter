@@ -26,7 +26,8 @@ module.exports = {
 
         // card background
         card: '#F4F6F9',
-        'card-dark': '#2C2E3B',
+        'card-dark': '#21212E',
+        // 'card-dark': '#1A1A2E',
         // card: '#FFFFFF',
         // 'card-dark': '#101018',
 

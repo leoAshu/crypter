@@ -30,6 +30,11 @@ const formatPhoneNumber = (value: string) => {
   return formatted.trim();
 };
 
+const currencyFormatter = new Intl.NumberFormat('en-IN', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 export * from './supabase';
 export * from './validations';
-export { formatPhoneNumber, getInitialsFromName };
+export { currencyFormatter, formatPhoneNumber, getInitialsFromName };

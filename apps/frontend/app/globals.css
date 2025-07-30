@@ -233,3 +233,107 @@
 .toggle-btn {
   @apply flex-1 rounded-3xl;
 }
+
+.ad-card-wrapper {
+  @apply flex gap-y-3 rounded-2xl bg-card p-4 dark:bg-card-dark;
+}
+
+.ad-card-header-wrapper {
+  @apply flex gap-y-2;
+}
+
+.ad-card-header-info {
+  @apply flex-row items-center gap-x-2;
+}
+
+.ad-card-header-stats {
+  @apply flex-row items-center justify-between gap-x-2;
+}
+
+.ad-card-header-trade-stats {
+  @apply flex-row items-center gap-x-2;
+}
+
+.bg-muted-divider {
+  @apply h-3 w-px rounded-3xl bg-muted;
+}
+
+.ad-card-header-rating {
+  @apply flex-row items-center gap-x-1;
+}
+
+.ad-card-divider {
+  @apply mx-px h-[0.5px] bg-muted;
+}
+
+.ad-card-content-wrapper {
+  @apply flex-row justify-between;
+}
+
+.ad-card-content-left {
+  @apply flex flex-1 gap-y-2;
+}
+
+.ad-card-price-row {
+  @apply flex-row items-baseline gap-x-1;
+}
+
+.ad-card-amount-group {
+  @apply flex-row items-baseline;
+}
+
+.ad-card-limits {
+  @apply flex gap-y-1;
+}
+
+.ad-card-limits-row {
+  @apply flex-row items-baseline gap-x-1;
+}
+
+.ad-card-content-right {
+  @apply flex items-end justify-end gap-y-1;
+}
+
+.ad-card-release-time {
+  @apply flex-row items-center gap-x-1;
+}
+
+.ad-card-footer {
+  @apply flex-row justify-between;
+}
+
+.ad-card-footer-action {
+  @apply flex-row-reverse;
+}
+
+.ad-card-payment-methods {
+  @apply flex-row items-center gap-x-1;
+}
+
+.ad-card-footer-btn {
+  @apply justify-center rounded-xl px-8 py-1.5;
+}
+
+.ad-card-footer-btn-wrapper {
+  @apply flex-row items-center justify-center;
+}
+
+.ad-card-footer-btn-label {
+  @apply font-inter-bold text-sm leading-6 text-white;
+}
+
+.ad-card-txt {
+  @apply font-inter text-on-surface dark:text-on-surface-dark;
+}
+
+.ad-card-txt-md {
+  @apply font-inter-medium text-on-surface dark:text-on-surface-dark;
+}
+
+.ad-card-txt-muted {
+  @apply font-inter text-muted dark:text-muted-dark;
+}
+
+.ad-card-txt-muted-semi {
+  @apply font-inter-semibold text-muted dark:text-muted-dark;
+}

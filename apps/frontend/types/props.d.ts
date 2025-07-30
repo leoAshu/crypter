@@ -124,3 +124,7 @@ interface ToggleButtonProps<T extends string> {
   activeColors?: Record<T, string>;
   onChange?: (value: T) => void;
 }
+
+interface PaymentBadgeProps {
+  paymentName: string;
+}
