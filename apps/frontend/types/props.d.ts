@@ -69,7 +69,8 @@ type AvatarSize = 'xs' | 'sm' | 'md' | 'lg';
 interface InitialsAvatarProps {
   name: string;
   size?: AvatarSize;
-  className?: string;
+  textStyle?: string;
+  containerStyle?: string;
 }
 
 // ====================

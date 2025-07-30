@@ -23,6 +23,9 @@ const images = {
   upi: require('./payment-methods/upi.png'),
   paytm: require('./payment-methods/paytm.png'),
   imps: require('./payment-methods/imps.png'),
+  receipt: require('./images/receipt.png'),
+  tickSquare: require('./images/tick-square.png'),
+  rating: require('./images/star.png'),
 };
 
 export { images };

@@ -10,21 +10,35 @@ const AdCard = (props: any) => {
       {/* Card Header */}
       <View className='ad-card-header-wrapper'>
         <View className='ad-card-header-info'>
-          <InitialsAvatar name={props.user.name} size='xs' />
+          <InitialsAvatar
+            name={props.user.name}
+            size='xs'
+            textStyle='text-on-surface dark:text-on-surface-dark'
+            containerStyle='bg-surface dark:bg-surface-dark'
+          />
           <Text className='ad-card-txt text-xs'>{props.user.name}</Text>
         </View>
 
         <View className='ad-card-header-stats'>
-          <View className='ad-card-header-trade-stats'>
-            <Text className='ad-card-txt-muted text-xs'>
-              {currencyFormatter.format(props.user.trades).split('.')[0]} Trades
-            </Text>
+          <View className='ad-card-header-trade'>
+            <View className='ad-card-header-stats-group'>
+              <Image source={images.receipt} className='size-4' resizeMode='contain' tintColor='#969AA0' />
+              <Text className='ad-card-txt-muted text-xs'>
+                {currencyFormatter.format(props.user.trades).split('.')[0]} Trades
+              </Text>
+            </View>
+
             <View className='bg-muted-divider'></View>
-            <Text className='ad-card-txt-muted text-xs'>{props.user.successRate.toFixed(2)}%</Text>
+
+            <View className='ad-card-header-stats-group'>
+              <Image source={images.tickSquare} className='size-4' resizeMode='contain' tintColor='#969AA0' />
+              <Text className='ad-card-txt-muted text-xs'>{props.user.successRate.toFixed(0)}% Completion</Text>
+            </View>
           </View>
+
           <View className='ad-card-header-rating'>
-            <Text className='ad-card-txt-muted text-xs'>{props.user.rating.toFixed(2)}%</Text>
-            <Image source={images.like} className='size-3' resizeMode='contain' tintColor='#969AA0' />
+            <Image source={images.rating} className='size-3' resizeMode='contain' tintColor='#969AA0' />
+            <Text className='ad-card-txt-muted text-xs'>{props.user.rating.toFixed(0)}%</Text>
           </View>
         </View>
 
