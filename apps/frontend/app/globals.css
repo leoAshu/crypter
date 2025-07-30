@@ -7,7 +7,7 @@
      🎯 General Layout Containers
   ─────────────────────────────── */
   .screen-wrapper {
-    @apply h-full bg-surface dark:bg-surface-dark;
+    @apply bg-base-white dark:bg-base-black h-full;
   }
 
   .content-wrapper {
