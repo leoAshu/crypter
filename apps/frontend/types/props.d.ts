@@ -81,6 +81,7 @@ interface InitialsAvatarProps {
 interface MenuOptionProps {
   title: string;
   route?: LinkProps['href'];
+  leftIcon?: ImageSourcePropType;
   rightIcon?: ImageSourcePropType;
 }
 

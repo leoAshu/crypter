@@ -42,6 +42,24 @@ const icons = {
     p2p: require('./icons/inactive/p2p.png'),
     receipt: require('./icons/inactive/receipt.png'),
     subtitle: require('./icons/inactive/subtitle.png'),
+
+    light: {
+      arrowRight: require('./icons/inactive/light/arrow-right.png'),
+      likeTag: require('./icons/inactive/light/like-tag.png'),
+      notification: require('./icons/inactive/light/notification.png'),
+      verify: require('./icons/inactive/light/verify.png'),
+      money: require('./icons/inactive/light/money.png'),
+      messageQuestion: require('./icons/inactive/light/message-question.png'),
+    },
+
+    dark: {
+      arrowRight: require('./icons/inactive/dark/arrow-right.png'),
+      likeTag: require('./icons/inactive/dark/like-tag.png'),
+      notification: require('./icons/inactive/dark/notification.png'),
+      verify: require('./icons/inactive/dark/verify.png'),
+      money: require('./icons/inactive/dark/money.png'),
+      messageQuestion: require('./icons/inactive/dark/message-question.png'),
+    },
   },
 };
 

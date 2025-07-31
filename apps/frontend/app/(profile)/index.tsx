@@ -1,6 +1,6 @@
-import { AccountInfo, DividerX, InputField, OverlayLoader } from '@/components';
+import { icons } from '@/assets';
+import { AccountInfo, DividerX, MenuOption, OverlayLoader } from '@/components';
 import { useAuthStore } from '@/store';
-import { formatPhoneNumber } from '@/utils';
 import cn from 'clsx';
 import { Platform, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -63,10 +63,7 @@ const Profile = () => {
           {/* Stats Footer */}
           <TouchableOpacity>
             <Text
-              className={cn(
-                'font-satoshi-medium text-base underline',
-                isDark ? 'text-primary-500' : 'text-primary-700',
-              )}
+              className={cn('font-satoshi-medium text-sm underline', isDark ? 'text-primary-500' : 'text-primary-700')}
             >
               View More Details
             </Text>
@@ -75,13 +72,35 @@ const Profile = () => {
 
         <DividerX />
 
-        <View className='form-group mt-4'>
-          <InputField label='Your Name' value={user?.user_metadata?.name || ''} disabled={true} />
-          <InputField label='Email Address' value={user?.email || ''} disabled={true} />
-          <InputField
-            label='Phone Number'
-            value={formatPhoneNumber(user?.user_metadata?.phone || '')}
-            disabled={true}
+        <View className=''>
+          <MenuOption
+            title='Received Feedback'
+            leftIcon={isDark ? icons.inactive.dark.likeTag : icons.inactive.light.likeTag}
+            rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+          />
+
+          <MenuOption
+            title='Notifications'
+            leftIcon={isDark ? icons.inactive.dark.notification : icons.inactive.light.notification}
+            rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+          />
+
+          <MenuOption
+            title='Become a Merchant'
+            leftIcon={isDark ? icons.inactive.dark.verify : icons.inactive.light.verify}
+            rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+          />
+
+          <MenuOption
+            title='Payment Methods'
+            leftIcon={isDark ? icons.inactive.dark.money : icons.inactive.light.money}
+            rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+          />
+
+          <MenuOption
+            title='Help Centre'
+            leftIcon={isDark ? icons.inactive.dark.messageQuestion : icons.inactive.light.messageQuestion}
+            rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
           />
         </View>
       </View>
