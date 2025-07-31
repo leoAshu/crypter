@@ -7,23 +7,26 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
   const isIOS = Platform.OS === 'ios';
-  const [filter, setFilter] = useState<'buy' | 'sell'>('buy');
+  const [adTypeFilter, setAdTypeFilter] = useState<AdType>('buy');
   const [adsList, setAdsList] = useState(P2P_LISTINGS);
 
   useEffect(() => {
-    setAdsList(P2P_LISTINGS.filter((item) => item['type'] === filter));
-  }, [filter]);
+    setAdsList(P2P_LISTINGS.filter((item) => item['type'] === adTypeFilter));
+  }, [adTypeFilter]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
       <View className='content-wrapper mt-20 gap-y-4'>
-        <View>
+        <View className='flex-row justify-center'>
           <ToggleButton
-            value={filter}
-            onChange={(val) => setFilter(val)}
+            value={adTypeFilter}
+            labelStyle='text-sm'
+            wrapperStyle='w-80 h-10'
             options={['buy', 'sell']}
             labels={{ buy: 'Buy', sell: 'Sell' }}
-            activeColors={{ buy: 'bg-success-dark', sell: 'bg-error-dark' }}
+            activeButtonColors={{ buy: 'bg-primary', sell: 'bg-error-500' }}
+            activeLabelColors={{ buy: 'text-base-black', sell: 'text-base-white' }}
+            onChange={(val) => setAdTypeFilter(val)}
           />
         </View>
 

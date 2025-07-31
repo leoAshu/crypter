@@ -246,19 +246,23 @@
   }
 
   .toggle-btn-wrapper {
-    @apply flex-row rounded-md bg-card p-1 dark:bg-card-dark;
-  }
-
-  .toggle-btn-label-inactive {
-    @apply text-muted;
-  }
-
-  .toggle-btn-label-active {
-    @apply text-white;
+    @apply flex-row rounded-md bg-base-black/10 p-px dark:bg-base-white/20;
   }
 
   .toggle-btn {
-    @apply flex-1 rounded-md;
+    @apply flex-1 items-center justify-center rounded-md;
+  }
+
+  .toggle-btn-label {
+    @apply font-clash-display-medium;
+  }
+
+  .toggle-btn-label-inactive {
+    @apply text-neutral;
+  }
+
+  .toggle-btn-label-active {
+    @apply text-base-black;
   }
 
   .ad-card-wrapper {

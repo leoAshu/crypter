@@ -1,23 +1,20 @@
 import cn from 'clsx';
-import { Platform, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 const ToggleButton = <T extends string>(props: ToggleButtonProps<T>) => {
-  const isIOS = Platform.OS === 'ios';
-
   return (
-    <View className='toggle-btn-wrapper'>
+    <View className={cn('toggle-btn-wrapper', props.wrapperStyle)}>
       {props.options.map((option) => {
         const isActive = option === props.value;
-        const bgClass = isActive && props.activeColors?.[option] ? props.activeColors[option] : '';
-        const textClass = isActive ? 'toggle-btn-label-active' : 'toggle-btn-label-inactive';
+        const bgClass = isActive && props.activeButtonColors?.[option] ? props.activeButtonColors[option] : '';
+        const textClass =
+          isActive && props.activeLabelColors?.[option] ? props.activeLabelColors[option] : 'toggle-btn-label-inactive';
 
         return (
-          <Pressable
-            key={option}
-            className={cn('toggle-btn', bgClass, isIOS ? 'py-4' : 'py-3')}
-            onPress={() => props.onChange?.(option)}
-          >
-            <Text className={cn('text-center', textClass)}>{props.labels?.[option] ?? option}</Text>
+          <Pressable key={option} className={cn('toggle-btn', bgClass)} onPress={() => props.onChange?.(option)}>
+            <Text className={cn('toggle-btn-label', textClass, props.labelStyle)}>
+              {props.labels?.[option] ?? option}
+            </Text>
           </Pressable>
         );
       })}

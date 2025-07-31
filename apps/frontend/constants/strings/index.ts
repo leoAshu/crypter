@@ -49,7 +49,7 @@ const Strings = {
     MENU_NOTIF_TITLE: 'Notifications',
     MENU_MERCHANT_TITLE: 'Become a Merchant',
     MENU_PAY_METHODS_TITLE: 'Payment Methods',
-    MENU_HELP_TITLE: 'Help Centre',
+    MENU_HELP_TITLE: 'Help Center',
     LOGOUT_BTN_TITLE: 'Log Out',
   },
   editProfile: {

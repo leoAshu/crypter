@@ -1,17 +1,17 @@
 import { icons } from '@/assets';
-import { AccountInfo, DividerX, MenuOption, SecondaryButton } from '@/components';
+import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
 import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
-import { Alert, Platform, ScrollView, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
+import { useState } from 'react';
+import { Alert, ScrollView, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Profile = () => {
-  const isIOS = Platform.OS === 'ios';
   const isDark = useColorScheme() === 'dark';
-
   const { isLoading, user, signout } = useAuthStore();
+  const [infoTermFilter, setInfoTermFilter] = useState<TradingInfoTerm>('30d');
 
   const confirmLogout = async () => {
     Alert.alert(AlertStrings.TITLE.LOGOUT, AlertStrings.MSG.CONFIRM_LOGOUT, [
@@ -45,10 +45,21 @@ const Profile = () => {
 
           <View className='profile-stats gap-y-6'>
             {/* Stats Header */}
-            <View className='stats-header flex-row justify-between'>
+            <View className='stats-header flex-row items-center justify-between'>
               <Text className='dark:text-base-dark text-base-dark font-clash-display-medium text-xl dark:text-base-white'>
                 {Strings.profile.TRADING_STATS_TITLE}
               </Text>
+
+              <ToggleButton
+                labelStyle='text-xs'
+                wrapperStyle='h-9 w-36'
+                value={infoTermFilter}
+                options={['30d', 'alltime']}
+                labels={{ '30d': '30 days', alltime: 'All Time' }}
+                activeButtonColors={{ '30d': 'bg-primary', alltime: 'bg-primary' }}
+                activeLabelColors={{ '30d': 'text-base-black', alltime: 'text-base-black' }}
+                onChange={(val) => setInfoTermFilter(val)}
+              />
             </View>
 
             {/* Stats Content */}
