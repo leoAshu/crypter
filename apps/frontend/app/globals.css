@@ -84,7 +84,15 @@
   }
 
   .btn-secondary {
-    @apply rounded-2xl border bg-surface px-6 py-5 dark:bg-surface-dark;
+    @apply rounded-lg border bg-base-white px-6 py-5 dark:bg-base-black;
+  }
+
+  .btn-secondary-active {
+    @apply border-primary;
+  }
+
+  .btn-secondary-disabled {
+    @apply border-primary-disabled bg-neutral-200 dark:bg-neutral-800;
   }
 
   .btn-secondary-inner {
@@ -92,7 +100,15 @@
   }
 
   .btn-secondary-label {
-    @apply font-inter-bold text-lg;
+    @apply font-clash-display-medium text-base;
+  }
+
+  .btn-seconday-label-active {
+    @apply text-black dark:text-white;
+  }
+
+  .btn-seconday-label-disabled {
+    @apply text-primary-disabled;
   }
 
   .btn-secondary-load-indicator {

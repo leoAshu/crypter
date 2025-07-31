@@ -13,10 +13,11 @@ const TabLayout = () => {
       <Tabs
         screenOptions={() => ({
           headerTransparent: true,
+          headerShown: false,
           headerTitleAlign: 'center',
           tabBarShowLabel: false,
           headerTitleStyle: {
-            color: isDark ? '#FFFFFF' : '#23262F',
+            color: isDark ? '#FFFFFF' : '#000000',
             fontWeight: 'semibold',
             fontFamily: 'poppins',
             fontSize: 18,
@@ -39,16 +40,15 @@ const TabLayout = () => {
           name='index'
           options={{
             title: 'Home',
-            headerShown: false,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon focused={focused} title='Home' icon={focused ? icons.active.home : icons.inactive.home} />
             ),
           }}
         />
         <Tabs.Screen
-          name='account'
+          name='(profile)'
           options={{
-            title: 'Account',
+            title: 'Profile',
             tabBarIcon: ({ focused }) => (
               <TabBarIcon focused={focused} title='Profile' icon={focused ? icons.active.user : icons.inactive.user} />
             ),

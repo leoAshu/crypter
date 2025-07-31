@@ -9,7 +9,7 @@ module.exports = {
         // ====================== Default ====================
         // accent
         primary: '#0066FF',
-        'primary-disabled': '#99C2FF',
+        // 'primary-disabled': '#99C2FF',
 
         // background
         surface: '#FFFFFF',
@@ -75,6 +75,7 @@ module.exports = {
           700: '#3CA381',
           800: '#2E7F64',
           900: '#23614C',
+          disabled: '#AEEBDC',
         },
         error: {
           DEFAULT: '#F04438',
