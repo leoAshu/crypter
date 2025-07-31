@@ -1,10 +1,12 @@
-import { images } from '@/assets';
-import { FloatingActionTabButton, HeaderActionIcon, TabBarIcon } from '@/components';
+import { icons, images } from '@/assets';
+import { HeaderActionIcon, TabBarIcon } from '@/components';
+import { LinearGradient } from 'expo-linear-gradient';
 import { router, Tabs } from 'expo-router';
-import { useColorScheme, View } from 'react-native';
+import { Platform, useColorScheme, View } from 'react-native';
 
 const P2PLayout = () => {
   const isDark = useColorScheme() === 'dark';
+  const isIOS = Platform.OS === 'ios';
 
   return (
     <View className='flex-1'>
@@ -20,38 +22,60 @@ const P2PLayout = () => {
             fontSize: 18,
           },
           tabBarStyle: {
-            backgroundColor: isDark ? '#21212E' : '#F4F6F9',
-            // backgroundColor: isDark ? '#1A1A2E' : '#F4F6F9',
-            // backgroundColor: isDark ? '#101018' : '#FFFFFF',
+            backgroundColor: isDark ? '#000000' : '#FFFFFF',
             borderTopWidth: 0,
-            borderTopLeftRadius: 50,
-            borderTopRightRadius: 50,
-            borderBottomLeftRadius: 25,
-            borderBottomRightRadius: 25,
-            marginHorizontal: 20,
-            height: 80,
+            height: 96,
             position: 'absolute',
-            bottom: 20,
-            elevation: 5,
+            bottom: 0,
+            // elevation: 0,
+            shadowColor: isDark ? '#FFFFFF' : '#000000', // iOS shadow
+            shadowOffset: { width: 0, height: -4 },
+            shadowOpacity: 0.12,
+            shadowRadius: 16,
           },
         })}
       >
         <Tabs.Screen
           name='index'
           options={{
-            title: 'P2P',
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={images.p2p} iconStyle='size-6' />,
+            title: 'MarketPlace',
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon focused={focused} title='P2P' icon={focused ? icons.active.p2p : icons.inactive.p2p} />
+            ),
             headerLeft: () => (
               <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
             ),
-            headerRight: () => <HeaderActionIcon icon={images.plus} containerStyle='mr-8' />,
           }}
         />
+
+        <Tabs.Screen
+          name='orders'
+          options={{
+            title: 'Orders',
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon
+                focused={focused}
+                title='Orders'
+                icon={focused ? icons.active.receipt : icons.inactive.receipt}
+              />
+            ),
+            headerLeft: () => (
+              <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
+            ),
+          }}
+        />
+
         <Tabs.Screen
           name='myAds'
           options={{
-            title: 'My Ads',
-            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} icon={images.ads} iconStyle='size-8' />,
+            title: 'My Adverts',
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon
+                focused={focused}
+                title='Adverts'
+                icon={focused ? icons.active.subtitle : icons.inactive.subtitle}
+              />
+            ),
             headerLeft: () => (
               <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
             ),
@@ -60,9 +84,22 @@ const P2PLayout = () => {
         />
       </Tabs>
 
-      <View className='absolute-bottom-fab'>
-        <FloatingActionTabButton icon={images.plus} onPress={() => {}} />
-      </View>
+      {/* Android Shadow */}
+      {!isIOS && (
+        <LinearGradient
+          colors={
+            isDark ? ['rgba(0, 0, 0, 0.0)', 'rgba(255, 255, 255, 0.08)'] : ['rgba(0, 0, 0, 0.0)', 'rgba(0, 0, 0, 0.08)']
+          }
+          style={{
+            position: 'absolute',
+            bottom: 96, // height of tab bar
+            left: 0,
+            right: 0,
+            height: 20,
+            zIndex: 5,
+          }}
+        />
+      )}
     </View>
   );
 };

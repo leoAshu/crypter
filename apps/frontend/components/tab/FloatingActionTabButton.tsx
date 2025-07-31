@@ -43,12 +43,12 @@ const FloatingActionTabButton = (props: FloatingActionTabButtonProps) => {
         elevation: 6,
         shadowColor: isDark ? '#FFFFFF' : '#000000',
         shadowOffset: { width: 2, height: 4 },
-        shadowOpacity: 0.2,
-        shadowRadius: 6,
+        shadowOpacity: isDark ? 0.6 : 0.4,
+        shadowRadius: 8,
       }}
     >
       <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut} onPress={props.onPress}>
-        <Animated.View className='fab-wrapper' style={[{ backgroundColor: '#0066FF' }, animatedStyle]}>
+        <Animated.View className='fab-wrapper' style={animatedStyle}>
           {/* Outer Shadows */}
           <Animated.View className='fab-shadow' style={outerShadowStyle}>
             <LinearGradient

@@ -64,7 +64,7 @@ module.exports = {
         },
         primary: {
           DEFAULT: '#54E6B6',
-          25: '#FCAFFF',
+          25: '#FCFAFF',
           50: '#EEFDF8',
           100: '#CAF7E8',
           200: '#B0F4DD',
@@ -170,6 +170,11 @@ module.exports = {
         'satoshi-medium': ['Satoshi-Medium'],
         // 'satoshi-semibold': ['Satoshi-Semibold'],
         'satoshi-bold': ['Satoshi-Bold'],
+
+        manrope: ['Manrope-Regular'],
+        'manrope-medium': ['Manrope-Medium'],
+        'manrope-semibold': ['Manrope-Semibold'],
+        'manrope-bold': ['Manrope-Bold'],
 
         // ===================================================
       },

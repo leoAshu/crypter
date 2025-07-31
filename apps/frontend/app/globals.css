@@ -130,8 +130,16 @@
     @apply mx-auto h-5 w-5;
   }
 
+  .tab-icon-wrapper {
+    @apply mt-12 min-h-full min-w-20 items-center justify-center gap-y-1.5;
+  }
+
   .tab-icon {
-    @apply mt-12 min-h-full min-w-20 items-center justify-center;
+    @apply size-6;
+  }
+
+  .tab-icon-label {
+    @apply font-manrope text-sm;
   }
 
   /* ──────────────────────────────
@@ -157,7 +165,7 @@
   }
 
   .absolute-bottom-fab {
-    @apply absolute bottom-9 z-20 self-center;
+    @apply absolute bottom-[62px] z-20 self-center;
   }
 
   .app-header-icon-wrapper {
@@ -206,7 +214,7 @@
   ─────────────────────────────── */
 
   .fab-wrapper {
-    @apply h-16 w-16 items-center justify-center overflow-hidden rounded-full;
+    @apply h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-primary;
   }
 
   .fab-shadow {
@@ -214,7 +222,7 @@
   }
 
   .fab-icon {
-    @apply z-10 h-8 w-8;
+    @apply z-10 h-10 w-10;
   }
 
   .toggle-btn-wrapper {

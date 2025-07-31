@@ -32,6 +32,8 @@ const useCustomFonts = () => {
     'Inter-ExtraBold': require('@/assets/fonts/Inter/Inter_18pt-ExtraBold.ttf'),
     'Inter-Black': require('@/assets/fonts/Inter/Inter_18pt-Black.ttf'),
 
+    // Revamp
+
     'Clash-Display-Regular': require('@/assets/fonts/ClashDisplay/ClashDisplay-Regular.ttf'),
     'Clash-Display-Medium': require('@/assets/fonts/ClashDisplay/ClashDisplay-Medium.ttf'),
     'Clash-Display-SemiBold': require('@/assets/fonts/ClashDisplay/ClashDisplay-Semibold.ttf'),
@@ -41,6 +43,11 @@ const useCustomFonts = () => {
     'Satoshi-Medium': require('@/assets/fonts/Satoshi/Satoshi-Medium.ttf'),
     // 'Satoshi-SemiBold': require('@/assets/fonts/Satoshi/Satoshi-Semibold.ttf'),
     'Satoshi-Bold': require('@/assets/fonts/Satoshi/Satoshi-Bold.ttf'),
+
+    'Manrope-Regular': require('@/assets/fonts/Manrope/Manrope-Regular.ttf'),
+    'Manrope-Medium': require('@/assets/fonts/Manrope/Manrope-Medium.ttf'),
+    'Manrope-SemiBold': require('@/assets/fonts/Manrope/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('@/assets/fonts/Manrope/Manrope-Bold.ttf'),
   });
 };
 

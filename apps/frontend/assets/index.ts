@@ -28,4 +28,21 @@ const images = {
   rating: require('./images/star.png'),
 };
 
-export { images };
+const icons = {
+  active: {
+    home: require('./icons/active/home.png'),
+    user: require('./icons/active/user.png'),
+    p2p: require('./icons/active/p2p.png'),
+    receipt: require('./icons/active/receipt.png'),
+    subtitle: require('./icons/active/subtitle.png'),
+  },
+  inactive: {
+    home: require('./icons/inactive/home.png'),
+    user: require('./icons/inactive/user.png'),
+    p2p: require('./icons/inactive/p2p.png'),
+    receipt: require('./icons/inactive/receipt.png'),
+    subtitle: require('./icons/inactive/subtitle.png'),
+  },
+};
+
+export { icons, images };
