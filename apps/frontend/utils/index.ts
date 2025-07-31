@@ -4,7 +4,7 @@ const getInitialsFromName = (name: string) => {
   const parts = name.trim().split(' ');
   const initials = parts.map((p) => p[0]?.toUpperCase()).join('');
 
-  return initials.slice(0, 2);
+  return initials.slice(0, 1);
 };
 
 const formatPhoneNumber = (value: string) => {

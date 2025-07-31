@@ -7,11 +7,11 @@
      🎯 General Layout Containers
   ─────────────────────────────── */
   .screen-wrapper {
-    @apply bg-base-white dark:bg-base-black h-full;
+    @apply h-full bg-base-white dark:bg-base-black;
   }
 
   .content-wrapper {
-    @apply flex-1 gap-y-8 px-8;
+    @apply flex-1 gap-y-6 px-4;
   }
 
   /* ──────────────────────────────
@@ -150,11 +150,11 @@
   }
 
   .initials-avatar-wrapper {
-    @apply items-center justify-center rounded-full bg-teal-500;
+    @apply items-center justify-center rounded-full bg-primary;
   }
 
   .initials-avatar-txt {
-    @apply font-poppins text-white;
+    @apply font-clash-display-medium leading-5 text-black;
   }
 
   /* ──────────────────────────────

@@ -3,6 +3,7 @@ export * from './avatars';
 export * from './badges';
 export * from './buttons';
 export * from './cards';
+export * from './dividers';
 export * from './filters';
 export * from './form';
 export * from './loaders';
