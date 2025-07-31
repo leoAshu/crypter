@@ -144,3 +144,8 @@ interface AdCardProps {
 interface DividerXProps {
   opacityStyle?: string;
 }
+
+interface HeaderBackActionProps {
+  containerStyle?: string;
+  onPress?: () => void;
+}

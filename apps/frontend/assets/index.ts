@@ -44,6 +44,7 @@ const icons = {
     subtitle: require('./icons/inactive/subtitle.png'),
 
     light: {
+      arrowLeft: require('./icons/inactive/light/arrow-left.png'),
       arrowRight: require('./icons/inactive/light/arrow-right.png'),
       likeTag: require('./icons/inactive/light/like-tag.png'),
       notification: require('./icons/inactive/light/notification.png'),
@@ -53,6 +54,7 @@ const icons = {
     },
 
     dark: {
+      arrowLeft: require('./icons/inactive/dark/arrow-left.png'),
       arrowRight: require('./icons/inactive/dark/arrow-right.png'),
       likeTag: require('./icons/inactive/dark/like-tag.png'),
       notification: require('./icons/inactive/dark/notification.png'),

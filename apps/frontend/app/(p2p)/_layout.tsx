@@ -1,8 +1,8 @@
 import { icons, images } from '@/assets';
-import { HeaderActionIcon, TabBarIcon } from '@/components';
+import { HeaderActionIcon, HeaderBackAction, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
-import { router, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { Platform, useColorScheme, View } from 'react-native';
 
 const P2PLayout = () => {
@@ -47,9 +47,7 @@ const P2PLayout = () => {
                 icon={focused ? icons.active.p2p : icons.inactive.p2p}
               />
             ),
-            headerLeft: () => (
-              <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
-            ),
+            headerLeft: () => <HeaderBackAction />,
           }}
         />
 
@@ -64,9 +62,7 @@ const P2PLayout = () => {
                 icon={focused ? icons.active.receipt : icons.inactive.receipt}
               />
             ),
-            headerLeft: () => (
-              <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
-            ),
+            headerLeft: () => <HeaderBackAction />,
           }}
         />
 
@@ -81,9 +77,7 @@ const P2PLayout = () => {
                 icon={focused ? icons.active.subtitle : icons.inactive.subtitle}
               />
             ),
-            headerLeft: () => (
-              <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
-            ),
+            headerLeft: () => <HeaderBackAction />,
             headerRight: () => <HeaderActionIcon icon={images.plus} containerStyle='mr-8' />,
           }}
         />
