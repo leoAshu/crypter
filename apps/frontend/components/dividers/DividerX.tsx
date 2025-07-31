@@ -2,10 +2,10 @@ import cn from 'clsx';
 import React from 'react';
 import { useColorScheme, View } from 'react-native';
 
-const DividerX = () => {
+const DividerX = (props: DividerXProps) => {
   const isDark = useColorScheme() === 'dark';
 
-  return <View className={cn('h-px bg-[#333A47]', isDark ? 'opactive-30' : 'opacity-20')}></View>;
+  return <View className={cn('divider-x', isDark ? 'opacity-30' : 'opacity-15', props.opacityStyle)}></View>;
 };
 
 export default DividerX;

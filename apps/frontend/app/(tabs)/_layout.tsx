@@ -1,5 +1,6 @@
 import { icons, images } from '@/assets';
 import { FloatingActionTabButton, TabBarIcon } from '@/components';
+import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, Tabs } from 'expo-router';
 import { Platform, useColorScheme, View } from 'react-native';
@@ -39,18 +40,26 @@ const TabLayout = () => {
         <Tabs.Screen
           name='index'
           options={{
-            title: 'Home',
+            title: Strings.home.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
-              <TabBarIcon focused={focused} title='Home' icon={focused ? icons.active.home : icons.inactive.home} />
+              <TabBarIcon
+                focused={focused}
+                title={Strings.home.TAB_TITLE}
+                icon={focused ? icons.active.home : icons.inactive.home}
+              />
             ),
           }}
         />
         <Tabs.Screen
           name='(profile)'
           options={{
-            title: 'Profile',
+            title: Strings.profile.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
-              <TabBarIcon focused={focused} title='Profile' icon={focused ? icons.active.user : icons.inactive.user} />
+              <TabBarIcon
+                focused={focused}
+                title={Strings.profile.TAB_TITLE}
+                icon={focused ? icons.active.user : icons.inactive.user}
+              />
             ),
           }}
         />

@@ -1,5 +1,6 @@
 import { icons, images } from '@/assets';
 import { HeaderActionIcon, TabBarIcon } from '@/components';
+import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, Tabs } from 'expo-router';
 import { Platform, useColorScheme, View } from 'react-native';
@@ -38,9 +39,13 @@ const P2PLayout = () => {
         <Tabs.Screen
           name='index'
           options={{
-            title: 'MarketPlace',
+            title: Strings.p2p.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
-              <TabBarIcon focused={focused} title='P2P' icon={focused ? icons.active.p2p : icons.inactive.p2p} />
+              <TabBarIcon
+                focused={focused}
+                title={Strings.p2p.TAB_TITLE}
+                icon={focused ? icons.active.p2p : icons.inactive.p2p}
+              />
             ),
             headerLeft: () => (
               <HeaderActionIcon icon={images.arrowLeft} containerStyle='ml-8' onPress={() => router.back()} />
@@ -51,11 +56,11 @@ const P2PLayout = () => {
         <Tabs.Screen
           name='orders'
           options={{
-            title: 'Orders',
+            title: Strings.orders.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
-                title='Orders'
+                title={Strings.orders.TAB_TITLE}
                 icon={focused ? icons.active.receipt : icons.inactive.receipt}
               />
             ),
@@ -68,11 +73,11 @@ const P2PLayout = () => {
         <Tabs.Screen
           name='myAds'
           options={{
-            title: 'My Adverts',
+            title: Strings.myAds.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
-                title='Adverts'
+                title={Strings.myAds.TAB_TITLE}
                 icon={focused ? icons.active.subtitle : icons.inactive.subtitle}
               />
             ),

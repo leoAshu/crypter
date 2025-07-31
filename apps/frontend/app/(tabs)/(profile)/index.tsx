@@ -1,5 +1,5 @@
 import { icons } from '@/assets';
-import { AccountInfo, DividerX, MenuOption, OverlayLoader, SecondaryButton } from '@/components';
+import { AccountInfo, DividerX, MenuOption, SecondaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
 import { useAuthStore } from '@/store';
 import cn from 'clsx';
@@ -34,8 +34,6 @@ const Profile = () => {
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
-        <OverlayLoader visible={isLoading} />
-
         <View className='content-wrapper mt-20 pb-28'>
           <AccountInfo
             name={user?.user_metadata?.name || ''}
@@ -49,7 +47,7 @@ const Profile = () => {
             {/* Stats Header */}
             <View className='stats-header flex-row justify-between'>
               <Text className='dark:text-base-dark text-base-dark font-clash-display-medium text-xl dark:text-base-white'>
-                Trading info
+                {Strings.profile.TRADING_STATS_TITLE}
               </Text>
             </View>
 
@@ -58,7 +56,9 @@ const Profile = () => {
               <View className='col-left flex-1 gap-y-6'>
                 <View className='gap-y-2'>
                   <Text className='text-base-dark font-clash-display-medium text-2xl dark:text-base-white'>5</Text>
-                  <Text className='font-satoshi-medium text-base text-neutral dark:text-neutral-400'>Total Trades</Text>
+                  <Text className='font-satoshi-medium text-base text-neutral dark:text-neutral-400'>
+                    {Strings.profile.TOTAL_TRADES_LABEL}
+                  </Text>
                 </View>
 
                 <View className='gap-y-2'>
@@ -66,7 +66,7 @@ const Profile = () => {
                     4.3 Minutes
                   </Text>
                   <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
-                    Average release time
+                    {Strings.profile.AVG_RELEASE_LABEL}
                   </Text>
                 </View>
               </View>
@@ -74,12 +74,16 @@ const Profile = () => {
               <View className='col-right flex-1 gap-y-6'>
                 <View className='gap-y-2'>
                   <Text className='text-base-dark font-clash-display-medium text-2xl dark:text-base-white'>100%</Text>
-                  <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>Completion Rate</Text>
+                  <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
+                    {Strings.profile.COMPLETION_RATE_LABEL}
+                  </Text>
                 </View>
 
                 <View className='gap-y-2'>
                   <Text className='text-base-dark font-clash-display-medium text-2xl dark:text-base-white'>100%</Text>
-                  <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>Average pay time</Text>
+                  <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
+                    {Strings.profile.AVG_PAY_LABEL}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -92,7 +96,7 @@ const Profile = () => {
                   isDark ? 'text-primary-500' : 'text-primary-700',
                 )}
               >
-                View More Details
+                {Strings.profile.VIEW_MORE_LABEL}
               </Text>
             </TouchableOpacity>
           </View>
@@ -101,37 +105,37 @@ const Profile = () => {
 
           <View className='menu'>
             <MenuOption
-              title='Received Feedback'
+              title={Strings.profile.MENU_FEEDBACK_TITLE}
               leftIcon={isDark ? icons.inactive.dark.likeTag : icons.inactive.light.likeTag}
               rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
             />
 
             <MenuOption
-              title='Notifications'
+              title={Strings.profile.MENU_NOTIF_TITLE}
               leftIcon={isDark ? icons.inactive.dark.notification : icons.inactive.light.notification}
               rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
             />
 
             <MenuOption
-              title='Become a Merchant'
+              title={Strings.profile.MENU_MERCHANT_TITLE}
               leftIcon={isDark ? icons.inactive.dark.verify : icons.inactive.light.verify}
               rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
             />
 
             <MenuOption
-              title='Payment Methods'
+              title={Strings.profile.MENU_PAY_METHODS_TITLE}
               leftIcon={isDark ? icons.inactive.dark.money : icons.inactive.light.money}
               rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
             />
 
             <MenuOption
-              title='Help Centre'
+              title={Strings.profile.MENU_HELP_TITLE}
               leftIcon={isDark ? icons.inactive.dark.messageQuestion : icons.inactive.light.messageQuestion}
               rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
             />
           </View>
 
-          <SecondaryButton title={Strings.account.LOGOUT_BTN_TITLE} isLoading={isLoading} onPress={confirmLogout} />
+          <SecondaryButton title={Strings.profile.LOGOUT_BTN_TITLE} isLoading={isLoading} onPress={confirmLogout} />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -65,19 +65,16 @@ const Edit = () => {
                 disabled={isLoading}
                 onChangeText={(value) => updateInfo('phone', value)}
               />
+              <PrimaryButton
+                title={Strings.editProfile.SAVE_BTN_TITLE}
+                isLoading={isLoading}
+                disabled={!hasChanged}
+                onPress={saveInfo}
+              />
             </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-
-      <View className='absolute-bottom'>
-        <PrimaryButton
-          title={Strings.editProfile.SAVE_BTN_TITLE}
-          isLoading={isLoading}
-          disabled={!hasChanged}
-          onPress={saveInfo}
-        />
-      </View>
     </SafeAreaView>
   );
 };

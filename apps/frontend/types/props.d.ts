@@ -137,3 +137,7 @@ interface AdCardProps {
   index: number;
   animationStyle?: AnimationStyle;
 }
+
+interface DividerXProps {
+  opacityStyle?: string;
+}

@@ -1,8 +1,10 @@
 import { router } from 'expo-router';
-import { Image, Text, TouchableHighlight, View } from 'react-native';
+import { Image, Text, TouchableHighlight, useColorScheme, View } from 'react-native';
 import { DividerX } from '../dividers';
 
 const MenuOption = (props: MenuOptionProps) => {
+  const isDark = useColorScheme() === 'dark';
+
   return (
     <View className='mb-4'>
       <TouchableHighlight onPress={() => props.route && router.push(props.route)}>
@@ -14,7 +16,7 @@ const MenuOption = (props: MenuOptionProps) => {
           {props.rightIcon && <Image source={props.rightIcon} className='size-8' resizeMode='contain' />}
         </View>
       </TouchableHighlight>
-      <DividerX />
+      <DividerX opacityStyle={isDark ? 'opacity-40' : 'opacity-25'} />
     </View>
   );
 };

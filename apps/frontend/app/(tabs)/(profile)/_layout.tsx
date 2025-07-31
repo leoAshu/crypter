@@ -1,10 +1,12 @@
 import { images } from '@/assets';
 import { HeaderActionIcon } from '@/components';
+import { Strings } from '@/constants';
 import { router, Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
 
 const ProfileLayout = () => {
   const isDark = useColorScheme() === 'dark';
+
   return (
     <Stack
       screenOptions={() => ({
@@ -24,17 +26,21 @@ const ProfileLayout = () => {
       <Stack.Screen
         name='index'
         options={{
-          title: 'Profile',
+          title: Strings.profile.HEADER_TITLE,
           headerLeft: () => <HeaderActionIcon icon={images.arrowLeft} onPress={() => router.back()} />,
           headerRight: () => (
-            <HeaderActionIcon icon={images.edit} iconStyle='size-5' onPress={() => router.push('/(profile)/edit')} />
+            <HeaderActionIcon
+              icon={images.edit}
+              iconStyle='size-5'
+              onPress={() => router.push('/(tabs)/(profile)/edit')}
+            />
           ),
         }}
       />
       <Stack.Screen
         name='edit'
         options={{
-          title: 'Edit',
+          title: Strings.editProfile.HEADER_TITLE,
           headerLeft: () => <HeaderActionIcon icon={images.arrowLeft} onPress={() => router.back()} />,
         }}
       />

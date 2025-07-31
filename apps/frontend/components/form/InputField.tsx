@@ -13,7 +13,7 @@ const InputField = (props: InputFieldProps) => {
   const labelStyle = useAnimatedStyle(() => ({
     position: 'absolute',
     left: 0,
-    top: withTiming(isFocused || value ? 0 : 20, {
+    top: withTiming(isFocused || value ? 0 : 32, {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
@@ -21,7 +21,7 @@ const InputField = (props: InputFieldProps) => {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
-    color: withTiming(isFocused ? '#0066FF' : '#969AA0', {
+    color: withTiming(isFocused ? '#54E6B6' : '#667085', {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
@@ -42,16 +42,15 @@ const InputField = (props: InputFieldProps) => {
       </Animated.Text>
 
       <TextInput
-        className={cn('input-txt', isFocused ? 'border-b-[#0066FF]' : 'border-b-[#F4F6F9] dark:border-b-[#2C2E3B]')}
+        className={cn('input-txt', isFocused ? 'border-b-primary' : 'border-b-neutral/25 dark:border-b-neutral/75')}
         value={value}
         onChangeText={props.onChangeText}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        cursorColor='#0066FF'
+        cursorColor='#54E6B6'
         secureTextEntry={props.secureTextEntry ? !showPassword : false}
         keyboardType={props.keyboardType}
         editable={!props.disabled}
-        selectTextOnFocus={!props.disabled}
       />
 
       {value.length > 0 && isFocused && (
