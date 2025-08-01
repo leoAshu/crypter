@@ -1,6 +1,6 @@
 import { icons } from '@/assets';
 import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
-import { AlertStrings, Strings } from '@/constants';
+import { AlertStrings, contentWrapperStyle, Strings } from '@/constants';
 import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
@@ -34,7 +34,7 @@ const Profile = () => {
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
-        <View className='content-wrapper mt-20 pb-28'>
+        <View className={cn('content-wrapper pb-28', contentWrapperStyle)}>
           <AccountInfo
             name={user?.user_metadata?.name || ''}
             gender={user?.user_metadata?.gender || ''}

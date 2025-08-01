@@ -1,5 +1,5 @@
 import { AdCard, ToggleButton } from '@/components';
-import { P2P_LISTINGS } from '@/constants';
+import { contentWrapperStyle, P2P_LISTINGS } from '@/constants';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, View } from 'react-native';
@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <View className='content-wrapper mt-20 gap-y-4'>
+      <View className={cn('content-wrapper gap-y-4', contentWrapperStyle)}>
         <View className='flex-row justify-center'>
           <ToggleButton
             value={adTypeFilter}
