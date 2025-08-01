@@ -1,7 +1,8 @@
 import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
-import { AlertStrings, Strings } from '@/constants';
+import { AlertStrings, screenContentWrapperStyle, Strings } from '@/constants';
 import { useAuthStore } from '@/store';
 import { formatPhoneNumber, validateEmail, validateName, validatePhone } from '@/utils';
+import cn from 'clsx';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -40,7 +41,7 @@ const Edit = () => {
     <SafeAreaView className='screen-wrapper'>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
-          <View className='content-wrapper mt-20'>
+          <View className={cn('content-wrapper mt-20', screenContentWrapperStyle)}>
             <View className='items-center'>
               <InitialsAvatar name={user?.user_metadata.name} size='lg' />
             </View>
@@ -65,19 +66,16 @@ const Edit = () => {
                 disabled={isLoading}
                 onChangeText={(value) => updateInfo('phone', value)}
               />
+              <PrimaryButton
+                title={Strings.editProfile.SAVE_BTN_TITLE}
+                isLoading={isLoading}
+                disabled={!hasChanged}
+                onPress={saveInfo}
+              />
             </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-
-      <View className='absolute-bottom'>
-        <PrimaryButton
-          title={Strings.editProfile.SAVE_BTN_TITLE}
-          isLoading={isLoading}
-          disabled={!hasChanged}
-          onPress={saveInfo}
-        />
-      </View>
     </SafeAreaView>
   );
 };

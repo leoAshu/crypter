@@ -81,6 +81,7 @@ interface InitialsAvatarProps {
 interface MenuOptionProps {
   title: string;
   route?: LinkProps['href'];
+  leftIcon?: ImageSourcePropType;
   rightIcon?: ImageSourcePropType;
 }
 
@@ -101,6 +102,7 @@ interface OverlayLoaderProps {
 interface TabBarIconProps {
   focused: boolean;
   icon: ImageSourcePropType;
+  title?: string;
   iconStyle?: string;
 }
 
@@ -121,8 +123,11 @@ interface HeaderActionIconProps {
 interface ToggleButtonProps<T extends string> {
   value: T;
   options: [T, T];
+  labelStyle?: string;
+  wrapperStyle?: string;
   labels?: Record<T, string>;
-  activeColors?: Record<T, string>;
+  activeButtonColors?: Record<T, string>;
+  activeLabelColors?: Record<T, string>;
   onChange?: (value: T) => void;
 }
 
@@ -134,4 +139,20 @@ interface AdCardProps {
   ad: any;
   index: number;
   animationStyle?: AnimationStyle;
+}
+
+interface DividerXProps {
+  opacityStyle?: string;
+}
+
+interface HeaderBackActionProps {
+  containerStyle?: string;
+  onPress?: () => void;
+}
+
+interface ChipFilterProps<T extends string> {
+  value: T;
+  options: T[];
+  labels?: Record<T, string>;
+  onChange?: (value: T) => void;
 }

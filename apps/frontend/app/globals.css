@@ -7,11 +7,11 @@
      🎯 General Layout Containers
   ─────────────────────────────── */
   .screen-wrapper {
-    @apply h-full bg-surface dark:bg-surface-dark;
+    @apply h-full bg-base-white dark:bg-base-black;
   }
 
   .content-wrapper {
-    @apply flex-1 gap-y-8 px-8;
+    @apply flex-1 gap-y-6 px-4;
   }
 
   /* ──────────────────────────────
@@ -22,7 +22,7 @@
   }
 
   .header-txt {
-    @apply font-heebo-medium text-4xl text-on-surface dark:text-on-surface-dark;
+    @apply font-clashDisplay-medium text-3xl text-base-black dark:text-base-white;
   }
 
   .welcome-header-wrapper {
@@ -30,18 +30,18 @@
   }
 
   .welcome-header-txt {
-    @apply font-inter-semibold text-2xl text-on-surface dark:text-on-surface-dark;
+    @apply font-clashDisplay-medium text-2xl text-base-black dark:text-base-white;
   }
 
   .welcome-sub-header-txt {
-    @apply mt-4 font-inter-medium text-base text-muted dark:text-muted-dark;
+    @apply mt-4 font-clashDisplay text-base text-neutral;
   }
 
   /* ──────────────────────────────
      🔐 Forms & Input Fields
   ─────────────────────────────── */
   .form-group {
-    @apply gap-y-8;
+    @apply gap-y-4 pb-4;
   }
 
   .menu-group {
@@ -53,11 +53,11 @@
   }
 
   .input-label {
-    @apply pl-1 font-poppins-medium;
+    @apply pl-1 font-clashDisplay;
   }
 
   .input-txt {
-    @apply border-b pb-4 pl-1 pr-10 pt-8 font-inter-medium text-lg leading-5 text-on-surface dark:text-on-surface-dark;
+    @apply border-b-[0.5px] pb-4 pl-1 pr-10 pt-8 font-satoshi text-lg leading-5 text-base-black dark:text-base-white;
   }
 
   .input-icon-wrapper {
@@ -68,7 +68,7 @@
      🔘 Buttons
   ─────────────────────────────── */
   .btn-primary {
-    @apply rounded-2xl px-6 py-5;
+    @apply mt-6 rounded-2xl px-6 py-5;
   }
 
   .btn-primary-inner {
@@ -76,7 +76,7 @@
   }
 
   .btn-primary-label {
-    @apply font-inter-bold text-lg text-white;
+    @apply font-clashDisplay-medium text-base text-black;
   }
 
   .btn-primary-load-indicator {
@@ -84,7 +84,15 @@
   }
 
   .btn-secondary {
-    @apply rounded-2xl border bg-surface px-6 py-5 dark:bg-surface-dark;
+    @apply rounded-lg border bg-base-white px-6 py-5 dark:bg-base-black;
+  }
+
+  .btn-secondary-active {
+    @apply border-primary;
+  }
+
+  .btn-secondary-disabled {
+    @apply border-primary-disabled bg-neutral-200 dark:bg-neutral-800;
   }
 
   .btn-secondary-inner {
@@ -92,7 +100,15 @@
   }
 
   .btn-secondary-label {
-    @apply font-inter-bold text-lg;
+    @apply font-clashDisplay-medium text-base;
+  }
+
+  .btn-seconday-label-active {
+    @apply text-black dark:text-white;
+  }
+
+  .btn-seconday-label-disabled {
+    @apply text-primary-disabled;
   }
 
   .btn-secondary-load-indicator {
@@ -130,8 +146,24 @@
     @apply mx-auto h-5 w-5;
   }
 
+  .tab-icon-wrapper {
+    @apply mt-12 min-h-full min-w-20 items-center justify-center gap-y-1.5;
+  }
+
   .tab-icon {
-    @apply mt-12 min-h-full min-w-20 items-center justify-center;
+    @apply size-7;
+  }
+
+  .tab-icon-label {
+    @apply font-manrope text-sm;
+  }
+
+  .tab-icon-label-active {
+    @apply text-primary;
+  }
+
+  .tab-icon-label-inactive {
+    @apply text-base-black/25 dark:text-base-white/75;
   }
 
   /* ──────────────────────────────
@@ -142,11 +174,11 @@
   }
 
   .initials-avatar-wrapper {
-    @apply items-center justify-center rounded-full bg-teal-500;
+    @apply flex items-center justify-center rounded-full bg-primary;
   }
 
   .initials-avatar-txt {
-    @apply font-poppins text-white;
+    @apply text-center font-clashDisplay-medium text-base-black;
   }
 
   /* ──────────────────────────────
@@ -157,11 +189,7 @@
   }
 
   .absolute-bottom-fab {
-    @apply absolute bottom-9 z-20 self-center;
-  }
-
-  .app-header-icon-wrapper {
-    @apply rounded-full p-2;
+    @apply absolute bottom-[62px] z-20 self-center;
   }
 
   /* ──────────────────────────────
@@ -194,6 +222,10 @@
     @apply mx-4 flex font-poppins-medium text-sm text-muted dark:text-muted-dark;
   }
 
+  .divider-x {
+    @apply h-px bg-neutral;
+  }
+
   /* ──────────────────────────────
      🧑‍🤝‍🧑 Social Auth Row
   ─────────────────────────────── */
@@ -206,7 +238,7 @@
   ─────────────────────────────── */
 
   .fab-wrapper {
-    @apply h-16 w-16 items-center justify-center overflow-hidden rounded-full;
+    @apply h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-primary;
   }
 
   .fab-shadow {
@@ -214,34 +246,42 @@
   }
 
   .fab-icon {
-    @apply z-10 h-8 w-8;
+    @apply z-10 h-10 w-10;
   }
 
   .toggle-btn-wrapper {
-    @apply flex-row rounded-md bg-card p-1 dark:bg-card-dark;
-  }
-
-  .toggle-btn-label-inactive {
-    @apply text-muted;
-  }
-
-  .toggle-btn-label-active {
-    @apply text-white;
+    @apply flex-row rounded-md bg-base-black/10 p-px dark:bg-base-white/20;
   }
 
   .toggle-btn {
-    @apply flex-1 rounded-md;
+    @apply flex-1 items-center justify-center rounded-md;
+  }
+
+  .toggle-btn-label {
+    @apply font-clashDisplay-medium;
+  }
+
+  .toggle-btn-label-inactive {
+    @apply text-neutral;
+  }
+
+  .toggle-btn-label-active {
+    @apply text-base-black;
   }
 
   .ad-card-wrapper {
-    @apply flex gap-y-3 rounded-2xl bg-card p-4 dark:bg-card-dark;
+    @apply flex gap-y-3 rounded-none bg-card dark:bg-card-dark;
   }
 
   .ad-card-header-wrapper {
     @apply flex gap-y-2;
   }
 
-  .ad-card-header-info {
+  .ad-card-info-wrapper {
+    @apply flex-row justify-between;
+  }
+
+  .ad-card-info {
     @apply flex-row items-center gap-x-2;
   }
 
@@ -314,7 +354,7 @@
   }
 
   .ad-card-footer-btn {
-    @apply justify-center rounded-xl px-8 py-1.5;
+    @apply justify-center rounded-lg px-8 py-2;
   }
 
   .ad-card-footer-btn-wrapper {
@@ -322,22 +362,22 @@
   }
 
   .ad-card-footer-btn-label {
-    @apply font-inter-bold text-sm leading-6 text-white;
+    @apply font-clashDisplay-medium text-base text-base-white;
   }
 
   .ad-card-txt {
-    @apply font-inter text-on-surface dark:text-on-surface-dark;
+    @apply font-clashDisplay text-base-black dark:text-base-white;
   }
 
   .ad-card-txt-md {
-    @apply font-inter-medium text-on-surface dark:text-on-surface-dark;
+    @apply font-clashDisplay-medium text-base-black dark:text-base-white;
   }
 
   .ad-card-txt-muted {
-    @apply font-inter text-muted dark:text-muted-dark;
+    @apply font-satoshi-medium text-neutral dark:text-neutral;
   }
 
   .ad-card-txt-muted-semi {
-    @apply font-inter-semibold text-muted dark:text-muted-dark;
+    @apply font-satoshi-medium text-neutral dark:text-neutral;
   }
 }

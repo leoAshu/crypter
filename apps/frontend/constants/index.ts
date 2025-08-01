@@ -153,4 +153,5 @@ export const P2P_LISTINGS = [
   },
 ];
 
+export * from './styles';
 export { AlertStrings, EMAIL_REGEX, NAME_REGEX, PASSWORD_REGEX, PHONE_REGEX, Strings, SupabaseConfig };
