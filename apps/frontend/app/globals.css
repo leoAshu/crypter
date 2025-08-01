@@ -34,7 +34,7 @@
   }
 
   .welcome-sub-header-txt {
-    @apply font-clashDisplay mt-4 text-base text-neutral;
+    @apply mt-4 font-clashDisplay text-base text-neutral;
   }
 
   /* ──────────────────────────────
@@ -53,7 +53,7 @@
   }
 
   .input-label {
-    @apply font-clashDisplay pl-1;
+    @apply pl-1 font-clashDisplay;
   }
 
   .input-txt {
@@ -178,7 +178,7 @@
   }
 
   .initials-avatar-txt {
-    @apply font-clashDisplay-medium text-center text-base-black;
+    @apply text-center font-clashDisplay-medium text-base-black;
   }
 
   /* ──────────────────────────────
