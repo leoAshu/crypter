@@ -1,5 +1,5 @@
 import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
-import { AlertStrings, contentWrapperStyle, Strings } from '@/constants';
+import { AlertStrings, screenContentWrapperStyle, Strings } from '@/constants';
 import { useAuthStore } from '@/store';
 import { formatPhoneNumber, validateEmail, validateName, validatePhone } from '@/utils';
 import cn from 'clsx';
@@ -41,7 +41,7 @@ const Edit = () => {
     <SafeAreaView className='screen-wrapper'>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
-          <View className={cn('content-wrapper mt-20', contentWrapperStyle)}>
+          <View className={cn('content-wrapper mt-20', screenContentWrapperStyle)}>
             <View className='items-center'>
               <InitialsAvatar name={user?.user_metadata.name} size='lg' />
             </View>

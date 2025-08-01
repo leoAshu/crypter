@@ -149,3 +149,10 @@ interface HeaderBackActionProps {
   containerStyle?: string;
   onPress?: () => void;
 }
+
+interface ChipFilterProps<T extends string> {
+  value: T;
+  options: T[];
+  labels?: Record<T, string>;
+  onChange?: (value: T) => void;
+}
