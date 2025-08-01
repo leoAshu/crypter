@@ -26,9 +26,20 @@ module.exports = {
 
         // card background
         card: '#F4F6F9',
-        'card-dark': '#2C2E3B',
+        'card-dark': '#21212E',
+        // 'card-dark': '#1A1A2E',
         // card: '#FFFFFF',
         // 'card-dark': '#101018',
+
+        success: '#00C47C',
+        'success-muted': '#6EE7B7',
+        'success-dark': '#029E63',
+        'success-glow': '#14F195',
+
+        error: '#FF4C61',
+        'error-muted': '#FCA5A5',
+        'error-dark': '#C53030',
+        'error-glow': '#FF6685',
       },
 
       fontFamily: {

@@ -5,6 +5,7 @@ import { useColorScheme, View } from 'react-native';
 
 const P2PLayout = () => {
   const isDark = useColorScheme() === 'dark';
+
   return (
     <View className='flex-1'>
       <Tabs
@@ -20,6 +21,7 @@ const P2PLayout = () => {
           },
           tabBarStyle: {
             backgroundColor: isDark ? '#21212E' : '#F4F6F9',
+            // backgroundColor: isDark ? '#1A1A2E' : '#F4F6F9',
             // backgroundColor: isDark ? '#101018' : '#FFFFFF',
             borderTopWidth: 0,
             borderTopLeftRadius: 50,

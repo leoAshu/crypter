@@ -63,13 +63,14 @@ interface AccountInfoProps {
 }
 
 /** Allowed size variants for avatar components */
-type AvatarSize = 'small' | 'medium' | 'large';
+type AvatarSize = 'xs' | 'sm' | 'md' | 'lg';
 
 /** Props for rendering initials-based avatar */
 interface InitialsAvatarProps {
   name: string;
   size?: AvatarSize;
-  className?: string;
+  textStyle?: string;
+  containerStyle?: string;
 }
 
 // ====================
@@ -115,4 +116,22 @@ interface HeaderActionIconProps {
   iconStyle?: string;
   containerStyle?: string;
   onPress?: () => void;
+}
+
+interface ToggleButtonProps<T extends string> {
+  value: T;
+  options: [T, T];
+  labels?: Record<T, string>;
+  activeColors?: Record<T, string>;
+  onChange?: (value: T) => void;
+}
+
+interface PaymentBadgeProps {
+  paymentName: string;
+}
+
+interface AdCardProps {
+  ad: any;
+  index: number;
+  animationStyle?: AnimationStyle;
 }

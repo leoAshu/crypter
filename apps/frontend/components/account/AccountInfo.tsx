@@ -5,7 +5,7 @@ import InitialsAvatar from '../avatars/InitialsAvatar';
 const AccountInfo = (props: AccountInfoProps) => {
   return (
     <View className='account-info-wrapper'>
-      <InitialsAvatar name={props.name} size='medium' />
+      <InitialsAvatar name={props.name} />
 
       <View className='flex-1 gap-y-1'>
         <Text className='font-poppins-semibold text-2xl text-on-surface dark:text-on-surface-dark'>{props.name}</Text>

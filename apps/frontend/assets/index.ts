@@ -14,8 +14,18 @@ const images = {
   walletBackground: require('./images/wallet-bg.png'),
   exchange: require('./images/exchange.png'),
   p2p: require('./images/couple.png'),
-  ads: require('./images/marketing.png'),
+  ads: require('./images/megaphone.png'),
   plus: require('./images/plus.png'),
+  like: require('./images/like.png'),
+  stopwatch: require('./images/stopwatch.png'),
+  gPay: require('./payment-methods/gpay.png'),
+  phonepe: require('./payment-methods/phonepe.png'),
+  upi: require('./payment-methods/upi.png'),
+  paytm: require('./payment-methods/paytm.png'),
+  imps: require('./payment-methods/imps.png'),
+  receipt: require('./images/receipt.png'),
+  tickSquare: require('./images/tick-square.png'),
+  rating: require('./images/star.png'),
 };
 
 export { images };
