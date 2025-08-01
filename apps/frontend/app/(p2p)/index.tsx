@@ -1,6 +1,6 @@
 import { AdCard, ChipFilter, ToggleButton } from '@/components';
-import { adsListStyle, P2P_LISTINGS, screenContentWrapperStyle } from '@/constants';
-import { cryptoLabels, cryptoOptions } from '@/models';
+import { adsListStyle, screenContentWrapperStyle } from '@/constants';
+import { ads, cryptoLabels, cryptoOptions, cryptos } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
@@ -9,11 +9,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Home = () => {
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOptions>('all');
-  const [adsList, setAdsList] = useState(P2P_LISTINGS);
+  const [adsList, setAdsList] = useState(ads);
 
   useEffect(() => {
-    setAdsList(P2P_LISTINGS.filter((item) => item['type'] === adType));
-  }, [adType]);
+    const filtered = ads.filter((item) => {
+      if (item.type !== adType) return false;
+
+      const cryptoMeta = cryptos.find((c) => c.id === item.cryptoId);
+
+      if (!cryptoMeta || !cryptoMeta.isActive) return false;
+
+      if (crypto === 'all') return true;
+
+      return item.cryptoId === crypto;
+    });
+
+    setAdsList(filtered);
+  }, [adType, crypto]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -22,7 +34,7 @@ const Home = () => {
           <View className='flex-row justify-center'>
             <ToggleButton
               value={adType}
-              labelStyle='text-sm'
+              labelStyle='text-base'
               wrapperStyle='w-5/6 h-10'
               options={['buy', 'sell']}
               labels={{ buy: 'Buy', sell: 'Sell' }}
@@ -40,7 +52,7 @@ const Home = () => {
           data={adsList}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
-          renderItem={({ item, index }) => <AdCard ad={item} index={index} />}
+          renderItem={({ item, index }) => <AdCard ad={item} index={index} animationStyle='fadeFloatUp' />}
         />
       </View>
     </SafeAreaView>

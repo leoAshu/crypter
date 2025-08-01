@@ -34,10 +34,10 @@ const useCustomFonts = () => {
 
     // Revamp
 
-    'Clash-Display-Regular': require('@/assets/fonts/ClashDisplay/ClashDisplay-Regular.ttf'),
-    'Clash-Display-Medium': require('@/assets/fonts/ClashDisplay/ClashDisplay-Medium.ttf'),
-    'Clash-Display-SemiBold': require('@/assets/fonts/ClashDisplay/ClashDisplay-Semibold.ttf'),
-    'Clash-Display-Bold': require('@/assets/fonts/ClashDisplay/ClashDisplay-Bold.ttf'),
+    'ClashDisplay-Regular': require('@/assets/fonts/ClashDisplay/ClashDisplay-Regular.ttf'),
+    'ClashDisplay-Medium': require('@/assets/fonts/ClashDisplay/ClashDisplay-Medium.ttf'),
+    'ClashDisplay-SemiBold': require('@/assets/fonts/ClashDisplay/ClashDisplay-Semibold.ttf'),
+    'ClashDisplay-Bold': require('@/assets/fonts/ClashDisplay/ClashDisplay-Bold.ttf'),
 
     'Satoshi-Regular': require('@/assets/fonts/Satoshi/Satoshi-Regular.ttf'),
     'Satoshi-Medium': require('@/assets/fonts/Satoshi/Satoshi-Medium.ttf'),

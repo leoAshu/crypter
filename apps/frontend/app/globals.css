@@ -22,7 +22,7 @@
   }
 
   .header-txt {
-    @apply font-clash-display-medium text-3xl text-base-black dark:text-base-white;
+    @apply font-clashDisplay-medium text-3xl text-base-black dark:text-base-white;
   }
 
   .welcome-header-wrapper {
@@ -30,11 +30,11 @@
   }
 
   .welcome-header-txt {
-    @apply font-clash-display-medium text-2xl text-base-black dark:text-base-white;
+    @apply font-clashDisplay-medium text-2xl text-base-black dark:text-base-white;
   }
 
   .welcome-sub-header-txt {
-    @apply mt-4 font-clash-display text-base text-neutral;
+    @apply font-clashDisplay mt-4 text-base text-neutral;
   }
 
   /* ──────────────────────────────
@@ -53,7 +53,7 @@
   }
 
   .input-label {
-    @apply pl-1 font-clash-display;
+    @apply font-clashDisplay pl-1;
   }
 
   .input-txt {
@@ -76,7 +76,7 @@
   }
 
   .btn-primary-label {
-    @apply font-clash-display-medium text-base text-black;
+    @apply font-clashDisplay-medium text-base text-black;
   }
 
   .btn-primary-load-indicator {
@@ -100,7 +100,7 @@
   }
 
   .btn-secondary-label {
-    @apply font-clash-display-medium text-base;
+    @apply font-clashDisplay-medium text-base;
   }
 
   .btn-seconday-label-active {
@@ -174,11 +174,11 @@
   }
 
   .initials-avatar-wrapper {
-    @apply items-center justify-center rounded-full bg-primary;
+    @apply flex items-center justify-center rounded-full bg-primary;
   }
 
   .initials-avatar-txt {
-    @apply font-clash-display-medium leading-5 text-black;
+    @apply font-clashDisplay-medium text-center text-base-black;
   }
 
   /* ──────────────────────────────
@@ -258,7 +258,7 @@
   }
 
   .toggle-btn-label {
-    @apply font-clash-display-medium;
+    @apply font-clashDisplay-medium;
   }
 
   .toggle-btn-label-inactive {
@@ -270,14 +270,18 @@
   }
 
   .ad-card-wrapper {
-    @apply flex gap-y-3 rounded-2xl bg-card p-4 dark:bg-card-dark;
+    @apply flex gap-y-3 rounded-none bg-card dark:bg-card-dark;
   }
 
   .ad-card-header-wrapper {
     @apply flex gap-y-2;
   }
 
-  .ad-card-header-info {
+  .ad-card-info-wrapper {
+    @apply flex-row justify-between;
+  }
+
+  .ad-card-info {
     @apply flex-row items-center gap-x-2;
   }
 
@@ -350,7 +354,7 @@
   }
 
   .ad-card-footer-btn {
-    @apply justify-center rounded-xl px-8 py-1.5;
+    @apply justify-center rounded-lg px-8 py-2;
   }
 
   .ad-card-footer-btn-wrapper {
@@ -358,22 +362,22 @@
   }
 
   .ad-card-footer-btn-label {
-    @apply font-inter-bold text-sm leading-6 text-white;
+    @apply font-clashDisplay-medium text-base text-base-white;
   }
 
   .ad-card-txt {
-    @apply font-inter text-on-surface dark:text-on-surface-dark;
+    @apply font-clashDisplay text-base-black dark:text-base-white;
   }
 
   .ad-card-txt-md {
-    @apply font-inter-medium text-on-surface dark:text-on-surface-dark;
+    @apply font-clashDisplay-medium text-base-black dark:text-base-white;
   }
 
   .ad-card-txt-muted {
-    @apply font-inter text-muted dark:text-muted-dark;
+    @apply font-satoshi-medium text-neutral dark:text-neutral;
   }
 
   .ad-card-txt-muted-semi {
-    @apply font-inter-semibold text-muted dark:text-muted-dark;
+    @apply font-satoshi-medium text-neutral dark:text-neutral;
   }
 }

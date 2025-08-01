@@ -22,8 +22,8 @@ const adCardAnimConfig: Record<string, (isBuy: boolean, index: number) => { ente
     exiting: isBuy ? SlideOutLeft.duration(200).delay(index * 80) : SlideOutRight.duration(200).delay(index * 80),
   }),
   fadeFloatUp: (isBuy: boolean, index: number) => ({
-    entering: FadeInUp.duration(250).delay(index * 70),
-    exiting: FadeOutDown.duration(200).delay(index * 70),
+    entering: FadeInUp.duration(250).delay(index * 100),
+    exiting: FadeOutDown.duration(300).delay(index * 100),
   }),
   elegantSlide: (isBuy: boolean, index: number) => ({
     entering: isBuy ? SlideInLeft.duration(300).delay(index * 80) : SlideInRight.duration(300).delay(index * 80),

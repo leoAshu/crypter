@@ -1,4 +1,4 @@
-const supportedCryptos: CryptoCurrency[] = [
+const cryptos: CryptoCurrency[] = [
   // Native Layer 1s
   {
     id: 'btc',
@@ -94,15 +94,12 @@ const supportedCryptos: CryptoCurrency[] = [
   },
 ];
 
-const cryptoOptions = ['all', ...supportedCryptos.filter((c) => c.isActive).map((c) => c.id)];
+const cryptoOptions = ['all', ...cryptos.filter((c) => c.isActive).map((c) => c.id)];
 const cryptoLabels: Record<string, string> = {
   all: 'All',
   ...Object.fromEntries(
-    supportedCryptos
-      .filter((c) => typeof c.id === 'string' && typeof c.symbol === 'string')
-      .map((c) => [c.id, c.symbol]),
+    cryptos.filter((c) => typeof c.id === 'string' && typeof c.symbol === 'string').map((c) => [c.id, c.symbol]),
   ),
 };
 
-export default supportedCryptos;
-export { cryptoLabels, cryptoOptions };
+export { cryptoLabels, cryptoOptions, cryptos };

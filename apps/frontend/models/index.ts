@@ -1,1 +1,2 @@
-export * from './mockData';
+export * from './ad';
+export * from './crypto';

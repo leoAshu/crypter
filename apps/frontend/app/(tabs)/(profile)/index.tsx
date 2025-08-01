@@ -46,7 +46,7 @@ const Profile = () => {
           <View className='profile-stats gap-y-6'>
             {/* Stats Header */}
             <View className='stats-header flex-row items-center justify-between'>
-              <Text className='dark:text-base-dark text-base-dark font-clash-display-medium text-xl dark:text-base-white'>
+              <Text className='dark:text-base-dark text-base-dark font-clashDisplay-medium text-xl dark:text-base-white'>
                 {Strings.profile.TRADING_STATS_TITLE}
               </Text>
 
@@ -66,14 +66,14 @@ const Profile = () => {
             <View className='stats-content flex-row'>
               <View className='col-left flex-1 gap-y-6'>
                 <View className='gap-y-2'>
-                  <Text className='text-base-dark font-clash-display-medium text-2xl dark:text-base-white'>5</Text>
+                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>5</Text>
                   <Text className='font-satoshi-medium text-base text-neutral dark:text-neutral-400'>
                     {Strings.profile.TOTAL_TRADES_LABEL}
                   </Text>
                 </View>
 
                 <View className='gap-y-2'>
-                  <Text className='text-base-dark font-clash-display-medium text-2xl dark:text-base-white'>
+                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>
                     4.3 Minutes
                   </Text>
                   <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
@@ -84,14 +84,14 @@ const Profile = () => {
 
               <View className='col-right flex-1 gap-y-6'>
                 <View className='gap-y-2'>
-                  <Text className='text-base-dark font-clash-display-medium text-2xl dark:text-base-white'>100%</Text>
+                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>100%</Text>
                   <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
                     {Strings.profile.COMPLETION_RATE_LABEL}
                   </Text>
                 </View>
 
                 <View className='gap-y-2'>
-                  <Text className='text-base-dark font-clash-display-medium text-2xl dark:text-base-white'>100%</Text>
+                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>100%</Text>
                   <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
                     {Strings.profile.AVG_PAY_LABEL}
                   </Text>

@@ -5,6 +5,20 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
+      flex: {
+        // Web-style flex ratios
+        0: '0 0 auto',
+        1: '1 1 0%',
+        2: '2 2 0%',
+        3: '3 3 0%',
+        4: '4 4 0%',
+        5: '5 5 0%',
+        auto: '1 1 auto',
+        initial: '0 1 auto',
+        none: 'none',
+        full: '1 0 100%',
+      },
+
       colors: {
         // ====================== Default ====================
         // accent
@@ -161,10 +175,10 @@ module.exports = {
 
         // ====================== Revamp =====================
         // Clash Display
-        'clash-display': ['Clash-Display-Regular'],
-        'clash-display-medium': ['Clash-Display-Medium'],
-        'clash-display-semibold': ['Clash-Display-Semibold'],
-        'clash-display-bold': ['Clash-Display-Bold'],
+        clashDisplay: ['ClashDisplay-Regular'],
+        'clashDisplay-medium': ['ClashDisplay-Medium'],
+        'clashDisplay-semibold': ['ClashDisplay-Semibold'],
+        'clashDisplay-bold': ['ClashDisplay-Bold'],
 
         // Satoshi
         satoshi: ['Satoshi-Regular'],
