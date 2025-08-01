@@ -44,7 +44,15 @@ const P2PLayout = () => {
               <TabBarIcon
                 focused={focused}
                 title={Strings.p2p.TAB_TITLE}
-                icon={focused ? icons.active.p2p : icons.inactive.p2p}
+                icon={
+                  isDark
+                    ? focused
+                      ? icons.dark.active.p2p
+                      : icons.dark.inactive.p2p
+                    : focused
+                      ? icons.light.active.p2p
+                      : icons.light.inactive.p2p
+                }
               />
             ),
             headerLeft: () => <HeaderBackAction />,
@@ -59,7 +67,15 @@ const P2PLayout = () => {
               <TabBarIcon
                 focused={focused}
                 title={Strings.orders.TAB_TITLE}
-                icon={focused ? icons.active.receipt : icons.inactive.receipt}
+                icon={
+                  isDark
+                    ? focused
+                      ? icons.dark.active.receipt
+                      : icons.dark.inactive.receipt
+                    : focused
+                      ? icons.light.active.receipt
+                      : icons.light.inactive.receipt
+                }
               />
             ),
             headerLeft: () => <HeaderBackAction />,
@@ -74,7 +90,15 @@ const P2PLayout = () => {
               <TabBarIcon
                 focused={focused}
                 title={Strings.myAds.TAB_TITLE}
-                icon={focused ? icons.active.subtitle : icons.inactive.subtitle}
+                icon={
+                  isDark
+                    ? focused
+                      ? icons.dark.active.subtitle
+                      : icons.dark.inactive.subtitle
+                    : focused
+                      ? icons.light.active.subtitle
+                      : icons.light.inactive.subtitle
+                }
               />
             ),
             headerLeft: () => <HeaderBackAction />,

@@ -20,7 +20,7 @@ const HeaderBackAction = (props: HeaderBackActionProps) => {
         }}
       >
         <Image
-          source={isDark ? icons.inactive.dark.arrowLeft : icons.inactive.light.arrowLeft}
+          source={isDark ? icons.dark.arrowLeft : icons.light.arrowLeft}
           className='size-10'
           resizeMode='contain'
         />

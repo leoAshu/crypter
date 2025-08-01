@@ -151,11 +151,19 @@
   }
 
   .tab-icon {
-    @apply size-6;
+    @apply size-7;
   }
 
   .tab-icon-label {
     @apply font-manrope text-sm;
+  }
+
+  .tab-icon-label-active {
+    @apply text-primary;
+  }
+
+  .tab-icon-label-inactive {
+    @apply text-base-black/25 dark:text-base-white/75;
   }
 
   /* ──────────────────────────────

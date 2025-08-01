@@ -1,4 +1,4 @@
-import { icons, images } from '@/assets';
+import { icons } from '@/assets';
 import { FloatingActionTabButton, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -45,7 +45,15 @@ const TabLayout = () => {
               <TabBarIcon
                 focused={focused}
                 title={Strings.home.TAB_TITLE}
-                icon={focused ? icons.active.home : icons.inactive.home}
+                icon={
+                  isDark
+                    ? focused
+                      ? icons.dark.active.home
+                      : icons.dark.inactive.home
+                    : focused
+                      ? icons.light.active.home
+                      : icons.light.inactive.home
+                }
               />
             ),
           }}
@@ -58,7 +66,15 @@ const TabLayout = () => {
               <TabBarIcon
                 focused={focused}
                 title={Strings.profile.TAB_TITLE}
-                icon={focused ? icons.active.user : icons.inactive.user}
+                icon={
+                  isDark
+                    ? focused
+                      ? icons.dark.active.user
+                      : icons.dark.inactive.user
+                    : focused
+                      ? icons.light.active.user
+                      : icons.light.inactive.user
+                }
               />
             ),
           }}
@@ -83,7 +99,7 @@ const TabLayout = () => {
       )}
 
       <View className='absolute-bottom-fab'>
-        <FloatingActionTabButton icon={images.exchange} onPress={() => router.push('/(p2p)')} />
+        <FloatingActionTabButton icon={icons.exchange} onPress={() => router.push('/(p2p)')} />
       </View>
     </View>
   );

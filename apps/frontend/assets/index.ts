@@ -29,38 +29,69 @@ const images = {
 };
 
 const icons = {
-  active: {
-    home: require('./icons/active/home.png'),
-    user: require('./icons/active/user.png'),
-    p2p: require('./icons/active/p2p.png'),
-    receipt: require('./icons/active/receipt.png'),
-    subtitle: require('./icons/active/subtitle.png'),
-  },
-  inactive: {
-    home: require('./icons/inactive/home.png'),
-    user: require('./icons/inactive/user.png'),
-    p2p: require('./icons/inactive/p2p.png'),
-    receipt: require('./icons/inactive/receipt.png'),
-    subtitle: require('./icons/inactive/subtitle.png'),
+  exchange: require('./icons/exchange.png'),
 
-    light: {
-      arrowLeft: require('./icons/inactive/light/arrow-left.png'),
-      arrowRight: require('./icons/inactive/light/arrow-right.png'),
-      likeTag: require('./icons/inactive/light/like-tag.png'),
-      notification: require('./icons/inactive/light/notification.png'),
-      verify: require('./icons/inactive/light/verify.png'),
-      money: require('./icons/inactive/light/money.png'),
-      messageQuestion: require('./icons/inactive/light/message-question.png'),
+  // Light Theme Icons
+  light: {
+    // Header
+    arrowLeft: require('./icons/light/arrow-left.png'),
+
+    // Menu
+    arrowRight: require('./icons/light/arrow-right.png'),
+    likeTag: require('./icons/light/like-tag.png'),
+    notification: require('./icons/light/notification.png'),
+    verify: require('./icons/light/verify.png'),
+    money: require('./icons/light/money.png'),
+    messageQuestion: require('./icons/light/message-question.png'),
+
+    // Active Tab
+    active: {
+      home: require('./icons/light/active/home.png'),
+      user: require('./icons/light/active/user.png'),
+      p2p: require('./icons/light/active/p2p.png'),
+      receipt: require('./icons/light/active/receipt.png'),
+      subtitle: require('./icons/light/active/subtitle.png'),
     },
 
-    dark: {
-      arrowLeft: require('./icons/inactive/dark/arrow-left.png'),
-      arrowRight: require('./icons/inactive/dark/arrow-right.png'),
-      likeTag: require('./icons/inactive/dark/like-tag.png'),
-      notification: require('./icons/inactive/dark/notification.png'),
-      verify: require('./icons/inactive/dark/verify.png'),
-      money: require('./icons/inactive/dark/money.png'),
-      messageQuestion: require('./icons/inactive/dark/message-question.png'),
+    // Inactive Tab
+    inactive: {
+      home: require('./icons/light/inactive/home.png'),
+      user: require('./icons/light/inactive/user.png'),
+      p2p: require('./icons/light/inactive/p2p.png'),
+      receipt: require('./icons/light/inactive/receipt.png'),
+      subtitle: require('./icons/light/inactive/subtitle.png'),
+    },
+  },
+
+  // Dark Theme Icons
+  dark: {
+    // Header
+    arrowLeft: require('./icons/dark/arrow-left.png'),
+
+    // Menu
+    arrowRight: require('./icons/dark/arrow-right.png'),
+    likeTag: require('./icons/dark/like-tag.png'),
+    notification: require('./icons/dark/notification.png'),
+    verify: require('./icons/dark/verify.png'),
+    money: require('./icons/dark/money.png'),
+    messageQuestion: require('./icons/dark/message-question.png'),
+
+    // Active Tab
+    active: {
+      home: require('./icons/dark/active/home.png'),
+      user: require('./icons/dark/active/user.png'),
+      p2p: require('./icons/dark/active/p2p.png'),
+      receipt: require('./icons/dark/active/receipt.png'),
+      subtitle: require('./icons/dark/active/subtitle.png'),
+    },
+
+    // Inactive Tab
+    inactive: {
+      home: require('./icons/dark/inactive/home.png'),
+      user: require('./icons/dark/inactive/user.png'),
+      p2p: require('./icons/dark/inactive/p2p.png'),
+      receipt: require('./icons/dark/inactive/receipt.png'),
+      subtitle: require('./icons/dark/inactive/subtitle.png'),
     },
   },
 };

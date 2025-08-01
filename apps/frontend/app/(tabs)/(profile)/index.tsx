@@ -117,32 +117,32 @@ const Profile = () => {
           <View className='menu'>
             <MenuOption
               title={Strings.profile.MENU_FEEDBACK_TITLE}
-              leftIcon={isDark ? icons.inactive.dark.likeTag : icons.inactive.light.likeTag}
-              rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+              leftIcon={isDark ? icons.dark.likeTag : icons.light.likeTag}
+              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             />
 
             <MenuOption
               title={Strings.profile.MENU_NOTIF_TITLE}
-              leftIcon={isDark ? icons.inactive.dark.notification : icons.inactive.light.notification}
-              rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+              leftIcon={isDark ? icons.dark.notification : icons.light.notification}
+              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             />
 
             <MenuOption
               title={Strings.profile.MENU_MERCHANT_TITLE}
-              leftIcon={isDark ? icons.inactive.dark.verify : icons.inactive.light.verify}
-              rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+              leftIcon={isDark ? icons.dark.verify : icons.light.verify}
+              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             />
 
             <MenuOption
               title={Strings.profile.MENU_PAY_METHODS_TITLE}
-              leftIcon={isDark ? icons.inactive.dark.money : icons.inactive.light.money}
-              rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+              leftIcon={isDark ? icons.dark.money : icons.light.money}
+              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             />
 
             <MenuOption
               title={Strings.profile.MENU_HELP_TITLE}
-              leftIcon={isDark ? icons.inactive.dark.messageQuestion : icons.inactive.light.messageQuestion}
-              rightIcon={isDark ? icons.inactive.dark.arrowRight : icons.inactive.light.arrowRight}
+              leftIcon={isDark ? icons.dark.messageQuestion : icons.light.messageQuestion}
+              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             />
           </View>
 
