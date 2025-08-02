@@ -4,7 +4,10 @@ import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 const SecondaryButton = (props: SecondaryButtonProps) => {
   return (
     <TouchableOpacity
-      className={cn('btn-secondary', props.disabled || props.isLoading ? 'border-primary-disabled' : 'border-primary')}
+      className={cn(
+        'btn-secondary',
+        props.disabled || props.isLoading ? 'btn-secondary-disabled' : 'btn-secondary-active',
+      )}
       disabled={props.isLoading || props.disabled}
       onPress={props.onPress}
     >
@@ -15,7 +18,7 @@ const SecondaryButton = (props: SecondaryButtonProps) => {
           <Text
             className={cn(
               'btn-secondary-label',
-              props.disabled ? 'text-primary-disabled' : 'text-primary dark:text-white',
+              props.disabled ? 'btn-secondary-label-disabled' : 'btn-seconday-label-active',
             )}
           >
             {props.title}

@@ -31,6 +31,23 @@ const useCustomFonts = () => {
     'Inter-Bold': require('@/assets/fonts/Inter/Inter_18pt-Bold.ttf'),
     'Inter-ExtraBold': require('@/assets/fonts/Inter/Inter_18pt-ExtraBold.ttf'),
     'Inter-Black': require('@/assets/fonts/Inter/Inter_18pt-Black.ttf'),
+
+    // Revamp
+
+    'ClashDisplay-Regular': require('@/assets/fonts/ClashDisplay/ClashDisplay-Regular.ttf'),
+    'ClashDisplay-Medium': require('@/assets/fonts/ClashDisplay/ClashDisplay-Medium.ttf'),
+    'ClashDisplay-SemiBold': require('@/assets/fonts/ClashDisplay/ClashDisplay-Semibold.ttf'),
+    'ClashDisplay-Bold': require('@/assets/fonts/ClashDisplay/ClashDisplay-Bold.ttf'),
+
+    'Satoshi-Regular': require('@/assets/fonts/Satoshi/Satoshi-Regular.ttf'),
+    'Satoshi-Medium': require('@/assets/fonts/Satoshi/Satoshi-Medium.ttf'),
+    // 'Satoshi-SemiBold': require('@/assets/fonts/Satoshi/Satoshi-Semibold.ttf'),
+    'Satoshi-Bold': require('@/assets/fonts/Satoshi/Satoshi-Bold.ttf'),
+
+    'Manrope-Regular': require('@/assets/fonts/Manrope/Manrope-Regular.ttf'),
+    'Manrope-Medium': require('@/assets/fonts/Manrope/Manrope-Medium.ttf'),
+    'Manrope-SemiBold': require('@/assets/fonts/Manrope/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('@/assets/fonts/Manrope/Manrope-Bold.ttf'),
   });
 };
 

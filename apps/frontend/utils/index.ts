@@ -4,7 +4,7 @@ const getInitialsFromName = (name: string) => {
   const parts = name.trim().split(' ');
   const initials = parts.map((p) => p[0]?.toUpperCase()).join('');
 
-  return initials.slice(0, 2);
+  return initials.slice(0, 1);
 };
 
 const formatPhoneNumber = (value: string) => {
@@ -30,6 +30,18 @@ const formatPhoneNumber = (value: string) => {
   return formatted.trim();
 };
 
+const currencyFormatter = new Intl.NumberFormat('en-IN', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const capitalizeWords = (input: string): string => {
+  return input
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+};
+
 export * from './supabase';
 export * from './validations';
-export { formatPhoneNumber, getInitialsFromName };
+export { capitalizeWords, currencyFormatter, formatPhoneNumber, getInitialsFromName };

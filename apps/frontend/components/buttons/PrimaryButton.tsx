@@ -14,7 +14,15 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
         ) : (
           <>
             {props.leftIcon && <View className='mr-2 p-1'>{props.leftIcon}</View>}
-            <Text className={cn('btn-primary-label', props.textStyle)}>{props.title}</Text>
+            <Text
+              className={cn(
+                'btn-primary-label',
+                props.disabled || props.isLoading ? 'opacity-45' : '',
+                props.textStyle,
+              )}
+            >
+              {props.title}
+            </Text>
           </>
         )}
       </View>

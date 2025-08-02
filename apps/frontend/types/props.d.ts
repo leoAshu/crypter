@@ -63,13 +63,14 @@ interface AccountInfoProps {
 }
 
 /** Allowed size variants for avatar components */
-type AvatarSize = 'small' | 'medium' | 'large';
+type AvatarSize = 'xs' | 'sm' | 'md' | 'lg';
 
 /** Props for rendering initials-based avatar */
 interface InitialsAvatarProps {
   name: string;
   size?: AvatarSize;
-  className?: string;
+  textStyle?: string;
+  containerStyle?: string;
 }
 
 // ====================
@@ -80,6 +81,7 @@ interface InitialsAvatarProps {
 interface MenuOptionProps {
   title: string;
   route?: LinkProps['href'];
+  leftIcon?: ImageSourcePropType;
   rightIcon?: ImageSourcePropType;
 }
 
@@ -100,6 +102,7 @@ interface OverlayLoaderProps {
 interface TabBarIconProps {
   focused: boolean;
   icon: ImageSourcePropType;
+  title?: string;
   iconStyle?: string;
 }
 
@@ -115,4 +118,41 @@ interface HeaderActionIconProps {
   iconStyle?: string;
   containerStyle?: string;
   onPress?: () => void;
+}
+
+interface ToggleButtonProps<T extends string> {
+  value: T;
+  options: [T, T];
+  labelStyle?: string;
+  wrapperStyle?: string;
+  labels?: Record<T, string>;
+  activeButtonColors?: Record<T, string>;
+  activeLabelColors?: Record<T, string>;
+  onChange?: (value: T) => void;
+}
+
+interface PayMethodBadgeProps {
+  payMethodId: string;
+}
+
+interface AdCardProps {
+  ad: any;
+  index: number;
+  animationStyle?: AnimationStyle;
+}
+
+interface DividerXProps {
+  style?: string;
+}
+
+interface HeaderBackActionProps {
+  containerStyle?: string;
+  onPress?: () => void;
+}
+
+interface ChipFilterProps<T extends string> {
+  value: T;
+  options: T[];
+  labels?: Record<T, string>;
+  onChange?: (value: T) => void;
 }
