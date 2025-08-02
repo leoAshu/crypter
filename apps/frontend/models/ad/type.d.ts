@@ -14,7 +14,7 @@ interface Ad {
   minLimit: number;
   maxLimit: number;
   available: number;
-  paymentMethods: string[];
+  payMethodIds: string[];
   releaseTime: string;
   type: AdType;
 }

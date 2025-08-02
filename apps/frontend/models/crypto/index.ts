@@ -95,6 +95,7 @@ const cryptos: CryptoCurrency[] = [
 ];
 
 const cryptoOptions = ['all', ...cryptos.filter((c) => c.isActive).map((c) => c.id)];
+
 const cryptoLabels: Record<string, string> = {
   all: 'All',
   ...Object.fromEntries(
@@ -102,4 +103,8 @@ const cryptoLabels: Record<string, string> = {
   ),
 };
 
-export { cryptoLabels, cryptoOptions, cryptos };
+const getCryptoById = (id: string): CryptoCurrency | undefined => {
+  return cryptos.find((c) => c.id === id);
+};
+
+export { cryptoLabels, cryptoOptions, cryptos, getCryptoById };

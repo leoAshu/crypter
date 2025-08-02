@@ -5,27 +5,18 @@ const images = {
   eye: require('./images/eye.png'),
   eyeOff: require('./images/eye-off.png'),
   mail: require('./images/mail.png'),
-  home: require('./images/home.png'),
-  account: require('./images/account.png'),
   facebook: require('./images/facebook.png'),
   edit: require('./images/edit.png'),
-  arrowLeft: require('./images/arrow-left.png'),
-  next: require('./images/next.png'),
-  walletBackground: require('./images/wallet-bg.png'),
-  exchange: require('./images/exchange.png'),
-  p2p: require('./images/couple.png'),
-  ads: require('./images/megaphone.png'),
   plus: require('./images/plus.png'),
-  like: require('./images/like.png'),
-  stopwatch: require('./images/stopwatch.png'),
-  gPay: require('./payment-methods/gpay.png'),
-  phonepe: require('./payment-methods/phonepe.png'),
-  upi: require('./payment-methods/upi.png'),
-  paytm: require('./payment-methods/paytm.png'),
-  imps: require('./payment-methods/imps.png'),
-  receipt: require('./images/receipt.png'),
-  tickSquare: require('./images/tick-square.png'),
-  rating: require('./images/star.png'),
+  walletBackground: require('./images/wallet-bg.png'),
+};
+
+const logos = {
+  gPay: require('./pay-methods/gpay.png'),
+  imps: require('./pay-methods/imps.png'),
+  paytm: require('./pay-methods/paytm.png'),
+  phonepe: require('./pay-methods/phonepe.png'),
+  upi: require('./pay-methods/upi.png'),
 };
 
 const icons = {
@@ -35,6 +26,8 @@ const icons = {
   light: {
     // Header
     arrowLeft: require('./icons/light/arrow-left.png'),
+    tickSquare: require('./icons/light/tick-square.png'),
+    clock: require('./icons/light/clock.png'),
 
     // Menu
     arrowRight: require('./icons/light/arrow-right.png'),
@@ -67,6 +60,8 @@ const icons = {
   dark: {
     // Header
     arrowLeft: require('./icons/dark/arrow-left.png'),
+    tickSquare: require('./icons/dark/tick-square.png'),
+    clock: require('./icons/dark/clock.png'),
 
     // Menu
     arrowRight: require('./icons/dark/arrow-right.png'),
@@ -96,4 +91,4 @@ const icons = {
   },
 };
 
-export { icons, images };
+export { icons, images, logos };

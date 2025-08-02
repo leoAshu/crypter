@@ -1,3 +1,5 @@
+import { getCryptoById } from '../crypto';
+
 const ads: Ad[] = [
   {
     id: 'ad-1',
@@ -15,7 +17,7 @@ const ads: Ad[] = [
     minLimit: 500,
     maxLimit: 200000,
     available: 0.75,
-    paymentMethods: ['UPI', 'IMPS'],
+    payMethodIds: ['upi', 'imps'],
     releaseTime: '15 min',
     type: 'buy',
   },
@@ -35,7 +37,7 @@ const ads: Ad[] = [
     minLimit: 1000,
     maxLimit: 150000,
     available: 4300,
-    paymentMethods: ['PhonePe', 'Paytm', 'UPI'],
+    payMethodIds: ['phonepe', 'paytm', 'upi'],
     releaseTime: '30 min',
     type: 'sell',
   },
@@ -55,7 +57,7 @@ const ads: Ad[] = [
     minLimit: 100,
     maxLimit: 20000,
     available: 9900000,
-    paymentMethods: ['IMPS'],
+    payMethodIds: ['imps'],
     releaseTime: '10 min',
     type: 'sell',
   },
@@ -75,7 +77,7 @@ const ads: Ad[] = [
     minLimit: 250,
     maxLimit: 40000,
     available: 8000,
-    paymentMethods: ['Paytm', 'Bank Transfer'],
+    payMethodIds: ['paytm', 'phonepe'],
     releaseTime: '45 min',
     type: 'buy',
   },
@@ -95,7 +97,7 @@ const ads: Ad[] = [
     minLimit: 10000,
     maxLimit: 100000,
     available: 1.25,
-    paymentMethods: ['GPay'],
+    payMethodIds: ['gpay'],
     releaseTime: '60 min',
     type: 'sell',
   },
@@ -115,7 +117,7 @@ const ads: Ad[] = [
     minLimit: 500,
     maxLimit: 1000,
     available: 10000,
-    paymentMethods: ['IMPS'],
+    payMethodIds: ['imps'],
     releaseTime: '1 min',
     type: 'buy',
   },
@@ -135,7 +137,7 @@ const ads: Ad[] = [
     minLimit: 500,
     maxLimit: 50000,
     available: 230,
-    paymentMethods: ['Bank Transfer', 'PhonePe'],
+    payMethodIds: ['phonepe', 'phonepe'],
     releaseTime: '20 min',
     type: 'sell',
   },
@@ -155,7 +157,7 @@ const ads: Ad[] = [
     minLimit: 100,
     maxLimit: 500,
     available: 0,
-    paymentMethods: ['UPI'],
+    payMethodIds: ['upi'],
     releaseTime: 'N/A',
     type: 'buy',
   },
@@ -175,7 +177,7 @@ const ads: Ad[] = [
     minLimit: 5000,
     maxLimit: 250000,
     available: 3.2,
-    paymentMethods: ['GPay', 'IMPS'],
+    payMethodIds: ['gpay', 'imps'],
     releaseTime: '5 min',
     type: 'sell',
   },
@@ -195,7 +197,7 @@ const ads: Ad[] = [
     minLimit: 100,
     maxLimit: 200,
     available: 50,
-    paymentMethods: ['UPI'],
+    payMethodIds: ['upi'],
     releaseTime: '30 min',
     type: 'sell',
   },
@@ -215,7 +217,7 @@ const ads: Ad[] = [
     minLimit: 10000,
     maxLimit: 500000,
     available: 5,
-    paymentMethods: ['UPI', 'Bank Transfer'],
+    payMethodIds: ['upi', 'phonepe'],
     releaseTime: '10 min',
     type: 'buy',
   },
@@ -235,7 +237,7 @@ const ads: Ad[] = [
     minLimit: 500,
     maxLimit: 25000,
     available: 7800,
-    paymentMethods: ['GPay', 'Paytm'],
+    payMethodIds: ['gpay', 'paytm'],
     releaseTime: '15 min',
     type: 'buy',
   },
@@ -255,7 +257,7 @@ const ads: Ad[] = [
     minLimit: 1000,
     maxLimit: 60000,
     available: 100,
-    paymentMethods: ['IMPS', 'PhonePe'],
+    payMethodIds: ['imps', 'phonepe'],
     releaseTime: '8 min',
     type: 'buy',
   },
@@ -275,7 +277,7 @@ const ads: Ad[] = [
     minLimit: 200,
     maxLimit: 25000,
     available: 5000000,
-    paymentMethods: ['UPI'],
+    payMethodIds: ['upi'],
     releaseTime: '35 min',
     type: 'buy',
   },
@@ -295,10 +297,24 @@ const ads: Ad[] = [
     minLimit: 5000,
     maxLimit: 75000,
     available: 0.95,
-    paymentMethods: ['PhonePe', 'IMPS'],
+    payMethodIds: ['phonepe', 'imps'],
     releaseTime: '20 min',
     type: 'buy',
   },
 ];
 
-export { ads };
+const getFilteredAds = (adType: AdType, crypto: CryptoOptions) => {
+  return ads.filter((item) => {
+    if (item.type !== adType) return false;
+
+    const cryptoMeta = getCryptoById(item.cryptoId);
+
+    if (!cryptoMeta || !cryptoMeta.isActive) return false;
+
+    if (crypto === 'all') return true;
+
+    return item.cryptoId === crypto;
+  });
+};
+
+export { ads, getFilteredAds };

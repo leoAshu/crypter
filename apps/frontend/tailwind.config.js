@@ -62,6 +62,9 @@ module.exports = {
         base: {
           white: '#FFFFFF',
           black: '#000000',
+          'surface-light': '#ECEEF0',
+          'surface-dark': '#1C1C1F',
+          'on-surface-light': '#333333',
         },
         neutral: {
           DEFAULT: '#667085',

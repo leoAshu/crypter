@@ -7,8 +7,8 @@ import { Platform, useColorScheme } from 'react-native';
 const ProfileLayout = () => {
   const isDark = useColorScheme() === 'dark';
   const containerStyle = Platform.select({
-    ios: 'pl-0 ml-[-16px]',
-    android: 'pl-0 ml-[-20px]',
+    ios: 'pl-0 ml-[8px]',
+    android: 'pl-0 ml-[8px]',
   });
 
   return (

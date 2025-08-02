@@ -1,35 +1,29 @@
-import { AdCard, ChipFilter, ToggleButton } from '@/components';
-import { adsListStyle, screenContentWrapperStyle } from '@/constants';
-import { ads, cryptoLabels, cryptoOptions, cryptos } from '@/models';
+import { AdCard, ChipFilter, DividerX, ToggleButton } from '@/components';
+import { screenContentWrapperStyle } from '@/constants';
+import { ads, cryptoLabels, cryptoOptions, getFilteredAds } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, Platform, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
+  const isDark = useColorScheme() === 'dark';
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOptions>('all');
   const [adsList, setAdsList] = useState(ads);
 
+  const adsListStyle = Platform.select({
+    ios: 'pb-20',
+    android: 'pb-24',
+  });
+
   useEffect(() => {
-    const filtered = ads.filter((item) => {
-      if (item.type !== adType) return false;
-
-      const cryptoMeta = cryptos.find((c) => c.id === item.cryptoId);
-
-      if (!cryptoMeta || !cryptoMeta.isActive) return false;
-
-      if (crypto === 'all') return true;
-
-      return item.cryptoId === crypto;
-    });
-
-    setAdsList(filtered);
+    setAdsList(getFilteredAds(adType, crypto));
   }, [adType, crypto]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <View className={cn('content-wrapper gap-y-4', screenContentWrapperStyle)}>
+      <View className={cn('content-wrapper', screenContentWrapperStyle)}>
         <View className='flex gap-y-3'>
           <View className='flex-row justify-center'>
             <ToggleButton
@@ -48,11 +42,13 @@ const Home = () => {
         </View>
 
         <FlatList
-          className={adsListStyle}
           data={adsList}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
+          contentContainerClassName={adsListStyle}
           renderItem={({ item, index }) => <AdCard ad={item} index={index} animationStyle='fadeFloatUp' />}
+          ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}
+          ListFooterComponent={() => <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}
         />
       </View>
     </SafeAreaView>
