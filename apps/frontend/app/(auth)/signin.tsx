@@ -44,7 +44,7 @@ const SignIn = () => {
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
+      <KeyboardAvoidingView className='flex-1' behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View style={{ height: Dimensions.get('screen').height / 2.5 }}>
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
@@ -72,25 +72,25 @@ const SignIn = () => {
             </View>
           </View>
         </ScrollView>
-        {/* Socials & Footer */}
-        <View className='footer-socials'>
-          <View className='divider-row'>
-            <View className='divider-line' />
-            <Text className='divider-txt'>{Strings.login.OR_CONTINUE_WITH}</Text>
-            <View className='divider-line' />
-          </View>
-          <View className='social-auth-row'>
-            <IconButton icon={images.google} disabled={isLoading} onPress={() => {}} />
-            <IconButton icon={images.facebook} disabled={isLoading} onPress={() => {}} />
-          </View>
-          <View className='footer-wrapper'>
-            <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
-            <Pressable disabled={isLoading} onPress={() => router.replace('/(auth)/(signup)')}>
-              <Text className='footer-link'>{Strings.login.SIGNUP_CTA}</Text>
-            </Pressable>
-          </View>
-        </View>
       </KeyboardAvoidingView>
+      {/* Socials & Footer */}
+      <View className='footer-socials'>
+        <View className='divider-row'>
+          <View className='divider-line' />
+          <Text className='divider-txt'>{Strings.login.OR_CONTINUE_WITH}</Text>
+          <View className='divider-line' />
+        </View>
+        <View className='social-auth-row'>
+          <IconButton icon={images.google} disabled={isLoading} onPress={() => {}} />
+          <IconButton icon={images.facebook} disabled={isLoading} onPress={() => {}} />
+        </View>
+        <View className='footer-wrapper'>
+          <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
+          <Pressable disabled={isLoading} onPress={() => router.replace('/(auth)/(signup)')}>
+            <Text className='footer-link'>{Strings.login.SIGNUP_CTA}</Text>
+          </Pressable>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };

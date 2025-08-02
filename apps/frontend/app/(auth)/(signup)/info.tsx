@@ -37,7 +37,7 @@ const SignUpInfo = () => {
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
+      <KeyboardAvoidingView className='flex-1' behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View style={{ height: Dimensions.get('screen').height / 3.5 }}>
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
@@ -82,11 +82,9 @@ const SignUpInfo = () => {
                 onChangeText={(value) => setFormData((prev) => ({ ...prev, confirmPassword: value }))}
               />
             </View>
+            <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
           </View>
         </ScrollView>
-        <View className='footer-socials'>
-          <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
-        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

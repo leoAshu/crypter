@@ -44,7 +44,7 @@ const Signup = () => {
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
+      <KeyboardAvoidingView className='flex-1' behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View style={{ height: Dimensions.get('screen').height / 2.5 }}>
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
@@ -71,25 +71,25 @@ const Signup = () => {
             </View>
           </View>
         </ScrollView>
-        {/* Socials & Footer */}
-        <View className='footer-socials'>
-          <View className='divider-row'>
-            <View className='divider-line' />
-            <Text className='divider-txt'>{Strings.signup.OR_CONTINUE_WITH}</Text>
-            <View className='divider-line' />
-          </View>
-          <View className='social-auth-row'>
-            <IconButton icon={images.google} disabled={isSubmitting} onPress={() => {}} />
-            <IconButton icon={images.facebook} disabled={isSubmitting} onPress={() => {}} />
-          </View>
-          <View className='footer-wrapper'>
-            <Text className='footer-txt'>{Strings.signup.NO_ACCOUNT_TEXT}</Text>
-            <Pressable disabled={isSubmitting} onPress={() => router.replace('/signin')}>
-              <Text className='footer-link'>{Strings.signup.SIGNIN_CTA}</Text>
-            </Pressable>
-          </View>
-        </View>
       </KeyboardAvoidingView>
+      {/* Socials & Footer */}
+      <View className='footer-socials'>
+        <View className='divider-row'>
+          <View className='divider-line' />
+          <Text className='divider-txt'>{Strings.signup.OR_CONTINUE_WITH}</Text>
+          <View className='divider-line' />
+        </View>
+        <View className='social-auth-row'>
+          <IconButton icon={images.google} disabled={isSubmitting} onPress={() => {}} />
+          <IconButton icon={images.facebook} disabled={isSubmitting} onPress={() => {}} />
+        </View>
+        <View className='footer-wrapper'>
+          <Text className='footer-txt'>{Strings.signup.NO_ACCOUNT_TEXT}</Text>
+          <Pressable disabled={isSubmitting} onPress={() => router.replace('/signin')}>
+            <Text className='footer-link'>{Strings.signup.SIGNIN_CTA}</Text>
+          </Pressable>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };

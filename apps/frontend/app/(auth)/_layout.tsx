@@ -17,12 +17,13 @@ const AuthLayout = () => {
         },
       })}
     >
-      <Stack.Screen name='signin' />
-      <Stack.Screen name='welcome' />
-      <Stack.Screen name='(signup)/index' />
+      <Stack.Screen name='signin' options={{ headerShown: false }} />
+      <Stack.Screen name='welcome' options={{ headerShown: false }} />
+      <Stack.Screen name='(signup)/index' options={{ headerShown: false }} />
       <Stack.Screen
         name='(signup)/info'
         options={{
+          headerTitle: '',
           headerLeft: () => <HeaderBackAction containerStyle={containerStyle} />,
         }}
       />

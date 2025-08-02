@@ -38,7 +38,7 @@ const Welcome = () => {
           <Text className='welcome-sub-header-txt'>{Strings.welcome.WELCOME_TEXT}</Text>
         </View>
       </View>
-      <View className='footer-socials' style={{ bottom: 10 }}>
+      <View className='footer-socials'>
         <PrimaryButton title={Strings.welcome.BUTTON_LABEL} isLoading={isSubmitting} onPress={proceed} />
       </View>
     </SafeAreaView>
