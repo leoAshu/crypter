@@ -1,18 +1,33 @@
-import { images } from '@/assets';
-import { Slot, usePathname } from 'expo-router';
-import { Dimensions, Image, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
+import { HeaderBackAction } from '@/components';
+import { Stack } from 'expo-router';
+import { Platform, useColorScheme } from 'react-native';
 
 const AuthLayout = () => {
-  const pathname = usePathname();
+  const isDark = useColorScheme() === 'dark';
+  const containerStyle = Platform.select({
+    ios: 'pl-0 ml-[8px]',
+    android: 'pl-0 ml-[8px]',
+  });
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ScrollView className='screen-wrapper' keyboardShouldPersistTaps='handled'>
-        <View style={{ height: Dimensions.get('screen').height / (pathname === '/info' ? 3.5 : 2.5) }}>
-          <Image source={images.logo} className='header-logo' resizeMode='contain' />
-        </View>
-        <Slot />
-      </ScrollView>
-    </KeyboardAvoidingView>
+    <Stack
+      screenOptions={() => ({
+        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: isDark ? '#000000' : '#FFFFFF',
+        },
+      })}
+    >
+      <Stack.Screen name='signin' options={{ headerShown: false }} />
+      <Stack.Screen name='welcome' options={{ headerShown: false }} />
+      <Stack.Screen name='(signup)/index' options={{ headerShown: false }} />
+      <Stack.Screen
+        name='(signup)/info'
+        options={{
+          headerTitle: '',
+          headerLeft: () => <HeaderBackAction containerStyle={containerStyle} />,
+        }}
+      />
+    </Stack>
   );
 };
 
