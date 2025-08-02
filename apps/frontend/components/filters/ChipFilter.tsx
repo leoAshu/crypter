@@ -11,8 +11,8 @@ const ChipFilter = <T extends string>(props: ChipFilterProps<T>) => {
         horizontal
         data={props.options}
         keyExtractor={(item) => item}
-        contentContainerStyle={{ paddingHorizontal: 8, paddingBottom: 4 }}
-        ItemSeparatorComponent={() => <View className='w-6' />}
+        contentContainerStyle={{ paddingHorizontal: 8 }}
+        ItemSeparatorComponent={() => <View className='w-4' />}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item: option }) => {
           const isActive = option === props.value;
@@ -21,14 +21,16 @@ const ChipFilter = <T extends string>(props: ChipFilterProps<T>) => {
 
           return (
             <Pressable onPress={() => props.onChange?.(option)}>
-              <View className={cn('border-b-[3px] px-1 pb-1', borderStyle)}>
-                <Text className={cn('font-satoshi-medium text-base', labelStyle)}>{props.labels?.[option]}</Text>
+              <View className={cn('mb-0.5 border-b-2 px-1.5 pb-1.5 pt-2', borderStyle)}>
+                <Text className={cn('font-satoshi-medium text-base tracking-wider', labelStyle)}>
+                  {props.labels?.[option]}
+                </Text>
               </View>
             </Pressable>
           );
         }}
       />
-      <DividerX opacityStyle={isDark ? 'opacity-40' : 'opacity-25'} />
+      <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />
     </View>
   );
 };

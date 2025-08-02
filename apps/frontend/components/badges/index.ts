@@ -1,1 +1,1 @@
-export { default as PaymentBadge } from './PaymentBadge';
+export { default as PayMethodBadge } from './PayMethodBadge';

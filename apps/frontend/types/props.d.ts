@@ -131,8 +131,8 @@ interface ToggleButtonProps<T extends string> {
   onChange?: (value: T) => void;
 }
 
-interface PaymentBadgeProps {
-  paymentName: string;
+interface PayMethodBadgeProps {
+  payMethodId: string;
 }
 
 interface AdCardProps {
@@ -142,7 +142,7 @@ interface AdCardProps {
 }
 
 interface DividerXProps {
-  opacityStyle?: string;
+  style?: string;
 }
 
 interface HeaderBackActionProps {

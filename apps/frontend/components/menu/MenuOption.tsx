@@ -16,7 +16,7 @@ const MenuOption = (props: MenuOptionProps) => {
           {props.rightIcon && <Image source={props.rightIcon} className='size-8' resizeMode='contain' />}
         </View>
       </TouchableHighlight>
-      <DividerX opacityStyle={isDark ? 'opacity-40' : 'opacity-25'} />
+      <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />
     </View>
   );
 };

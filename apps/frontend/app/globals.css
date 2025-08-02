@@ -7,11 +7,12 @@
      🎯 General Layout Containers
   ─────────────────────────────── */
   .screen-wrapper {
+    /* bg-base-white dark:bg-base-black */
     @apply h-full bg-base-white dark:bg-base-black;
   }
 
   .content-wrapper {
-    @apply flex-1 gap-y-6 px-4;
+    @apply flex-1 gap-y-4 px-4;
   }
 
   /* ──────────────────────────────
@@ -250,7 +251,7 @@
   }
 
   .toggle-btn-wrapper {
-    @apply flex-row rounded-md bg-base-black/10 p-px dark:bg-base-white/20;
+    @apply flex-row rounded-md bg-base-surface-light p-px dark:bg-base-surface-dark;
   }
 
   .toggle-btn {
@@ -262,7 +263,7 @@
   }
 
   .toggle-btn-label-inactive {
-    @apply text-neutral;
+    @apply text-base-on-surface-light dark:text-neutral-400;
   }
 
   .toggle-btn-label-active {
@@ -270,7 +271,7 @@
   }
 
   .ad-card-wrapper {
-    @apply flex gap-y-3 rounded-none bg-card dark:bg-card-dark;
+    @apply flex gap-y-2 rounded-none px-2 pb-4 pt-2;
   }
 
   .ad-card-header-wrapper {
@@ -285,28 +286,16 @@
     @apply flex-row items-center gap-x-2;
   }
 
-  .ad-card-header-stats {
-    @apply flex-row items-center justify-between gap-x-2;
-  }
-
-  .ad-card-header-trade {
+  .ad-card-stats {
     @apply flex-row items-center gap-x-2;
   }
 
-  .ad-card-header-stats-group {
+  .ad-card-stats-group {
     @apply flex-row items-center gap-x-1;
   }
 
-  .bg-muted-divider {
-    @apply h-3 w-px rounded-3xl bg-muted;
-  }
-
-  .ad-card-header-rating {
+  .ad-card-rating {
     @apply flex-row items-center gap-x-1;
-  }
-
-  .ad-card-divider {
-    @apply mx-px h-[0.5px] bg-muted;
   }
 
   .ad-card-content-wrapper {
@@ -314,27 +303,23 @@
   }
 
   .ad-card-content-left {
-    @apply flex flex-1 gap-y-2;
+    @apply flex flex-1 gap-y-3;
   }
 
-  .ad-card-price-row {
-    @apply flex-row items-baseline gap-x-1;
+  .ad-card-price {
+    @apply gap-y-1;
+  }
+
+  .ad-card-amount-label {
+    @apply flex-row items-center gap-x-1;
   }
 
   .ad-card-amount-group {
     @apply flex-row items-baseline;
   }
 
-  .ad-card-limits {
-    @apply flex gap-y-1;
-  }
-
-  .ad-card-limits-row {
-    @apply flex-row items-baseline gap-x-1;
-  }
-
   .ad-card-content-right {
-    @apply flex items-end justify-end gap-y-1;
+    @apply flex items-end justify-end gap-y-3;
   }
 
   .ad-card-release-time {
@@ -342,27 +327,22 @@
   }
 
   .ad-card-footer {
-    @apply flex-row justify-between;
+    @apply gap-y-2;
   }
 
-  .ad-card-footer-action {
-    @apply flex-row-reverse;
+  .ad-card-pay-methods {
+    @apply flex-row items-center gap-x-2;
   }
 
-  .ad-card-payment-methods {
-    @apply flex-row items-center gap-x-1;
+  .ad-card-btn-wrapper {
+    @apply flex-row items-center justify-center;
   }
-
-  .ad-card-footer-btn {
+  .ad-card-btn {
     @apply justify-center rounded-lg px-8 py-2;
   }
 
-  .ad-card-footer-btn-wrapper {
-    @apply flex-row items-center justify-center;
-  }
-
-  .ad-card-footer-btn-label {
-    @apply font-clashDisplay-medium text-base text-base-white;
+  .ad-card-btn-label {
+    @apply font-clashDisplay-medium text-sm text-base-white;
   }
 
   .ad-card-txt {
@@ -378,6 +358,14 @@
   }
 
   .ad-card-txt-muted-semi {
-    @apply font-satoshi-medium text-neutral dark:text-neutral;
+    @apply font-satoshi-bold text-neutral dark:text-neutral;
+  }
+
+  .ad-card-badge-txt {
+    @apply rounded-sm bg-base-surface-light px-2 py-1 text-xs tracking-wide text-base-on-surface-light dark:bg-base-surface-dark dark:text-base-white;
+  }
+
+  .pay-method-badge {
+    @apply flex-row items-center gap-x-1 rounded-md bg-base-surface-light px-2 py-1 dark:bg-base-surface-dark;
   }
 }

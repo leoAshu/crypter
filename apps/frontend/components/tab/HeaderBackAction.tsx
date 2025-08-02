@@ -5,13 +5,15 @@ import { Image, Platform, Pressable, useColorScheme, View } from 'react-native';
 
 const HeaderBackAction = (props: HeaderBackActionProps) => {
   const isDark = useColorScheme() === 'dark';
-  const containerStyle = Platform.select({
-    ios: 'pl-4',
-    android: 'pl-4 ml-[-4px]',
-  });
+  const containerStyle =
+    props.containerStyle ??
+    Platform.select({
+      ios: 'pl-4',
+      android: 'pl-4',
+    });
 
   return (
-    <View className={cn(containerStyle, props.containerStyle)}>
+    <View className={cn(containerStyle)}>
       <Pressable
         onPress={() => {
           if (props.onPress) return props.onPress();
@@ -19,11 +21,7 @@ const HeaderBackAction = (props: HeaderBackActionProps) => {
           if (router.canGoBack()) return router.back();
         }}
       >
-        <Image
-          source={isDark ? icons.dark.arrowLeft : icons.light.arrowLeft}
-          className='size-10'
-          resizeMode='contain'
-        />
+        <Image source={isDark ? icons.dark.arrowLeft : icons.light.arrowLeft} className='size-8' resizeMode='contain' />
       </Pressable>
     </View>
   );
