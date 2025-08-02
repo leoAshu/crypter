@@ -72,10 +72,7 @@ const Signup = () => {
           </View>
         </ScrollView>
         {/* Socials & Footer */}
-        <View
-          className='form-group bg-base-white dark:bg-base-black'
-          style={{ position: 'absolute', bottom: 0, left: 10, right: 10 }}
-        >
+        <View className='footer-socials'>
           <View className='divider-row'>
             <View className='divider-line' />
             <Text className='divider-txt'>{Strings.signup.OR_CONTINUE_WITH}</Text>
