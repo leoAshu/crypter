@@ -1,4 +1,5 @@
 import { icons } from '@/assets';
+import { ComponentStrings } from '@/constants';
 import { cryptoLabels } from '@/models';
 import { capitalizeWords, currencyFormatter, formatDateTime } from '@/utils';
 import cn from 'clsx';
@@ -48,7 +49,7 @@ const OrderCard = (props: OrderCardProps) => {
         <View className='order-card-content-left'>
           <View className='order-card-content-left-row'>
             <View className={cn(Platform.select({ ios: 'w-16', android: 'w-20' }))}>
-              <Text className='font-satoshi-medium text-sm text-neutral'>Price</Text>
+              <Text className='font-satoshi-medium text-sm text-neutral'>{ComponentStrings.OrderCard.PRICE_LABEL}</Text>
             </View>
 
             <Text className='font-satoshi-medium text-sm text-neutral-700 dark:text-neutral-300'>
@@ -58,7 +59,9 @@ const OrderCard = (props: OrderCardProps) => {
 
           <View className='order-card-content-left-row'>
             <View className={cn(Platform.select({ ios: 'w-16', android: 'w-20' }))}>
-              <Text className='font-satoshi-medium text-sm text-neutral'>Quantity</Text>
+              <Text className='font-satoshi-medium text-sm text-neutral'>
+                {ComponentStrings.OrderCard.QUANTITY_LABEL}
+              </Text>
             </View>
             <Text className='font-satoshi-medium text-sm text-neutral-700 dark:text-neutral-300'>
               {props.order.quantity}
@@ -67,7 +70,7 @@ const OrderCard = (props: OrderCardProps) => {
 
           <View className='order-card-content-left-row'>
             <View className={cn(Platform.select({ ios: 'w-16', android: 'w-20' }))}>
-              <Text className='font-satoshi-medium text-sm text-neutral'>Order</Text>
+              <Text className='font-satoshi-medium text-sm text-neutral'>{ComponentStrings.OrderCard.ORDER_LABEL}</Text>
             </View>
             <View className='order-card-id-copy-group'>
               <View className='w-32'>
@@ -117,6 +120,7 @@ const OrderCard = (props: OrderCardProps) => {
                     : icons.light.verify
               }
               className='size-5'
+              resizeMode='contain'
             />
             <Text className='font-clashDisplay-medium text-sm text-neutral'>{props.order.counterparty.name}</Text>
           </View>

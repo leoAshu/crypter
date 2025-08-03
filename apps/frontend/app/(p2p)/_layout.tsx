@@ -1,5 +1,5 @@
 import { icons, images } from '@/assets';
-import { HeaderActionIcon, HeaderBackAction, TabBarIcon } from '@/components';
+import { BackIconButton, HeaderActionIcon, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Tabs } from 'expo-router';
@@ -56,7 +56,7 @@ const P2PLayout = () => {
                 }
               />
             ),
-            headerLeft: () => <HeaderBackAction />,
+            headerLeft: () => <BackIconButton />,
           }}
         />
 
@@ -79,7 +79,7 @@ const P2PLayout = () => {
                 }
               />
             ),
-            headerLeft: () => <HeaderBackAction />,
+            headerLeft: () => <BackIconButton />,
           }}
         />
 
@@ -102,7 +102,7 @@ const P2PLayout = () => {
                 }
               />
             ),
-            headerLeft: () => <HeaderBackAction />,
+            headerLeft: () => <BackIconButton />,
             headerRight: () => <HeaderActionIcon icon={images.plus} containerStyle='mr-8' />,
           }}
         />

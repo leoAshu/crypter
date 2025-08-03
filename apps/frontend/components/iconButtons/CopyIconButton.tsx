@@ -1,4 +1,5 @@
 import { icons } from '@/assets';
+import { ToastStrings } from '@/constants';
 import cn from 'clsx';
 import { useState } from 'react';
 import { Image, Pressable, useColorScheme } from 'react-native';
@@ -12,8 +13,8 @@ const CopyIconButton = () => {
     setCopied(true);
     Toast.show({
       type: 'success',
-      text1: 'Success',
-      text2: 'Order ID copied to clipboard.',
+      text1: ToastStrings.Success.TITLE,
+      text2: ToastStrings.Success.COPY_ORDER_ID,
       position: 'bottom',
       bottomOffset: 112,
       autoHide: true,
@@ -32,7 +33,7 @@ const CopyIconButton = () => {
 
   return (
     <Pressable onPress={handlePress}>
-      <Image source={iconSource} className={cn('size-5', isDark ? 'opacity-45' : 'opacity-55')} />
+      <Image source={iconSource} className={cn('size-5', isDark ? 'opacity-45' : 'opacity-55')} resizeMode='contain' />
     </Pressable>
   );
 };

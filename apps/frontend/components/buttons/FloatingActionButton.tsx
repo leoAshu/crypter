@@ -3,7 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Image, Platform, Pressable, useColorScheme, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-const FloatingActionTabButton = (props: FloatingActionTabButtonProps) => {
+const FloatingActionButton = (props: FloatingActionButtonProps) => {
   const isIOS = Platform.OS === 'ios';
   const isDark = useColorScheme() === 'dark';
 
@@ -82,4 +82,4 @@ const FloatingActionTabButton = (props: FloatingActionTabButtonProps) => {
   );
 };
 
-export default FloatingActionTabButton;
+export default FloatingActionButton;

@@ -1,5 +1,5 @@
 import { icons } from '@/assets';
-import { FloatingActionTabButton, TabBarIcon } from '@/components';
+import { FloatingActionButton, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, Tabs } from 'expo-router';
@@ -100,7 +100,7 @@ const TabLayout = () => {
       )}
 
       <View className='absolute-bottom-fab'>
-        <FloatingActionTabButton icon={icons.exchange} onPress={() => router.push('/(p2p)')} />
+        <FloatingActionButton icon={icons.exchange} onPress={() => router.push('/(p2p)')} />
       </View>
     </View>
   );

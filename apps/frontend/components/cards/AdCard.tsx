@@ -1,4 +1,5 @@
 import { icons } from '@/assets';
+import { ComponentStrings } from '@/constants';
 import { cryptoLabels } from '@/models';
 import { capitalizeWords, currencyFormatter } from '@/utils';
 import cn from 'clsx';
@@ -40,7 +41,7 @@ const AdCard = (props: AdCardProps) => {
         <View className='ad-card-content-left py-1.5'>
           <View className='ad-card-price'>
             <View className='ad-card-amount-label'>
-              <Text className='ad-card-txt-muted text-sm'>Price per unit </Text>
+              <Text className='ad-card-txt-muted text-sm'>{ComponentStrings.AdCard.UNIT_PRICE_LABEL}</Text>
               <View className='ad-card-header-badge-bg'>
                 <Text className='ad-card-header-badge-txt'>{cryptoLabels[props.ad.cryptoId]}</Text>
               </View>
@@ -64,7 +65,8 @@ const AdCard = (props: AdCardProps) => {
                 resizeMode='contain'
               />
               <Text className='ad-card-txt-muted text-xs'>
-                {currencyFormatter.format(props.ad.user.trades).split('.')[0]} Trades
+                {currencyFormatter.format(props.ad.user.trades).split('.')[0]}{' '}
+                {ComponentStrings.AdCard.STATS_TRADES_SUFFIX}
               </Text>
             </View>
 
@@ -74,7 +76,10 @@ const AdCard = (props: AdCardProps) => {
                 className='size-5'
                 resizeMode='contain'
               />
-              <Text className='ad-card-txt-muted text-xs'>{props.ad.user.successRate.toFixed(0)}% Completion</Text>
+              <Text className='ad-card-txt-muted text-xs'>
+                {props.ad.user.successRate.toFixed(0)}
+                {ComponentStrings.AdCard.STATS_COMPLETION_SUFFIX}
+              </Text>
             </View>
           </View>
         </View>

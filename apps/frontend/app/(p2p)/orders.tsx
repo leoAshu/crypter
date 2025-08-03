@@ -1,6 +1,6 @@
 import { ChipFilter, DividerX, OrderCard, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
-import { getFilteredOrders, orders } from '@/models';
+import { getFilteredOrders } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
@@ -11,7 +11,9 @@ const Orders = () => {
   const [orderType, setOrderType] = useState<OrderType>('pending');
   const [pendingOrderType, setPendingOrderType] = useState<PendingOrderType>('all');
   const [completedOrderType, setCompletedOrderType] = useState<CompletedOrderType>('all');
-  const [ordersList, setOrdersList] = useState<Order[]>(orders);
+  const [ordersList, setOrdersList] = useState<Order[]>(
+    getFilteredOrders(orderType, orderType === 'pending' ? pendingOrderType : completedOrderType),
+  );
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',

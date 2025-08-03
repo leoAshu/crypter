@@ -3,7 +3,7 @@ import cn from 'clsx';
 import { router } from 'expo-router';
 import { Image, Platform, Pressable, useColorScheme, View } from 'react-native';
 
-const HeaderBackAction = (props: HeaderBackActionProps) => {
+const BackIconButton = (props: BackIconButtonProps) => {
   const isDark = useColorScheme() === 'dark';
   const containerStyle =
     props.containerStyle ??
@@ -15,6 +15,7 @@ const HeaderBackAction = (props: HeaderBackActionProps) => {
   return (
     <View className={cn(containerStyle)}>
       <Pressable
+        hitSlop={10}
         onPress={() => {
           if (props.onPress) return props.onPress();
 
@@ -27,4 +28,4 @@ const HeaderBackAction = (props: HeaderBackActionProps) => {
   );
 };
 
-export default HeaderBackAction;
+export default BackIconButton;
