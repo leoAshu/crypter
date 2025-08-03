@@ -74,6 +74,7 @@ const Strings = {
   },
   postAd: {
     HEADER_TITLE: 'Post Adverts',
+    EMPTY_STATE: 'No ads available',
   },
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',

@@ -1,10 +1,11 @@
-import { AdCard, ChipFilter, DividerX, ToggleButton } from '@/components';
-import { screenContentWrapperStyle } from '@/constants';
+import { AdCard, ChipFilter, DividerX, PrimaryButton, ToggleButton } from '@/components';
+import { screenContentWrapperStyle, Strings } from '@/constants';
 import { cryptoLabels, cryptoOptions, getAdById } from '@/models';
 import { useAuthStore } from '@/store';
 import cn from 'clsx';
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { FlatList, Platform, useColorScheme, View } from 'react-native';
+import { FlatList, Platform, Text, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyAdvert = () => {
@@ -22,6 +23,15 @@ const MyAdvert = () => {
   useEffect(() => {
     setAdsList(getAdById(user?.user_metadata?.name || '', adType, crypto));
   }, [adType, crypto, user?.user_metadata?.name]);
+
+  const EmptyState = () => (
+    <View className='flex-1 items-center justify-center py-20'>
+      <Text className={cn('header-txt', isDark ? 'text-base-white' : 'text-base-black')}>
+        {Strings.postAd.EMPTY_STATE}
+      </Text>
+      <PrimaryButton title='Post Advert' onPress={() => router.push('/(p2p)/(advert)/post')} />
+    </View>
+  );
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -51,6 +61,7 @@ const MyAdvert = () => {
           renderItem={({ item, index }) => <AdCard ad={item} index={index} animationStyle='fadeFloatUp' />}
           ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}
           ListFooterComponent={() => <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}
+          ListEmptyComponent={EmptyState}
         />
       </View>
     </SafeAreaView>
