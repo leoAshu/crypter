@@ -77,4 +77,7 @@ const Strings = {
   },
 };
 
-export default Strings;
+export * from './alert';
+export * from './components';
+export * from './toast';
+export { Strings };

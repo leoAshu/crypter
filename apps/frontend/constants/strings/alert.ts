@@ -14,4 +14,4 @@ const AlertStrings = {
   },
 };
 
-export default AlertStrings;
+export { AlertStrings };

@@ -27,7 +27,6 @@ const icons = {
     // Header
     arrowLeft: require('./icons/light/arrow-left.png'),
     tickSquare: require('./icons/light/tick-square.png'),
-    clock: require('./icons/light/clock.png'),
 
     // Menu
     arrowRight: require('./icons/light/arrow-right.png'),
@@ -36,6 +35,19 @@ const icons = {
     verify: require('./icons/light/verify.png'),
     money: require('./icons/light/money.png'),
     messageQuestion: require('./icons/light/message-question.png'),
+
+    // AdCard
+    clock: require('./icons/light/clock.png'),
+
+    // OrderCard
+    verifyGold: require('./icons/light/verify-gold.png'),
+    copy: require('./icons/light/copy.png'),
+    copySuccess: require('./icons/light/copy-success.png'),
+
+    // Toast
+    closeCircle: require('./icons/light/close-circle.png'),
+    infoCircle: require('./icons/light/info-circle.png'),
+    tickCircle: require('./icons/light/tick-circle.png'),
 
     // Active Tab
     active: {
@@ -61,7 +73,6 @@ const icons = {
     // Header
     arrowLeft: require('./icons/dark/arrow-left.png'),
     tickSquare: require('./icons/dark/tick-square.png'),
-    clock: require('./icons/dark/clock.png'),
 
     // Menu
     arrowRight: require('./icons/dark/arrow-right.png'),
@@ -70,6 +81,19 @@ const icons = {
     verify: require('./icons/dark/verify.png'),
     money: require('./icons/dark/money.png'),
     messageQuestion: require('./icons/dark/message-question.png'),
+
+    // AdCard
+    clock: require('./icons/dark/clock.png'),
+
+    // OrderCard
+    verifyGold: require('./icons/dark/verify-gold.png'),
+    copy: require('./icons/dark/copy.png'),
+    copySuccess: require('./icons/dark/copy-success.png'),
+
+    // Toast
+    closeCircle: require('./icons/dark/close-circle.png'),
+    infoCircle: require('./icons/dark/info-circle.png'),
+    tickCircle: require('./icons/dark/tick-circle.png'),
 
     // Active Tab
     active: {

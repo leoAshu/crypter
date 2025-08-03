@@ -107,7 +107,7 @@ interface TabBarIconProps {
 }
 
 /** Props for a floating action tab button */
-interface FloatingActionTabButtonProps {
+interface FloatingActionButtonProps {
   icon: ImageSourcePropType;
   onPress?: () => void;
 }
@@ -145,7 +145,7 @@ interface DividerXProps {
   style?: string;
 }
 
-interface HeaderBackActionProps {
+interface BackIconButtonProps {
   containerStyle?: string;
   onPress?: () => void;
 }
@@ -155,4 +155,9 @@ interface ChipFilterProps<T extends string> {
   options: T[];
   labels?: Record<T, string>;
   onChange?: (value: T) => void;
+}
+
+interface OrderCardProps {
+  index: number;
+  order: Order;
 }

@@ -7,7 +7,7 @@ const HeaderActionIcon = (props: HeaderActionIconProps) => {
 
   return (
     <View className={cn('app-header-icon-wrapper', props.containerStyle)}>
-      <Pressable onPress={props.onPress}>
+      <Pressable onPress={props.onPress} hitSlop={10}>
         <Image
           className={iconStyle}
           source={props.icon}

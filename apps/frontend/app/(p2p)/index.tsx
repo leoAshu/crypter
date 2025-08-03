@@ -1,6 +1,6 @@
 import { AdCard, ChipFilter, DividerX, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
-import { ads, cryptoLabels, cryptoOptions, getFilteredAds } from '@/models';
+import { cryptoLabels, cryptoOptions, getFilteredAds } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
@@ -10,7 +10,7 @@ const Home = () => {
   const isDark = useColorScheme() === 'dark';
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOptions>('all');
-  const [adsList, setAdsList] = useState(ads);
+  const [adsList, setAdsList] = useState<Ad[]>(getFilteredAds(adType, crypto));
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',

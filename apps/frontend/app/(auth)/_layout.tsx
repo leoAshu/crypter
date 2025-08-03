@@ -1,4 +1,4 @@
-import { HeaderBackAction } from '@/components';
+import { BackIconButton } from '@/components';
 import { Stack } from 'expo-router';
 import { Platform, useColorScheme } from 'react-native';
 
@@ -24,7 +24,7 @@ const AuthLayout = () => {
         name='(signup)/info'
         options={{
           headerTitle: '',
-          headerLeft: () => <HeaderBackAction containerStyle={containerStyle} />,
+          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
         }}
       />
     </Stack>

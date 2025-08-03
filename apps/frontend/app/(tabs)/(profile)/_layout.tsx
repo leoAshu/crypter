@@ -1,5 +1,5 @@
 import { images } from '@/assets';
-import { HeaderActionIcon, HeaderBackAction } from '@/components';
+import { BackIconButton, HeaderActionIcon } from '@/components';
 import { Strings } from '@/constants';
 import { router, Stack } from 'expo-router';
 import { Platform, useColorScheme } from 'react-native';
@@ -31,7 +31,7 @@ const ProfileLayout = () => {
         name='index'
         options={{
           title: Strings.profile.HEADER_TITLE,
-          headerLeft: () => <HeaderBackAction containerStyle={containerStyle} />,
+          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
           headerRight: () => (
             <HeaderActionIcon
               icon={images.edit}
@@ -45,7 +45,7 @@ const ProfileLayout = () => {
         name='edit'
         options={{
           title: Strings.editProfile.HEADER_TITLE,
-          headerLeft: () => <HeaderBackAction containerStyle={containerStyle} />,
+          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
         }}
       />
     </Stack>

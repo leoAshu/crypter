@@ -42,6 +42,24 @@ const capitalizeWords = (input: string): string => {
     .join(' ');
 };
 
+const formatDateTime = (isoString: string): string => {
+  const date = new Date(isoString);
+
+  return (
+    date.getFullYear() +
+    '-' +
+    String(date.getMonth() + 1).padStart(2, '0') +
+    '-' +
+    String(date.getDate()).padStart(2, '0') +
+    ' ' +
+    String(date.getHours()).padStart(2, '0') +
+    ':' +
+    String(date.getMinutes()).padStart(2, '0') +
+    ':' +
+    String(date.getSeconds()).padStart(2, '0')
+  );
+};
+
 export * from './supabase';
 export * from './validations';
-export { capitalizeWords, currencyFormatter, formatPhoneNumber, getInitialsFromName };
+export { capitalizeWords, currencyFormatter, formatDateTime, formatPhoneNumber, getInitialsFromName };
