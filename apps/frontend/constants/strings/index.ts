@@ -72,6 +72,9 @@ const Strings = {
     TAB_TITLE: 'Adverts',
     HEADER_TITLE: 'My Adverts',
   },
+  postAd: {
+    HEADER_TITLE: 'Post Adverts',
+  },
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',
   },

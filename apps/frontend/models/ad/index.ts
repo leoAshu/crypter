@@ -4,6 +4,7 @@ const ads: Ad[] = [
   {
     id: 'ad-1',
     user: {
+      id: 'mano test',
       name: 'CryptoKing21',
       verified: true,
       badge: 'gold',
@@ -24,6 +25,7 @@ const ads: Ad[] = [
   {
     id: 'ad-2',
     user: {
+      id: 'StableBro',
       name: 'StableBro',
       verified: true,
       badge: 'purple',
@@ -44,6 +46,7 @@ const ads: Ad[] = [
   {
     id: 'ad-3',
     user: {
+      id: 'mano test',
       name: 'ShibaQueen',
       verified: false,
       badge: 'none',
@@ -64,6 +67,7 @@ const ads: Ad[] = [
   {
     id: 'ad-4',
     user: {
+      id: 'Dogelord9000',
       name: 'Dogelord9000',
       verified: true,
       badge: 'purple',
@@ -84,6 +88,7 @@ const ads: Ad[] = [
   {
     id: 'ad-5',
     user: {
+      id: 'WrappedWizard',
       name: 'WrappedWizard',
       verified: false,
       badge: 'none',
@@ -104,6 +109,7 @@ const ads: Ad[] = [
   {
     id: 'ad-6',
     user: {
+      id: 'InactiveInvestor',
       name: 'InactiveInvestor',
       verified: false,
       badge: 'none',
@@ -124,6 +130,7 @@ const ads: Ad[] = [
   {
     id: 'ad-7',
     user: {
+      id: 'SolMate',
       name: 'SolMate',
       verified: true,
       badge: 'gold',
@@ -144,6 +151,7 @@ const ads: Ad[] = [
   {
     id: 'ad-8',
     user: {
+      id: 'ZeroLiquidity',
       name: 'ZeroLiquidity',
       verified: true,
       badge: 'none',
@@ -164,6 +172,7 @@ const ads: Ad[] = [
   {
     id: 'ad-9',
     user: {
+      id: 'ETHGiant',
       name: 'ETHGiant',
       verified: true,
       badge: 'gold',
@@ -184,6 +193,7 @@ const ads: Ad[] = [
   {
     id: 'ad-10',
     user: {
+      id: 'DustSeller',
       name: 'DustSeller',
       verified: false,
       badge: 'none',
@@ -204,6 +214,7 @@ const ads: Ad[] = [
   {
     id: 'ad-11',
     user: {
+      id: 'BigETHBuyer',
       name: 'BigETHBuyer',
       verified: true,
       badge: 'gold',
@@ -224,6 +235,7 @@ const ads: Ad[] = [
   {
     id: 'ad-12',
     user: {
+      id: 'TetherGuy',
       name: 'TetherGuy',
       verified: false,
       badge: 'purple',
@@ -244,6 +256,7 @@ const ads: Ad[] = [
   {
     id: 'ad-13',
     user: {
+      id: 'SolScanner',
       name: 'SolScanner',
       verified: true,
       badge: 'gold',
@@ -264,6 +277,7 @@ const ads: Ad[] = [
   {
     id: 'ad-14',
     user: {
+      id: 'MemecoinBuyer',
       name: 'MemecoinBuyer',
       verified: false,
       badge: 'none',
@@ -284,6 +298,7 @@ const ads: Ad[] = [
   {
     id: 'ad-15',
     user: {
+      id: 'WrappedFan',
       name: 'WrappedFan',
       verified: true,
       badge: 'purple',
@@ -317,4 +332,20 @@ const getFilteredAds = (adType: AdType, crypto: CryptoOptions) => {
   });
 };
 
-export { ads, getFilteredAds };
+const getAdById = (id: string, adType: AdType, crypto: CryptoOptions) => {
+  return ads.filter((item) => {
+    if (item.user.id !== id) return false;
+
+    if (item.type !== adType) return false;
+
+    const cryptoMeta = getCryptoById(item.cryptoId);
+
+    if (!cryptoMeta || !cryptoMeta.isActive) return false;
+
+    if (crypto === 'all') return true;
+
+    return item.cryptoId === crypto;
+  });
+};
+
+export { ads, getAdById, getFilteredAds };

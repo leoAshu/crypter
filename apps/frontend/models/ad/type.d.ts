@@ -1,6 +1,7 @@
 interface Ad {
   id: string;
   user: {
+    id: string;
     name: string;
     verified: boolean;
     badge: 'purple' | 'gold' | 'none';
