@@ -13,6 +13,7 @@ const P2PLayout = () => {
     <View className='flex-1'>
       <Tabs
         screenOptions={() => ({
+          animation: 'none',
           headerTransparent: true,
           headerTitleAlign: 'center',
           tabBarShowLabel: false,

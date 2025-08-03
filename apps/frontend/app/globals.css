@@ -365,11 +365,87 @@
     @apply font-satoshi-bold text-neutral dark:text-neutral;
   }
 
-  .ad-card-badge-txt {
-    @apply rounded-sm bg-base-surface-light px-2 py-1 text-xs tracking-wide text-base-on-surface-light dark:bg-base-surface-dark dark:text-base-white;
+  .ad-card-header-badge-bg {
+    @apply rounded-sm bg-base-surface-light px-2 py-1 dark:bg-base-surface-dark;
+  }
+
+  .ad-card-header-badge-txt {
+    @apply font-satoshi text-xs tracking-widest text-base-on-surface-light dark:text-base-white;
   }
 
   .pay-method-badge {
     @apply flex-row items-center gap-x-1 rounded-md bg-base-surface-light px-2 py-1 dark:bg-base-surface-dark;
+  }
+
+  .order-card-wrapper {
+    @apply gap-y-4 px-2 pb-4 pt-2;
+  }
+
+  .order-card-header {
+    @apply flex-row justify-between;
+  }
+
+  .order-card-header-left {
+    @apply flex-row items-center;
+  }
+
+  .order-card-header-badge-bg {
+    @apply rounded-sm bg-base-surface-light px-2 py-1 dark:bg-base-surface-dark;
+  }
+
+  .order-card-header-badge-txt {
+    @apply font-clashDisplay text-xs tracking-widest text-base-on-surface-light dark:text-base-white;
+  }
+
+  .order-card-type-badge-bg {
+    @apply items-center justify-center rounded-sm bg-base-surface-light dark:bg-base-surface-dark;
+  }
+
+  .order-card-type-badge-txt {
+    @apply font-clashDisplay text-xs tracking-wider text-base-on-surface-light dark:text-base-white;
+  }
+
+  .order-card-content {
+    @apply flex-row items-end justify-between;
+  }
+
+  .order-card-content-left {
+    @apply justify-end gap-y-2;
+  }
+
+  .order-card-content-left-row {
+    @apply flex-row;
+  }
+
+  .order-card-id-copy-group {
+    @apply flex-row items-center gap-x-1;
+  }
+
+  .order-card-content-right {
+    @apply flex items-end gap-y-px;
+  }
+
+  .order-card-total-amount-group {
+    @apply flex-row items-baseline;
+  }
+
+  .order-card-footer {
+    @apply gap-y-2;
+  }
+
+  .order-card-footer-divider {
+    @apply my-px flex-row justify-center;
+  }
+
+  .order-card-footer-info {
+    @apply flex-row justify-between;
+  }
+
+  .order-card-cpty-info {
+    @apply flex-row items-center gap-x-1;
+  }
+
+  .order-card-date-time {
+    @apply flex-row gap-x-2;
   }
 }

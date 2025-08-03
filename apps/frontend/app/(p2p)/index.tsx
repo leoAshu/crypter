@@ -10,7 +10,7 @@ const Home = () => {
   const isDark = useColorScheme() === 'dark';
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOptions>('all');
-  const [adsList, setAdsList] = useState(ads);
+  const [adsList, setAdsList] = useState<Ad[]>(ads);
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',

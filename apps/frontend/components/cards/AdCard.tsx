@@ -41,7 +41,9 @@ const AdCard = (props: AdCardProps) => {
           <View className='ad-card-price'>
             <View className='ad-card-amount-label'>
               <Text className='ad-card-txt-muted text-sm'>Price per unit </Text>
-              <Text className='ad-card-txt-muted ad-card-badge-txt'>{cryptoLabels[props.ad.cryptoId]}</Text>
+              <View className='ad-card-header-badge-bg'>
+                <Text className='ad-card-header-badge-txt'>{cryptoLabels[props.ad.cryptoId]}</Text>
+              </View>
             </View>
 
             <View className='ad-card-amount-group'>

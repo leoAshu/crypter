@@ -156,3 +156,8 @@ interface ChipFilterProps<T extends string> {
   labels?: Record<T, string>;
   onChange?: (value: T) => void;
 }
+
+interface OrderCardProps {
+  index: number;
+  order: Order;
+}

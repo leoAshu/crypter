@@ -13,6 +13,7 @@ const TabLayout = () => {
     <View className='flex-1'>
       <Tabs
         screenOptions={() => ({
+          animation: 'none',
           headerTransparent: true,
           headerShown: false,
           headerTitleAlign: 'center',
