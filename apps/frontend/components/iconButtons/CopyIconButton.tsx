@@ -12,11 +12,14 @@ const CopyIconButton = () => {
     setCopied(true);
     Toast.show({
       type: 'success',
-      text1: 'Copied!',
+      text1: 'Success',
       text2: 'Order ID copied to clipboard.',
       position: 'bottom',
+      bottomOffset: 112,
+      autoHide: true,
+      visibilityTime: 1500,
+      onHide: () => setCopied(false),
     });
-    setTimeout(() => setCopied(false), 1500);
   };
 
   const iconSource = !copied

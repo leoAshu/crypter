@@ -1,3 +1,4 @@
+import toastConfig from '@/components/toasts';
 import { useCustomFonts } from '@/hooks';
 import { Stack } from 'expo-router';
 import Toast from 'react-native-toast-message';
@@ -14,7 +15,7 @@ const RootLayout = () => {
           headerShown: false,
         }}
       />
-      <Toast />
+      <Toast config={toastConfig} />
     </>
   );
 };
