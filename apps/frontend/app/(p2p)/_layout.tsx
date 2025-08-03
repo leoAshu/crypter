@@ -2,12 +2,14 @@ import { icons, images } from '@/assets';
 import { BackIconButton, HeaderActionIcon, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Tabs } from 'expo-router';
+import { router, Tabs, useSegments } from 'expo-router';
 import { Platform, useColorScheme, View } from 'react-native';
 
 const P2PLayout = () => {
   const isDark = useColorScheme() === 'dark';
   const isIOS = Platform.OS === 'ios';
+  const segments = useSegments();
+  const isPostRoute = (segments as string[]).includes('post');
 
   return (
     <View className='flex-1'>
@@ -84,9 +86,9 @@ const P2PLayout = () => {
         />
 
         <Tabs.Screen
-          name='myAds'
+          name='(advert)'
           options={{
-            title: Strings.myAds.HEADER_TITLE,
+            title: isPostRoute ? Strings.postAd.HEADER_TITLE : Strings.myAds.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
@@ -103,7 +105,13 @@ const P2PLayout = () => {
               />
             ),
             headerLeft: () => <BackIconButton />,
-            headerRight: () => <HeaderActionIcon icon={images.plus} containerStyle='mr-8' />,
+            headerRight: () => (
+              <HeaderActionIcon
+                icon={images.plus}
+                containerStyle='mr-8'
+                onPress={() => router.push('/(p2p)/(advert)/post')} // Add navigation
+              />
+            ),
           }}
         />
       </Tabs>
