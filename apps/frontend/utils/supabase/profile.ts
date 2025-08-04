@@ -9,7 +9,7 @@ const createProfile = async (profile: Profile) => {
   return data;
 };
 
-const getProfile = async (userId: string) => {
+const getProfile = async (userId: string): Promise<Profile> => {
   const { data, error } = await supabaseClient.from('profiles').select('*').eq('id', userId).single();
 
   if (error) throw new Error(error.message);
