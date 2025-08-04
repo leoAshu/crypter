@@ -37,9 +37,9 @@ const SignUpInfo = () => {
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <KeyboardAvoidingView className='flex-1' behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
-          <View style={{ height: Dimensions.get('screen').height / 3.5 }}>
+          <View style={{ height: Dimensions.get('screen').height / 3.8 }}>
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
           </View>
 

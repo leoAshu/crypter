@@ -3,8 +3,8 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
-    "start:clean": "expo start --clear",
+    "start": "expo start --offline",
+    "start:clean": "expo start --clear --offline",
     "prebuild": "npx expo prebuild",
     "android": "expo run:android",
     "ios": "expo run:ios",

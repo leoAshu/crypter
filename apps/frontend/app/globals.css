@@ -209,7 +209,7 @@
   }
 
   .footer-socials {
-    @apply absolute bottom-8 left-2.5 right-2.5 gap-y-4 bg-base-white pb-4 dark:bg-base-black;
+    @apply absolute bottom-16 left-2.5 right-2.5 gap-y-4 bg-base-white pb-4 dark:bg-base-black;
   }
 
   /* ──────────────────────────────
