@@ -22,3 +22,10 @@ interface ProfileState {
   updateProfile: (userId: string, updates: Partial<Profile>) => Promise<void>;
   resetProfile: () => void;
 }
+
+interface CryptoState {
+  cryptos: Crypto[];
+  isLoading: boolean;
+
+  fetchCryptos: () => Promise<void>;
+}

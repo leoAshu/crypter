@@ -1,5 +1,6 @@
 import { getUser, signIn, signOut, signUp } from '@/utils';
 import { create } from 'zustand';
+import useCryptoStore from './cryptos.store';
 import useProfileStore from './profile.store';
 
 const useAuthStore = create<AuthState>((set) => ({
@@ -26,6 +27,8 @@ const useAuthStore = create<AuthState>((set) => ({
           avatarUrl: '',
           createdAt: user.created_at,
         };
+
+        await useCryptoStore.getState().fetchCryptos();
         await useProfileStore.getState().createProfile(profile);
         set({ isAuthenticated: true, user: user });
       } else {
@@ -47,6 +50,7 @@ const useAuthStore = create<AuthState>((set) => ({
       const user = await getUser();
 
       if (user) {
+        await useCryptoStore.getState().fetchCryptos();
         await useProfileStore.getState().fetchProfile(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
@@ -82,6 +86,7 @@ const useAuthStore = create<AuthState>((set) => ({
       const user = await getUser();
 
       if (user) {
+        await useCryptoStore.getState().fetchCryptos();
         await useProfileStore.getState().fetchProfile(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
