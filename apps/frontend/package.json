@@ -11,7 +11,13 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\""
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "dev:build": "npx eas build -p all --profile preview",
+    "prod:build": "npx eas build -p all --profile production",
+    "dev:build:ipa": "npx eas build -p ios --profile preview",
+    "prod:build:ipa": "npx eas build -p ios --profile production",
+    "dev:build:apk": "npx eas build -p android --profile preview",
+    "prod:build:apk": "npx eas build -p android --profile production"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
