@@ -6,7 +6,13 @@
     "dev:server": "",
     "dev": "npm-run-all --parallel dev:*",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\""
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "dev:build": "cd apps/frontend && npm run dev:build",
+    "prod:build": "cd apps/frontend && npm run prod:build",
+    "dev:build:ipa": "cd apps/frontend && npm run dev:build:ipa",
+    "prod:build:ipa": "cd apps/frontend && npm run prod:build:ipa",
+    "dev:build:apk": "cd apps/frontend && npm run dev:build:apk",
+    "prod:build:apk": "cd apps/frontend && npm run prod:build:apk"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
