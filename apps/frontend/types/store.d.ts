@@ -1,15 +1,24 @@
 interface AuthState {
-  isAuthenticated: boolean;
-  isLoading: boolean;
   user: User;
+  isLoading: boolean;
+  isAuthenticated: boolean;
 
-  setIsAuthenticated: (value: boolean) => void;
-  setIsLoading: (value: boolean) => void;
   setUser: (user: User | null) => void;
+  setIsLoading: (value: boolean) => void;
+  setIsAuthenticated: (value: boolean) => void;
 
-  fetchAuthenticatedUser: () => Promise<void>;
-  updateProfile: (newInfo: UpdateUserParams) => Promise<void>;
-  signout: () => Promise<void>;
-  signin: (signInParams: SignInParams) => Promise<void>;
   signup: (signUpParams: SignUpParams) => Promise<void>;
+  signin: (signInParams: SignInParams) => Promise<void>;
+  signout: () => Promise<void>;
+  fetchAuthenticatedUser: () => Promise<void>;
+}
+
+interface ProfileState {
+  profile: Profile | null;
+  isLoading: boolean;
+
+  createProfile: (profile: Profile) => Promise<void>;
+  fetchProfile: (userId: string) => Promise<void>;
+  updateProfile: (userId: string, updates: Partial<Profile>) => Promise<void>;
+  resetProfile: () => void;
 }

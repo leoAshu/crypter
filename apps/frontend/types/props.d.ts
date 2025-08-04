@@ -58,8 +58,7 @@ interface InputFieldProps {
 /** Props for displaying account information like name and join date */
 interface AccountInfoProps {
   name: string;
-  gender: string;
-  yearSignedUp: string;
+  username: string;
 }
 
 /** Allowed size variants for avatar components */

@@ -1,36 +1,33 @@
 import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, screenContentWrapperStyle, Strings } from '@/constants';
-import { useAuthStore } from '@/store';
-import { formatPhoneNumber, validateEmail, validateName, validatePhone } from '@/utils';
+import { useAuthStore, useProfileStore } from '@/store';
+import { formatPhoneNumber, validateName } from '@/utils';
 import cn from 'clsx';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Edit = () => {
-  const { isLoading, user, updateProfile: updateUserProfile } = useAuthStore();
-  const [formData, setFormData] = useState<UpdateUserParams>(user?.user_metadata);
+  const { user } = useAuthStore();
+  const { isLoading, profile, updateProfile } = useProfileStore();
+  const [formData, setFormData] = useState<Partial<Profile>>(profile ?? {});
 
   const updateInfo = (key: string, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
-  const hasChanged = Object.entries(user?.user_metadata).some(
+  const hasChanged = Object.entries(profile ?? {}).some(
     ([key, value]) => formData[key as keyof typeof formData] !== value,
   );
 
   const saveInfo = async () => {
-    const { name, email, phone } = formData;
-    const nameValidationResult = validateName(name);
-    const emailValidationResult = validateEmail(email);
-    const phoneValidationResult = validatePhone(phone);
+    const { name } = formData;
+    const nameValidationResult = validateName(name!);
 
     if (!nameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, nameValidationResult.error);
-    if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);
-    if (!phoneValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, phoneValidationResult.error);
 
     try {
-      await updateUserProfile(formData);
+      await updateProfile(user?.id, formData);
       Alert.alert(AlertStrings.TITLE.SUCCESS, AlertStrings.MSG.PROFILE_UPDATE_SUCCESS);
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);
@@ -43,7 +40,7 @@ const Edit = () => {
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View className={cn('content-wrapper mt-20', screenContentWrapperStyle)}>
             <View className='items-center'>
-              <InitialsAvatar name={user?.user_metadata.name} size='lg' />
+              <InitialsAvatar name={profile?.name ?? ''} size='lg' />
             </View>
 
             <View className='form-group mt-4'>
@@ -53,19 +50,15 @@ const Edit = () => {
                 disabled={isLoading}
                 onChangeText={(value) => updateInfo('name', value)}
               />
-              <InputField
-                label={Strings.editProfile.EMAIL_LABEL}
-                value={formData.email}
-                disabled={isLoading}
-                onChangeText={(value) => updateInfo('email', value)}
-              />
+
+              <InputField label={Strings.editProfile.EMAIL_LABEL} value={user?.user_metadata.email} disabled={true} />
+
               <InputField
                 label={Strings.editProfile.PHONE_LABEL}
-                value={formatPhoneNumber(formData.phone)}
-                keyboardType='phone-pad'
-                disabled={isLoading}
-                onChangeText={(value) => updateInfo('phone', value)}
+                value={formatPhoneNumber(user?.user_metadata.phone)}
+                disabled={true}
               />
+
               <PrimaryButton
                 title={Strings.editProfile.SAVE_BTN_TITLE}
                 isLoading={isLoading}
