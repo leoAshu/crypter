@@ -15,7 +15,7 @@ const dbToProfileMap: Record<string, keyof Profile> = Object.entries(profileToDb
 );
 
 // camelCase → snake_case
-const convertToDbKeys = (obj: Partial<Profile>): Record<string, any> => {
+const convertProfileToDbKeys = (obj: Partial<Profile>): Record<string, any> => {
   return Object.entries(obj).reduce(
     (acc, [camelKey, value]) => {
       const snakeKey = profileToDbMap[camelKey as keyof Profile];
@@ -36,4 +36,4 @@ const convertToProfileKeys = (obj: Record<string, any>): Profile => {
   }, {} as Partial<Profile>) as Profile;
 };
 
-export { convertToDbKeys, convertToProfileKeys };
+export { convertProfileToDbKeys, convertToProfileKeys };

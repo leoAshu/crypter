@@ -1,4 +1,4 @@
-const cryptos: CryptoCurrency[] = [
+const cryptos: CryptoCurr[] = [
   // Native Layer 1s
   {
     id: 'btc',
@@ -103,7 +103,7 @@ const cryptoLabels: Record<string, string> = {
   ),
 };
 
-const getCryptoById = (id: string): CryptoCurrency | undefined => {
+const getCryptoById = (id: string): CryptoCurr | undefined => {
   return cryptos.find((c) => c.id === id);
 };
 
