@@ -1,5 +1,5 @@
 const Strings = {
-  appName: 'Dream Supplier',
+  appName: 'Crypter',
   login: {
     SCREEN_TITLE: "Let's sign you in!",
     EMAIL_LABEL: 'Email Address',

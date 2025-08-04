@@ -1,7 +1,7 @@
 import { icons } from '@/assets';
 import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
 import { AlertStrings, screenContentWrapperStyle, Strings } from '@/constants';
-import { useAuthStore } from '@/store';
+import { useAuthStore, useProfileStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -10,7 +10,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Profile = () => {
   const isDark = useColorScheme() === 'dark';
-  const { isLoading, user, signout } = useAuthStore();
+  const { profile } = useProfileStore();
+  const { isLoading, signout } = useAuthStore();
   const [infoTermFilter, setInfoTermFilter] = useState<TradingInfoTerm>('30d');
 
   const confirmLogout = async () => {
@@ -35,11 +36,7 @@ const Profile = () => {
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
         <View className={cn('content-wrapper pb-28', screenContentWrapperStyle)}>
-          <AccountInfo
-            name={user?.user_metadata?.name || ''}
-            gender={user?.user_metadata?.gender || ''}
-            yearSignedUp={user?.created_at || ''}
-          />
+          <AccountInfo name={profile?.name ?? ''} username={profile?.name ?? ''} />
 
           <DividerX />
 

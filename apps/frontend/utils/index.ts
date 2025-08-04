@@ -8,6 +8,8 @@ const getInitialsFromName = (name: string) => {
 };
 
 const formatPhoneNumber = (value: string) => {
+  if (!value) return value;
+
   // Remove all non-digit characters
   const digits = value.replace(/\D/g, '');
 

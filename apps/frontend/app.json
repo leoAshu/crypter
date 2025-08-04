@@ -17,7 +17,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.dream_supplier"
+      "package": "com.anonymous.crypter"
     },
     "web": {
       "bundler": "metro",
@@ -30,18 +30,21 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-light.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
           "dark": {
-            "image": "./assets/images/splash-dark.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#101018"
-          }
+            "image": "./assets/images/splash-dark.png"
+          },
+          "resizeMode": "cover"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "7309de78-cb60-41ec-aa94-6b29135fd24e"
+      }
     }
   }
 }

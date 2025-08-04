@@ -1,61 +1,38 @@
-import { getUser, signIn, signOut, signUp, updateUser } from '@/utils';
+import { getUser, signIn, signOut, signUp } from '@/utils';
 import { create } from 'zustand';
+import useProfileStore from './profile.store';
 
 const useAuthStore = create<AuthState>((set) => ({
+  user: null,
   isLoading: true,
   isAuthenticated: false,
-  user: null,
 
+  setUser: (user) => set({ user }),
   setIsLoading: (value) => set({ isLoading: value }),
   setIsAuthenticated: (value) => set({ isAuthenticated: value }),
-  setUser: (user) => set({ user }),
 
-  fetchAuthenticatedUser: async () => {
+  signup: async (signUpParams: SignUpParams) => {
     set({ isLoading: true });
 
     try {
+      await signUp({ ...signUpParams });
       const user = await getUser();
 
       if (user) {
+        const profile: Profile = {
+          id: user.id,
+          name: signUpParams.name,
+          verified: false,
+          avatarUrl: '',
+          createdAt: user.created_at,
+        };
+        await useProfileStore.getState().createProfile(profile);
         set({ isAuthenticated: true, user: user });
       } else {
         set({ isAuthenticated: false, user: null });
       }
     } catch (err) {
-      console.log('fetchAuthenticatedUser error', err);
-      set({ isAuthenticated: false });
-    } finally {
-      set({ isLoading: false });
-    }
-  },
-
-  updateProfile: async (newInfo: UpdateUserParams) => {
-    set({ isLoading: true });
-
-    try {
-      await updateUser({ ...newInfo });
-      const user = await getUser();
-      if (user) {
-        set({ user: user });
-      } else {
-        set({ isAuthenticated: false, user: null });
-      }
-    } catch (err) {
-      console.log('updateUserProfile error', err);
-      throw new Error(err as any);
-    } finally {
-      set({ isLoading: false });
-    }
-  },
-
-  signout: async () => {
-    set({ isLoading: true });
-
-    try {
-      await signOut();
-      set({ isAuthenticated: false, user: null });
-    } catch (err) {
-      console.log('logout error', err);
+      console.log('signup error', err);
       throw new Error(err as any);
     } finally {
       set({ isLoading: false });
@@ -68,7 +45,9 @@ const useAuthStore = create<AuthState>((set) => ({
     try {
       await signIn({ ...signInParams });
       const user = await getUser();
+
       if (user) {
+        await useProfileStore.getState().fetchProfile(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
         set({ isAuthenticated: false, user: null });
@@ -81,20 +60,37 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  signup: async (signUpParams: SignUpParams) => {
+  signout: async () => {
     set({ isLoading: true });
 
     try {
-      await signUp({ ...signUpParams });
+      await signOut();
+      useProfileStore.getState().resetProfile();
+      set({ isAuthenticated: false, user: null });
+    } catch (err) {
+      console.log('logout error', err);
+      throw new Error(err as any);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  fetchAuthenticatedUser: async () => {
+    set({ isLoading: true });
+
+    try {
       const user = await getUser();
+
       if (user) {
+        await useProfileStore.getState().fetchProfile(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
         set({ isAuthenticated: false, user: null });
+        useProfileStore.getState().resetProfile();
       }
     } catch (err) {
-      console.log('signup error', err);
-      throw new Error(err as any);
+      console.log('fetchAuthenticatedUser error', err);
+      set({ isAuthenticated: false });
     } finally {
       set({ isLoading: false });
     }
