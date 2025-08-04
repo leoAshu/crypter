@@ -17,7 +17,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.dream_supplier"
+      "package": "com.anonymous.crypter"
     },
     "web": {
       "bundler": "metro",
@@ -30,12 +30,8 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-light.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
           "dark": {
-            "image": "./assets/images/splash-dark.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#101018"
+            "image": "./assets/images/splash-dark.png"
           }
         }
       ]
