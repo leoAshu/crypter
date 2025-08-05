@@ -1,6 +1,6 @@
 import { getUser, signIn, signOut, signUp } from '@/utils';
 import { create } from 'zustand';
-import useCryptoStore from './cryptos.store';
+import useCryptoStore from './crypto.store';
 import useProfileStore from './profile.store';
 
 const useAuthStore = create<AuthState>((set) => ({

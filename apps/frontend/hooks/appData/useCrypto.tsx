@@ -1,4 +1,4 @@
-import useCryptoStore from '@/store/cryptos.store';
+import useCryptoStore from '@/store/crypto.store';
 
 const useCrypto = () => {
   const { cryptos } = useCryptoStore();
