@@ -9,11 +9,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
   const isDark = useColorScheme() === 'dark';
+
   const { filterAdsByType } = useAds();
+  const { cryptoOptions, cryptoLabels } = useCrypto();
+
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOption>('all');
   const [ads, setAds] = useState(filterAdsByType(adType, crypto));
-  const { cryptoOptions, cryptoLabels } = useCrypto();
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',

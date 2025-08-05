@@ -1,4 +1,4 @@
-import { fetchCryptos } from '@/utils';
+import { fetchCryptos } from '@/supabase';
 import { create } from 'zustand';
 
 const useCryptotore = create<CryptoState>((set) => ({

@@ -11,10 +11,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyAdvert = () => {
   const isDark = useColorScheme() === 'dark';
+
   const { user } = useAuthStore();
+  const { filterAdsByUserId } = useAds();
   const { cryptoOptions, cryptoLabels } = useCrypto();
 
-  const { filterAdsByUserId } = useAds();
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOption>('all');
   const [myAds, setMyAds] = useState(filterAdsByUserId(adType, crypto, user?.id ?? ''));
