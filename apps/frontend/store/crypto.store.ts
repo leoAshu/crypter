@@ -1,7 +1,7 @@
-import { fetchCryptos } from '@/utils';
+import { fetchCryptos } from '@/supabase';
 import { create } from 'zustand';
 
-const useCryptoStore = create<CryptoState>((set) => ({
+const useCryptotore = create<CryptoState>((set) => ({
   cryptos: [],
   isLoading: false,
 
@@ -20,4 +20,4 @@ const useCryptoStore = create<CryptoState>((set) => ({
   },
 }));
 
-export default useCryptoStore;
+export default useCryptotore;

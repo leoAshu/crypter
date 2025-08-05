@@ -1,9 +1,8 @@
 import { AdCard, ChipFilter, DividerX, PrimaryButton, ToggleButton } from '@/components';
 import { screenContentWrapperStyle, Strings } from '@/constants';
-import { useCrypto } from '@/hooks';
+import { useAds, useCrypto } from '@/hooks';
 import { CryptoOption } from '@/hooks/appData/useCrypto';
-import { getAdById } from '@/models';
-import { useAuthStore, useProfileStore } from '@/store';
+import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
@@ -12,14 +11,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyAdvert = () => {
   const isDark = useColorScheme() === 'dark';
+
   const { user } = useAuthStore();
-  const { profile } = useProfileStore();
+  const { filterAdsByUserId } = useAds();
   const { cryptoOptions, cryptoLabels } = useCrypto();
 
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOption>('all');
-  const [adsList, setAdsList] = useState<Ad[]>(getAdById(profile?.name ?? '', adType, crypto));
-  const isAdsEmpty = adsList.length === 0;
+  const [myAds, setMyAds] = useState(filterAdsByUserId(adType, crypto, user?.id ?? ''));
+  const isAdsEmpty = myAds.length === 0;
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
@@ -27,8 +27,8 @@ const MyAdvert = () => {
   });
 
   useEffect(() => {
-    setAdsList(getAdById(profile?.name ?? '', adType, crypto));
-  }, [adType, crypto, user?.user_metadata?.name]);
+    setMyAds(filterAdsByUserId(adType, crypto, user?.id ?? ''));
+  }, [adType, crypto]);
 
   const EmptyState = () => (
     <View className='items-center justify-center'>
@@ -60,7 +60,7 @@ const MyAdvert = () => {
         </View>
 
         <FlatList
-          data={adsList}
+          data={myAds}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
           contentContainerClassName={cn(!isAdsEmpty ? adsListStyle : 'flex-1 items-center justify-center pb-48')}

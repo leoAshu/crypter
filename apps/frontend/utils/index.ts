@@ -62,6 +62,5 @@ const formatDateTime = (isoString: string): string => {
   );
 };
 
-export * from './supabase';
 export * from './validations';
 export { capitalizeWords, currencyFormatter, formatDateTime, formatPhoneNumber, getInitialsFromName };

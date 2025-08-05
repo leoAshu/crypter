@@ -1,6 +1,7 @@
-import { getUser, signIn, signOut, signUp } from '@/utils';
+import { getUser, signIn, signOut, signUp } from '@/supabase';
 import { create } from 'zustand';
-import useCryptoStore from './crypto.store';
+import useCryptotore from './crypto.store';
+import useFiatStore from './fiat.store';
 import useProfileStore from './profile.store';
 
 const useAuthStore = create<AuthState>((set) => ({
@@ -28,7 +29,8 @@ const useAuthStore = create<AuthState>((set) => ({
           createdAt: user.created_at,
         };
 
-        await useCryptoStore.getState().fetchCryptos();
+        await useFiatStore.getState().fetchFiats();
+        await useCryptotore.getState().fetchCryptos();
         await useProfileStore.getState().createProfile(profile);
         set({ isAuthenticated: true, user: user });
       } else {
@@ -50,7 +52,8 @@ const useAuthStore = create<AuthState>((set) => ({
       const user = await getUser();
 
       if (user) {
-        await useCryptoStore.getState().fetchCryptos();
+        await useFiatStore.getState().fetchFiats();
+        await useCryptotore.getState().fetchCryptos();
         await useProfileStore.getState().fetchProfile(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
@@ -86,7 +89,8 @@ const useAuthStore = create<AuthState>((set) => ({
       const user = await getUser();
 
       if (user) {
-        await useCryptoStore.getState().fetchCryptos();
+        await useFiatStore.getState().fetchFiats();
+        await useCryptotore.getState().fetchCryptos();
         await useProfileStore.getState().fetchProfile(user.id);
         set({ isAuthenticated: true, user: user });
       } else {

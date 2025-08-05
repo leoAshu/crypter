@@ -1,4 +1,4 @@
-import { createProfile, getProfile, updateProfile } from '@/utils';
+import { createProfile, getProfile, updateProfile } from '@/supabase';
 import { create } from 'zustand';
 
 const useProfileStore = create<ProfileState>((set) => ({
