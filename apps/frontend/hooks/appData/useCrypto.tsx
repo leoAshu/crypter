@@ -1,7 +1,7 @@
-import useCryptoStore from '@/store/crypto.store';
+import useCryptotore from '@/store/crypto.store';
 
 const useCrypto = () => {
-  const { cryptos } = useCryptoStore();
+  const { cryptos } = useCryptotore();
 
   const cryptoOptions = ['all', ...cryptos.map((c) => c.id)];
 

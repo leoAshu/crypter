@@ -1,8 +1,7 @@
 import { AdCard, ChipFilter, DividerX, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
-import { useCrypto } from '@/hooks';
+import { useAds, useCrypto } from '@/hooks';
 import { CryptoOption } from '@/hooks/appData/useCrypto';
-import { getFilteredAds } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
@@ -10,10 +9,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
   const isDark = useColorScheme() === 'dark';
-  const { cryptoOptions, cryptoLabels } = useCrypto();
+  const { filterAdsByType } = useAds();
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOption>('all');
-  const [adsList, setAdsList] = useState<Ad[]>(getFilteredAds(adType, crypto));
+  const [ads, setAds] = useState(filterAdsByType(adType, crypto));
+  const { cryptoOptions, cryptoLabels } = useCrypto();
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
@@ -21,7 +21,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    setAdsList(getFilteredAds(adType, crypto));
+    setAds(filterAdsByType(adType, crypto));
   }, [adType, crypto]);
 
   return (
@@ -45,7 +45,7 @@ const Home = () => {
         </View>
 
         <FlatList
-          data={adsList}
+          data={ads}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
           contentContainerClassName={adsListStyle}
