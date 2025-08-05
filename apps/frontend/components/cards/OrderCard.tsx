@@ -1,6 +1,6 @@
 import { icons } from '@/assets';
 import { ComponentStrings } from '@/constants';
-import { cryptoLabels } from '@/models';
+import { useCrypto } from '@/hooks';
 import { capitalizeWords, currencyFormatter, formatDateTime } from '@/utils';
 import cn from 'clsx';
 import { Image, Platform, Text, useColorScheme, View } from 'react-native';
@@ -9,6 +9,7 @@ import { DividerX } from '../dividers';
 import { CopyIconButton } from '../iconButtons';
 
 const OrderCard = (props: OrderCardProps) => {
+  const { cryptoLabels } = useCrypto();
   const isDark = useColorScheme() === 'dark';
   const isBuy = props.order.type === 'buy';
   const isCanceled = props.order.subType === 'canceled';

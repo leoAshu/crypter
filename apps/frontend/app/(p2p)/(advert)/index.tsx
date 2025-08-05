@@ -1,7 +1,9 @@
 import { AdCard, ChipFilter, DividerX, PrimaryButton, ToggleButton } from '@/components';
 import { screenContentWrapperStyle, Strings } from '@/constants';
-import { cryptoLabels, cryptoOptions, getAdById } from '@/models';
-import { useAuthStore } from '@/store';
+import { useCrypto } from '@/hooks';
+import { CryptoOption } from '@/hooks/appData/useCrypto';
+import { getAdById } from '@/models';
+import { useAuthStore, useProfileStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
@@ -11,9 +13,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const MyAdvert = () => {
   const isDark = useColorScheme() === 'dark';
   const { user } = useAuthStore();
+  const { profile } = useProfileStore();
+  const { cryptoOptions, cryptoLabels } = useCrypto();
+
   const [adType, setAdType] = useState<AdType>('buy');
-  const [crypto, setCrypto] = useState<CryptoOptions>('all');
-  const [adsList, setAdsList] = useState<Ad[]>(getAdById(user?.user_metadata?.name || '', adType, crypto));
+  const [crypto, setCrypto] = useState<CryptoOption>('all');
+  const [adsList, setAdsList] = useState<Ad[]>(getAdById(profile?.name ?? '', adType, crypto));
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
@@ -21,7 +26,7 @@ const MyAdvert = () => {
   });
 
   useEffect(() => {
-    setAdsList(getAdById(user?.user_metadata?.name || '', adType, crypto));
+    setAdsList(getAdById(profile?.name ?? '', adType, crypto));
   }, [adType, crypto, user?.user_metadata?.name]);
 
   const EmptyState = () => (
