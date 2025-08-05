@@ -9,13 +9,13 @@ interface Ad {
     successRate: number;
     rating: number;
   };
-  pricePerUnit: number;
-  cryptoId: string; // e.g. "usdt-eth" or "btc"
+  price: number;
+  cryptoId: string; // e.g. "usdt" or "btc"
   currency: string; // e.g. "INR"
   minLimit: number;
   maxLimit: number;
   available: number;
-  payMethodIds: string[];
+  payMethods: string[];
   releaseTime: string;
   type: AdType;
 }

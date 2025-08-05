@@ -1,15 +1,15 @@
 import supabaseClient from './client';
-import { convertToDbKeys, convertToProfileKeys } from './mapUtils';
+import { convertProfileToDbKeys, convertToProfileKeys } from './mapUtils';
 
 const createProfile = async (profile: Profile) => {
-  const dbProfile = convertToDbKeys(profile);
+  const dbProfile = convertProfileToDbKeys(profile);
   const { data, error } = await supabaseClient.from('profiles').insert([dbProfile]).single();
 
   if (error) throw new Error(error.message);
   return data;
 };
 
-const getProfile = async (userId: string) => {
+const getProfile = async (userId: string): Promise<Profile> => {
   const { data, error } = await supabaseClient.from('profiles').select('*').eq('id', userId).single();
 
   if (error) throw new Error(error.message);
@@ -18,7 +18,7 @@ const getProfile = async (userId: string) => {
 };
 
 const updateProfile = async (userId: string, updates: Partial<Profile>) => {
-  const dbUpdates = convertToDbKeys(updates);
+  const dbUpdates = convertProfileToDbKeys(updates);
   const { data, error } = await supabaseClient.from('profiles').update(dbUpdates).eq('id', userId).single();
 
   if (error) throw new Error(error.message);
