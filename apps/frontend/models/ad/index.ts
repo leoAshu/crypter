@@ -223,7 +223,7 @@ const ads: Ad[] = [
       rating: 3.8,
     },
     price: 95,
-    cryptoId: 'usdt-sol',
+    cryptoId: 'usdt',
     currency: 'INR',
     minLimit: 100,
     maxLimit: 2000,

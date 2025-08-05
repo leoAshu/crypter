@@ -19,6 +19,7 @@ const MyAdvert = () => {
   const [adType, setAdType] = useState<AdType>('buy');
   const [crypto, setCrypto] = useState<CryptoOption>('all');
   const [adsList, setAdsList] = useState<Ad[]>(getAdById(profile?.name ?? '', adType, crypto));
+  const isAdsEmpty = adsList.length === 0;
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
@@ -30,7 +31,7 @@ const MyAdvert = () => {
   }, [adType, crypto, user?.user_metadata?.name]);
 
   const EmptyState = () => (
-    <View className='flex-1 items-center justify-center py-20'>
+    <View className='items-center justify-center'>
       <Text className={cn('header-txt', isDark ? 'text-base-white' : 'text-base-black')}>
         {Strings.postAd.EMPTY_STATE}
       </Text>
@@ -62,10 +63,10 @@ const MyAdvert = () => {
           data={adsList}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
-          contentContainerClassName={adsListStyle}
+          contentContainerClassName={cn(!isAdsEmpty ? adsListStyle : 'flex-1 items-center justify-center pb-48')}
           renderItem={({ item, index }) => <AdCard ad={item} index={index} animationStyle='fadeFloatUp' />}
           ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}
-          ListFooterComponent={() => <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}
+          ListFooterComponent={() => (!isAdsEmpty ? <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} /> : null)}
           ListEmptyComponent={EmptyState}
         />
       </View>
