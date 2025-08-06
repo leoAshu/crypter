@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import useCryptotore from './crypto.store';
 import useFiatStore from './fiat.store';
 import useProfileStore from './profile.store';
+import useStatStore from './stats.store';
 
 const useAuthStore = create<AuthState>((set) => ({
   user: null,
@@ -92,6 +93,7 @@ const useAuthStore = create<AuthState>((set) => ({
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
         await useProfileStore.getState().fetchProfile(user.id);
+        await useStatStore.getState().fetchStat(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
         set({ isAuthenticated: false, user: null });
