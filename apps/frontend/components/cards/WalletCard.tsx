@@ -4,6 +4,7 @@ import { currencyFormatter } from '@/utils';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Platform, Text, useColorScheme, View } from 'react-native';
+import { DividerX } from '../dividers';
 
 const WalletCard = (props: WalletCardProps) => {
   const isIOS = Platform.OS === 'ios';
@@ -13,6 +14,7 @@ const WalletCard = (props: WalletCardProps) => {
   const { cryptoLabels } = useCrypto();
 
   const balance = balances[props.cryptoId]['available'];
+  const fiatValue = balance * 87.71;
 
   return (
     <View className='relative w-full overflow-hidden rounded-2xl bg-base-surface-light dark:bg-neutral/35'>
@@ -48,10 +50,10 @@ const WalletCard = (props: WalletCardProps) => {
               intensity={isIOS ? (isDark ? 2 : 90) : isDark ? 15 : 25}
               tint={isDark ? 'extraLight' : 'light'}
             >
-              <View className='header flex gap-y-4'>
-                <Text className='font-satoshi text-2xl text-base-black dark:text-base-white'>Balance</Text>
-                <View className='flex-row items-center gap-x-2'>
-                  <Text className='font-satoshi text-base-black dark:text-base-white'>Available</Text>
+              <View className='header flex gap-y-6'>
+                <View className='mt-2 flex-1 flex-row items-start gap-x-2'>
+                  <Text className='font-satoshi text-2xl text-base-black dark:text-base-white'>Balance</Text>
+
                   <View className='overflow-hidden rounded-md'>
                     <BlurView
                       className='w-16 items-center py-1'
@@ -64,20 +66,32 @@ const WalletCard = (props: WalletCardProps) => {
                     </BlurView>
                   </View>
                 </View>
+                {/* <Text className='font-satoshi text-base-black dark:text-base-white'>Available</Text> */}
               </View>
 
               <View className='overflow-hidden rounded-xl'>
                 <BlurView
-                  className='w-36 items-end py-2 pr-3'
+                  className='w-36 items-end py-2'
                   intensity={isIOS ? (isDark ? 4 : 35) : isDark ? 25 : 35}
                   tint={isDark ? 'extraLight' : 'extraLight'}
                 >
-                  <View className='flex-row items-baseline justify-end'>
+                  <View className='flex-row items-baseline justify-end pr-3'>
                     <Text className='font-clashDisplay text-3xl tracking-wide text-base-black dark:text-base-white'>
                       {currencyFormatter.format(balance ?? 0).split('.')[0]}.
                     </Text>
                     <Text className='font-clashDisplay text-xl tracking-wide text-base-black dark:text-base-white'>
                       {currencyFormatter.format(balance ?? 0).split('.')[1]}
+                    </Text>
+                  </View>
+
+                  <DividerX style='opacity-1 h-1 w-full my-2' />
+
+                  <View className='flex-row items-baseline justify-end pr-3'>
+                    <Text className='font-clashDisplay text-2xl tracking-wide text-base-black dark:text-base-white'>
+                      ₹ {currencyFormatter.format(fiatValue ?? 0).split('.')[0]}.
+                    </Text>
+                    <Text className='font-clashDisplay text-lg tracking-wide text-base-black dark:text-base-white'>
+                      {currencyFormatter.format(fiatValue ?? 0).split('.')[1]}
                     </Text>
                   </View>
                 </BlurView>

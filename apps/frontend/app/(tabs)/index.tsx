@@ -11,7 +11,7 @@ const Home = () => {
   const { cryptoLabelsStrict, cryptoOptionsStrict } = useCrypto();
   const { deposit } = useWallet();
 
-  const [crypto, setCrypto] = useState<CryptoOptionStrict>(cryptoOptionsStrict[1]);
+  const [crypto, setCrypto] = useState<CryptoOptionStrict>(cryptoOptionsStrict[0]);
   const [depositAmount, setDepositAmount] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
