@@ -1,10 +1,15 @@
-import { InitialsAvatar, WalletCard } from '@/components';
+import { ChipFilter, InitialsAvatar, WalletCard } from '@/components';
+import { useCrypto } from '@/hooks';
+import { CryptoOptionStrict } from '@/hooks/appData/useCrypto';
 import { useProfileStore } from '@/store';
+import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
   const { profile } = useProfileStore();
+  const { cryptoLabelsStrict, cryptoOptionsStrict } = useCrypto();
+  const [crypto, setCrypto] = useState<CryptoOptionStrict>(cryptoOptionsStrict[1]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -16,7 +21,14 @@ const Home = () => {
             <Text className='header-txt font-clashDisplay'>{profile?.name ?? ''} 👋</Text>
           </View>
 
-          <WalletCard />
+          <ChipFilter
+            value={crypto}
+            options={cryptoOptionsStrict}
+            labels={cryptoLabelsStrict}
+            onChange={(value) => setCrypto(value)}
+          />
+
+          <WalletCard cryptoId={crypto} />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -5,12 +5,14 @@ import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Platform, Text, useColorScheme, View } from 'react-native';
 
-const WalletCard = () => {
+const WalletCard = (props: WalletCardProps) => {
   const isIOS = Platform.OS === 'ios';
   const isDark = useColorScheme() === 'dark';
 
-  const { balance } = useWallet();
+  const { balances } = useWallet();
   const { cryptoLabels } = useCrypto();
+
+  const balance = balances[props.cryptoId]['available'];
 
   return (
     <View className='relative w-full overflow-hidden rounded-2xl bg-base-surface-light dark:bg-neutral/35'>
@@ -52,12 +54,12 @@ const WalletCard = () => {
                   <Text className='font-satoshi text-base-black dark:text-base-white'>Available</Text>
                   <View className='overflow-hidden rounded-md'>
                     <BlurView
-                      className='px-2 py-1'
+                      className='w-16 items-center py-1'
                       intensity={isIOS ? (isDark ? 4 : 45) : isDark ? 25 : 55}
                       tint={isDark ? 'extraLight' : 'extraLight'}
                     >
                       <Text className='tracking-wider text-base-on-surface-light dark:text-base-white'>
-                        {cryptoLabels['usdt']}
+                        {cryptoLabels[props.cryptoId]}
                       </Text>
                     </BlurView>
                   </View>
@@ -66,11 +68,11 @@ const WalletCard = () => {
 
               <View className='overflow-hidden rounded-xl'>
                 <BlurView
-                  className='px-3 py-2'
+                  className='w-36 items-end py-2 pr-3'
                   intensity={isIOS ? (isDark ? 4 : 35) : isDark ? 25 : 35}
                   tint={isDark ? 'extraLight' : 'extraLight'}
                 >
-                  <View className='flex-row items-baseline'>
+                  <View className='flex-row items-baseline justify-end'>
                     <Text className='font-clashDisplay text-3xl tracking-wide text-base-black dark:text-base-white'>
                       {currencyFormatter.format(balance).split('.')[0]}.
                     </Text>

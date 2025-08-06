@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 
-interface WalletState {
-  address: string;
-  balance: number;
-}
-
 const useWallet = create<WalletState>((set, get) => ({
   address: '0xMockedWalletAddress',
-  balance: 1000,
+
+  balances: {
+    usdt: { available: 1000, escrowed: 0 },
+    eth: { available: 0.5, escrowed: 0 },
+    btc: { available: 0.1, escrowed: 0 },
+  },
 }));
 
 export default useWallet;

@@ -160,3 +160,7 @@ interface OrderCardProps {
   index: number;
   order: Order;
 }
+
+interface WalletCardProps {
+  cryptoId: CryptoOption;
+}
