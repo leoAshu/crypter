@@ -74,10 +74,10 @@ const WalletCard = (props: WalletCardProps) => {
                 >
                   <View className='flex-row items-baseline justify-end'>
                     <Text className='font-clashDisplay text-3xl tracking-wide text-base-black dark:text-base-white'>
-                      {currencyFormatter.format(balance).split('.')[0]}.
+                      {currencyFormatter.format(balance ?? 0).split('.')[0]}.
                     </Text>
                     <Text className='font-clashDisplay text-xl tracking-wide text-base-black dark:text-base-white'>
-                      {currencyFormatter.format(balance).split('.')[1]}
+                      {currencyFormatter.format(balance ?? 0).split('.')[1]}
                     </Text>
                   </View>
                 </BlurView>

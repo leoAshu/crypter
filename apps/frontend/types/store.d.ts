@@ -45,4 +45,6 @@ interface BalanceState {
 interface WalletState {
   address: string;
   balances: Record<string, BalanceState>;
+
+  deposit: (asset: CryptoOptionStrict, amount: number) => void;
 }
