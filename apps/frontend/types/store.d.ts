@@ -29,3 +29,10 @@ interface CryptoState {
 
   fetchCryptos: () => Promise<void>;
 }
+
+interface StatState {
+  stat: Stat | null;
+  isLoading: boolean;
+
+  fetchStat: (userId: string) => Promise<void>;
+}

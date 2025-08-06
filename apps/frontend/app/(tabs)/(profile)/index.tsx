@@ -1,7 +1,7 @@
 import { icons } from '@/assets';
 import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
 import { AlertStrings, screenContentWrapperStyle, Strings } from '@/constants';
-import { useAuthStore, useProfileStore } from '@/store';
+import { useAuthStore, useProfileStore, useStatStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Profile = () => {
   const isDark = useColorScheme() === 'dark';
   const { profile } = useProfileStore();
+  const { stat } = useStatStore();
   const { isLoading, signout } = useAuthStore();
   const [infoTermFilter, setInfoTermFilter] = useState<TradingInfoTerm>('30d');
 
@@ -63,7 +64,9 @@ const Profile = () => {
             <View className='stats-content flex-row'>
               <View className='col-left flex-1 gap-y-6'>
                 <View className='gap-y-2'>
-                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>5</Text>
+                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>
+                    {stat?.totalTrades ?? 0}
+                  </Text>
                   <Text className='font-satoshi-medium text-base text-neutral dark:text-neutral-400'>
                     {Strings.profile.TOTAL_TRADES_LABEL}
                   </Text>
@@ -71,7 +74,7 @@ const Profile = () => {
 
                 <View className='gap-y-2'>
                   <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>
-                    4.3 Minutes
+                    {stat?.avgReleaseTime ?? 0} Minutes
                   </Text>
                   <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
                     {Strings.profile.AVG_RELEASE_LABEL}
@@ -81,14 +84,18 @@ const Profile = () => {
 
               <View className='col-right flex-1 gap-y-6'>
                 <View className='gap-y-2'>
-                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>100%</Text>
+                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>
+                    {stat?.completionRate ?? 0}%
+                  </Text>
                   <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
                     {Strings.profile.COMPLETION_RATE_LABEL}
                   </Text>
                 </View>
 
                 <View className='gap-y-2'>
-                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>100%</Text>
+                  <Text className='text-base-dark font-clashDisplay-medium text-2xl dark:text-base-white'>
+                    {stat?.avgPayTime ?? 0} Minutes
+                  </Text>
                   <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
                     {Strings.profile.AVG_PAY_LABEL}
                   </Text>
