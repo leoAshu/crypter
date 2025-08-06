@@ -1,18 +1,25 @@
 import useCryptotore from '@/store/crypto.store';
+import { useMemo } from 'react';
 
 const useCrypto = () => {
   const { cryptos } = useCryptotore();
 
-  const cryptoOptions = ['all', ...cryptos.map((c) => c.id)];
-  const cryptoLabels: Record<string, string> = {
-    all: 'All',
-    ...Object.fromEntries(cryptos.map((c) => [c.id, c.symbol])),
-  };
+  const cryptoOptions = useMemo(() => ['all', ...cryptos.map((c) => c.id)], [cryptos]);
+  const cryptoLabels: Record<string, string> = useMemo(
+    () => ({
+      all: 'All',
+      ...Object.fromEntries(cryptos.map((c) => [c.id, c.symbol])),
+    }),
+    [cryptos],
+  );
 
-  const cryptoOptionsStrict = cryptoOptions.slice(1);
-  const cryptoLabelsStrict: Record<string, string> = {
-    ...Object.fromEntries(cryptos.map((c) => [c.id, c.symbol])),
-  };
+  const cryptoOptionsStrict = useMemo(() => cryptoOptions.slice(1), [cryptos]);
+  const cryptoLabelsStrict: Record<string, string> = useMemo(
+    () => ({
+      ...Object.fromEntries(cryptos.map((c) => [c.id, c.symbol])),
+    }),
+    [cryptos],
+  );
 
   return {
     cryptos,

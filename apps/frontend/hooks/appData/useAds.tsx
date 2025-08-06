@@ -1,15 +1,13 @@
 import { ads } from '@/models';
-import { useState } from 'react';
+import { useMemo } from 'react';
 import useCrypto, { CryptoOption } from './useCrypto';
 
 const useAds = () => {
   const { cryptoOptions } = useCrypto();
 
-  const getActiveAds = () => {
+  const activeAds = useMemo(() => {
     return ads.filter((ad) => cryptoOptions.includes(ad.cryptoId));
-  };
-
-  const [activeAds, _] = useState(getActiveAds());
+  }, [cryptoOptions]);
 
   const filterAdsByType = (adType: AdType, crypto: CryptoOption) => {
     return activeAds.filter((ad) => {
