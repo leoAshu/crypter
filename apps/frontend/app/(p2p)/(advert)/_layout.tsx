@@ -7,6 +7,10 @@ const AdvertLayout = () => {
   return (
     <Stack
       screenOptions={{
+        animation: 'simple_push',
+        contentStyle: {
+          backgroundColor: isDark ? '#000000' : '#FFFFFF',
+        },
         headerTransparent: true,
         headerTitleAlign: 'center',
         headerTitleStyle: {

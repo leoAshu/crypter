@@ -61,6 +61,7 @@ const MyAdvert = () => {
 
         <FlatList
           data={myAds}
+          initialNumToRender={0}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
           contentContainerClassName={cn(!isAdsEmpty ? adsListStyle : 'flex-1 items-center justify-center pb-48')}

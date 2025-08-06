@@ -14,6 +14,10 @@ const ProfileLayout = () => {
   return (
     <Stack
       screenOptions={() => ({
+        animation: 'simple_push',
+        contentStyle: {
+          backgroundColor: isDark ? '#000000' : '#FFFFFF',
+        },
         headerTransparent: true,
         headerStyle: {
           backgroundColor: isDark ? '#000000' : '#FFFFFF',

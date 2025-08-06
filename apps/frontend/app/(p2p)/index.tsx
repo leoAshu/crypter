@@ -48,6 +48,7 @@ const Home = () => {
 
         <FlatList
           data={ads}
+          initialNumToRender={0}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
           contentContainerClassName={adsListStyle}
