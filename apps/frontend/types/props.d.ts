@@ -136,7 +136,7 @@ interface PayMethodBadgeProps {
 }
 
 interface AdCardProps {
-  ad: any;
+  ad: Ad;
   index: number;
   animationStyle?: AnimationStyle;
 }
