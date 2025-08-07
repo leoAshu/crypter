@@ -1,3 +1,9 @@
+/** Generic filter item interface - all filter items must extend this */
+interface FilterItem {
+  id: string;
+  name: string;
+}
+
 // ====================
 // 🧩 UI / Buttons
 // ====================
@@ -170,14 +176,8 @@ interface WalletCardProps {
 // 🔽 Dropdowns
 // ====================
 
-/** Generic dropdown item interface - all dropdown items must extend this */
-interface DropdownItem {
-  id: string;
-  name: string;
-}
-
 /** Props for a primary dropdown with generic item type support */
-interface PrimaryDropdownProps<T extends DropdownItem> {
+interface PrimaryDropdownProps<T extends FilterItem> {
   title?: string;
   placeholder?: string;
   items: T[];

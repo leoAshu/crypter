@@ -5,26 +5,7 @@ import { useState } from 'react';
 import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { interpolate, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-interface DropdownItem {
-  id: string;
-  name: string;
-}
-
-interface PrimaryDropdownProps<T extends DropdownItem> {
-  items: T[];
-  selectedId?: string;
-  onSelect?: (item: T) => void;
-  title?: string;
-  placeholder?: string;
-  disabled?: boolean;
-  error?: string;
-  containerStyle?: string;
-  buttonStyle?: string;
-  textStyle?: string;
-  renderItem?: (item: T) => string;
-}
-
-const PrimaryDropdown = <T extends DropdownItem>(props: PrimaryDropdownProps<T>) => {
+const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const { colorScheme } = useColorScheme();
