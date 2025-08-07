@@ -1,7 +1,6 @@
 import { AdCard, ChipFilter, DividerX, PrimaryButton, ToggleButton } from '@/components';
 import { screenContentWrapperStyle, Strings } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
-import { CryptoOption } from '@/hooks/appData/useCrypto';
 import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
@@ -14,11 +13,11 @@ const MyAdvert = () => {
 
   const { user } = useAuthStore();
   const { filterAdsByUserId } = useAds();
-  const { cryptoOptions, cryptoLabels } = useCrypto();
+  const { cryptoSymbolFilterItems } = useCrypto();
 
   const [adType, setAdType] = useState<AdType>('buy');
-  const [crypto, setCrypto] = useState<CryptoOption>('all');
-  const [myAds, setMyAds] = useState(filterAdsByUserId(adType, crypto, user?.id ?? ''));
+  const [crypto, setCrypto] = useState<FilterItem>(cryptoSymbolFilterItems[0]);
+  const [myAds, setMyAds] = useState(filterAdsByUserId(adType, crypto.id, user?.id ?? ''));
   const isAdsEmpty = myAds.length === 0;
 
   const adsListStyle = Platform.select({
@@ -27,7 +26,7 @@ const MyAdvert = () => {
   });
 
   useEffect(() => {
-    setMyAds(filterAdsByUserId(adType, crypto, user?.id ?? ''));
+    setMyAds(filterAdsByUserId(adType, crypto.id, user?.id ?? ''));
   }, [adType, crypto]);
 
   const EmptyState = () => (
@@ -56,7 +55,7 @@ const MyAdvert = () => {
             />
           </View>
 
-          <ChipFilter value={crypto} options={cryptoOptions} labels={cryptoLabels} onChange={(val) => setCrypto(val)} />
+          <ChipFilter value={crypto} items={cryptoSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
         <FlatList

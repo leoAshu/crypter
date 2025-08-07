@@ -1,7 +1,6 @@
 import { AdCard, ChipFilter, DividerX, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
-import { CryptoOption } from '@/hooks/appData/useCrypto';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
@@ -11,11 +10,11 @@ const Home = () => {
   const isDark = useColorScheme() === 'dark';
 
   const { filterAdsByType } = useAds();
-  const { cryptoOptions, cryptoLabels } = useCrypto();
+  const { cryptoSymbolFilterItems } = useCrypto();
 
   const [adType, setAdType] = useState<AdType>('buy');
-  const [crypto, setCrypto] = useState<CryptoOption>('all');
-  const [ads, setAds] = useState(filterAdsByType(adType, crypto));
+  const [crypto, setCrypto] = useState<FilterItem>(cryptoSymbolFilterItems[0]);
+  const [ads, setAds] = useState(filterAdsByType(adType, crypto.id));
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
@@ -23,7 +22,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    setAds(filterAdsByType(adType, crypto));
+    setAds(filterAdsByType(adType, crypto.id));
   }, [adType, crypto]);
 
   return (
@@ -43,7 +42,7 @@ const Home = () => {
             />
           </View>
 
-          <ChipFilter value={crypto} options={cryptoOptions} labels={cryptoLabels} onChange={(val) => setCrypto(val)} />
+          <ChipFilter value={crypto} items={cryptoSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
         <FlatList
