@@ -1,4 +1,4 @@
-import { useCrypto } from '@/hooks';
+import { useCrypto, useFiat } from '@/hooks';
 import { useWalletStore } from '@/store';
 import { currencyFormatter } from '@/utils';
 import { BlurView } from 'expo-blur';
@@ -12,8 +12,9 @@ const WalletCard = (props: WalletCardProps) => {
   const isIOS = Platform.OS === 'ios';
   const isDark = useColorScheme() === 'dark';
 
-  const { balances } = useWalletStore();
+  const { defaultFiat } = useFiat();
   const { cryptoLabels } = useCrypto();
+  const { balances } = useWalletStore();
 
   const balance = balances[props.cryptoId]['available'];
   const fiatValue = balance * 87.71;
@@ -96,7 +97,7 @@ const WalletCard = (props: WalletCardProps) => {
 
                   <View className='flex-row items-baseline justify-end pr-3'>
                     <Text className='font-clashDisplay text-2xl tracking-wide text-base-black dark:text-base-white'>
-                      ₹ {currencyFormatter.format(fiatValue ?? 0).split('.')[0]}.
+                      {defaultFiat?.symbol ?? ''} {currencyFormatter.format(fiatValue ?? 0).split('.')[0]}.
                     </Text>
                     <Text className='font-clashDisplay text-lg tracking-wide text-base-black dark:text-base-white'>
                       {currencyFormatter.format(fiatValue ?? 0).split('.')[1]}

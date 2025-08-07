@@ -1,6 +1,6 @@
 import { icons } from '@/assets';
 import { ComponentStrings } from '@/constants';
-import { useCrypto } from '@/hooks';
+import { useCrypto, useFiat } from '@/hooks';
 import { capitalizeWords, currencyFormatter } from '@/utils';
 import cn from 'clsx';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
@@ -11,9 +11,11 @@ import { DividerX } from '../dividers';
 import { adCardAnimConfig } from './animations';
 
 const AdCard = (props: AdCardProps) => {
-  const { cryptoLabels } = useCrypto();
-  const isDark = useColorScheme() === 'dark';
   const isBuy = props.ad.type === 'buy';
+  const isDark = useColorScheme() === 'dark';
+
+  const { defaultFiat } = useFiat();
+  const { cryptoLabels } = useCrypto();
   const animationCombo = adCardAnimConfig[props.animationStyle ?? 'default'](isBuy, props.index);
 
   return (
@@ -50,7 +52,7 @@ const AdCard = (props: AdCardProps) => {
 
             <View className='ad-card-amount-group'>
               <Text className='ad-card-txt-md text-2xl'>
-                ₹ {currencyFormatter.format(props.ad.price).split('.')[0]}.
+                {defaultFiat?.symbol ?? ''} {currencyFormatter.format(props.ad.price).split('.')[0]}.
               </Text>
               <Text className='ad-card-txt text-lg'>{currencyFormatter.format(props.ad.price).split('.')[1]}</Text>
             </View>

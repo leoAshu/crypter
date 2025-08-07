@@ -48,3 +48,13 @@ interface WalletState {
 
   deposit: (asset: CryptoOptionStrict, amount: number) => void;
 }
+
+interface FiatState {
+  fiats: FiatCurrency[];
+  isLoading: boolean;
+  defaultFiat: FiatCurrency | null;
+
+  setDefaultFiat: (fiat: FiatCurrency) => void;
+
+  fetchFiats: () => Promise<void>;
+}
