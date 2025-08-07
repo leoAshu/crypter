@@ -1,7 +1,7 @@
 import { CryptoOptionStrict } from '@/hooks/appData/useCrypto';
 import { create } from 'zustand';
 
-const useWallet = create<WalletState>((set, get) => ({
+const useWalletStore = create<WalletState>((set, get) => ({
   address: '0xMockedWalletAddress',
 
   balances: {
@@ -23,4 +23,4 @@ const useWallet = create<WalletState>((set, get) => ({
   },
 }));
 
-export default useWallet;
+export default useWalletStore;

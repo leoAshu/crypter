@@ -1,23 +1,25 @@
 import { useCrypto } from '@/hooks';
-import { useWallet } from '@/store';
+import { useWalletStore } from '@/store';
 import { currencyFormatter } from '@/utils';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
 import { Platform, Text, useColorScheme, View } from 'react-native';
+import { PrimaryButton } from '../buttons';
 import { DividerX } from '../dividers';
 
 const WalletCard = (props: WalletCardProps) => {
   const isIOS = Platform.OS === 'ios';
   const isDark = useColorScheme() === 'dark';
 
-  const { balances } = useWallet();
+  const { balances } = useWalletStore();
   const { cryptoLabels } = useCrypto();
 
   const balance = balances[props.cryptoId]['available'];
   const fiatValue = balance * 87.71;
 
   return (
-    <View className='relative w-full overflow-hidden rounded-2xl bg-base-surface-light dark:bg-neutral/35'>
+    <View className='elevation-md relative w-full overflow-hidden rounded-2xl bg-base-surface-light dark:bg-neutral/35'>
       <LinearGradient
         colors={[
           'rgba(84, 230, 182,0.28)',
@@ -50,8 +52,8 @@ const WalletCard = (props: WalletCardProps) => {
               intensity={isIOS ? (isDark ? 2 : 90) : isDark ? 15 : 25}
               tint={isDark ? 'extraLight' : 'light'}
             >
-              <View className='header flex gap-y-6'>
-                <View className='mt-2 flex-1 flex-row items-start gap-x-2'>
+              <View className='header flex gap-y-5'>
+                <View className='flex-row items-start gap-x-2'>
                   <Text className='font-satoshi text-2xl text-base-black dark:text-base-white'>Balance</Text>
 
                   <View className='overflow-hidden rounded-md'>
@@ -66,7 +68,13 @@ const WalletCard = (props: WalletCardProps) => {
                     </BlurView>
                   </View>
                 </View>
-                {/* <Text className='font-satoshi text-base-black dark:text-base-white'>Available</Text> */}
+
+                <PrimaryButton
+                  title='Add Funds'
+                  containerStyle='py-2 rounded-lg elevation'
+                  textStyle='text-sm'
+                  onPress={() => router.push('/(addFunds)')}
+                />
               </View>
 
               <View className='overflow-hidden rounded-xl'>

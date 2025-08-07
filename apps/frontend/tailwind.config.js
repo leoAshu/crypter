@@ -60,12 +60,42 @@ module.exports = {
 
         // ====================== Revamp =====================
         base: {
+          DEFAULT: '#FFFFFF',
+          dark: '#000000',
           white: '#FFFFFF',
           black: '#000000',
           'surface-light': '#ECEEF0',
           'surface-dark': '#1C1C1F',
           'on-surface-light': '#333333',
         },
+
+        card: {
+          DEFAULT: '#F1F1F1',
+          info: '#E6E6E6',
+          dark: '#1C1C1C',
+          'info-dark': '#121212',
+        },
+
+        stroke: {
+          DEFAULT: '#CACACA',
+          dark: '#6B7089',
+        },
+
+        title: {
+          DEFAULT: '#000000',
+          dark: '#FFFFFF',
+        },
+
+        label: {
+          DEFAULT: '#667085',
+          dark: '#667085',
+        },
+
+        body: {
+          DEFAULT: '#6B6B6B',
+          dark: '#A0A0A0',
+        },
+
         neutral: {
           DEFAULT: '#667085',
           50: '#F9FAFB',
