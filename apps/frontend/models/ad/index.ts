@@ -1,6 +1,6 @@
 import { CryptoOption } from '@/hooks/appData/useCrypto';
 
-const ads: Ad[] = [
+const ads: Ads[] = [
   {
     id: '1',
     user: {
