@@ -9,6 +9,7 @@ interface PrimaryButtonProps {
   textStyle?: string;
   leftIcon?: ReactNode;
   disabled?: boolean;
+  containerStyle?: string;
   onPress?: () => void;
 }
 
@@ -46,7 +47,7 @@ interface InputFieldProps {
   value?: string;
   error?: string;
   secureTextEntry?: boolean;
-  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'decimal-pad';
   disabled?: boolean;
   onChangeText?: (text: string) => void;
 }
@@ -159,4 +160,8 @@ interface ChipFilterProps<T extends string> {
 interface OrderCardProps {
   index: number;
   order: Order;
+}
+
+interface WalletCardProps {
+  cryptoId: CryptoOption;
 }

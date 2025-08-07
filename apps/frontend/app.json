@@ -24,6 +24,7 @@
       "output": "static",
       "favicon": "./assets/images/logo.png"
     },
+    "backgroundColor": "#000000",
     "plugins": [
       "expo-router",
       [

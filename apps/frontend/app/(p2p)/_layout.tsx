@@ -15,7 +15,7 @@ const P2PLayout = () => {
     <View className='flex-1'>
       <Tabs
         screenOptions={() => ({
-          animation: 'none',
+          animation: 'shift',
           headerTransparent: true,
           headerTitleAlign: 'center',
           tabBarShowLabel: false,
@@ -28,7 +28,7 @@ const P2PLayout = () => {
           tabBarStyle: {
             backgroundColor: isDark ? '#000000' : '#FFFFFF',
             borderTopWidth: 0,
-            height: 96,
+            height: isIOS ? 96 : 104,
             position: 'absolute',
             bottom: 0,
             // elevation: 0,
@@ -36,6 +36,9 @@ const P2PLayout = () => {
             shadowOffset: { width: 0, height: -4 },
             shadowOpacity: 0.12,
             shadowRadius: 16,
+          },
+          sceneStyle: {
+            backgroundColor: isDark ? '#000000' : '#FFFFFF',
           },
         })}
       >
@@ -124,10 +127,10 @@ const P2PLayout = () => {
           }
           style={{
             position: 'absolute',
-            bottom: 96, // height of tab bar
+            bottom: 104, // height of tab bar
             left: 0,
             right: 0,
-            height: 20,
+            height: 28,
             zIndex: 5,
           }}
         />

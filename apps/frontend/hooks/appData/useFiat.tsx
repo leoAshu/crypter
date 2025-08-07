@@ -1,11 +1,18 @@
 import { useFiatStore } from '@/store';
+import { useMemo } from 'react';
 
 const useFiat = () => {
   const { fiats } = useFiatStore();
 
-  const fiatOptions = [...fiats.map((f) => f.id)];
-  const fiatSymbols: Record<string, string> = { ...Object.fromEntries(fiats.map((f) => [f.id, f.symbol])) };
-  const fiatLabels: Record<string, string> = { ...Object.fromEntries(fiats.map((f) => [f.id, f.code])) };
+  const fiatOptions = useMemo(() => [...fiats.map((f) => f.id)], [fiats]);
+  const fiatSymbols: Record<string, string> = useMemo(
+    () => Object.fromEntries(fiats.map((f) => [f.id, f.symbol])),
+    [fiats],
+  );
+  const fiatLabels: Record<string, string> = useMemo(
+    () => Object.fromEntries(fiats.map((f) => [f.id, f.code])),
+    [fiats],
+  );
 
   return {
     fiatOptions,

@@ -5,7 +5,11 @@ import { useState } from 'react';
 import { Image, Pressable, useColorScheme } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-const CopyIconButton = () => {
+interface CopyIconButtonProps {
+  iconStyle?: string;
+}
+
+const CopyIconButton = (props: CopyIconButtonProps) => {
   const [copied, setCopied] = useState(false);
   const isDark = useColorScheme() === 'dark';
 
@@ -33,7 +37,11 @@ const CopyIconButton = () => {
 
   return (
     <Pressable onPress={handlePress}>
-      <Image source={iconSource} className={cn('size-5', isDark ? 'opacity-45' : 'opacity-55')} resizeMode='contain' />
+      <Image
+        source={iconSource}
+        className={cn('size-5', isDark ? 'opacity-45' : 'opacity-55', props.iconStyle)}
+        resizeMode='contain'
+      />
     </Pressable>
   );
 };

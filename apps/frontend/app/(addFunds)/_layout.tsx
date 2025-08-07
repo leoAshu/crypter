@@ -1,12 +1,16 @@
+import { BackIconButton } from '@/components';
 import { Stack } from 'expo-router';
-import { useColorScheme } from 'react-native';
+import { Platform, useColorScheme } from 'react-native';
 
-const AdvertLayout = () => {
+const AddFundsLayout = () => {
   const isDark = useColorScheme() === 'dark';
-
+  const containerStyle = Platform.select({
+    ios: 'pl-0 ml-[8px]',
+    android: 'pl-0 ml-[8px]',
+  });
   return (
     <Stack
-      screenOptions={{
+      screenOptions={() => ({
         animation: 'simple_push',
         contentStyle: {
           backgroundColor: isDark ? '#000000' : '#FFFFFF',
@@ -19,22 +23,17 @@ const AdvertLayout = () => {
           fontFamily: 'poppins',
           fontSize: 18,
         },
-      }}
+      })}
     >
       <Stack.Screen
         name='index'
         options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name='post'
-        options={{
-          headerShown: false,
+          headerTitle: 'Deposit Asset',
+          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
         }}
       />
     </Stack>
   );
 };
 
-export default AdvertLayout;
+export default AddFundsLayout;

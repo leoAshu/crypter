@@ -60,6 +60,7 @@ const Orders = () => {
 
         <FlatList
           data={ordersList}
+          initialNumToRender={0}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
           contentContainerClassName={adsListStyle}

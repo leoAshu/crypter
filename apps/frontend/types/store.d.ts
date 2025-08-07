@@ -36,3 +36,15 @@ interface StatState {
 
   fetchStat: (userId: string) => Promise<void>;
 }
+
+interface BalanceState {
+  available: number;
+  escrowed: number;
+}
+
+interface WalletState {
+  address: string;
+  balances: Record<string, BalanceState>;
+
+  deposit: (asset: CryptoOptionStrict, amount: number) => void;
+}

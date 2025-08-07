@@ -1,6 +1,7 @@
 import { icons } from '@/assets';
 import { FloatingActionButton, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
+import cn from 'clsx';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, Tabs } from 'expo-router';
 import { Platform, useColorScheme, View } from 'react-native';
@@ -13,7 +14,7 @@ const TabLayout = () => {
     <View className='flex-1'>
       <Tabs
         screenOptions={() => ({
-          animation: 'none',
+          animation: 'shift',
           headerTransparent: true,
           headerShown: false,
           headerTitleAlign: 'center',
@@ -27,7 +28,7 @@ const TabLayout = () => {
           tabBarStyle: {
             backgroundColor: isDark ? '#000000' : '#FFFFFF',
             borderTopWidth: 0,
-            height: 96,
+            height: isIOS ? 96 : 104,
             position: 'absolute',
             bottom: 0,
             // elevation: 0,
@@ -35,6 +36,9 @@ const TabLayout = () => {
             shadowOffset: { width: 0, height: -4 },
             shadowOpacity: 0.12,
             shadowRadius: 16,
+          },
+          sceneStyle: {
+            backgroundColor: isDark ? '#000000' : '#FFFFFF',
           },
         })}
       >
@@ -90,16 +94,16 @@ const TabLayout = () => {
           }
           style={{
             position: 'absolute',
-            bottom: 96, // height of tab bar
+            bottom: 104, // height of tab bar
             left: 0,
             right: 0,
-            height: 20,
+            height: 28,
             zIndex: 5,
           }}
         />
       )}
 
-      <View className='absolute-bottom-fab'>
+      <View className={cn('absolute-bottom-fab', isIOS ? 'bottom-[66px]' : 'bottom-[76px]')}>
         <FloatingActionButton icon={icons.exchange} onPress={() => router.push('/(p2p)')} />
       </View>
     </View>
