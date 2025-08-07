@@ -1,4 +1,4 @@
-import { icons, images } from '@/assets';
+import { icons } from '@/assets';
 import cn from 'clsx';
 import { useColorScheme } from 'nativewind';
 import { useState } from 'react';
@@ -13,8 +13,8 @@ const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) =
 
   const animationProgress = useSharedValue(0);
 
-  const selectedItem = props.items.find((item) => item.id === props.selectedId);
-  const displayValue = selectedItem?.name || props.placeholder || 'Select an option';
+  const value = props.items.find((item) => item.id === props.value?.id);
+  const displayValue = value?.label || props.placeholder || 'Select an option';
 
   const handleSelect = (item: T) => {
     handleCloseDropdown();
@@ -68,7 +68,7 @@ const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) =
       >
         <View className='deposit-form-value-wrapper'>
           <Text
-            className={cn('deposit-form-value', !selectedItem ? 'text-gray-500' : '', props.textStyle)}
+            className={cn('deposit-form-value', !value ? 'text-gray-500' : '', props.textStyle)}
             numberOfLines={1}
             ellipsizeMode='tail'
           >
@@ -97,21 +97,20 @@ const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) =
                   className={cn(
                     'flex-row items-center px-4 py-3',
                     index !== props.items.length - 1 ? 'border-b border-gray-100 dark:border-gray-700' : '',
-                    item.id === props.selectedId ? 'bg-primary/10' : '',
+                    item.id === props.value?.id ? 'bg-primary/10' : '',
                   )}
                   onPress={() => handleSelect(item)}
                 >
                   <Text
                     className={cn(
                       'flex-1 font-satoshi-medium text-base',
-                      item.id === props.selectedId
+                      item.id === props.value?.id
                         ? 'font-satoshi-semibold text-primary'
                         : 'text-base-black dark:text-base-white',
                     )}
                   >
-                    {props.renderItem ? props.renderItem(item) : item.name}
+                    {item.label}
                   </Text>
-                  {item.id === props.selectedId && <Image source={images.eye} className='ml-2 h-5 w-5' />}
                 </TouchableOpacity>
               )}
               showsVerticalScrollIndicator={false}

@@ -1,9 +1,3 @@
-/** Generic filter item interface - all filter items must extend this */
-interface FilterItem {
-  id: string;
-  name: string;
-}
-
 // ====================
 // 🧩 UI / Buttons
 // ====================
@@ -172,6 +166,12 @@ interface WalletCardProps {
   cryptoId: CryptoOption;
 }
 
+/** Generic filter item interface - all filter items must extend this */
+interface FilterItem {
+  id: string;
+  label: string;
+}
+
 // ====================
 // 🔽 Dropdowns
 // ====================
@@ -181,12 +181,11 @@ interface PrimaryDropdownProps<T extends FilterItem> {
   title?: string;
   placeholder?: string;
   items: T[];
-  selectedId?: string;
+  value: T;
   disabled?: boolean;
   error?: string;
   containerStyle?: string;
   buttonStyle?: string;
   textStyle?: string;
-  renderItem?: (item: T) => string;
   onSelect?: (item: T) => void;
 }
