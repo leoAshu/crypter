@@ -9,6 +9,7 @@ const images = {
   edit: require('./images/edit.png'),
   plus: require('./images/plus.png'),
   walletBackground: require('./images/wallet-bg.png'),
+  qr: require('./images/qr.png'),
 };
 
 const logos = {
@@ -48,6 +49,9 @@ const icons = {
     closeCircle: require('./icons/light/close-circle.png'),
     infoCircle: require('./icons/light/info-circle.png'),
     tickCircle: require('./icons/light/tick-circle.png'),
+
+    // InputFields
+    arrowDown: require('./icons/light/arrow-down.png'),
 
     // Active Tab
     active: {
@@ -94,6 +98,9 @@ const icons = {
     closeCircle: require('./icons/dark/close-circle.png'),
     infoCircle: require('./icons/dark/info-circle.png'),
     tickCircle: require('./icons/dark/tick-circle.png'),
+
+    // InputFields
+    arrowDown: require('./icons/dark/arrow-down.png'),
 
     // Active Tab
     active: {

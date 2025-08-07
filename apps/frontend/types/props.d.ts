@@ -9,6 +9,7 @@ interface PrimaryButtonProps {
   textStyle?: string;
   leftIcon?: ReactNode;
   disabled?: boolean;
+  containerStyle?: string;
   onPress?: () => void;
 }
 
