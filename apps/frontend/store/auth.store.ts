@@ -1,5 +1,6 @@
 import { getUser, signIn, signOut, signUp } from '@/supabase';
 import { create } from 'zustand';
+import useAdStore from './ad.store';
 import useCryptotore from './crypto.store';
 import useFiatStore from './fiat.store';
 import useProfileStore from './profile.store';
@@ -32,6 +33,7 @@ const useAuthStore = create<AuthState>((set) => ({
 
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
+        await useAdStore.getState().fetchAds();
         await useProfileStore.getState().createProfile(profile);
         set({ isAuthenticated: true, user: user });
       } else {
@@ -55,6 +57,7 @@ const useAuthStore = create<AuthState>((set) => ({
       if (user) {
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
+        await useAdStore.getState().fetchAds();
         await useProfileStore.getState().fetchProfile(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
@@ -92,6 +95,7 @@ const useAuthStore = create<AuthState>((set) => ({
       if (user) {
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
+        await useAdStore.getState().fetchAds();
         await useProfileStore.getState().fetchProfile(user.id);
         await useStatStore.getState().fetchStat(user.id);
         set({ isAuthenticated: true, user: user });

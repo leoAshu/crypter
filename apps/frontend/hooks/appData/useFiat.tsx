@@ -2,7 +2,7 @@ import { useFiatStore } from '@/store';
 import { useMemo } from 'react';
 
 const useFiat = () => {
-  const { fiats } = useFiatStore();
+  const { fiats, defaultFiat } = useFiatStore();
 
   const fiatOptions = useMemo(() => [...fiats.map((f) => f.id)], [fiats]);
   const fiatSymbols: Record<string, string> = useMemo(
@@ -18,6 +18,7 @@ const useFiat = () => {
     fiatOptions,
     fiatSymbols,
     fiatLabels,
+    defaultFiat,
   };
 };
 

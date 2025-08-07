@@ -1,6 +1,6 @@
 import { icons } from '@/assets';
 import { ComponentStrings } from '@/constants';
-import { cryptoLabels } from '@/models';
+import { useCrypto, useFiat } from '@/hooks';
 import { capitalizeWords, currencyFormatter, formatDateTime } from '@/utils';
 import cn from 'clsx';
 import { Image, Platform, Text, useColorScheme, View } from 'react-native';
@@ -12,6 +12,9 @@ const AdvertCard = (props: OrderCardProps) => {
   const isDark = useColorScheme() === 'dark';
   const isBuy = props.order.type === 'buy';
   const isCanceled = props.order.subType === 'canceled';
+
+  const { defaultFiat } = useFiat();
+  const { cryptoLabels } = useCrypto();
 
   return (
     <Animated.View
@@ -53,7 +56,7 @@ const AdvertCard = (props: OrderCardProps) => {
             </View>
 
             <Text className='font-satoshi-medium text-sm text-neutral-700 dark:text-neutral-300'>
-              ₹ {currencyFormatter.format(props.order.pricePerUnit)}
+              {defaultFiat?.symbol ?? ''} {currencyFormatter.format(props.order.pricePerUnit)}
             </Text>
           </View>
 
@@ -92,7 +95,7 @@ const AdvertCard = (props: OrderCardProps) => {
           <Text className='font-satoshi-medium text-sm text-neutral'>Total Amount</Text>
           <View className='order-card-total-amount-group'>
             <Text className='font-clashDisplay-medium text-2xl text-base-black dark:text-base-white'>
-              ₹ {currencyFormatter.format(props.order.totalAmount).split('.')[0]}.
+              {defaultFiat?.symbol ?? ''} {currencyFormatter.format(props.order.totalAmount).split('.')[0]}.
             </Text>
             <Text className='font-clashDisplay-medium text-lg text-base-black dark:text-base-white'>
               {currencyFormatter.format(props.order.totalAmount).split('.')[1]}

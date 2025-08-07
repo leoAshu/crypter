@@ -1,6 +1,6 @@
 import { icons } from '@/assets';
 import { ComponentStrings } from '@/constants';
-import { useCrypto } from '@/hooks';
+import { useCrypto, useFiat } from '@/hooks';
 import { capitalizeWords, currencyFormatter } from '@/utils';
 import cn from 'clsx';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
@@ -11,9 +11,11 @@ import { DividerX } from '../dividers';
 import { adCardAnimConfig } from './animations';
 
 const AdCard = (props: AdCardProps) => {
-  const { cryptoLabels } = useCrypto();
-  const isDark = useColorScheme() === 'dark';
   const isBuy = props.ad.type === 'buy';
+  const isDark = useColorScheme() === 'dark';
+
+  const { defaultFiat, fiatSymbols } = useFiat();
+  const { cryptoLabels } = useCrypto();
   const animationCombo = adCardAnimConfig[props.animationStyle ?? 'default'](isBuy, props.index);
 
   return (
@@ -23,16 +25,16 @@ const AdCard = (props: AdCardProps) => {
         <View className='ad-card-info-wrapper'>
           <View className='ad-card-info'>
             <InitialsAvatar
-              name={props.ad.user.name}
+              name={props.ad.userFullName}
               textStyle='absolute font-clashDisplay-medium text-sm text-on-surface-light dark:text-base-white'
               containerStyle='bg-base-surface-light dark:bg-base-surface-dark size-8'
             />
-            <Text className='ad-card-txt text-lg'>{props.ad.user.name}</Text>
+            <Text className='ad-card-txt text-lg'>{props.ad.userFullName}</Text>
           </View>
 
           <View className='ad-card-rating'>
             <Image source={isDark ? icons.dark.likeTag : icons.light.likeTag} className='size-5' resizeMode='contain' />
-            <Text className='ad-card-txt-muted text-xs'>{props.ad.user.rating.toFixed(0)}%</Text>
+            <Text className='ad-card-txt-muted text-xs'>{props.ad.userCompletionRate.toFixed(0)}%</Text>
           </View>
         </View>
       </View>
@@ -50,7 +52,7 @@ const AdCard = (props: AdCardProps) => {
 
             <View className='ad-card-amount-group'>
               <Text className='ad-card-txt-md text-2xl'>
-                ₹ {currencyFormatter.format(props.ad.price).split('.')[0]}.
+                {fiatSymbols[props.ad.fiatId] ?? ''} {currencyFormatter.format(props.ad.price).split('.')[0]}.
               </Text>
               <Text className='ad-card-txt text-lg'>{currencyFormatter.format(props.ad.price).split('.')[1]}</Text>
             </View>
@@ -64,7 +66,7 @@ const AdCard = (props: AdCardProps) => {
                 resizeMode='contain'
               />
               <Text className='ad-card-txt-muted text-xs'>
-                {currencyFormatter.format(props.ad.user.trades).split('.')[0]}{' '}
+                {currencyFormatter.format(props.ad.userTotalTrades).split('.')[0]}{' '}
                 {ComponentStrings.AdCard.STATS_TRADES_SUFFIX}
               </Text>
             </View>
@@ -76,7 +78,7 @@ const AdCard = (props: AdCardProps) => {
                 resizeMode='contain'
               />
               <Text className='ad-card-txt-muted text-xs'>
-                {props.ad.user.successRate.toFixed(0)}
+                {props.ad.userCompletionRate.toFixed(0)}
                 {ComponentStrings.AdCard.STATS_COMPLETION_SUFFIX}
               </Text>
             </View>
@@ -100,13 +102,13 @@ const AdCard = (props: AdCardProps) => {
       </View>
 
       {/* Card Footer */}
-      {props.ad.payMethods && Boolean(props.ad.payMethods.length) && (
+      {props.ad.payMethodIds && Boolean(props.ad.payMethodIds.length) && (
         <View className='ad-card-footer'>
           <View className='my-px flex-row justify-center'>
             <DividerX style='w-2/6' />
           </View>
           <View className='ad-card-pay-methods'>
-            {props.ad.payMethods.map((item: string, index: number) => (
+            {props.ad.payMethodIds.map((item: string, index: number) => (
               <PayMethodBadge key={index} payMethodId={item} />
             ))}
           </View>
