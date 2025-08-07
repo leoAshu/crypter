@@ -49,7 +49,7 @@ const PostAdvert = () => {
         <PrimaryDropdown<FilterItem>
           title='Select Cryptocurrency'
           items={cryptoFilterItems}
-          value={selectedCrypto ?? undefined}
+          value={selectedCrypto ?? { id: '', label: '' }}
           onSelect={(crypto) => setSelectedCrypto(getCryptoFilterById(crypto.id) || null)}
           containerStyle='w-full max-w-sm'
         />
