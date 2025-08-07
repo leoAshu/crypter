@@ -1,5 +1,6 @@
 import { ChipFilter, DividerX, OrderCard, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
+import { useOrders } from '@/hooks';
 import { getFilteredOrders } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
@@ -8,11 +9,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Orders = () => {
   const isDark = useColorScheme() === 'dark';
+
+  const { pendingOrderTypeFilterItems, completedOrderTypeFilterItems } = useOrders();
+
   const [orderType, setOrderType] = useState<OrderType>('pending');
-  const [pendingOrderType, setPendingOrderType] = useState<PendingOrderType>('all');
-  const [completedOrderType, setCompletedOrderType] = useState<CompletedOrderType>('all');
+  const [pendingOrderType, setPendingOrderType] = useState<FilterItem>(pendingOrderTypeFilterItems[0]);
+  const [completedOrderType, setCompletedOrderType] = useState<FilterItem>(completedOrderTypeFilterItems[0]);
   const [ordersList, setOrdersList] = useState<Order[]>(
-    getFilteredOrders(orderType, orderType === 'pending' ? pendingOrderType : completedOrderType),
+    getFilteredOrders(
+      orderType,
+      orderType === 'pending' ? (pendingOrderType.id as OrderSubType) : (completedOrderType.id as OrderSubType),
+    ),
   );
 
   const adsListStyle = Platform.select({
@@ -21,7 +28,12 @@ const Orders = () => {
   });
 
   useEffect(() => {
-    setOrdersList(getFilteredOrders(orderType, orderType === 'pending' ? pendingOrderType : completedOrderType));
+    setOrdersList(
+      getFilteredOrders(
+        orderType,
+        orderType === 'pending' ? (pendingOrderType.id as OrderSubType) : (completedOrderType.id as OrderSubType),
+      ),
+    );
   }, [orderType, pendingOrderType, completedOrderType]);
 
   return (
@@ -44,16 +56,14 @@ const Orders = () => {
           {orderType === 'pending' ? (
             <ChipFilter
               value={pendingOrderType}
-              options={['all', 'unpaid', 'paid', 'appeal']}
-              labels={{ all: 'All', unpaid: 'Unpaid', paid: 'Paid', appeal: 'Appeal' }}
-              onChange={(val) => setPendingOrderType(val)}
+              items={pendingOrderTypeFilterItems}
+              onChange={(item) => setPendingOrderType(item)}
             />
           ) : (
             <ChipFilter
               value={completedOrderType}
-              options={['all', 'completed', 'canceled']}
-              labels={{ all: 'All', completed: 'Completed', canceled: 'Canceled' }}
-              onChange={(val) => setCompletedOrderType(val)}
+              items={completedOrderTypeFilterItems}
+              onChange={(item) => setCompletedOrderType(item)}
             />
           )}
         </View>
