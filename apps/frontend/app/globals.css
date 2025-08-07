@@ -458,7 +458,7 @@
   }
 
   .qr-wrapper {
-    @apply elevation border-stroke dark:border-stroke-dark rounded-lg border;
+    @apply elevation rounded-lg border border-stroke dark:border-stroke-dark;
   }
 
   .deposit-form-content {
@@ -466,11 +466,11 @@
   }
 
   .deposit-form-label {
-    @apply text-label dark:text-label-dark font-clashDisplay;
+    @apply font-clashDisplay text-label dark:text-label-dark;
   }
 
   .deposit-form-row {
-    @apply border-stroke dark:border-stroke-dark flex-row rounded-md border;
+    @apply flex-row rounded-md border border-stroke dark:border-stroke-dark;
   }
 
   .deposit-form-value-wrapper {
@@ -478,11 +478,11 @@
   }
 
   .deposit-form-value {
-    @apply text-body dark:text-body-dark font-satoshi text-lg;
+    @apply font-satoshi text-lg text-body dark:text-body-dark;
   }
 
   .deposit-form-icon-wrapper {
-    @apply bg-base dark:bg-base-dark w-14 items-center justify-center rounded-md;
+    @apply w-14 items-center justify-center rounded-md bg-base dark:bg-base-dark;
   }
 
   .deposit-form-footer {
@@ -490,10 +490,10 @@
   }
 
   .deposit-form-footer-title {
-    @apply text-title dark:text-title-dark font-clashDisplay text-lg;
+    @apply font-clashDisplay text-lg text-title dark:text-title-dark;
   }
 
   .deposit-form-footer-wrapper {
-    @apply border-stroke dark:border-stroke-dark bg-card-info dark:bg-card-info-dark gap-y-4 border px-3 py-4;
+    @apply gap-y-4 border border-stroke bg-card-info px-3 py-4 dark:border-stroke-dark dark:bg-card-info-dark;
   }
 }

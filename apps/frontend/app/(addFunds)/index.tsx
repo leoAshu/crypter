@@ -73,12 +73,12 @@ const Deposit = () => {
                 <View className='deposit-form-footer-wrapper'>
                   <View className='flex-row items-center justify-between'>
                     <Text className='deposit-form-label'>Minimum Deposit</Text>
-                    <Text className='text-body dark:text-body-dark font-clashDisplay text-lg'>1 USDT</Text>
+                    <Text className='font-clashDisplay text-lg text-body dark:text-body-dark'>1 USDT</Text>
                   </View>
 
                   <View className='gap-y-2'>
                     <View className='gap-y-1'>
-                      <Text className='text-body dark:text-body-dark font-clashDisplay'>Deposit Advisory</Text>
+                      <Text className='font-clashDisplay text-body dark:text-body-dark'>Deposit Advisory</Text>
                       <DividerX style='opacity-30' />
                     </View>
                     <View className='gap-y-2'>
