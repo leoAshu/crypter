@@ -58,3 +58,10 @@ interface FiatState {
 
   fetchFiats: () => Promise<void>;
 }
+
+interface AdState {
+  ads: Ad[];
+  isLoading: boolean;
+
+  fetchAds: () => Promise<void>;
+}
