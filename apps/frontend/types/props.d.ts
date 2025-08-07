@@ -150,13 +150,6 @@ interface BackIconButtonProps {
   onPress?: () => void;
 }
 
-interface ChipFilterProps<T extends string> {
-  value: T;
-  options: T[];
-  labels?: Record<T, string>;
-  onChange?: (value: T) => void;
-}
-
 interface OrderCardProps {
   index: number;
   order: Order;
@@ -188,4 +181,10 @@ interface PrimaryDropdownProps<T extends FilterItem> {
   buttonStyle?: string;
   textStyle?: string;
   onSelect?: (item: T) => void;
+}
+
+interface ChipFilterProps {
+  value: FilterItem;
+  items: FilterItem[];
+  onChange?: (item: FilterItem) => void;
 }

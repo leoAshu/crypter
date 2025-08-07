@@ -25,6 +25,12 @@ const useCrypto = () => {
 
   const getCryptoFilterById = useMemo(() => (id: string) => cryptoFilterItems.find((c) => c.id === id), [cryptos]);
 
+  const cryptoSymbolFilterItems: FilterItem[] = useMemo(
+    () => [{ id: 'all', label: 'All' }, ...cryptos.map((c) => ({ id: c.id, label: c.symbol }))],
+    [cryptos],
+  );
+  const cryptoSymbolFilterItemsStrict: FilterItem[] = useMemo(() => cryptoSymbolFilterItems.slice(1), [cryptos]);
+
   return {
     cryptos,
     cryptoLabels,
@@ -33,6 +39,8 @@ const useCrypto = () => {
     cryptoOptionsStrict,
     cryptoFilterItems,
     getCryptoFilterById,
+    cryptoSymbolFilterItems,
+    cryptoSymbolFilterItemsStrict,
   };
 };
 
