@@ -165,3 +165,28 @@ interface OrderCardProps {
 interface WalletCardProps {
   cryptoId: CryptoOption;
 }
+
+// ====================
+// 🔽 Dropdowns
+// ====================
+
+/** Generic dropdown item interface - all dropdown items must extend this */
+interface DropdownItem {
+  id: string;
+  name: string;
+}
+
+/** Props for a primary dropdown with generic item type support */
+interface PrimaryDropdownProps<T extends DropdownItem> {
+  title?: string;
+  placeholder?: string;
+  items: T[];
+  selectedId?: string;
+  disabled?: boolean;
+  error?: string;
+  containerStyle?: string;
+  buttonStyle?: string;
+  textStyle?: string;
+  renderItem?: (item: T) => string;
+  onSelect?: (item: T) => void;
+}
