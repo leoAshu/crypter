@@ -21,17 +21,24 @@ const useCrypto = () => {
     [cryptos],
   );
 
+  const cryptoFilterItems = useMemo(() => cryptos.map((c) => ({ id: c.id, label: c.name })), [cryptos]);
+
+  const getCryptoFilterById = useMemo(() => (id: string) => cryptoFilterItems.find((c) => c.id === id), [cryptos]);
+
   return {
     cryptos,
     cryptoLabels,
     cryptoOptions,
     cryptoLabelsStrict,
     cryptoOptionsStrict,
+    cryptoFilterItems,
+    getCryptoFilterById,
   };
 };
 
 type CryptoOption = ReturnType<typeof useCrypto>['cryptoOptions'][number];
 type CryptoOptionStrict = ReturnType<typeof useCrypto>['cryptoOptionsStrict'][number];
+type CryptoFilterItem = ReturnType<typeof useCrypto>['cryptoFilterItems'][number];
 
 export default useCrypto;
-export { CryptoOption, CryptoOptionStrict };
+export { CryptoFilterItem, CryptoOption, CryptoOptionStrict };

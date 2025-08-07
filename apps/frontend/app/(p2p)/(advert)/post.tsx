@@ -7,9 +7,9 @@ import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PostAdvert = () => {
-  const [selectedCrypto, setSelectedCrypto] = useState<CryptoCurrency | null>(null);
+  const [selectedCrypto, setSelectedCrypto] = useState<FilterItem | null>(null);
   const [adType, setAdType] = useState<AdType>('buy');
-  const { cryptos } = useCrypto();
+  const { cryptoFilterItems, getCryptoFilterById } = useCrypto();
 
   const handleCreateAdvert = async () => {
     if (!selectedCrypto) {
@@ -46,12 +46,11 @@ const PostAdvert = () => {
             onChange={(val) => setAdType(val)}
           />
         </View>
-        <PrimaryDropdown<CryptoCurrency>
+        <PrimaryDropdown<FilterItem>
           title='Select Cryptocurrency'
-          items={cryptos}
-          selectedId={selectedCrypto?.id}
-          onSelect={(crypto) => setSelectedCrypto(crypto)}
-          renderItem={(crypto) => `${crypto.name} (${crypto.symbol})`}
+          items={cryptoFilterItems}
+          value={selectedCrypto ?? undefined}
+          onSelect={(crypto) => setSelectedCrypto(getCryptoFilterById(crypto.id) || null)}
           containerStyle='w-full max-w-sm'
         />
       </View>
