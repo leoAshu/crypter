@@ -72,6 +72,9 @@ const Strings = {
     FEEDBACK_NEGATIVE_LABEL: 'Negative Feedback',
     TOTAL_VOLUME_LABEL: 'Approx Total Volume',
   },
+  feedback: {
+    HEADER_TITLE: 'Feedback',
+  },
   p2p: {
     TAB_TITLE: 'P2P',
     HEADER_TITLE: 'MarketPlace',
