@@ -1,7 +1,7 @@
-import { ChipFilter, DividerX, OrderCard, ToggleButton } from '@/components';
+import { ChipFilter, DividerX, OrderCard } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
 import { useOrders } from '@/hooks';
-import { getFilteredOrders } from '@/models';
+import { CompletedOrderType, OrderType, PendingOrderType } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
@@ -10,16 +10,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Orders = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { pendingOrderTypeFilterItems, completedOrderTypeFilterItems } = useOrders();
+  const { pendingOrderTypeFilterItems, completedOrderTypeFilterItems, filterOrdersByType } = useOrders();
 
-  const [orderType, setOrderType] = useState<OrderType>('pending');
+  const [orderType, setOrderType] = useState<OrderType>(OrderType.Pending);
   const [pendingOrderType, setPendingOrderType] = useState<FilterItem>(pendingOrderTypeFilterItems[0]);
   const [completedOrderType, setCompletedOrderType] = useState<FilterItem>(completedOrderTypeFilterItems[0]);
   const [ordersList, setOrdersList] = useState<Order[]>(
-    getFilteredOrders(
-      orderType,
-      orderType === 'pending' ? (pendingOrderType.id as OrderSubType) : (completedOrderType.id as OrderSubType),
-    ),
+    filterOrdersByType(orderType, pendingOrderType.id as PendingOrderType, completedOrderType.id as CompletedOrderType),
   );
 
   const adsListStyle = Platform.select({
@@ -29,9 +26,10 @@ const Orders = () => {
 
   useEffect(() => {
     setOrdersList(
-      getFilteredOrders(
+      filterOrdersByType(
         orderType,
-        orderType === 'pending' ? (pendingOrderType.id as OrderSubType) : (completedOrderType.id as OrderSubType),
+        pendingOrderType.id as PendingOrderType,
+        completedOrderType.id as CompletedOrderType,
       ),
     );
   }, [orderType, pendingOrderType, completedOrderType]);
@@ -41,7 +39,7 @@ const Orders = () => {
       <View className={cn('content-wrapper', screenContentWrapperStyle)}>
         <View className='flex gap-y-3'>
           <View className='flex-row justify-center'>
-            <ToggleButton
+            {/* <ToggleButton
               value={orderType}
               labelStyle='text-base'
               wrapperStyle='w-5/6 h-10'
@@ -50,7 +48,7 @@ const Orders = () => {
               activeButtonColors={{ pending: 'bg-primary', completed: 'bg-primary' }}
               activeLabelColors={{ pending: 'text-base-black', completed: 'text-base-black' }}
               onChange={(val) => setOrderType(val)}
-            />
+            /> */}
           </View>
 
           {orderType === 'pending' ? (

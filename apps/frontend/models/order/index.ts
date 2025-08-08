@@ -1,3 +1,23 @@
+enum OrderType {
+  Pending = 'pending',
+  Completed = 'completed',
+}
+
+enum PendingOrderType {
+  All = 'all',
+  Unpaid = 'unpaid',
+  Paid = 'paid',
+  Appeal = 'appeal',
+}
+
+enum CompletedOrderType {
+  All = 'all',
+  Completed = 'completed',
+  Canceled = 'canceled',
+}
+
+type OrderSubType = PendingOrderType | CompletedOrderType;
+
 const orders: Order[] = [
   {
     id: 'ORD-20250801-000001-A1B2C3D4E5F6',
@@ -109,4 +129,4 @@ const getFilteredOrders = (type: OrderType, subType: OrderSubType) => {
   });
 };
 
-export { getFilteredOrders, orders };
+export { CompletedOrderType, getFilteredOrders, orders, OrderSubType, OrderType, PendingOrderType };

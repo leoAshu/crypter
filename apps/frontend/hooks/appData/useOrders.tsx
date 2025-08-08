@@ -1,10 +1,12 @@
+import { CompletedOrderType, orders as mockOrders, OrderType, PendingOrderType } from '@/models';
 import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
 
 const useOrders = () => {
-  const orderTypes = ['pending', 'completed'];
-  const pendingOrderTypes = ['all', 'unpaid', 'paid', 'appeal'];
-  const completedOrderTypes = ['all', 'completed', 'canceled'];
+  const orders = mockOrders;
+  const orderTypes = Object.values(OrderType);
+  const pendingOrderTypes = Object.values(PendingOrderType);
+  const completedOrderTypes = Object.values(CompletedOrderType);
 
   const orderTypeFilterItems = useMemo(
     () =>
@@ -31,13 +33,25 @@ const useOrders = () => {
     [],
   );
 
+  const filterOrdersByType = (type: OrderType, pendingType: PendingOrderType, completedType: CompletedOrderType) => {
+    const subType = type === OrderType.Pending ? pendingType : completedType;
+
+    return orders.filter((o) => {
+      if (o.orderType !== type) return false;
+      if (subType === 'all') return true;
+      return o.subType === subType;
+    });
+  };
+
   return {
+    orders,
     orderTypes,
     pendingOrderTypes,
     completedOrderTypes,
     orderTypeFilterItems,
     pendingOrderTypeFilterItems,
     completedOrderTypeFilterItems,
+    filterOrdersByType,
   };
 };
 

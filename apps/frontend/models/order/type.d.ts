@@ -1,8 +1,3 @@
-type OrderType = 'pending' | 'completed';
-type PendingOrderType = 'all' | 'unpaid' | 'paid' | 'appeal';
-type CompletedOrderType = 'all' | 'completed' | 'canceled';
-type OrderSubType = PendingOrderType | CompletedOrderType;
-
 interface Order {
   id: string;
   adId: string;
