@@ -1,4 +1,4 @@
-import { ChipFilter, DividerX, OrderCard } from '@/components';
+import { ChipFilter, DividerX, OrderCard, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
 import { useOrders } from '@/hooks';
 import { CompletedOrderType, OrderType, PendingOrderType } from '@/models';
@@ -10,13 +10,18 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Orders = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { pendingOrderTypeFilterItems, completedOrderTypeFilterItems, filterOrdersByType } = useOrders();
+  const { pendingOrderTypeFilterItems, completedOrderTypeFilterItems, orderTypeFilterItems, filterOrdersByType } =
+    useOrders();
 
-  const [orderType, setOrderType] = useState<OrderType>(OrderType.Pending);
+  const [orderType, setOrderType] = useState<FilterItem>(orderTypeFilterItems[0]);
   const [pendingOrderType, setPendingOrderType] = useState<FilterItem>(pendingOrderTypeFilterItems[0]);
   const [completedOrderType, setCompletedOrderType] = useState<FilterItem>(completedOrderTypeFilterItems[0]);
   const [ordersList, setOrdersList] = useState<Order[]>(
-    filterOrdersByType(orderType, pendingOrderType.id as PendingOrderType, completedOrderType.id as CompletedOrderType),
+    filterOrdersByType(
+      orderType.id as OrderType,
+      pendingOrderType.id as PendingOrderType,
+      completedOrderType.id as CompletedOrderType,
+    ),
   );
 
   const adsListStyle = Platform.select({
@@ -27,7 +32,7 @@ const Orders = () => {
   useEffect(() => {
     setOrdersList(
       filterOrdersByType(
-        orderType,
+        orderType.id as OrderType,
         pendingOrderType.id as PendingOrderType,
         completedOrderType.id as CompletedOrderType,
       ),
@@ -39,19 +44,24 @@ const Orders = () => {
       <View className={cn('content-wrapper', screenContentWrapperStyle)}>
         <View className='flex gap-y-3'>
           <View className='flex-row justify-center'>
-            {/* <ToggleButton
+            <ToggleButton
               value={orderType}
+              items={[orderTypeFilterItems[0], orderTypeFilterItems[1]]}
+              activeButtonColors={{
+                [orderTypeFilterItems[0].id]: 'bg-primary',
+                [orderTypeFilterItems[1].id]: 'bg-error-500',
+              }}
+              activeLabelColors={{
+                [orderTypeFilterItems[0].id]: 'text-base-dark',
+                [orderTypeFilterItems[1].id]: 'text-base-white',
+              }}
               labelStyle='text-base'
               wrapperStyle='w-5/6 h-10'
-              options={['pending', 'completed']}
-              labels={{ pending: 'Pending', completed: 'Completed' }}
-              activeButtonColors={{ pending: 'bg-primary', completed: 'bg-primary' }}
-              activeLabelColors={{ pending: 'text-base-black', completed: 'text-base-black' }}
               onChange={(val) => setOrderType(val)}
-            /> */}
+            />
           </View>
 
-          {orderType === 'pending' ? (
+          {orderType.id === OrderType.Pending ? (
             <ChipFilter
               value={pendingOrderType}
               items={pendingOrderTypeFilterItems}

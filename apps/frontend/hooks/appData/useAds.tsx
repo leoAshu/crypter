@@ -1,10 +1,23 @@
+import { AdType } from '@/models';
 import { useAdStore } from '@/store';
+import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
 import useCrypto from './useCrypto';
 
 const useAds = () => {
   const { ads } = useAdStore();
   const { cryptoOptions } = useCrypto();
+
+  const adTypes = Object.values(AdType);
+
+  const adTypeFilterItems = useMemo(
+    () =>
+      adTypes.map((e) => ({
+        id: e,
+        label: capitalizeWords(e),
+      })),
+    [adTypes],
+  );
 
   const activeAds = useMemo(() => {
     return ads.filter((ad) => cryptoOptions.includes(ad.cryptoId));
@@ -27,7 +40,9 @@ const useAds = () => {
   };
 
   return {
+    adTypes,
     activeAds,
+    adTypeFilterItems,
     filterAdsByType,
     filterAdsByUserId,
   };

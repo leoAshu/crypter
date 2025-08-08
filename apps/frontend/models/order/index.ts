@@ -121,12 +121,4 @@ const orders: Order[] = [
   },
 ];
 
-const getFilteredOrders = (type: OrderType, subType: OrderSubType) => {
-  return orders.filter((o) => {
-    if (o.orderType !== type) return false;
-    if (subType === 'all') return true;
-    return o.subType === subType;
-  });
-};
-
-export { CompletedOrderType, getFilteredOrders, orders, OrderSubType, OrderType, PendingOrderType };
+export { CompletedOrderType, orders, OrderSubType, OrderType, PendingOrderType };

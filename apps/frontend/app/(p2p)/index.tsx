@@ -1,6 +1,7 @@
 import { AdCard, ChipFilter, DividerX, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
+import { AdType } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
@@ -9,12 +10,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Home = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { filterAdsByType } = useAds();
+  const { adTypeFilterItems, filterAdsByType } = useAds();
   const { cryptoSymbolFilterItems } = useCrypto();
 
-  const [adType, setAdType] = useState<AdType>('buy');
+  const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [crypto, setCrypto] = useState<FilterItem>(cryptoSymbolFilterItems[0]);
-  const [ads, setAds] = useState(filterAdsByType(adType, crypto.id));
+  const [ads, setAds] = useState(filterAdsByType(adType.id as AdType, crypto.id));
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
@@ -22,7 +23,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    setAds(filterAdsByType(adType, crypto.id));
+    setAds(filterAdsByType(adType.id as AdType, crypto.id));
   }, [adType, crypto]);
 
   return (
@@ -32,12 +33,17 @@ const Home = () => {
           <View className='flex-row justify-center'>
             <ToggleButton
               value={adType}
+              items={[adTypeFilterItems[0], adTypeFilterItems[1]]}
+              activeButtonColors={{
+                [adTypeFilterItems[0].id]: 'bg-primary',
+                [adTypeFilterItems[1].id]: 'bg-error-500',
+              }}
+              activeLabelColors={{
+                [adTypeFilterItems[0].id]: 'text-base-dark',
+                [adTypeFilterItems[1].id]: 'text-base-white',
+              }}
               labelStyle='text-base'
               wrapperStyle='w-5/6 h-10'
-              options={['buy', 'sell']}
-              labels={{ buy: 'Buy', sell: 'Sell' }}
-              activeButtonColors={{ buy: 'bg-primary', sell: 'bg-error-500' }}
-              activeLabelColors={{ buy: 'text-base-black', sell: 'text-base-white' }}
               onChange={(val) => setAdType(val)}
             />
           </View>

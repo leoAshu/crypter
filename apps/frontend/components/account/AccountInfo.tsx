@@ -1,3 +1,4 @@
+import { getMockUserName } from '@/utils';
 import { Text, View } from 'react-native';
 import InitialsAvatar from '../avatars/InitialsAvatar';
 
@@ -9,7 +10,7 @@ const AccountInfo = (props: AccountInfoProps) => {
       <View>
         <Text className='font-clashDisplay text-2xl text-base-black dark:text-base-white'>{props.name}</Text>
         <Text className='font-satoshi-medium text-sm text-neutral dark:text-neutral-400'>
-          @{props.username.toLowerCase().split(' ').join('_')}
+          @{getMockUserName(props.username)}
         </Text>
       </View>
     </View>

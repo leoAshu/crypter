@@ -1,4 +1,4 @@
-interface Stat {
+interface Stats {
   userId: string;
   totalTrades: number;
   completionRate: number;

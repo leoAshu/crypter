@@ -120,17 +120,6 @@ interface HeaderActionIconProps {
   onPress?: () => void;
 }
 
-interface ToggleButtonProps<T extends string> {
-  value: T;
-  options: [T, T];
-  labelStyle?: string;
-  wrapperStyle?: string;
-  labels?: Record<T, string>;
-  activeButtonColors?: Record<T, string>;
-  activeLabelColors?: Record<T, string>;
-  onChange?: (value: T) => void;
-}
-
 interface PayMethodBadgeProps {
   payMethodId: string;
 }
@@ -186,5 +175,15 @@ interface PrimaryDropdownProps<T extends FilterItem> {
 interface ChipFilterProps {
   value: FilterItem;
   items: FilterItem[];
-  onChange?: (item: FilterItem) => void;
+  onChange?: (val: FilterItem) => void;
+}
+
+interface ToggleButtonProps {
+  value: FilterItem;
+  items: [FilterItem, FilterItem];
+  labelStyle?: string;
+  wrapperStyle?: string;
+  activeButtonColors?: Record<string, string>;
+  activeLabelColors?: Record<string, string>;
+  onChange?: (val: FilterItem) => void;
 }
