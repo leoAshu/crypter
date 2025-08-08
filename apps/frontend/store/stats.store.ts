@@ -2,7 +2,7 @@ import { fetchStat } from '@/supabase';
 import { create } from 'zustand';
 
 const useStatsStore = create<StatState>((set) => ({
-  stat: null,
+  stats: null,
   isLoading: false,
 
   fetchStat: async (userId: string) => {
@@ -10,7 +10,7 @@ const useStatsStore = create<StatState>((set) => ({
 
     try {
       const stat = await fetchStat(userId);
-      set({ stat });
+      set({ stats: stat });
     } catch (err: any) {
       console.log('fetchCryptos error', err);
       throw new Error(err.message);

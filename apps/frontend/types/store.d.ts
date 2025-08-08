@@ -31,7 +31,7 @@ interface CryptoState {
 }
 
 interface StatState {
-  stat: Stats | null;
+  stats: Stats | null;
   isLoading: boolean;
 
   fetchStat: (userId: string) => Promise<void>;

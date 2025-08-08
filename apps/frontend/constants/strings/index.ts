@@ -39,7 +39,7 @@ const Strings = {
   profile: {
     TAB_TITLE: 'Profile',
     HEADER_TITLE: 'Profile',
-    TRADING_STATS_TITLE: 'Trading Info',
+    TRADING_STATS_TITLE: 'Trading Stats',
     TOTAL_TRADES_LABEL: 'Total Trades',
     COMPLETION_RATE_LABEL: 'Completion Rate',
     AVG_RELEASE_LABEL: 'Average Release Time',
@@ -59,6 +59,18 @@ const Strings = {
     PASSWORD_LABEL: 'Your Password',
     PHONE_LABEL: 'Phone Number',
     SAVE_BTN_TITLE: 'Save',
+  },
+  stats: {
+    HEADER_TITLE: 'Trading Stats',
+    TRADE_LABEL: 'Trades',
+    BUY_LABEL: 'Buy Trades',
+    SELL_LABEL: 'Sell Trades',
+    COMPLETION_RATE_LABEL: 'Completion Rate',
+    AVG_RELEASE_LABEL: 'Average Release Time',
+    AVG_PAY_LABEL: 'Average Pay Time',
+    FEEDBACK_POSITIVE_LABEL: 'Positive Feedback',
+    FEEDBACK_NEGATIVE_LABEL: 'Negative Feedback',
+    TOTAL_VOLUME_LABEL: 'Approx Total Volume',
   },
   p2p: {
     TAB_TITLE: 'P2P',
