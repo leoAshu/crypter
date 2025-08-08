@@ -49,7 +49,7 @@ const SignIn = () => {
           <View style={{ height: Dimensions.get('screen').height / 2.8 }}>
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
           </View>
-          <View className='content-wrapper'>
+          <View className='content-wrapper gap-y-6'>
             <Text className='header-txt'>{Strings.login.SCREEN_TITLE}</Text>
 
             {/* Form */}
@@ -68,7 +68,9 @@ const SignIn = () => {
                 disabled={isLoading}
                 onChangeText={(value) => setFormData((prev) => ({ ...prev, password: value }))}
               />
-              <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
+              <View className='mt-8'>
+                <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -86,7 +88,7 @@ const SignIn = () => {
         </View>
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
-          <Pressable disabled={isLoading} onPress={() => router.replace('/(auth)/(signup)')}>
+          <Pressable disabled={isLoading} onPress={() => router.replace('/(auth)/(signup)')} hitSlop={20}>
             <Text className='footer-link'>{Strings.login.SIGNUP_CTA}</Text>
           </Pressable>
         </View>

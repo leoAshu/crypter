@@ -50,7 +50,7 @@ const Signup = () => {
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
           </View>
 
-          <View className='content-wrapper'>
+          <View className='content-wrapper gap-y-6'>
             <Text className='header-txt'>{Strings.signup.SCREEN_TITLE}</Text>
 
             {/* Form */}
@@ -62,12 +62,14 @@ const Signup = () => {
                 disabled={isSubmitting}
                 onChangeText={(value) => setFormData((prev) => ({ ...prev, email: value }))}
               />
-              <PrimaryButton
-                title={Strings.signup.BUTTON_LABEL}
-                isLoading={isSubmitting}
-                onPress={submitForm}
-                leftIcon={<Image className='size-4' resizeMode='contain' source={images.mail}></Image>}
-              />
+              <View className='mt-8'>
+                <PrimaryButton
+                  title={Strings.signup.BUTTON_LABEL}
+                  isLoading={isSubmitting}
+                  onPress={submitForm}
+                  leftIcon={<Image className='size-4' resizeMode='contain' source={images.mail}></Image>}
+                />
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -85,7 +87,7 @@ const Signup = () => {
         </View>
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.signup.NO_ACCOUNT_TEXT}</Text>
-          <Pressable disabled={isSubmitting} onPress={() => router.replace('/signin')}>
+          <Pressable disabled={isSubmitting} onPress={() => router.replace('/signin')} hitSlop={20}>
             <Text className='footer-link'>{Strings.signup.SIGNIN_CTA}</Text>
           </Pressable>
         </View>
