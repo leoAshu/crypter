@@ -6,5 +6,7 @@ interface Review {
   type: ReviewType;
   review: string;
   createdAt: string;
-  verified: boolean;
+  fromName: string;
+  fromAvatarUrl: string;
+  fromVerified: boolean;
 }

@@ -12,16 +12,16 @@ const ReviewCard = (props: ReviewCardProps) => {
       <View className='flex-row items-center justify-between px-2'>
         <View className='flex-row items-center gap-x-2'>
           <InitialsAvatar
-            name={props.review.fromUserId}
+            name={props.review.fromName}
             textStyle='absolute font-clashDisplay-medium text-xs text-title dark:text-title-dark'
             containerStyle='bg-card-info dark:bg-card-dark size-6'
           />
           <Text className='font-clashDisplay text-title dark:text-title-dark'>
-            @{getMockUserName(props.review.fromUserId)}
+            @{getMockUserName(props.review.fromName)}
           </Text>
           <Image
             source={
-              props.review.verified
+              props.review.fromVerified
                 ? isDark
                   ? icons.dark.verifyGold
                   : icons.light.verifyGold
@@ -50,9 +50,7 @@ const ReviewCard = (props: ReviewCardProps) => {
       </View>
 
       <View className='gap-y-2 px-3'>
-        <Text className='font-satoshi text-body dark:text-body-dark'>
-          A fast and reliable person. I recommend always
-        </Text>
+        <Text className='font-satoshi text-body dark:text-body-dark'>{props.review.review}</Text>
 
         <Text className='font-satoshi-medium text-xs text-label dark:text-label-dark'>
           {formatDateTime(props.review.createdAt).split(' ')[0]}
