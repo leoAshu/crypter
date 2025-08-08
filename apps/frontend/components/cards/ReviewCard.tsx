@@ -3,7 +3,6 @@ import { ReviewType } from '@/models';
 import { formatDateTime, getMockUserName } from '@/utils';
 import { Image, Text, useColorScheme, View } from 'react-native';
 import { InitialsAvatar } from '../avatars';
-import { DividerX } from '../dividers';
 
 const ReviewCard = (props: ReviewCardProps) => {
   const isDark = useColorScheme() === 'dark';
@@ -59,8 +58,6 @@ const ReviewCard = (props: ReviewCardProps) => {
           {formatDateTime(props.review.createdAt).split(' ')[0]}
         </Text>
       </View>
-
-      <DividerX />
     </View>
   );
 };

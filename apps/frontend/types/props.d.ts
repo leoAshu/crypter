@@ -189,5 +189,6 @@ interface ToggleButtonProps {
 }
 
 interface ReviewCardProps {
+  index: number;
   review: Review;
 }
