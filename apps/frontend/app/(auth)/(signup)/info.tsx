@@ -43,8 +43,9 @@ const SignUpInfo = () => {
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
           </View>
 
-          <View className='content-wrapper'>
+          <View className='content-wrapper gap-y-6'>
             <Text className='header-txt'>{Strings.signupInfo.SCREEN_TITLE}</Text>
+
             {/* Form */}
             <View className='form-group'>
               <InputField
@@ -81,8 +82,10 @@ const SignUpInfo = () => {
                 disabled={isLoading}
                 onChangeText={(value) => setFormData((prev) => ({ ...prev, confirmPassword: value }))}
               />
+              <View className='mt-8'>
+                <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
+              </View>
             </View>
-            <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

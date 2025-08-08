@@ -1,12 +1,12 @@
 import supabaseClient from './client';
-import { convertToStatKeys } from './mapUtils';
+import { convertToStatsKeys } from './mapUtils';
 
-const fetchStat = async (userId: string): Promise<Stat> => {
+const fetchStat = async (userId: string): Promise<Stats> => {
   const { data, error } = await supabaseClient.from('stats').select('*').eq('user_id', userId).single();
 
   if (error) throw new Error(error.message);
-  const stat = convertToStatKeys(data);
-  return stat;
+  const stats = convertToStatsKeys(data);
+  return stats;
 };
 
 export { fetchStat };

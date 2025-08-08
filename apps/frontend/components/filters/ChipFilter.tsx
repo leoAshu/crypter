@@ -3,10 +3,10 @@ import * as Haptics from 'expo-haptics';
 import { FlatList, Pressable, Text, useColorScheme, View } from 'react-native';
 import { DividerX } from '../dividers';
 
-const ChipFilter = <T extends string>(props: ChipFilterProps<T>) => {
+const ChipFilter = (props: ChipFilterProps) => {
   const isDark = useColorScheme() === 'dark';
 
-  const onPress = (option: T) => {
+  const onPress = (option: FilterItem) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     props.onChange?.(option);
   };
@@ -15,22 +15,20 @@ const ChipFilter = <T extends string>(props: ChipFilterProps<T>) => {
     <View className='flex'>
       <FlatList
         horizontal
-        data={props.options}
-        keyExtractor={(item) => item}
+        data={props.items}
+        keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingHorizontal: 8 }}
         ItemSeparatorComponent={() => <View className='w-4' />}
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item: option }) => {
-          const isActive = option === props.value;
+        renderItem={({ item }) => {
+          const isActive = item.id === props.value.id;
           const borderStyle = isActive ? 'border-b-primary' : 'border-b-transparent';
           const labelStyle = isActive ? 'text-base-black dark:text-base-white' : 'text-neutral';
 
           return (
-            <Pressable onPress={() => onPress(option)}>
+            <Pressable onPress={() => onPress(item)}>
               <View className={cn('mb-0.5 border-b-2 px-1.5 pb-1.5 pt-2', borderStyle)}>
-                <Text className={cn('font-satoshi-medium text-base tracking-wider', labelStyle)}>
-                  {props.labels?.[option]}
-                </Text>
+                <Text className={cn('font-satoshi-medium text-base tracking-wider', labelStyle)}>{item.label}</Text>
               </View>
             </Pressable>
           );

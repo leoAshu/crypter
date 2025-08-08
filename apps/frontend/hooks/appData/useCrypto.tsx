@@ -5,6 +5,8 @@ const useCrypto = () => {
   const { cryptos } = useCryptotore();
 
   const cryptoOptions = useMemo(() => ['all', ...cryptos.map((c) => c.id)], [cryptos]);
+  const cryptoOptionsStrict = useMemo(() => cryptoOptions.slice(1), [cryptoOptions]);
+
   const cryptoLabels: Record<string, string> = useMemo(
     () => ({
       all: 'All',
@@ -13,7 +15,6 @@ const useCrypto = () => {
     [cryptos],
   );
 
-  const cryptoOptionsStrict = useMemo(() => cryptoOptions.slice(1), [cryptos]);
   const cryptoLabelsStrict: Record<string, string> = useMemo(
     () => ({
       ...Object.fromEntries(cryptos.map((c) => [c.id, c.symbol])),
@@ -21,9 +22,21 @@ const useCrypto = () => {
     [cryptos],
   );
 
-  const cryptoFilterItems = useMemo(() => cryptos.map((c) => ({ id: c.id, label: c.name })), [cryptos]);
+  const createFilterItems = (labelKey: 'symbol' | 'name'): FilterItem[] => [
+    { id: 'all', label: 'All' },
+    ...cryptos.map((c) => ({ id: c.id, label: c[labelKey] })),
+  ];
 
-  const getCryptoFilterById = useMemo(() => (id: string) => cryptoFilterItems.find((c) => c.id === id), [cryptos]);
+  const cryptoSymbolFilterItems = useMemo(() => createFilterItems('symbol'), [cryptos]);
+  const cryptoSymbolFilterItemsStrict = useMemo(() => cryptoSymbolFilterItems.slice(1), [cryptoSymbolFilterItems]);
+
+  const cryptoNameFilterItems = useMemo(() => createFilterItems('name'), [cryptos]);
+  const cryptoNameFilterItemsStrict = useMemo(() => cryptoNameFilterItems.slice(1), [cryptoNameFilterItems]);
+
+  const getCryptoNameById = useMemo(
+    () => (id: string) => cryptoNameFilterItems.find((c) => c.id === id),
+    [cryptoNameFilterItems],
+  );
 
   return {
     cryptos,
@@ -31,14 +44,12 @@ const useCrypto = () => {
     cryptoOptions,
     cryptoLabelsStrict,
     cryptoOptionsStrict,
-    cryptoFilterItems,
-    getCryptoFilterById,
+    cryptoNameFilterItems,
+    cryptoNameFilterItemsStrict,
+    cryptoSymbolFilterItems,
+    cryptoSymbolFilterItemsStrict,
+    getCryptoNameById,
   };
 };
 
-type CryptoOption = ReturnType<typeof useCrypto>['cryptoOptions'][number];
-type CryptoOptionStrict = ReturnType<typeof useCrypto>['cryptoOptionsStrict'][number];
-type CryptoFilterItem = ReturnType<typeof useCrypto>['cryptoFilterItems'][number];
-
 export default useCrypto;
-export { CryptoFilterItem, CryptoOption, CryptoOptionStrict };

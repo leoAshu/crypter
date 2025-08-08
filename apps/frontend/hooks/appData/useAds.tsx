@@ -1,34 +1,48 @@
-// import { ads } from '@/models';
+import { AdType } from '@/models';
 import { useAdStore } from '@/store';
+import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
-import useCrypto, { CryptoOption } from './useCrypto';
+import useCrypto from './useCrypto';
 
 const useAds = () => {
   const { ads } = useAdStore();
   const { cryptoOptions } = useCrypto();
 
+  const adTypes = Object.values(AdType);
+
+  const adTypeFilterItems = useMemo(
+    () =>
+      adTypes.map((e) => ({
+        id: e,
+        label: capitalizeWords(e),
+      })),
+    [adTypes],
+  );
+
   const activeAds = useMemo(() => {
     return ads.filter((ad) => cryptoOptions.includes(ad.cryptoId));
   }, [cryptoOptions]);
 
-  const filterAdsByType = (adType: AdType, crypto: CryptoOption) => {
+  const filterAdsByType = (adType: AdType, cryptoId: string) => {
     return activeAds.filter((ad) => {
       if (ad.type !== adType) return false;
 
-      if (crypto === 'all') return true;
+      if (cryptoId === 'all') return true;
 
-      return ad.cryptoId === crypto;
+      return ad.cryptoId === cryptoId;
     });
   };
 
-  const filterAdsByUserId = (adType: AdType, crypto: CryptoOption, userId: string) => {
-    return filterAdsByType(adType, crypto).filter((ad) => {
+  const filterAdsByUserId = (adType: AdType, cryptoId: string, userId: string) => {
+    return filterAdsByType(adType, cryptoId).filter((ad) => {
       return ad.userId === userId;
     });
   };
 
   return {
+    adTypes,
     activeAds,
+    adTypeFilterItems,
     filterAdsByType,
     filterAdsByUserId,
   };

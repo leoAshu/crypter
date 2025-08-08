@@ -17,5 +17,3 @@ interface Ad {
   userCompletionRate: number;
   createdAt: string;
 }
-
-type AdType = 'buy' | 'sell';

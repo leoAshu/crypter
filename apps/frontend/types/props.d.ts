@@ -120,17 +120,6 @@ interface HeaderActionIconProps {
   onPress?: () => void;
 }
 
-interface ToggleButtonProps<T extends string> {
-  value: T;
-  options: [T, T];
-  labelStyle?: string;
-  wrapperStyle?: string;
-  labels?: Record<T, string>;
-  activeButtonColors?: Record<T, string>;
-  activeLabelColors?: Record<T, string>;
-  onChange?: (value: T) => void;
-}
-
 interface PayMethodBadgeProps {
   payMethodId: string;
 }
@@ -148,13 +137,6 @@ interface DividerXProps {
 interface BackIconButtonProps {
   containerStyle?: string;
   onPress?: () => void;
-}
-
-interface ChipFilterProps<T extends string> {
-  value: T;
-  options: T[];
-  labels?: Record<T, string>;
-  onChange?: (value: T) => void;
 }
 
 interface OrderCardProps {
@@ -177,15 +159,31 @@ interface FilterItem {
 // ====================
 
 /** Props for a primary dropdown with generic item type support */
-interface PrimaryDropdownProps<T extends FilterItem> {
+interface DropdownProps {
   title?: string;
   placeholder?: string;
-  items: T[];
-  value: T;
+  items: FilterItem[];
+  value?: FilterItem;
   disabled?: boolean;
   error?: string;
   containerStyle?: string;
   buttonStyle?: string;
   textStyle?: string;
-  onSelect?: (item: T) => void;
+  onSelect?: (item: FilterItem) => void;
+}
+
+interface ChipFilterProps {
+  value: FilterItem;
+  items: FilterItem[];
+  onChange?: (val: FilterItem) => void;
+}
+
+interface ToggleButtonProps {
+  value: FilterItem;
+  items: [FilterItem, FilterItem];
+  labelStyle?: string;
+  wrapperStyle?: string;
+  activeButtonColors?: Record<string, string>;
+  activeLabelColors?: Record<string, string>;
+  onChange?: (val: FilterItem) => void;
 }

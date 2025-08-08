@@ -1,4 +1,4 @@
-const statToDbMap: Record<keyof Stat, string> = {
+const statsToDbMap: Record<keyof Stats, string> = {
   userId: 'user_id',
   totalTrades: 'total_trades',
   completionRate: 'completion_rate',
@@ -6,21 +6,21 @@ const statToDbMap: Record<keyof Stat, string> = {
   avgPayTime: 'avg_pay_time',
 };
 
-const dbToStatMap: Record<string, keyof Stat> = Object.entries(statToDbMap).reduce(
+const dbToStatMap: Record<string, keyof Stats> = Object.entries(statsToDbMap).reduce(
   (acc, [camelKey, snakeKey]) => {
-    acc[snakeKey] = camelKey as keyof Stat;
+    acc[snakeKey] = camelKey as keyof Stats;
     return acc;
   },
-  {} as Record<string, keyof Stat>,
+  {} as Record<string, keyof Stats>,
 );
 
 // snake_case → camelCase
-const convertToStatKeys = (obj: Record<string, any>): Stat => {
+const convertToStatsKeys = (obj: Record<string, any>): Stats => {
   return Object.entries(obj).reduce((acc, [snakeKey, value]) => {
     const camelKey = dbToStatMap[snakeKey];
     if (camelKey) acc[camelKey] = value;
     return acc;
-  }, {} as Partial<Stat>) as Stat;
+  }, {} as Partial<Stats>) as Stats;
 };
 
-export { convertToStatKeys };
+export { convertToStatsKeys };

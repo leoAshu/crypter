@@ -2,25 +2,25 @@ import cn from 'clsx';
 import * as Haptics from 'expo-haptics';
 import { Pressable, Text, View } from 'react-native';
 
-const ToggleButton = <T extends string>(props: ToggleButtonProps<T>) => {
-  const onPress = (option: T) => {
+const ToggleButton = (props: ToggleButtonProps) => {
+  const onPress = (item: FilterItem) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
-    props.onChange?.(option);
+    props.onChange?.(item);
   };
 
   return (
     <View className={cn('toggle-btn-wrapper', props.wrapperStyle)}>
-      {props.options.map((option) => {
-        const isActive = option === props.value;
-        const bgClass = isActive && props.activeButtonColors?.[option] ? props.activeButtonColors[option] : '';
+      {props.items.map((item) => {
+        const isActive = item.id === props.value.id;
+        const bgClass = isActive && props.activeButtonColors?.[item.id] ? props.activeButtonColors[item.id] : '';
         const textClass =
-          isActive && props.activeLabelColors?.[option] ? props.activeLabelColors[option] : 'toggle-btn-label-inactive';
+          isActive && props.activeLabelColors?.[item.id]
+            ? props.activeLabelColors[item.id]
+            : 'toggle-btn-label-inactive';
 
         return (
-          <Pressable key={option} className={cn('toggle-btn', bgClass)} onPress={() => onPress(option)}>
-            <Text className={cn('toggle-btn-label', textClass, props.labelStyle)}>
-              {props.labels?.[option] ?? option}
-            </Text>
+          <Pressable key={item.id} className={cn('toggle-btn', bgClass)} onPress={() => onPress(item)}>
+            <Text className={cn('toggle-btn-label', textClass, props.labelStyle)}>{item.label}</Text>
           </Pressable>
         );
       })}

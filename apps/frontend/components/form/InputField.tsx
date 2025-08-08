@@ -13,7 +13,7 @@ const InputField = (props: InputFieldProps) => {
   const labelStyle = useAnimatedStyle(() => ({
     position: 'absolute',
     left: 0,
-    top: withTiming(isFocused || value ? 0 : 32, {
+    top: withTiming(isFocused || value ? 0 : 28, {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
@@ -48,6 +48,7 @@ const InputField = (props: InputFieldProps) => {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         cursorColor='#54E6B6'
+        autoCapitalize='none'
         secureTextEntry={props.secureTextEntry ? !showPassword : false}
         keyboardType={props.keyboardType}
         editable={!props.disabled}

@@ -1,22 +1,15 @@
 import { icons, images } from '@/assets';
 import { CopyIconButton, DividerX, PrimaryButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
-import { useCrypto } from '@/hooks';
-import { CryptoOptionStrict } from '@/hooks/appData/useCrypto';
 import { useWalletStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
-import { useState } from 'react';
 import { Image, ScrollView, Text, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Deposit = () => {
   const isDark = useColorScheme() === 'dark';
-
-  const { cryptoLabelsStrict, cryptoOptionsStrict } = useCrypto();
   const { deposit } = useWalletStore();
-
-  const [crypto, setCrypto] = useState<CryptoOptionStrict>(cryptoOptionsStrict[0]);
 
   const savePicture = async () => {
     deposit('usdt', Number((Math.random() * (15 - 1) + 1).toFixed(2)));

@@ -1,7 +1,7 @@
 import { fetchStat } from '@/supabase';
 import { create } from 'zustand';
 
-const useStatStore = create<StatState>((set) => ({
+const useStatsStore = create<StatState>((set) => ({
   stat: null,
   isLoading: false,
 
@@ -20,4 +20,4 @@ const useStatStore = create<StatState>((set) => ({
   },
 }));
 
-export default useStatStore;
+export default useStatsStore;

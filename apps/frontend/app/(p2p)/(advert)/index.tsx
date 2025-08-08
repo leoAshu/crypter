@@ -1,7 +1,7 @@
 import { AdCard, ChipFilter, DividerX, PrimaryButton, ToggleButton } from '@/components';
 import { screenContentWrapperStyle, Strings } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
-import { CryptoOption } from '@/hooks/appData/useCrypto';
+import { AdType } from '@/models';
 import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
@@ -13,12 +13,12 @@ const MyAdvert = () => {
   const isDark = useColorScheme() === 'dark';
 
   const { user } = useAuthStore();
-  const { filterAdsByUserId } = useAds();
-  const { cryptoOptions, cryptoLabels } = useCrypto();
+  const { adTypeFilterItems, filterAdsByUserId } = useAds();
+  const { cryptoSymbolFilterItems } = useCrypto();
 
-  const [adType, setAdType] = useState<AdType>('buy');
-  const [crypto, setCrypto] = useState<CryptoOption>('all');
-  const [myAds, setMyAds] = useState(filterAdsByUserId(adType, crypto, user?.id ?? ''));
+  const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
+  const [crypto, setCrypto] = useState<FilterItem>(cryptoSymbolFilterItems[0]);
+  const [myAds, setMyAds] = useState(filterAdsByUserId(adType.id as AdType, crypto.id, user?.id ?? ''));
   const isAdsEmpty = myAds.length === 0;
 
   const adsListStyle = Platform.select({
@@ -27,12 +27,12 @@ const MyAdvert = () => {
   });
 
   useEffect(() => {
-    setMyAds(filterAdsByUserId(adType, crypto, user?.id ?? ''));
+    setMyAds(filterAdsByUserId(adType.id as AdType, crypto.id, user?.id ?? ''));
   }, [adType, crypto]);
 
   const EmptyState = () => (
     <View className='items-center justify-center'>
-      <Text className={cn('header-txt', isDark ? 'text-base-white' : 'text-base-black')}>
+      <Text className={cn('header-txt', isDark ? 'text-base-white' : 'text-base-dark')}>
         {Strings.postAd.EMPTY_STATE}
       </Text>
       <PrimaryButton title='Post Advert' onPress={() => router.push('/(p2p)/(advert)/post')} />
@@ -46,17 +46,21 @@ const MyAdvert = () => {
           <View className='flex-row justify-center'>
             <ToggleButton
               value={adType}
-              labelStyle='text-base'
+              items={[adTypeFilterItems[0], adTypeFilterItems[1]]}
+              activeButtonColors={{
+                [adTypeFilterItems[0].id]: 'bg-primary',
+                [adTypeFilterItems[1].id]: 'bg-error-500',
+              }}
+              activeLabelColors={{
+                [adTypeFilterItems[0].id]: 'text-base-black',
+                [adTypeFilterItems[1].id]: 'text-base-white',
+              }}
               wrapperStyle='w-5/6 h-10'
-              options={['buy', 'sell']}
-              labels={{ buy: 'Buy', sell: 'Sell' }}
-              activeButtonColors={{ buy: 'bg-primary', sell: 'bg-error-500' }}
-              activeLabelColors={{ buy: 'text-base-black', sell: 'text-base-white' }}
               onChange={(val) => setAdType(val)}
             />
           </View>
 
-          <ChipFilter value={crypto} options={cryptoOptions} labels={cryptoLabels} onChange={(val) => setCrypto(val)} />
+          <ChipFilter value={crypto} items={cryptoSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
         <FlatList

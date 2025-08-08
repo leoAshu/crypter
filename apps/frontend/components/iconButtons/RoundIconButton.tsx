@@ -15,7 +15,7 @@ const RoundIconButton = (props: RoundIconButtonProps) => {
   const currentIcon = isPrimary ? props.primaryIcon : props.secondaryIcon!;
 
   return (
-    <Pressable className='round-icon-btn' onPress={handlePress}>
+    <Pressable className='round-icon-btn' onPress={handlePress} hitSlop={15}>
       <View className='round-icon-btn-bg' style={colorScheme == 'dark' ? { opacity: 0.3 } : { opacity: 1 }} />
 
       <View className='round-icon-btn-img-wrapper'>

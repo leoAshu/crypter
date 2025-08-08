@@ -1,4 +1,3 @@
-import { CryptoOptionStrict } from '@/hooks/appData/useCrypto';
 import { create } from 'zustand';
 
 const useWalletStore = create<WalletState>((set, get) => ({
@@ -10,13 +9,13 @@ const useWalletStore = create<WalletState>((set, get) => ({
     btc: { available: 0.1, escrowed: 0 },
   },
 
-  deposit: (asset: CryptoOptionStrict, amount: number) => {
+  deposit: (assetId: string, amount: number) => {
     set((state) => ({
       balances: {
         ...state.balances,
-        [asset]: {
-          ...state.balances[asset],
-          available: state.balances[asset].available + amount,
+        [assetId]: {
+          ...state.balances[assetId],
+          available: state.balances[assetId].available + amount,
         },
       },
     }));

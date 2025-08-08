@@ -62,5 +62,10 @@ const formatDateTime = (isoString: string): string => {
   );
 };
 
+const getMockUserName = (name: string) => {
+  if (!name) return '';
+  return name.toLowerCase().split(' ').join('_');
+};
+
 export * from './validations';
-export { capitalizeWords, currencyFormatter, formatDateTime, formatPhoneNumber, getInitialsFromName };
+export { capitalizeWords, currencyFormatter, formatDateTime, formatPhoneNumber, getInitialsFromName, getMockUserName };

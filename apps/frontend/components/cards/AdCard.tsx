@@ -1,7 +1,7 @@
 import { icons } from '@/assets';
 import { ComponentStrings } from '@/constants';
 import { useCrypto, useFiat } from '@/hooks';
-import { capitalizeWords, currencyFormatter } from '@/utils';
+import { capitalizeWords, currencyFormatter, getMockUserName } from '@/utils';
 import cn from 'clsx';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -29,7 +29,7 @@ const AdCard = (props: AdCardProps) => {
               textStyle='absolute font-clashDisplay-medium text-sm text-on-surface-light dark:text-base-white'
               containerStyle='bg-base-surface-light dark:bg-base-surface-dark size-8'
             />
-            <Text className='ad-card-txt text-lg'>{props.ad.userFullName}</Text>
+            <Text className='ad-card-txt text-lg'>{getMockUserName(props.ad.userFullName)}</Text>
           </View>
 
           <View className='ad-card-rating'>

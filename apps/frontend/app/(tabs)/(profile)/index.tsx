@@ -1,7 +1,8 @@
 import { icons } from '@/assets';
 import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
 import { AlertStrings, screenContentWrapperStyle, Strings } from '@/constants';
-import { useAuthStore, useProfileStore, useStatStore } from '@/store';
+import { useStats } from '@/hooks';
+import { useAuthStore, useProfileStore, useStatsStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -10,10 +11,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Profile = () => {
   const isDark = useColorScheme() === 'dark';
+
+  const { stat } = useStatsStore();
+  const { statsTypeFilterItems } = useStats();
   const { profile } = useProfileStore();
-  const { stat } = useStatStore();
   const { isLoading, signout } = useAuthStore();
-  const [infoTermFilter, setInfoTermFilter] = useState<TradingInfoTerm>('30d');
+
+  const [infoTermFilter, setInfoTermFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
 
   const confirmLogout = async () => {
     Alert.alert(AlertStrings.TITLE.LOGOUT, AlertStrings.MSG.CONFIRM_LOGOUT, [
@@ -44,18 +48,23 @@ const Profile = () => {
           <View className='profile-stats gap-y-6'>
             {/* Stats Header */}
             <View className='stats-header flex-row items-center justify-between'>
-              <Text className='font-clashDisplay-medium text-xl text-base-dark dark:text-base-dark dark:text-base-white'>
+              <Text className='font-clashDisplay-medium text-xl text-base-dark dark:text-base-white'>
                 {Strings.profile.TRADING_STATS_TITLE}
               </Text>
 
               <ToggleButton
+                value={infoTermFilter}
+                items={[statsTypeFilterItems[0], statsTypeFilterItems[1]]}
+                activeButtonColors={{
+                  [statsTypeFilterItems[0].id]: 'bg-primary',
+                  [statsTypeFilterItems[1].id]: 'bg-primary',
+                }}
+                activeLabelColors={{
+                  [statsTypeFilterItems[0].id]: 'text-base-dark',
+                  [statsTypeFilterItems[1].id]: 'text-base-dark',
+                }}
                 labelStyle='text-xs'
                 wrapperStyle='h-9 w-36'
-                value={infoTermFilter}
-                options={['30d', 'alltime']}
-                labels={{ '30d': '30 days', alltime: 'All Time' }}
-                activeButtonColors={{ '30d': 'bg-primary', alltime: 'bg-primary' }}
-                activeLabelColors={{ '30d': 'text-base-black', alltime: 'text-base-black' }}
                 onChange={(val) => setInfoTermFilter(val)}
               />
             </View>

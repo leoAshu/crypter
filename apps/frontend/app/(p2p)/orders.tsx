@@ -1,6 +1,7 @@
 import { ChipFilter, DividerX, OrderCard, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
-import { getFilteredOrders } from '@/models';
+import { useOrders } from '@/hooks';
+import { CompletedOrderType, OrderType, PendingOrderType } from '@/models';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
@@ -8,11 +9,19 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Orders = () => {
   const isDark = useColorScheme() === 'dark';
-  const [orderType, setOrderType] = useState<OrderType>('pending');
-  const [pendingOrderType, setPendingOrderType] = useState<PendingOrderType>('all');
-  const [completedOrderType, setCompletedOrderType] = useState<CompletedOrderType>('all');
+
+  const { pendingOrderTypeFilterItems, completedOrderTypeFilterItems, orderTypeFilterItems, filterOrdersByType } =
+    useOrders();
+
+  const [orderType, setOrderType] = useState<FilterItem>(orderTypeFilterItems[0]);
+  const [pendingOrderType, setPendingOrderType] = useState<FilterItem>(pendingOrderTypeFilterItems[0]);
+  const [completedOrderType, setCompletedOrderType] = useState<FilterItem>(completedOrderTypeFilterItems[0]);
   const [ordersList, setOrdersList] = useState<Order[]>(
-    getFilteredOrders(orderType, orderType === 'pending' ? pendingOrderType : completedOrderType),
+    filterOrdersByType(
+      orderType.id as OrderType,
+      pendingOrderType.id as PendingOrderType,
+      completedOrderType.id as CompletedOrderType,
+    ),
   );
 
   const adsListStyle = Platform.select({
@@ -21,7 +30,13 @@ const Orders = () => {
   });
 
   useEffect(() => {
-    setOrdersList(getFilteredOrders(orderType, orderType === 'pending' ? pendingOrderType : completedOrderType));
+    setOrdersList(
+      filterOrdersByType(
+        orderType.id as OrderType,
+        pendingOrderType.id as PendingOrderType,
+        completedOrderType.id as CompletedOrderType,
+      ),
+    );
   }, [orderType, pendingOrderType, completedOrderType]);
 
   return (
@@ -31,29 +46,31 @@ const Orders = () => {
           <View className='flex-row justify-center'>
             <ToggleButton
               value={orderType}
-              labelStyle='text-base'
+              items={[orderTypeFilterItems[0], orderTypeFilterItems[1]]}
+              activeButtonColors={{
+                [orderTypeFilterItems[0].id]: 'bg-primary',
+                [orderTypeFilterItems[1].id]: 'bg-error-500',
+              }}
+              activeLabelColors={{
+                [orderTypeFilterItems[0].id]: 'text-base-dark',
+                [orderTypeFilterItems[1].id]: 'text-base-white',
+              }}
               wrapperStyle='w-5/6 h-10'
-              options={['pending', 'completed']}
-              labels={{ pending: 'Pending', completed: 'Completed' }}
-              activeButtonColors={{ pending: 'bg-primary', completed: 'bg-primary' }}
-              activeLabelColors={{ pending: 'text-base-black', completed: 'text-base-black' }}
               onChange={(val) => setOrderType(val)}
             />
           </View>
 
-          {orderType === 'pending' ? (
+          {orderType.id === OrderType.Pending ? (
             <ChipFilter
               value={pendingOrderType}
-              options={['all', 'unpaid', 'paid', 'appeal']}
-              labels={{ all: 'All', unpaid: 'Unpaid', paid: 'Paid', appeal: 'Appeal' }}
-              onChange={(val) => setPendingOrderType(val)}
+              items={pendingOrderTypeFilterItems}
+              onChange={(item) => setPendingOrderType(item)}
             />
           ) : (
             <ChipFilter
               value={completedOrderType}
-              options={['all', 'completed', 'canceled']}
-              labels={{ all: 'All', completed: 'Completed', canceled: 'Canceled' }}
-              onChange={(val) => setCompletedOrderType(val)}
+              items={completedOrderTypeFilterItems}
+              onChange={(item) => setCompletedOrderType(item)}
             />
           )}
         </View>

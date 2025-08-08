@@ -36,7 +36,7 @@ const CopyIconButton = (props: CopyIconButtonProps) => {
       : icons.light.copySuccess;
 
   return (
-    <Pressable onPress={handlePress}>
+    <Pressable onPress={handlePress} hitSlop={15}>
       <Image
         source={iconSource}
         className={cn('size-5', isDark ? 'opacity-45' : 'opacity-55', props.iconStyle)}

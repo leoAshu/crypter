@@ -15,7 +15,7 @@ const BackIconButton = (props: BackIconButtonProps) => {
   return (
     <View className={cn(containerStyle)}>
       <Pressable
-        hitSlop={10}
+        hitSlop={15}
         onPress={() => {
           if (props.onPress) return props.onPress();
 

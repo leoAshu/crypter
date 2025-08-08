@@ -1,7 +1,7 @@
 import supabaseClient from './client';
 import { convertToAdKeys } from './mapUtils';
 
-const fetchAds = async () => {
+const fetchAds = async (): Promise<Ad[]> => {
   const { data, error } = await supabaseClient.from('ads_details').select('*');
 
   if (error) throw new Error(error.message);
