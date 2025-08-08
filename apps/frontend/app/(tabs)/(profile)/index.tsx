@@ -12,7 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Profile = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { stats: stat } = useStatsStore();
+  const { stats } = useStatsStore();
   const { statsTypeFilterItems } = useStats();
   const { profile } = useProfileStore();
   const { isLoading, signout } = useAuthStore();
@@ -74,7 +74,7 @@ const Profile = () => {
               <View className='col-left flex-1 gap-y-6'>
                 <View className='gap-y-2'>
                   <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
-                    {stat?.totalTrades ?? 0}
+                    {stats?.totalTrades ?? 0}
                   </Text>
                   <Text className='font-satoshi text-body dark:text-body-dark'>
                     {Strings.profile.TOTAL_TRADES_LABEL}
@@ -83,7 +83,7 @@ const Profile = () => {
 
                 <View className='gap-y-2'>
                   <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
-                    {stat?.avgReleaseTime ?? 0} Minutes
+                    {stats?.avgReleaseTime ?? 0} Minutes
                   </Text>
                   <Text className='font-satoshi text-body dark:text-body-dark'>
                     {Strings.profile.AVG_RELEASE_LABEL}
@@ -94,7 +94,7 @@ const Profile = () => {
               <View className='col-right flex-1 gap-y-6'>
                 <View className='gap-y-2'>
                   <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
-                    {stat?.completionRate ?? 0}%
+                    {stats?.completionRate ?? 0}%
                   </Text>
                   <Text className='font-satoshi text-body dark:text-body-dark'>
                     {Strings.profile.COMPLETION_RATE_LABEL}
@@ -103,7 +103,7 @@ const Profile = () => {
 
                 <View className='gap-y-2'>
                   <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
-                    {stat?.avgPayTime ?? 0} Minutes
+                    {stats?.avgPayTime ?? 0} Minutes
                   </Text>
                   <Text className='font-satoshi text-body dark:text-body-dark'>{Strings.profile.AVG_PAY_LABEL}</Text>
                 </View>

@@ -516,4 +516,8 @@
   .stats-value {
     @apply font-clashDisplay text-body dark:text-body-dark;
   }
+
+  .stats-value-bold {
+    @apply font-clashDisplay text-title dark:text-title-dark;
+  }
 }

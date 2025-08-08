@@ -1,6 +1,6 @@
 import { DividerX, ToggleButton, VerticalGradient } from '@/components';
 import { screenContentWrapperStyle, Strings } from '@/constants';
-import { useStats } from '@/hooks';
+import { useCrypto, useStats } from '@/hooks';
 import { useStatsStore } from '@/store';
 import cn from 'clsx';
 import { useState } from 'react';
@@ -9,6 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const stats = () => {
   const { stats } = useStatsStore();
+  const { cryptos } = useCrypto();
   const { statsTypeFilterItems } = useStats();
 
   const [statsType, setStatsTypeFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
@@ -40,24 +41,22 @@ const stats = () => {
               <View className='stats-group'>
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.TRADE_LABEL}</Text>
-                  <Text className='stats-value'>5 times</Text>
+                  <Text className='stats-value'>{stats?.totalTrades} times</Text>
                 </View>
 
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.BUY_LABEL}</Text>
-                  <Text className='stats-value'>5 times</Text>
+                  <Text className='stats-value'>{stats?.buyTrades} times</Text>
                 </View>
 
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.SELL_LABEL}</Text>
-                  <Text className='stats-value'>2 times</Text>
+                  <Text className='stats-value'>{stats?.sellTrades} times</Text>
                 </View>
 
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.COMPLETION_RATE_LABEL}</Text>
-                  <Text className='font-clashDisplay text-title dark:text-title-dark'>
-                    {stats?.completionRate.toFixed(0)}%
-                  </Text>
+                  <Text className='stats-value-bold'>{stats?.completionRate.toFixed(0)}%</Text>
                 </View>
               </View>
 
@@ -66,14 +65,12 @@ const stats = () => {
               <View className='stats-group'>
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.AVG_RELEASE_LABEL}</Text>
-                  <Text className='font-clashDisplay text-title dark:text-title-dark'>
-                    {stats?.avgReleaseTime} Minutes
-                  </Text>
+                  <Text className='stats-value-bold'>{stats?.avgReleaseTime} Minutes</Text>
                 </View>
 
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.AVG_PAY_LABEL}</Text>
-                  <Text className='font-clashDisplay text-title dark:text-title-dark'>{stats?.avgPayTime} Minutes</Text>
+                  <Text className='stats-value-bold'>{stats?.avgPayTime} Minutes</Text>
                 </View>
               </View>
 
@@ -96,7 +93,9 @@ const stats = () => {
               <View className='stats-group'>
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.TOTAL_VOLUME_LABEL}</Text>
-                  <Text className='font-clashDisplay text-title dark:text-title-dark'>0.00567 JSR</Text>
+                  <Text className='stats-value-bold tracking-widest'>
+                    {stats?.approxVolume} {cryptos[0].symbol}
+                  </Text>
                 </View>
               </View>
             </View>

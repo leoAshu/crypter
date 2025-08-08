@@ -1,7 +1,10 @@
 interface Stats {
   userId: string;
   totalTrades: number;
-  completionRate: number;
-  avgReleaseTime: number;
+  buyTrades: number;
+  sellTrades: number;
   avgPayTime: number;
+  avgReleaseTime: number;
+  completionRate: number;
+  approxVolume: number;
 }
