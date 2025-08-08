@@ -1,6 +1,6 @@
-enum FeedbackType {
+enum ReviewType {
   Positive = 'positive',
   Negative = 'negative',
 }
 
-export { FeedbackType };
+export { ReviewType };

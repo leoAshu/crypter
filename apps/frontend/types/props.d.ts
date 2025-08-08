@@ -187,3 +187,7 @@ interface ToggleButtonProps {
   activeLabelColors?: Record<string, string>;
   onChange?: (val: FilterItem) => void;
 }
+
+interface ReviewCardProps {
+  review: Review;
+}

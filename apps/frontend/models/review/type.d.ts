@@ -1,11 +1,10 @@
-import { FeedbackType } from '.';
-
-interface Feedback {
+interface Review {
   id: string;
   orderId: string;
   fromUserId: string;
   toUserId: string;
-  type: FeedbackType;
+  type: ReviewType;
   review: string;
   createdAt: string;
+  verified: boolean;
 }

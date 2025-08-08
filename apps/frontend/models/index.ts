@@ -1,5 +1,5 @@
 export * from './ad';
-export * from './feedback';
 export * from './order';
 export * from './payMethods';
+export * from './review';
 export * from './stats';

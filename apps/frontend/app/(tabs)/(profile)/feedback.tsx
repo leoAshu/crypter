@@ -1,6 +1,6 @@
-import { AccountInfo, ChipFilter } from '@/components';
+import { AccountInfo, ChipFilter, ReviewCard } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
-import { useFeedback } from '@/hooks';
+import { useReviews } from '@/hooks';
 import { useProfileStore } from '@/store';
 import cn from 'clsx';
 import { useState } from 'react';
@@ -9,9 +9,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Feedback = () => {
   const { profile } = useProfileStore();
-  const { feedbackTypeFilterItems } = useFeedback();
+  const { reviews, reviewTypeFilterItems } = useReviews();
 
-  const [feedbackType, setFeedbackType] = useState<FilterItem>(feedbackTypeFilterItems[0]);
+  const [feedbackType, setFeedbackType] = useState<FilterItem>(reviewTypeFilterItems[0]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -19,7 +19,9 @@ const Feedback = () => {
         <View className={cn('content-wrapper gap-y-4', screenContentWrapperStyle)}>
           <AccountInfo name={profile?.name ?? ''} username={profile?.name ?? ''} />
 
-          <ChipFilter value={feedbackType} items={feedbackTypeFilterItems} onChange={(val) => setFeedbackType(val)} />
+          <ChipFilter value={feedbackType} items={reviewTypeFilterItems} onChange={(val) => setFeedbackType(val)} />
+
+          <ReviewCard review={reviews[0]} />
         </View>
       </ScrollView>
     </SafeAreaView>

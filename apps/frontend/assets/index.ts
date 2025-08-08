@@ -60,6 +60,10 @@ const icons = {
       p2p: require('./icons/light/active/p2p.png'),
       receipt: require('./icons/light/active/receipt.png'),
       subtitle: require('./icons/light/active/subtitle.png'),
+
+      // Rating
+      like: require('./icons/light/active/like.png'),
+      dislike: require('./icons/light/active/dislike.png'),
     },
 
     // Inactive Tab
@@ -109,6 +113,10 @@ const icons = {
       p2p: require('./icons/dark/active/p2p.png'),
       receipt: require('./icons/dark/active/receipt.png'),
       subtitle: require('./icons/dark/active/subtitle.png'),
+
+      // Rating
+      like: require('./icons/dark/active/like.png'),
+      dislike: require('./icons/dark/active/dislike.png'),
     },
 
     // Inactive Tab
