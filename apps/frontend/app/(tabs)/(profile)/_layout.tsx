@@ -52,6 +52,14 @@ const ProfileLayout = () => {
           headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
         }}
       />
+
+      <Stack.Screen
+        name='stats'
+        options={{
+          title: Strings.stats.HEADER_TITLE,
+          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
+        }}
+      />
     </Stack>
   );
 };

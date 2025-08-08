@@ -1,9 +1,12 @@
 const statsToDbMap: Record<keyof Stats, string> = {
   userId: 'user_id',
   totalTrades: 'total_trades',
-  completionRate: 'completion_rate',
-  avgReleaseTime: 'avg_release_time',
+  buyTrades: 'buy_trades',
+  sellTrades: 'sell_trades',
   avgPayTime: 'avg_pay_time',
+  avgReleaseTime: 'avg_release_time',
+  completionRate: 'completion_rate',
+  approxVolume: 'approx_total_volume',
 };
 
 const dbToStatMap: Record<string, keyof Stats> = Object.entries(statsToDbMap).reduce(

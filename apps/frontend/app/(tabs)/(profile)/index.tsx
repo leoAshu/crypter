@@ -12,12 +12,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Profile = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { stat } = useStatsStore();
+  const { stats } = useStatsStore();
   const { statsTypeFilterItems } = useStats();
   const { profile } = useProfileStore();
   const { isLoading, signout } = useAuthStore();
 
-  const [infoTermFilter, setInfoTermFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
+  const [statsType, setStatsTypeFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
 
   const confirmLogout = async () => {
     Alert.alert(AlertStrings.TITLE.LOGOUT, AlertStrings.MSG.CONFIRM_LOGOUT, [
@@ -48,12 +48,12 @@ const Profile = () => {
           <View className='profile-stats gap-y-6'>
             {/* Stats Header */}
             <View className='stats-header flex-row items-center justify-between'>
-              <Text className='font-clashDisplay-medium text-xl text-base-dark dark:text-base-white'>
+              <Text className='font-clashDisplay text-xl text-base-dark dark:text-base-white'>
                 {Strings.profile.TRADING_STATS_TITLE}
               </Text>
 
               <ToggleButton
-                value={infoTermFilter}
+                value={statsType}
                 items={[statsTypeFilterItems[0], statsTypeFilterItems[1]]}
                 activeButtonColors={{
                   [statsTypeFilterItems[0].id]: 'bg-primary',
@@ -65,7 +65,7 @@ const Profile = () => {
                 }}
                 labelStyle='text-xs'
                 wrapperStyle='h-9 w-36'
-                onChange={(val) => setInfoTermFilter(val)}
+                onChange={(val) => setStatsTypeFilter(val)}
               />
             </View>
 
@@ -73,19 +73,19 @@ const Profile = () => {
             <View className='stats-content flex-row'>
               <View className='col-left flex-1 gap-y-6'>
                 <View className='gap-y-2'>
-                  <Text className='font-clashDisplay-medium text-2xl text-base-dark dark:text-base-white'>
-                    {stat?.totalTrades ?? 0}
+                  <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
+                    {stats?.totalTrades ?? 0}
                   </Text>
-                  <Text className='font-satoshi-medium text-base text-neutral dark:text-neutral-400'>
+                  <Text className='font-satoshi text-body dark:text-body-dark'>
                     {Strings.profile.TOTAL_TRADES_LABEL}
                   </Text>
                 </View>
 
                 <View className='gap-y-2'>
-                  <Text className='font-clashDisplay-medium text-2xl text-base-dark dark:text-base-white'>
-                    {stat?.avgReleaseTime ?? 0} Minutes
+                  <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
+                    {stats?.avgReleaseTime ?? 0} Minutes
                   </Text>
-                  <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
+                  <Text className='font-satoshi text-body dark:text-body-dark'>
                     {Strings.profile.AVG_RELEASE_LABEL}
                   </Text>
                 </View>
@@ -93,33 +93,26 @@ const Profile = () => {
 
               <View className='col-right flex-1 gap-y-6'>
                 <View className='gap-y-2'>
-                  <Text className='font-clashDisplay-medium text-2xl text-base-dark dark:text-base-white'>
-                    {stat?.completionRate ?? 0}%
+                  <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
+                    {stats?.completionRate ?? 0}%
                   </Text>
-                  <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
+                  <Text className='font-satoshi text-body dark:text-body-dark'>
                     {Strings.profile.COMPLETION_RATE_LABEL}
                   </Text>
                 </View>
 
                 <View className='gap-y-2'>
-                  <Text className='font-clashDisplay-medium text-2xl text-base-dark dark:text-base-white'>
-                    {stat?.avgPayTime ?? 0} Minutes
+                  <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
+                    {stats?.avgPayTime ?? 0} Minutes
                   </Text>
-                  <Text className='font-satoshi text-base text-neutral dark:text-neutral-400'>
-                    {Strings.profile.AVG_PAY_LABEL}
-                  </Text>
+                  <Text className='font-satoshi text-body dark:text-body-dark'>{Strings.profile.AVG_PAY_LABEL}</Text>
                 </View>
               </View>
             </View>
 
             {/* Stats Footer */}
-            <TouchableOpacity>
-              <Text
-                className={cn(
-                  'font-satoshi-medium text-sm underline',
-                  isDark ? 'text-primary-500' : 'text-primary-700',
-                )}
-              >
+            <TouchableOpacity onPress={() => router.push('/stats')} hitSlop={20}>
+              <Text className={cn('font-satoshi-medium underline', isDark ? 'text-primary-500' : 'text-primary-700')}>
                 {Strings.profile.VIEW_MORE_LABEL}
               </Text>
             </TouchableOpacity>
@@ -134,7 +127,7 @@ const Profile = () => {
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             />
 
-            <MenuOption
+            {/* <MenuOption
               title={Strings.profile.MENU_NOTIF_TITLE}
               leftIcon={isDark ? icons.dark.notification : icons.light.notification}
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
@@ -156,7 +149,7 @@ const Profile = () => {
               title={Strings.profile.MENU_HELP_TITLE}
               leftIcon={isDark ? icons.dark.messageQuestion : icons.light.messageQuestion}
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
-            />
+            /> */}
           </View>
 
           <SecondaryButton title={Strings.profile.LOGOUT_BTN_TITLE} isLoading={isLoading} onPress={confirmLogout} />
