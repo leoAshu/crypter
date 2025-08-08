@@ -1,16 +1,17 @@
-import { PrimaryDropdown, ToggleButton } from '@/components';
+import { Dropdown, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
-import { useCrypto } from '@/hooks';
+import { useAds, useCrypto } from '@/hooks';
 import cn from 'clsx';
 import { useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PostAdvert = () => {
+  const { adTypeFilterItems } = useAds();
   const { cryptoNameFilterItemsStrict, getCryptoNameById } = useCrypto();
 
-  const [selectedCrypto, setSelectedCrypto] = useState<FilterItem | null>(null);
-  const [adType, setAdType] = useState<AdType>('buy');
+  const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
+  const [selectedCrypto, setSelectedCrypto] = useState<FilterItem>();
 
   const handleCreateAdvert = async () => {
     if (!selectedCrypto) {
@@ -38,22 +39,25 @@ const PostAdvert = () => {
         <View className='flex-row justify-center'>
           <ToggleButton
             value={adType}
-            labelStyle='text-base'
+            items={[adTypeFilterItems[0], adTypeFilterItems[1]]}
+            activeButtonColors={{
+              [adTypeFilterItems[0].id]: 'bg-primary',
+              [adTypeFilterItems[1].id]: 'bg-error-500',
+            }}
+            activeLabelColors={{
+              [adTypeFilterItems[0].id]: 'text-base-dark',
+              [adTypeFilterItems[1].id]: 'text-base-white',
+            }}
             wrapperStyle='w-5/6 h-10'
-            options={['buy', 'sell']}
-            labels={{ buy: 'Buy', sell: 'Sell' }}
-            activeButtonColors={{ buy: 'bg-primary', sell: 'bg-error-500' }}
-            activeLabelColors={{ buy: 'text-base-black', sell: 'text-base-white' }}
             onChange={(val) => setAdType(val)}
           />
         </View>
 
-        <PrimaryDropdown<FilterItem>
+        <Dropdown
           title='Select Cryptocurrency'
           items={cryptoNameFilterItemsStrict}
-          value={selectedCrypto ?? { id: '', label: '' }}
-          onSelect={(crypto) => setSelectedCrypto(getCryptoNameById(crypto.id) || null)}
-          containerStyle='w-full max-w-sm'
+          value={selectedCrypto}
+          onSelect={(crypto) => setSelectedCrypto(getCryptoNameById(crypto.id))}
         />
       </View>
     </SafeAreaView>

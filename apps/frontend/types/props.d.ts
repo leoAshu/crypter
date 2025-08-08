@@ -159,17 +159,17 @@ interface FilterItem {
 // ====================
 
 /** Props for a primary dropdown with generic item type support */
-interface PrimaryDropdownProps<T extends FilterItem> {
+interface DropdownProps {
   title?: string;
   placeholder?: string;
-  items: T[];
-  value: T;
+  items: FilterItem[];
+  value?: FilterItem;
   disabled?: boolean;
   error?: string;
   containerStyle?: string;
   buttonStyle?: string;
   textStyle?: string;
-  onSelect?: (item: T) => void;
+  onSelect?: (item: FilterItem) => void;
 }
 
 interface ChipFilterProps {

@@ -55,7 +55,6 @@ const MyAdvert = () => {
                 [adTypeFilterItems[0].id]: 'text-base-black',
                 [adTypeFilterItems[1].id]: 'text-base-white',
               }}
-              labelStyle='text-base'
               wrapperStyle='w-5/6 h-10'
               onChange={(val) => setAdType(val)}
             />

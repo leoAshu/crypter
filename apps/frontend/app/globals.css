@@ -259,7 +259,7 @@
   }
 
   .toggle-btn-wrapper {
-    @apply flex-row rounded-md bg-base-surface-light p-px dark:bg-base-surface-dark;
+    @apply flex-row rounded-md bg-card-info p-px dark:bg-card-info-dark;
   }
 
   .toggle-btn {
@@ -271,11 +271,11 @@
   }
 
   .toggle-btn-label-inactive {
-    @apply text-base-on-surface-light dark:text-neutral-400;
+    @apply text-label/55 dark:text-label-dark/55;
   }
 
   .toggle-btn-label-active {
-    @apply text-base-black;
+    @apply text-base-dark;
   }
 
   .ad-card-wrapper {
@@ -482,7 +482,7 @@
   }
 
   .deposit-form-icon-wrapper {
-    @apply w-14 items-center justify-center rounded-md bg-base dark:bg-base-dark;
+    @apply w-14 items-center justify-center rounded-r-md bg-base dark:bg-base-dark;
   }
 
   .deposit-form-footer {

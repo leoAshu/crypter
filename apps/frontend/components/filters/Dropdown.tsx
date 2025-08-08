@@ -1,22 +1,21 @@
 import { icons } from '@/assets';
 import cn from 'clsx';
-import { useColorScheme } from 'nativewind';
 import { useState } from 'react';
-import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, Pressable, Text, useColorScheme, View } from 'react-native';
 import Animated, { interpolate, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) => {
+const Dropdown = (props: DropdownProps) => {
+  const isDark = useColorScheme() === 'dark';
+
   const [isOpen, setIsOpen] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-  const { colorScheme } = useColorScheme();
-  const isDark = colorScheme === 'dark';
 
   const animationProgress = useSharedValue(0);
 
   const value = props.items.find((item) => item.id === props.value?.id);
   const displayValue = value?.label || props.placeholder || 'Select an option';
 
-  const handleSelect = (item: T) => {
+  const handleSelect = (item: FilterItem) => {
     handleCloseDropdown();
     setTimeout(() => {
       props.onSelect?.(item);
@@ -68,7 +67,7 @@ const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) =
       >
         <View className='deposit-form-value-wrapper'>
           <Text
-            className={cn('deposit-form-value', !value ? 'text-gray-500' : '', props.textStyle)}
+            className={cn('deposit-form-value', !value ? 'text-label dark:text-label' : '', props.textStyle)}
             numberOfLines={1}
             ellipsizeMode='tail'
           >
@@ -79,7 +78,7 @@ const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) =
         <View className='deposit-form-icon-wrapper'>
           <Image
             source={isDark ? icons.dark.arrowDown : icons.light.arrowDown}
-            className='size-8'
+            className='size-6'
             resizeMode='contain'
           />
         </View>
@@ -87,31 +86,32 @@ const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) =
       {props.error && <Text className='font-satoshi-medium text-sm text-red-500'>{props.error}</Text>}
       {isOpen && (
         <Animated.View className='absolute left-0 right-0 top-full z-50 mt-1' style={dropdownAnimatedStyle}>
-          <View className='rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800'>
+          <View className='rounded-md border-[0.5px] border-stroke bg-card shadow-lg dark:border-stroke-dark dark:bg-card-dark'>
             <FlatList
               data={props.items}
               keyExtractor={(item) => item.id}
               style={{ maxHeight: 300 }}
               renderItem={({ item, index }) => (
-                <TouchableOpacity
+                <Pressable
                   className={cn(
                     'flex-row items-center px-4 py-3',
-                    index !== props.items.length - 1 ? 'border-b border-gray-100 dark:border-gray-700' : '',
-                    item.id === props.value?.id ? 'bg-primary/10' : '',
+                    index === 0 ? 'rounded-t-md' : '',
+                    index !== props.items.length - 1
+                      ? 'border-b-[0.5px] border-stroke dark:border-stroke-dark'
+                      : 'rounded-b-md',
+                    item.id === props.value?.id ? 'bg-primary' : '',
                   )}
                   onPress={() => handleSelect(item)}
                 >
                   <Text
                     className={cn(
-                      'flex-1 font-satoshi-medium text-base',
-                      item.id === props.value?.id
-                        ? 'font-satoshi-semibold text-primary'
-                        : 'text-base-black dark:text-base-white',
+                      'flex-1 font-satoshi',
+                      item.id === props.value?.id ? 'text-title dark:text-title-dark' : 'text-label dark:text-label',
                     )}
                   >
                     {item.label}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               )}
               showsVerticalScrollIndicator={false}
             />
@@ -134,4 +134,4 @@ const PrimaryDropdown = <T extends FilterItem>(props: PrimaryDropdownProps<T>) =
   );
 };
 
-export default PrimaryDropdown;
+export default Dropdown;

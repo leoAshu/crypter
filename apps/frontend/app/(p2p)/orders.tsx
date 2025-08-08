@@ -55,7 +55,6 @@ const Orders = () => {
                 [orderTypeFilterItems[0].id]: 'text-base-dark',
                 [orderTypeFilterItems[1].id]: 'text-base-white',
               }}
-              labelStyle='text-base'
               wrapperStyle='w-5/6 h-10'
               onChange={(val) => setOrderType(val)}
             />
