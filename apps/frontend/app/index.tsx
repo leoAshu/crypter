@@ -1,7 +1,10 @@
 import { useAuthStore } from '@/store';
+import { clampFontScaling } from '@/utils/fontScale';
 import { Redirect } from 'expo-router';
 import { useEffect } from 'react';
 import { Text, View } from 'react-native';
+
+clampFontScaling(0, 0);
 
 const Index = () => {
   const { isLoading, isAuthenticated, fetchAuthenticatedUser } = useAuthStore();
