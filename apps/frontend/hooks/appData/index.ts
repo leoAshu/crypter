@@ -2,4 +2,5 @@ export { default as useAds } from './useAds';
 export { default as useCrypto } from './useCrypto';
 export { default as useFiat } from './useFiat';
 export { default as useOrders } from './useOrders';
+export { default as useReviews } from './useReviews';
 export { default as useStats } from './useStats';

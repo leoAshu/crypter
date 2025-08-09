@@ -125,6 +125,7 @@ const Profile = () => {
               title={Strings.profile.MENU_FEEDBACK_TITLE}
               leftIcon={isDark ? icons.dark.likeTag : icons.light.likeTag}
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
+              route='/feedback'
             />
 
             {/* <MenuOption

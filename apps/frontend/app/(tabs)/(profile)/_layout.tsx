@@ -60,6 +60,14 @@ const ProfileLayout = () => {
           headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
         }}
       />
+
+      <Stack.Screen
+        name='feedback'
+        options={{
+          title: Strings.feedback.HEADER_TITLE,
+          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
+        }}
+      />
     </Stack>
   );
 };

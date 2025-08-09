@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const stats = () => {
+const Stats = () => {
   const { stats } = useStatsStore();
   const { cryptos } = useCrypto();
   const { statsTypeFilterItems } = useStats();
@@ -106,4 +106,4 @@ const stats = () => {
   );
 };
 
-export default stats;
+export default Stats;
