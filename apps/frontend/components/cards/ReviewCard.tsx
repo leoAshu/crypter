@@ -2,13 +2,18 @@ import { icons } from '@/assets';
 import { ReviewType } from '@/models';
 import { formatDateTime, getMockUserName } from '@/utils';
 import { Image, Text, useColorScheme, View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { InitialsAvatar } from '../avatars';
 
 const ReviewCard = (props: ReviewCardProps) => {
   const isDark = useColorScheme() === 'dark';
 
   return (
-    <View className='gap-y-3'>
+    <Animated.View
+      className='gap-y-3'
+      entering={FadeIn.duration(200).delay(props.index * 50)}
+      exiting={FadeOut.duration(150).delay(props.index * 50)}
+    >
       <View className='flex-row items-center justify-between px-2'>
         <View className='flex-row items-center gap-x-2'>
           <InitialsAvatar
@@ -56,7 +61,7 @@ const ReviewCard = (props: ReviewCardProps) => {
           {formatDateTime(props.review.createdAt).split(' ')[0]}
         </Text>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

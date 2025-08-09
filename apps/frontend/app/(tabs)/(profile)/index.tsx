@@ -40,7 +40,7 @@ const Profile = () => {
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
-        <View className={cn('content-wrapper pb-28', screenContentWrapperStyle)}>
+        <View className={cn('content-wrapper gap-y-4 pb-28', screenContentWrapperStyle)}>
           <AccountInfo name={profile?.name ?? ''} username={profile?.name ?? ''} />
 
           <DividerX />
@@ -132,28 +132,30 @@ const Profile = () => {
               title={Strings.profile.MENU_NOTIF_TITLE}
               leftIcon={isDark ? icons.dark.notification : icons.light.notification}
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
-            />
+            /> */}
 
-            <MenuOption
+            {/* <MenuOption
               title={Strings.profile.MENU_MERCHANT_TITLE}
               leftIcon={isDark ? icons.dark.verify : icons.light.verify}
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
-            />
+            /> */}
 
-            <MenuOption
+            {/* <MenuOption
               title={Strings.profile.MENU_PAY_METHODS_TITLE}
               leftIcon={isDark ? icons.dark.money : icons.light.money}
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
-            />
+            /> */}
 
-            <MenuOption
+            {/* <MenuOption
               title={Strings.profile.MENU_HELP_TITLE}
               leftIcon={isDark ? icons.dark.messageQuestion : icons.light.messageQuestion}
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             /> */}
           </View>
 
-          <SecondaryButton title={Strings.profile.LOGOUT_BTN_TITLE} isLoading={isLoading} onPress={confirmLogout} />
+          <View className='mt-4'>
+            <SecondaryButton title={Strings.profile.LOGOUT_BTN_TITLE} isLoading={isLoading} onPress={confirmLogout} />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

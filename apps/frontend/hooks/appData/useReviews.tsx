@@ -13,10 +13,21 @@ const useReviews = () => {
     [reviewTypes],
   );
 
+  const filterReviewsByType = useMemo(
+    () => (type: string) =>
+      reviews.filter((r) => {
+        if (type === 'all') return true;
+
+        return r.type === type;
+      }),
+    [reviews],
+  );
+
   return {
     reviews,
     reviewTypes,
     reviewTypeFilterItems,
+    filterReviewsByType,
   };
 };
 
