@@ -19,9 +19,12 @@ const AdvertLayout = () => {
           backgroundColor: isDark ? '#000000' : '#FFFFFF',
         },
         headerTransparent: true,
+        headerStyle: {
+          backgroundColor: isDark ? '#000000' : '#FFFFFF',
+        },
         headerTitleAlign: 'center',
         headerTitleStyle: {
-          color: isDark ? '#FFFFFF' : '#23262F',
+          color: isDark ? '#FFFFFF' : '#000000',
           fontWeight: 'semibold',
           fontFamily: 'poppins',
           fontSize: 18,

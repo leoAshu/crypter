@@ -17,7 +17,6 @@ const P2PLayout = () => {
         screenOptions={() => ({
           animation: 'shift',
           headerTransparent: true,
-          headerShown: false,
           headerTitleAlign: 'center',
           tabBarShowLabel: false,
           headerTitleStyle: {
@@ -92,6 +91,7 @@ const P2PLayout = () => {
         <Tabs.Screen
           name='(advert)'
           options={{
+            headerShown: false,
             title: Strings.myAds.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
