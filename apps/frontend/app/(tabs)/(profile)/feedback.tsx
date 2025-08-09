@@ -3,7 +3,7 @@ import { screenContentWrapperStyle } from '@/constants';
 import { useReviews } from '@/hooks';
 import { useProfileStore } from '@/store';
 import cn from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,26 +11,31 @@ const Feedback = () => {
   const isDark = useColorScheme() === 'dark';
 
   const { profile } = useProfileStore();
-  const { reviews, reviewTypeFilterItems } = useReviews();
+  const { reviewTypeFilterItems, filterReviewsByType } = useReviews();
 
-  const [feedbackType, setFeedbackType] = useState<FilterItem>(reviewTypeFilterItems[0]);
+  const [reviewType, setReviewType] = useState<FilterItem>(reviewTypeFilterItems[0]);
+  const [reviewsList, setReviewsList] = useState<Review[]>(filterReviewsByType(reviewType.id));
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
     android: 'pb-24',
   });
 
+  useEffect(() => {
+    setReviewsList(filterReviewsByType(reviewType.id));
+  }, [reviewType]);
+
   return (
     <SafeAreaView className='screen-wrapper'>
       <View className={cn('content-wrapper gap-y-4', screenContentWrapperStyle)}>
-        <View>
+        <View className='gap-y-4'>
           <AccountInfo name={profile?.name ?? ''} username={profile?.name ?? ''} />
 
-          <ChipFilter value={feedbackType} items={reviewTypeFilterItems} onChange={(val) => setFeedbackType(val)} />
+          <ChipFilter value={reviewType} items={reviewTypeFilterItems} onChange={(val) => setReviewType(val)} />
         </View>
 
         <FlatList
-          data={reviews}
+          data={reviewsList}
           initialNumToRender={0}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}
