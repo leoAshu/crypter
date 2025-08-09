@@ -20,10 +20,12 @@ const Welcome = () => {
           <Text className='welcome-header-txt'>
             {Strings.welcome.SCREEN_GREETING} {(profile?.name ?? '').split(' ')[0]}! 👋
           </Text>
+
           <Text className='welcome-header-txt'>{Strings.welcome.SCREEN_TITLE}</Text>
           <Text className='welcome-sub-header-txt'>{Strings.welcome.WELCOME_TEXT}</Text>
         </View>
       </View>
+
       <View className='footer-socials'>
         <PrimaryButton title={Strings.welcome.BUTTON_LABEL} onPress={() => router.replace('/(tabs)')} />
       </View>

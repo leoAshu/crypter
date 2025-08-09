@@ -82,6 +82,7 @@ const SignUpInfo = () => {
                 disabled={isLoading}
                 onChangeText={(value) => setFormData((prev) => ({ ...prev, confirmPassword: value }))}
               />
+
               <View className='mt-8'>
                 <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
               </View>

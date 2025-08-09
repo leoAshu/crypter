@@ -68,6 +68,7 @@ const SignIn = () => {
                 disabled={isLoading}
                 onChangeText={(value) => setFormData((prev) => ({ ...prev, password: value }))}
               />
+
               <View className='mt-8'>
                 <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
               </View>
@@ -75,6 +76,7 @@ const SignIn = () => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+
       {/* Socials & Footer */}
       <View className='footer-socials'>
         <View className='divider-row'>
@@ -82,10 +84,12 @@ const SignIn = () => {
           <Text className='divider-txt'>{Strings.login.OR_CONTINUE_WITH}</Text>
           <View className='divider-line' />
         </View>
+
         <View className='social-auth-row'>
           <IconButton icon={images.google} disabled={isLoading} onPress={() => {}} />
           <IconButton icon={images.facebook} disabled={isLoading} onPress={() => {}} />
         </View>
+
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
           <Pressable disabled={isLoading} onPress={() => router.replace('/(auth)/(signup)')} hitSlop={20}>
