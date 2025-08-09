@@ -2,6 +2,7 @@ import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
 import { validateEmail } from '@/utils';
+import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -18,6 +19,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Signup = () => {
+  const isIOS = Platform.OS === 'ios';
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ email: '' });
 
@@ -44,7 +46,7 @@ const Signup = () => {
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <KeyboardAvoidingView className='flex-1' behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View style={{ height: Dimensions.get('screen').height / 2.8 }}>
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
@@ -77,7 +79,7 @@ const Signup = () => {
       </KeyboardAvoidingView>
 
       {/* Socials & Footer */}
-      <View className='footer-socials'>
+      <View className={cn(isIOS ? 'footer-socials-ios' : 'footer-socials-android')}>
         <View className='divider-row'>
           <View className='divider-line' />
           <Text className='divider-txt'>{Strings.signup.OR_CONTINUE_WITH}</Text>
