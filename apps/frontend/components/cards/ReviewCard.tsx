@@ -44,10 +44,10 @@ const ReviewCard = (props: ReviewCardProps) => {
             props.review.type === ReviewType.Positive
               ? isDark
                 ? icons.dark.active.like
-                : icons.dark.active.like
+                : icons.light.active.like
               : isDark
                 ? icons.dark.active.dislike
-                : icons.dark.active.dislike
+                : icons.light.active.dislike
           }
           className='size-5'
           resizeMode='contain'
