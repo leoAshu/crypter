@@ -1,8 +1,8 @@
-import { icons, images } from '@/assets';
-import { BackIconButton, HeaderActionIcon, TabBarIcon } from '@/components';
+import { icons } from '@/assets';
+import { BackIconButton, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
-import { router, Tabs, useSegments } from 'expo-router';
+import { Tabs, useSegments } from 'expo-router';
 import { Platform, useColorScheme, View } from 'react-native';
 
 const P2PLayout = () => {
@@ -17,6 +17,7 @@ const P2PLayout = () => {
         screenOptions={() => ({
           animation: 'shift',
           headerTransparent: true,
+          headerShown: false,
           headerTitleAlign: 'center',
           tabBarShowLabel: false,
           headerTitleStyle: {
@@ -91,7 +92,7 @@ const P2PLayout = () => {
         <Tabs.Screen
           name='(advert)'
           options={{
-            title: isPostRoute ? Strings.postAd.HEADER_TITLE : Strings.myAds.HEADER_TITLE,
+            title: Strings.myAds.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
@@ -105,14 +106,6 @@ const P2PLayout = () => {
                       ? icons.light.active.subtitle
                       : icons.light.inactive.subtitle
                 }
-              />
-            ),
-            headerLeft: () => <BackIconButton />,
-            headerRight: () => (
-              <HeaderActionIcon
-                icon={images.plus}
-                containerStyle='mr-8'
-                onPress={() => router.push('/(p2p)/(advert)/post')} // Add navigation
               />
             ),
           }}
