@@ -7,7 +7,6 @@
      🎯 General Layout Containers
   ─────────────────────────────── */
   .screen-wrapper {
-    /* bg-base-white dark:bg-base-dark */
     @apply h-full bg-base-white dark:bg-base-dark;
   }
 
@@ -23,7 +22,7 @@
   }
 
   .header-txt {
-    @apply font-clashDisplay-medium text-3xl text-base-dark dark:text-base-white;
+    @apply font-clashDisplay-medium text-3xl text-title dark:text-title-dark;
   }
 
   .welcome-header-wrapper {
@@ -62,7 +61,7 @@
   }
 
   .input-txt {
-    @apply border-b-[0.5px] pb-4 pl-1 pr-10 pt-8 font-satoshi text-lg leading-5 text-base-dark dark:text-base-white;
+    @apply border-b-[0.5px] pb-4 pl-1 pr-10 pt-8 font-satoshi text-lg leading-5 text-title dark:text-title-dark;
   }
 
   .input-icon-wrapper {
@@ -81,7 +80,7 @@
   }
 
   .btn-primary-label {
-    @apply font-clashDisplay-medium text-base-dark;
+    @apply font-clashDisplay-medium text-title;
   }
 
   .btn-primary-load-indicator {
@@ -97,7 +96,7 @@
   }
 
   .btn-secondary-disabled {
-    @apply border-primary-disabled bg-neutral-200 dark:bg-neutral-800;
+    @apply border-primary-disabled bg-card dark:bg-card-dark;
   }
 
   .btn-secondary-inner {
@@ -109,7 +108,7 @@
   }
 
   .btn-seconday-label-active {
-    @apply text-base-dark dark:text-white;
+    @apply text-title dark:text-title-dark;
   }
 
   .btn-seconday-label-disabled {
@@ -168,7 +167,7 @@
   }
 
   .tab-icon-label-inactive {
-    @apply text-base-dark/25 dark:text-base-white/75;
+    @apply text-title/25 dark:text-title-dark/75;
   }
 
   /* ──────────────────────────────
@@ -183,7 +182,7 @@
   }
 
   .initials-avatar-txt {
-    @apply text-center font-clashDisplay-medium text-base-dark;
+    @apply text-center font-clashDisplay-medium text-title;
   }
 
   /* ──────────────────────────────
@@ -209,7 +208,7 @@
   }
 
   .footer-txt {
-    @apply font-poppins-medium text-sm text-on-surface dark:text-on-surface-dark;
+    @apply font-poppins-medium text-sm text-body dark:text-body-dark;
   }
 
   .footer-link {
@@ -236,7 +235,7 @@
   }
 
   .divider-x {
-    @apply h-px bg-neutral;
+    @apply h-px bg-label;
   }
 
   /* ──────────────────────────────
@@ -279,7 +278,7 @@
   }
 
   .toggle-btn-label-active {
-    @apply text-base-dark;
+    @apply text-title;
   }
 
   .ad-card-wrapper {
@@ -354,35 +353,35 @@
   }
 
   .ad-card-btn-label {
-    @apply font-clashDisplay-medium text-sm text-base-white;
+    @apply font-clashDisplay-medium text-sm text-title-dark;
   }
 
   .ad-card-txt {
-    @apply font-clashDisplay text-base-dark dark:text-base-white;
+    @apply font-clashDisplay text-title dark:text-title-dark;
   }
 
   .ad-card-txt-md {
-    @apply font-clashDisplay-medium text-base-dark dark:text-base-white;
+    @apply font-clashDisplay-medium text-title dark:text-title-dark;
   }
 
   .ad-card-txt-muted {
-    @apply font-satoshi-medium text-neutral dark:text-neutral;
+    @apply font-satoshi-medium text-label dark:text-label;
   }
 
   .ad-card-txt-muted-semi {
-    @apply font-satoshi-bold text-neutral dark:text-neutral;
+    @apply font-satoshi-bold text-label dark:text-label;
   }
 
   .ad-card-header-badge-bg {
-    @apply rounded-sm bg-base-surface-light px-2 py-1 dark:bg-base-surface-dark;
+    @apply rounded-sm bg-card px-2 py-1 dark:bg-card-dark;
   }
 
   .ad-card-header-badge-txt {
-    @apply font-satoshi text-xs tracking-widest text-base-on-surface-light dark:text-base-white;
+    @apply font-satoshi text-xs tracking-widest text-title dark:text-title-dark;
   }
 
   .pay-method-badge {
-    @apply flex-row items-center gap-x-1 rounded-md bg-base-surface-light px-2 py-1 dark:bg-base-surface-dark;
+    @apply flex-row items-center gap-x-1 rounded-md bg-card px-2 py-1 dark:bg-card-dark;
   }
 
   .order-card-wrapper {
@@ -398,19 +397,19 @@
   }
 
   .order-card-header-badge-bg {
-    @apply rounded-sm bg-base-surface-light px-2 py-1 dark:bg-base-surface-dark;
+    @apply rounded-sm bg-card px-2 py-1 dark:bg-card-dark;
   }
 
   .order-card-header-badge-txt {
-    @apply font-clashDisplay text-xs tracking-widest text-base-on-surface-light dark:text-base-white;
+    @apply font-clashDisplay text-xs tracking-widest text-title dark:text-title-dark;
   }
 
   .order-card-type-badge-bg {
-    @apply items-center justify-center rounded-sm bg-base-surface-light dark:bg-base-surface-dark;
+    @apply items-center justify-center rounded-sm bg-card dark:bg-card-dark;
   }
 
   .order-card-type-badge-txt {
-    @apply font-clashDisplay text-xs tracking-wider text-base-on-surface-light dark:text-base-white;
+    @apply font-clashDisplay text-xs tracking-wider text-title dark:text-title-dark;
   }
 
   .order-card-content {

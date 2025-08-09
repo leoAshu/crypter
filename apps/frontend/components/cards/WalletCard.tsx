@@ -95,7 +95,7 @@ const WalletCard = (props: WalletCardProps) => {
           <View className='flex-row justify-center px-10 py-4'>
             <View className='flex-1 flex-row items-baseline justify-center gap-x-2'>
               <Text className='font-clashDisplay-medium text-lg text-body dark:text-body-dark'>
-                {getActiveAdsCountByUserId(props.cryptoId, user.id)}
+                {getActiveAdsCountByUserId(props.cryptoId, user?.id)}
               </Text>
               <Text className='font-satoshi-medium text-body dark:text-body-dark'>Active Adverts</Text>
             </View>
