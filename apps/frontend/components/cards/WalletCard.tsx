@@ -1,10 +1,10 @@
-import { useCrypto, useFiat } from '@/hooks';
-import { useWalletStore } from '@/store';
+import { useAds, useCrypto, useFiat } from '@/hooks';
+import { useAuthStore, useWalletStore } from '@/store';
 import { currencyFormatter } from '@/utils';
 import { BlurView } from 'expo-blur';
-import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { Platform, Text, useColorScheme, View } from 'react-native';
+import { WalletCardGradient } from '../backgrounds';
 import { PrimaryButton } from '../buttons';
 import { DividerX } from '../dividers';
 
@@ -12,34 +12,18 @@ const WalletCard = (props: WalletCardProps) => {
   const isIOS = Platform.OS === 'ios';
   const isDark = useColorScheme() === 'dark';
 
+  const { user } = useAuthStore();
   const { defaultFiat } = useFiat();
   const { cryptoLabels } = useCrypto();
   const { balances } = useWalletStore();
+  const { getActiveAdsCountByUserId } = useAds();
 
   const balance = balances[props.cryptoId]['available'];
   const fiatValue = balance * 87.71;
 
   return (
-    <View className='elevation-md relative w-full overflow-hidden rounded-2xl bg-base-surface-light dark:bg-neutral/35'>
-      <LinearGradient
-        colors={[
-          'rgba(84, 230, 182,0.28)',
-          'rgba(84, 230, 182,0.25)',
-          'rgba(84, 230, 182,0.20)',
-          'rgba(84, 230, 182,0.17)',
-          'rgba(84, 230, 182,0.15)',
-          'rgba(84, 230, 182,0.13)',
-          'transparent',
-        ]}
-        locations={[0, 0.08, 0.16, 0.25, 0.35, 0.55, 1]}
-        start={{ x: 0.75, y: 0.75 }}
-        end={{ x: 0, y: 0 }}
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-        }}
-      />
+    <View className='elevation-md relative w-full overflow-hidden rounded-2xl bg-card dark:bg-label/35'>
+      <WalletCardGradient />
 
       <BlurView
         className='flex-1'
@@ -54,16 +38,16 @@ const WalletCard = (props: WalletCardProps) => {
               tint={isDark ? 'extraLight' : 'light'}
             >
               <View className='header flex gap-y-5'>
-                <View className='flex-row items-start gap-x-2'>
-                  <Text className='font-satoshi text-2xl text-base-black dark:text-base-white'>Balance</Text>
+                <View className='flex-row items-center gap-x-2'>
+                  <Text className='font-satoshi-medium text-xl text-body dark:text-body-dark'>Balance</Text>
 
-                  <View className='overflow-hidden rounded-md'>
+                  <View className='overflow-hidden rounded'>
                     <BlurView
-                      className='w-16 items-center py-1'
+                      className='w-14 items-center py-1'
                       intensity={isIOS ? (isDark ? 4 : 45) : isDark ? 25 : 55}
                       tint={isDark ? 'extraLight' : 'extraLight'}
                     >
-                      <Text className='tracking-wider text-base-on-surface-light dark:text-base-white'>
+                      <Text className='font-clashDisplay tracking-wider text-title dark:text-title-dark'>
                         {cryptoLabels[props.cryptoId]}
                       </Text>
                     </BlurView>
@@ -73,7 +57,7 @@ const WalletCard = (props: WalletCardProps) => {
                 <PrimaryButton
                   title='Add Funds'
                   containerStyle='py-2 rounded-lg elevation'
-                  textStyle='text-sm'
+                  textStyle='text-sm tracking-wider'
                   onPress={() => router.push('/(addFunds)')}
                 />
               </View>
@@ -85,10 +69,10 @@ const WalletCard = (props: WalletCardProps) => {
                   tint={isDark ? 'extraLight' : 'extraLight'}
                 >
                   <View className='flex-row items-baseline justify-end pr-3'>
-                    <Text className='font-clashDisplay text-3xl tracking-wide text-base-black dark:text-base-white'>
+                    <Text className='font-clashDisplay text-3xl tracking-wide text-title dark:text-title-dark'>
                       {currencyFormatter.format(balance ?? 0).split('.')[0]}.
                     </Text>
-                    <Text className='font-clashDisplay text-xl tracking-wide text-base-black dark:text-base-white'>
+                    <Text className='font-clashDisplay text-xl tracking-wide text-title dark:text-title-dark'>
                       {currencyFormatter.format(balance ?? 0).split('.')[1]}
                     </Text>
                   </View>
@@ -96,10 +80,10 @@ const WalletCard = (props: WalletCardProps) => {
                   <DividerX style='opacity-1 h-1 w-full my-2' />
 
                   <View className='flex-row items-baseline justify-end pr-3'>
-                    <Text className='font-clashDisplay text-2xl tracking-wide text-base-black dark:text-base-white'>
+                    <Text className='font-clashDisplay text-2xl tracking-wide text-title dark:text-title-dark'>
                       {defaultFiat?.symbol ?? ''} {currencyFormatter.format(fiatValue ?? 0).split('.')[0]}.
                     </Text>
-                    <Text className='font-clashDisplay text-lg tracking-wide text-base-black dark:text-base-white'>
+                    <Text className='font-clashDisplay text-lg tracking-wide text-title dark:text-title-dark'>
                       {currencyFormatter.format(fiatValue ?? 0).split('.')[1]}
                     </Text>
                   </View>
@@ -109,14 +93,18 @@ const WalletCard = (props: WalletCardProps) => {
           </View>
 
           <View className='flex-row justify-center px-10 py-4'>
-            <View className='flex-1 flex-row items-baseline gap-x-2'>
-              <Text className='font-clashDisplay text-xl text-base-black dark:text-base-white'>12</Text>
-              <Text className='font-satoshi-medium text-base-black dark:text-white'>Active Adverts</Text>
+            <View className='flex-1 flex-row items-baseline justify-center gap-x-2'>
+              <Text className='font-clashDisplay-medium text-lg text-body dark:text-body-dark'>
+                {getActiveAdsCountByUserId(props.cryptoId, user.id)}
+              </Text>
+              <Text className='font-satoshi-medium text-body dark:text-body-dark'>Active Adverts</Text>
             </View>
-            <View className='mx-8 w-px bg-neutral' />
-            <View className='flex-1 flex-row items-baseline gap-x-2'>
-              <Text className='font-clashDisplay text-xl text-base-black dark:text-base-white'>43</Text>
-              <Text className='font-satoshi-medium text-base-black dark:text-base-white'>Open Orders</Text>
+
+            <View className='mx-8 w-px bg-label' />
+
+            <View className='flex-1 flex-row items-baseline justify-center gap-x-2'>
+              <Text className='font-clashDisplay-medium text-lg text-body dark:text-body-dark'>43</Text>
+              <Text className='font-satoshi-medium text-body dark:text-body-dark'>Open Orders</Text>
             </View>
           </View>
         </View>
