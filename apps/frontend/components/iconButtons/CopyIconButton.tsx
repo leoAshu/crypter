@@ -1,11 +1,13 @@
 import { icons } from '@/assets';
 import { ToastStrings } from '@/constants';
 import cn from 'clsx';
+import * as Clipboard from 'expo-clipboard';
 import { useState } from 'react';
 import { Image, Pressable, useColorScheme } from 'react-native';
 import Toast from 'react-native-toast-message';
 
 interface CopyIconButtonProps {
+  value: string;
   iconStyle?: string;
 }
 
@@ -13,12 +15,13 @@ const CopyIconButton = (props: CopyIconButtonProps) => {
   const [copied, setCopied] = useState(false);
   const isDark = useColorScheme() === 'dark';
 
-  const handlePress = () => {
+  const handlePress = async () => {
+    await Clipboard.setStringAsync(props.value);
     setCopied(true);
     Toast.show({
       type: 'success',
       text1: ToastStrings.Success.TITLE,
-      text2: ToastStrings.Success.COPY_ORDER_ID,
+      text2: ToastStrings.Success.COPY,
       position: 'bottom',
       bottomOffset: 112,
       autoHide: true,
