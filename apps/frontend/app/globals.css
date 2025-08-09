@@ -31,11 +31,15 @@
   }
 
   .welcome-header-txt {
-    @apply font-clashDisplay-medium text-2xl text-base-dark dark:text-base-white;
+    @apply font-clashDisplay text-5xl leading-10 tracking-wider text-title dark:text-title-dark;
   }
 
   .welcome-sub-header-txt {
-    @apply mt-4 font-clashDisplay text-base text-neutral;
+    @apply mt-6 font-satoshi text-2xl tracking-wider text-title dark:text-title-dark;
+  }
+
+  .welcome-body-txt {
+    @apply mt-1 font-satoshi text-2xl tracking-wider text-body dark:text-body-dark;
   }
 
   /* ──────────────────────────────
@@ -194,7 +198,7 @@
   }
 
   .absolute-bottom-cta {
-    @apply absolute bottom-24 left-2.5 right-2.5;
+    @apply absolute bottom-24 left-0 right-0 px-4;
   }
 
   /* ──────────────────────────────
