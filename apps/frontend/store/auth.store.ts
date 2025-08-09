@@ -36,6 +36,7 @@ const useAuthStore = create<AuthState>((set) => ({
         await useCryptotore.getState().fetchCryptos();
         await useAdStore.getState().fetchAds();
         await useProfileStore.getState().createProfile(profile);
+        await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
@@ -61,6 +62,7 @@ const useAuthStore = create<AuthState>((set) => ({
         await useCryptotore.getState().fetchCryptos();
         await useAdStore.getState().fetchAds();
         await useProfileStore.getState().fetchProfile(user.id);
+        await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
@@ -100,7 +102,7 @@ const useAuthStore = create<AuthState>((set) => ({
         await useCryptotore.getState().fetchCryptos();
         await useAdStore.getState().fetchAds();
         await useProfileStore.getState().fetchProfile(user.id);
-        await useStatsStore.getState().fetchStat(user.id);
+        await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
         set({ isAuthenticated: true, user: user });
       } else {

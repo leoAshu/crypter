@@ -86,7 +86,7 @@ const OrderCard = (props: OrderCardProps) => {
                 </Text>
               </View>
 
-              <CopyIconButton />
+              <CopyIconButton value={props.order.id} />
             </View>
           </View>
         </View>

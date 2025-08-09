@@ -29,7 +29,7 @@ const Strings = {
   welcome: {
     SCREEN_GREETING: 'Hello',
     SCREEN_TITLE: 'Welcome to Crypter',
-    WELCOME_TEXT: "It's great to have you here",
+    WELCOME_TEXT: "It's great to have you here!",
     BUTTON_LABEL: "I'm ready to start!",
   },
   home: {

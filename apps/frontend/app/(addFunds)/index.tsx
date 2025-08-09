@@ -11,9 +11,9 @@ const Deposit = () => {
   const isDark = useColorScheme() === 'dark';
   const { deposit } = useWalletStore();
 
+  const address = '0x5a3c2E1B53F1a871bE8B7F442Ead61a9F2cEb94A';
   const savePicture = async () => {
     deposit('usdt', Number((Math.random() * (15 - 1) + 1).toFixed(2)));
-
     setTimeout(() => router.back(), 500);
   };
 
@@ -33,11 +33,11 @@ const Deposit = () => {
                 <View className='deposit-form-row'>
                   <View className='deposit-form-value-wrapper'>
                     <Text className='deposit-form-value' numberOfLines={1} ellipsizeMode='middle'>
-                      0x5a3c2E1B53F1a871bE8B7F442Ead61a9F2cEb94A
+                      {address}
                     </Text>
                   </View>
                   <View className='deposit-form-icon-wrapper'>
-                    <CopyIconButton iconStyle='size-6' />
+                    <CopyIconButton value={address} iconStyle='size-6' />
                   </View>
                 </View>
               </View>

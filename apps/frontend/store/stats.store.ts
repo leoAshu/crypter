@@ -1,15 +1,15 @@
-import { fetchStat } from '@/supabase';
+import { fetchStats } from '@/supabase';
 import { create } from 'zustand';
 
 const useStatsStore = create<StatState>((set) => ({
   stats: null,
   isLoading: false,
 
-  fetchStat: async (userId: string) => {
+  fetchStats: async (userId: string) => {
     set({ isLoading: true });
 
     try {
-      const stat = await fetchStat(userId);
+      const stat = await fetchStats(userId);
       set({ stats: stat });
     } catch (err: any) {
       console.log('fetchCryptos error', err);

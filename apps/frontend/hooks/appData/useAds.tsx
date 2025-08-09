@@ -21,7 +21,7 @@ const useAds = () => {
 
   const activeAds = useMemo(() => {
     return ads.filter((ad) => cryptoOptions.includes(ad.cryptoId));
-  }, [cryptoOptions]);
+  }, [ads, cryptoOptions]);
 
   const filterAdsByType = (adType: AdType, cryptoId: string) => {
     return activeAds.filter((ad) => {
@@ -39,12 +39,23 @@ const useAds = () => {
     });
   };
 
+  const getActiveAdsCountByUserId = useMemo(
+    () => (cryptoId: string, userId: string) =>
+      activeAds.filter((ad) => {
+        if (ad.userId !== userId) return false;
+        if (cryptoId === 'all') return true;
+        return ad.cryptoId === cryptoId;
+      }).length,
+    [activeAds],
+  );
+
   return {
     adTypes,
     activeAds,
     adTypeFilterItems,
     filterAdsByType,
     filterAdsByUserId,
+    getActiveAdsCountByUserId,
   };
 };
 

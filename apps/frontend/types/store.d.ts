@@ -34,7 +34,7 @@ interface StatState {
   stats: Stats | null;
   isLoading: boolean;
 
-  fetchStat: (userId: string) => Promise<void>;
+  fetchStats: (userId: string) => Promise<void>;
 }
 
 interface BalanceState {

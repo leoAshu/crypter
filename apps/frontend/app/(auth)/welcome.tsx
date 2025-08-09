@@ -17,14 +17,19 @@ const Welcome = () => {
 
       <View className='content-wrapper'>
         <View className='welcome-header-wrapper'>
-          <Text className='welcome-header-txt'>
-            {Strings.welcome.SCREEN_GREETING} {(profile?.name ?? '').split(' ')[0]}! 👋
-          </Text>
-          <Text className='welcome-header-txt'>{Strings.welcome.SCREEN_TITLE}</Text>
-          <Text className='welcome-sub-header-txt'>{Strings.welcome.WELCOME_TEXT}</Text>
+          <View className=''>
+            <Text className='welcome-header-txt'>
+              {Strings.welcome.SCREEN_GREETING} {(profile?.name ?? '').split(' ')[0]}
+              {'  '}👋
+            </Text>
+
+            <Text className='welcome-sub-header-txt'>{Strings.welcome.SCREEN_TITLE}</Text>
+            <Text className='welcome-body-txt'>{Strings.welcome.WELCOME_TEXT}</Text>
+          </View>
         </View>
       </View>
-      <View className='footer-socials'>
+
+      <View className='absolute-bottom-cta'>
         <PrimaryButton title={Strings.welcome.BUTTON_LABEL} onPress={() => router.replace('/(tabs)')} />
       </View>
     </SafeAreaView>

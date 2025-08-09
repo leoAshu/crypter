@@ -3,6 +3,7 @@ import { IconButton, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
 import useAuthStore from '@/store/auth.store';
 import { validateEmail, validatePassword } from '@/utils';
+import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -19,6 +20,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SignIn = () => {
+  const isIOS = Platform.OS === 'ios';
   const { signin, isLoading, user } = useAuthStore();
   const [formData, setFormData] = useState({ email: '', password: '' });
 
@@ -68,6 +70,7 @@ const SignIn = () => {
                 disabled={isLoading}
                 onChangeText={(value) => setFormData((prev) => ({ ...prev, password: value }))}
               />
+
               <View className='mt-8'>
                 <PrimaryButton title={Strings.login.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
               </View>
@@ -75,17 +78,20 @@ const SignIn = () => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+
       {/* Socials & Footer */}
-      <View className='footer-socials'>
+      <View className={cn(isIOS ? 'footer-socials-ios' : 'footer-socials-android')}>
         <View className='divider-row'>
           <View className='divider-line' />
           <Text className='divider-txt'>{Strings.login.OR_CONTINUE_WITH}</Text>
           <View className='divider-line' />
         </View>
+
         <View className='social-auth-row'>
           <IconButton icon={images.google} disabled={isLoading} onPress={() => {}} />
           <IconButton icon={images.facebook} disabled={isLoading} onPress={() => {}} />
         </View>
+
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.login.NO_ACCOUNT_TEXT}</Text>
           <Pressable disabled={isLoading} onPress={() => router.replace('/(auth)/(signup)')} hitSlop={20}>

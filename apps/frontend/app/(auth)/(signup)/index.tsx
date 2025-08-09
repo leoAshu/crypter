@@ -2,6 +2,7 @@ import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
 import { validateEmail } from '@/utils';
+import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -18,6 +19,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Signup = () => {
+  const isIOS = Platform.OS === 'ios';
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ email: '' });
 
@@ -44,7 +46,7 @@ const Signup = () => {
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <KeyboardAvoidingView className='flex-1' behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View style={{ height: Dimensions.get('screen').height / 2.8 }}>
             <Image source={images.logo} className='header-logo' resizeMode='contain' />
@@ -62,29 +64,33 @@ const Signup = () => {
                 disabled={isSubmitting}
                 onChangeText={(value) => setFormData((prev) => ({ ...prev, email: value }))}
               />
+
               <View className='mt-8'>
                 <PrimaryButton
                   title={Strings.signup.BUTTON_LABEL}
                   isLoading={isSubmitting}
                   onPress={submitForm}
-                  leftIcon={<Image className='size-4' resizeMode='contain' source={images.mail}></Image>}
+                  leftIcon={<Image className='size-4' resizeMode='contain' source={images.mail} tintColor='#333333' />}
                 />
               </View>
             </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+
       {/* Socials & Footer */}
-      <View className='footer-socials'>
+      <View className={cn(isIOS ? 'footer-socials-ios' : 'footer-socials-android')}>
         <View className='divider-row'>
           <View className='divider-line' />
           <Text className='divider-txt'>{Strings.signup.OR_CONTINUE_WITH}</Text>
           <View className='divider-line' />
         </View>
+
         <View className='social-auth-row'>
           <IconButton icon={images.google} disabled={isSubmitting} onPress={() => {}} />
           <IconButton icon={images.facebook} disabled={isSubmitting} onPress={() => {}} />
         </View>
+
         <View className='footer-wrapper'>
           <Text className='footer-txt'>{Strings.signup.NO_ACCOUNT_TEXT}</Text>
           <Pressable disabled={isSubmitting} onPress={() => router.replace('/signin')} hitSlop={20}>
