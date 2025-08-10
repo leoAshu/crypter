@@ -36,6 +36,12 @@ interface SecondaryButtonProps {
   onPress?: () => void;
 }
 
+interface IndexIconButtonProps {
+  icon: ImageSourcePropType;
+  disabled?: boolean;
+  onPress?: (e: GestureResponderEvent) => void;
+}
+
 // ====================
 // 🧾 Form Fields
 // ====================
@@ -191,4 +197,14 @@ interface ToggleButtonProps {
 interface ReviewCardProps {
   index: number;
   review: Review;
+}
+
+//doubt can I use FilterItem instead of string
+interface PriceSelectorProps {
+  label: string;
+  index: number;
+  items: string[];
+  onChange?: (val: string) => void;
+  onIncrement?: () => void;
+  onDecrement?: () => void;
 }
