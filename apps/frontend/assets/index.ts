@@ -53,6 +53,11 @@ const icons = {
     // InputFields
     arrowDown: require('./icons/light/arrow-down.png'),
 
+    // Cryptos
+    btc: require('./icons/light/btc.png'),
+    eth: require('./icons/light/eth.png'),
+    usdt: require('./icons/light/usdt.png'),
+
     // Active Tab
     active: {
       home: require('./icons/light/active/home.png'),
@@ -105,6 +110,11 @@ const icons = {
 
     // InputFields
     arrowDown: require('./icons/dark/arrow-down.png'),
+
+    // Cryptos
+    btc: require('./icons/dark/btc.png'),
+    eth: require('./icons/dark/eth.png'),
+    usdt: require('./icons/dark/usdt.png'),
 
     // Active Tab
     active: {

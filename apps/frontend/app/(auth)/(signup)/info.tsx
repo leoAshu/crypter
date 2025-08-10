@@ -1,6 +1,7 @@
 import { images } from '@/assets';
 import { InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
+import { useMarket } from '@/hooks';
 import useAuthStore from '@/store/auth.store';
 import { formatPhoneNumber, validateConfirmPassword, validateName, validatePassword, validatePhone } from '@/utils';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -9,8 +10,10 @@ import { Alert, Dimensions, Image, KeyboardAvoidingView, Platform, ScrollView, T
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SignUpInfo = () => {
+  const { fetchAllTickers } = useMarket();
   const { signup, isLoading } = useAuthStore();
   const { email } = useLocalSearchParams<{ email: string }>();
+
   const [formData, setFormData] = useState({ name: '', email: email, password: '', confirmPassword: '', phone: '' });
 
   const submitForm = async () => {
@@ -29,6 +32,7 @@ const SignUpInfo = () => {
 
     try {
       await signup({ name, phone, email, password });
+      await fetchAllTickers();
       router.replace({ pathname: '/welcome', params: { name } });
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);

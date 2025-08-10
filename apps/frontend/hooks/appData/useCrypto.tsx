@@ -33,7 +33,7 @@ const useCrypto = () => {
   const cryptoNameFilterItems = useMemo(() => createFilterItems('name'), [cryptos]);
   const cryptoNameFilterItemsStrict = useMemo(() => cryptoNameFilterItems.slice(1), [cryptoNameFilterItems]);
 
-  const getCryptoNameById = useMemo(
+  const getCryptoNameFilterItemById = useMemo(
     () => (id: string) => cryptoNameFilterItems.find((c) => c.id === id),
     [cryptoNameFilterItems],
   );
@@ -48,7 +48,7 @@ const useCrypto = () => {
     cryptoNameFilterItemsStrict,
     cryptoSymbolFilterItems,
     cryptoSymbolFilterItemsStrict,
-    getCryptoNameById,
+    getCryptoNameFilterItemById,
   };
 };
 

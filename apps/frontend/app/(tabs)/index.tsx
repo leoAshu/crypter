@@ -1,4 +1,4 @@
-import { ChipFilter, InitialsAvatar, WalletCard } from '@/components';
+import { ChipFilter, InitialsAvatar, Market, WalletCard } from '@/components';
 import { useCrypto } from '@/hooks';
 import { useProfileStore } from '@/store';
 import { useState } from 'react';
@@ -14,8 +14,9 @@ const Home = () => {
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
-        <View className='content-wrapper mt-6'>
+        <View className='content-wrapper mt-6 gap-y-6'>
           <InitialsAvatar name={profile?.name ?? ''} size='sm' />
+
           <View className='flex'>
             <Text className='header-txt font-clashDisplay'>Hello,</Text>
             <Text className='header-txt font-clashDisplay'>{profile?.name ?? ''} 👋</Text>
@@ -24,6 +25,8 @@ const Home = () => {
           <ChipFilter value={crypto} items={cryptoSymbolFilterItemsStrict} onChange={(item) => setCrypto(item)} />
 
           <WalletCard cryptoId={crypto.id} />
+
+          <Market />
         </View>
       </ScrollView>
     </SafeAreaView>

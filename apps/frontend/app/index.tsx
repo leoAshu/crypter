@@ -1,20 +1,25 @@
+import { useMarket } from '@/hooks';
 import { useAuthStore } from '@/store';
 import { disableFontScaling } from '@/utils/fontScale';
 import { Redirect } from 'expo-router';
 import { useEffect } from 'react';
 import { Text, View } from 'react-native';
 
-// clampFontScaling(0, 0);
 disableFontScaling();
 
 const Index = () => {
   const { isLoading, isAuthenticated, fetchAuthenticatedUser } = useAuthStore();
+  const { isLoading: isTickerLoading, fetchAllTickers } = useMarket();
 
   useEffect(() => {
     fetchAuthenticatedUser();
   }, []);
 
-  if (!isLoading) {
+  useEffect(() => {
+    fetchAllTickers();
+  }, [isLoading]);
+
+  if (!isLoading && !isTickerLoading) {
     return <Redirect href={isAuthenticated ? '/(tabs)' : '/signin'} />;
   }
 

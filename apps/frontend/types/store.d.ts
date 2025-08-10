@@ -65,3 +65,12 @@ interface AdState {
 
   fetchAds: () => Promise<void>;
 }
+
+interface MarketState {
+  tickers: Record<string, Ticker>;
+  isLoading: boolean;
+
+  fetchTickers: (cryptoIds: string[], fiatId: string) => Promise<void>;
+  startPolling: (intervalMs?: number) => void;
+  stopPolling: () => void;
+}

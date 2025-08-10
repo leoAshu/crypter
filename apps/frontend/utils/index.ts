@@ -67,5 +67,6 @@ const getMockUserName = (name: string) => {
   return name.toLowerCase().split(' ').join('_');
 };
 
+export * from './api';
 export * from './validations';
 export { capitalizeWords, currencyFormatter, formatDateTime, formatPhoneNumber, getInitialsFromName, getMockUserName };
