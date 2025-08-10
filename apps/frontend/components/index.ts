@@ -10,5 +10,6 @@ export * from './form';
 export * from './iconButtons';
 export * from './loaders';
 export * from './menu';
+export * from './sections';
 export * from './tab';
 export * from './toasts';

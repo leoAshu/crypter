@@ -22,7 +22,7 @@ const WalletCard = (props: WalletCardProps) => {
   const fiatValue = balance * 87.71;
 
   return (
-    <View className='elevation-md relative w-full overflow-hidden rounded-2xl bg-card dark:bg-label/35'>
+    <View className='elevation-md w-full overflow-hidden rounded-2xl bg-card dark:bg-label/35'>
       <WalletCardGradient />
 
       <BlurView
@@ -57,7 +57,7 @@ const WalletCard = (props: WalletCardProps) => {
                 <PrimaryButton
                   title='Add Funds'
                   containerStyle='py-2 rounded-lg elevation'
-                  textStyle='text-xs tracking-wider'
+                  textStyle='text-xs tracking-wider font-clashDisplay'
                   onPress={() => router.push('/(addFunds)')}
                 />
               </View>
