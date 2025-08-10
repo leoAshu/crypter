@@ -21,7 +21,7 @@ const AddFundsLayout = () => {
           color: isDark ? '#FFFFFF' : '#23262F',
           fontWeight: 'semibold',
           fontFamily: 'poppins',
-          fontSize: 18,
+          fontSize: 14,
         },
       })}
     >

@@ -8,8 +8,8 @@ const AccountInfo = (props: AccountInfoProps) => {
       <InitialsAvatar name={props.name} size='sm' />
 
       <View>
-        <Text className='font-clashDisplay text-2xl text-base-black dark:text-base-white'>{props.name}</Text>
-        <Text className='font-satoshi-medium text-sm text-neutral dark:text-neutral-400'>
+        <Text className='font-clashDisplay text-lg text-base-black dark:text-base-white'>{props.name}</Text>
+        <Text className='font-satoshi-medium text-[10px] text-neutral dark:text-neutral-400'>
           @{getMockUserName(props.username)}
         </Text>
       </View>

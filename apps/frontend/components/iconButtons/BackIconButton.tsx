@@ -22,7 +22,7 @@ const BackIconButton = (props: BackIconButtonProps) => {
           if (router.canGoBack()) return router.back();
         }}
       >
-        <Image source={isDark ? icons.dark.arrowLeft : icons.light.arrowLeft} className='size-8' resizeMode='contain' />
+        <Image source={isDark ? icons.dark.arrowLeft : icons.light.arrowLeft} className='size-6' resizeMode='contain' />
       </Pressable>
     </View>
   );

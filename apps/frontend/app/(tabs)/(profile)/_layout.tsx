@@ -27,7 +27,7 @@ const ProfileLayout = () => {
           color: isDark ? '#FFFFFF' : '#000000',
           fontWeight: 'semibold',
           fontFamily: 'poppins',
-          fontSize: 18,
+          fontSize: 14,
         },
       })}
     >
@@ -39,7 +39,7 @@ const ProfileLayout = () => {
           headerRight: () => (
             <HeaderActionIcon
               icon={images.edit}
-              iconStyle='size-5'
+              iconStyle='size-4'
               onPress={() => router.push('/(tabs)/(profile)/edit')}
             />
           ),

@@ -48,7 +48,6 @@ const PostAdvert = () => {
               [adTypeFilterItems[0].id]: 'text-base-dark',
               [adTypeFilterItems[1].id]: 'text-base-white',
             }}
-            wrapperStyle='w-5/6 h-10'
             onChange={(val) => setAdType(val)}
           />
         </View>

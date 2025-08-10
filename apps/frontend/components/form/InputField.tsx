@@ -13,11 +13,11 @@ const InputField = (props: InputFieldProps) => {
   const labelStyle = useAnimatedStyle(() => ({
     position: 'absolute',
     left: 0,
-    top: withTiming(isFocused || value ? 0 : 28, {
+    top: withTiming(isFocused || value ? 12 : 36, {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
-    fontSize: withTiming(isFocused || value ? 12 : 14, {
+    fontSize: withTiming(isFocused || value ? 8 : 12, {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),

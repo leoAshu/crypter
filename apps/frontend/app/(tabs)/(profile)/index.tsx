@@ -48,7 +48,7 @@ const Profile = () => {
           <View className='profile-stats gap-y-6'>
             {/* Stats Header */}
             <View className='stats-header flex-row items-center justify-between'>
-              <Text className='font-clashDisplay text-xl text-base-dark dark:text-base-white'>
+              <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                 {Strings.profile.TRADING_STATS_TITLE}
               </Text>
 
@@ -63,7 +63,7 @@ const Profile = () => {
                   [statsTypeFilterItems[0].id]: 'text-base-dark',
                   [statsTypeFilterItems[1].id]: 'text-base-dark',
                 }}
-                labelStyle='text-xs'
+                labelStyle='text-[8px]'
                 wrapperStyle='h-9 w-36'
                 onChange={(val) => setStatsTypeFilter(val)}
               />
@@ -73,19 +73,19 @@ const Profile = () => {
             <View className='stats-content flex-row'>
               <View className='col-left flex-1 gap-y-6'>
                 <View className='gap-y-2'>
-                  <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
                     {stats?.totalTrades ?? 0}
                   </Text>
-                  <Text className='font-satoshi text-body dark:text-body-dark'>
+                  <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
                     {Strings.profile.TOTAL_TRADES_LABEL}
                   </Text>
                 </View>
 
                 <View className='gap-y-2'>
-                  <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
                     {stats?.avgReleaseTime ?? 0} Minutes
                   </Text>
-                  <Text className='font-satoshi text-body dark:text-body-dark'>
+                  <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
                     {Strings.profile.AVG_RELEASE_LABEL}
                   </Text>
                 </View>
@@ -93,26 +93,33 @@ const Profile = () => {
 
               <View className='col-right flex-1 gap-y-6'>
                 <View className='gap-y-2'>
-                  <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
                     {stats?.completionRate ?? 0}%
                   </Text>
-                  <Text className='font-satoshi text-body dark:text-body-dark'>
+                  <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
                     {Strings.profile.COMPLETION_RATE_LABEL}
                   </Text>
                 </View>
 
                 <View className='gap-y-2'>
-                  <Text className='font-clashDisplay text-2xl text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
                     {stats?.avgPayTime ?? 0} Minutes
                   </Text>
-                  <Text className='font-satoshi text-body dark:text-body-dark'>{Strings.profile.AVG_PAY_LABEL}</Text>
+                  <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
+                    {Strings.profile.AVG_PAY_LABEL}
+                  </Text>
                 </View>
               </View>
             </View>
 
             {/* Stats Footer */}
             <TouchableOpacity onPress={() => router.push('/stats')} hitSlop={20}>
-              <Text className={cn('font-satoshi-medium underline', isDark ? 'text-primary-500' : 'text-primary-700')}>
+              <Text
+                className={cn(
+                  'font-satoshi-medium text-xs underline',
+                  isDark ? 'text-primary-500' : 'text-primary-700',
+                )}
+              >
                 {Strings.profile.VIEW_MORE_LABEL}
               </Text>
             </TouchableOpacity>

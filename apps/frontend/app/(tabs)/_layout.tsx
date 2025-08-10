@@ -23,7 +23,7 @@ const TabLayout = () => {
             color: isDark ? '#FFFFFF' : '#000000',
             fontWeight: 'semibold',
             fontFamily: 'poppins',
-            fontSize: 18,
+            fontSize: 14,
           },
           tabBarStyle: {
             backgroundColor: isDark ? '#000000' : '#FFFFFF',

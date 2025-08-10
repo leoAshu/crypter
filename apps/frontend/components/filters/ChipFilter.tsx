@@ -23,12 +23,12 @@ const ChipFilter = (props: ChipFilterProps) => {
         renderItem={({ item }) => {
           const isActive = item.id === props.value.id;
           const borderStyle = isActive ? 'border-b-primary' : 'border-b-transparent';
-          const labelStyle = isActive ? 'text-base-black dark:text-base-white' : 'text-neutral';
+          const labelStyle = isActive ? 'text-base-dark dark:text-base-white' : 'text-neutral';
 
           return (
             <Pressable onPress={() => onPress(item)}>
               <View className={cn('mb-0.5 border-b-2 px-1.5 pb-1.5 pt-2', borderStyle)}>
-                <Text className={cn('font-satoshi-medium text-base tracking-wider', labelStyle)}>{item.label}</Text>
+                <Text className={cn('font-satoshi-medium text-xs tracking-wider', labelStyle)}>{item.label}</Text>
               </View>
             </Pressable>
           );

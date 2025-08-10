@@ -22,7 +22,7 @@
   }
 
   .header-txt {
-    @apply font-clashDisplay-medium text-3xl text-title dark:text-title-dark;
+    @apply font-clashDisplay-medium text-2xl text-title dark:text-title-dark;
   }
 
   .welcome-header-wrapper {
@@ -30,15 +30,15 @@
   }
 
   .welcome-header-txt {
-    @apply font-clashDisplay text-5xl leading-10 tracking-wider text-title dark:text-title-dark;
+    @apply font-clashDisplay text-2xl leading-10 tracking-wider text-title dark:text-title-dark;
   }
 
   .welcome-sub-header-txt {
-    @apply mt-6 font-satoshi text-2xl tracking-wider text-title dark:text-title-dark;
+    @apply mt-6 font-satoshi text-xl tracking-wider text-title dark:text-title-dark;
   }
 
   .welcome-body-txt {
-    @apply mt-1 font-satoshi text-2xl tracking-wider text-body dark:text-body-dark;
+    @apply mt-1 font-satoshi text-xl tracking-wider text-body dark:text-body-dark;
   }
 
   /* ──────────────────────────────
@@ -61,7 +61,7 @@
   }
 
   .input-txt {
-    @apply border-b-[0.5px] pb-4 pl-1 pr-10 pt-8 font-satoshi text-lg leading-5 text-title dark:text-title-dark;
+    @apply border-b-[0.5px] pb-4 pl-1 pr-10 pt-8 font-satoshi text-sm leading-5 text-title dark:text-title-dark;
   }
 
   .input-icon-wrapper {
@@ -80,7 +80,7 @@
   }
 
   .btn-primary-label {
-    @apply font-clashDisplay-medium text-title;
+    @apply font-clashDisplay-medium text-xs text-title;
   }
 
   .btn-primary-load-indicator {
@@ -104,7 +104,7 @@
   }
 
   .btn-secondary-label {
-    @apply font-clashDisplay-medium text-base;
+    @apply font-clashDisplay-medium text-xs;
   }
 
   .btn-seconday-label-active {
@@ -155,11 +155,11 @@
   }
 
   .tab-icon {
-    @apply size-7;
+    @apply size-6;
   }
 
   .tab-icon-label {
-    @apply font-manrope text-sm;
+    @apply font-manrope text-xs;
   }
 
   .tab-icon-label-active {
@@ -208,11 +208,11 @@
   }
 
   .footer-txt {
-    @apply font-poppins-medium text-sm text-body dark:text-body-dark;
+    @apply font-satoshi-medium text-[10px] text-body dark:text-body-dark;
   }
 
   .footer-link {
-    @apply text-sm text-primary underline;
+    @apply font-clashDisplay text-[10px] text-primary underline;
   }
 
   .footer-socials-ios {
@@ -231,11 +231,11 @@
   }
 
   .divider-line {
-    @apply h-px flex-1 rounded-full bg-muted opacity-35 dark:bg-muted-dark;
+    @apply h-px flex-1 rounded-full bg-stroke opacity-35 dark:bg-stroke-dark;
   }
 
   .divider-txt {
-    @apply mx-4 flex font-poppins-medium text-sm text-muted dark:text-muted-dark;
+    @apply mx-4 flex font-satoshi-medium text-sm text-label dark:text-label-dark;
   }
 
   .divider-x {
@@ -266,7 +266,7 @@
   }
 
   .toggle-btn-wrapper {
-    @apply flex-row rounded-md bg-card-info p-px dark:bg-card-info-dark;
+    @apply h-10 w-9/12 flex-row rounded-md bg-card-info p-px dark:bg-card-info-dark;
   }
 
   .toggle-btn {
@@ -274,7 +274,7 @@
   }
 
   .toggle-btn-label {
-    @apply font-clashDisplay-medium;
+    @apply font-clashDisplay-medium text-xs;
   }
 
   .toggle-btn-label-inactive {
@@ -357,7 +357,7 @@
   }
 
   .ad-card-btn-label {
-    @apply font-clashDisplay-medium text-sm text-title-dark;
+    @apply font-clashDisplay-medium text-[10px] text-title-dark;
   }
 
   .ad-card-txt {
@@ -381,7 +381,7 @@
   }
 
   .ad-card-header-badge-txt {
-    @apply font-satoshi text-xs tracking-widest text-title dark:text-title-dark;
+    @apply font-satoshi text-[8px] tracking-widest text-title dark:text-title-dark;
   }
 
   .pay-method-badge {
@@ -405,7 +405,7 @@
   }
 
   .order-card-header-badge-txt {
-    @apply font-clashDisplay text-xs tracking-widest text-title dark:text-title-dark;
+    @apply font-clashDisplay text-[8px] tracking-widest text-title dark:text-title-dark;
   }
 
   .order-card-type-badge-bg {
@@ -473,7 +473,7 @@
   }
 
   .deposit-form-label {
-    @apply font-clashDisplay text-label dark:text-label-dark;
+    @apply font-clashDisplay text-xs text-label dark:text-label-dark;
   }
 
   .deposit-form-row {
@@ -485,7 +485,7 @@
   }
 
   .deposit-form-value {
-    @apply font-satoshi text-lg text-body dark:text-body-dark;
+    @apply font-satoshi text-sm text-body dark:text-body-dark;
   }
 
   .deposit-form-icon-wrapper {
@@ -497,7 +497,7 @@
   }
 
   .deposit-form-footer-title {
-    @apply font-clashDisplay text-lg text-title dark:text-title-dark;
+    @apply font-clashDisplay text-sm text-title dark:text-title-dark;
   }
 
   .deposit-form-footer-wrapper {
@@ -517,14 +517,14 @@
   }
 
   .stats-label {
-    @apply font-clashDisplay text-label dark:text-label-dark;
+    @apply font-clashDisplay text-xs text-label dark:text-label-dark;
   }
 
   .stats-value {
-    @apply font-clashDisplay text-body dark:text-body-dark;
+    @apply font-clashDisplay text-xs text-body dark:text-body-dark;
   }
 
   .stats-value-bold {
-    @apply font-clashDisplay text-title dark:text-title-dark;
+    @apply font-clashDisplay text-xs text-title dark:text-title-dark;
   }
 }
