@@ -1,4 +1,4 @@
-import { AdType } from '@/models';
+import { AdType, PriceType } from '@/models';
 import { useAdStore } from '@/store';
 import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
@@ -9,6 +9,7 @@ const useAds = () => {
   const { cryptoOptions } = useCrypto();
 
   const adTypes = Object.values(AdType);
+  const priceTypes = Object.values(PriceType);
 
   const adTypeFilterItems = useMemo(
     () =>
@@ -17,6 +18,15 @@ const useAds = () => {
         label: capitalizeWords(e),
       })),
     [adTypes],
+  );
+
+  const priceTypeFilterItems = useMemo(
+    () =>
+      priceTypes.map((e) => ({
+        id: e,
+        label: capitalizeWords(e),
+      })),
+    [priceTypes],
   );
 
   const activeAds = useMemo(() => {
@@ -53,6 +63,7 @@ const useAds = () => {
     adTypes,
     activeAds,
     adTypeFilterItems,
+    priceTypeFilterItems,
     filterAdsByType,
     filterAdsByUserId,
     getActiveAdsCountByUserId,
