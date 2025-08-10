@@ -135,6 +135,10 @@
     @apply h-4 w-4;
   }
 
+  .index-icon-btn-img {
+    @apply h-6 w-6;
+  }
+
   /* ──────────────────────────────
      🎵 Icon Buttons
   ─────────────────────────────── */
@@ -265,6 +269,10 @@
     @apply z-10 h-8 w-8;
   }
 
+  .text-label {
+    @apply font-satoshi text-lg text-body dark:text-body-dark;
+  }
+
   .toggle-btn-wrapper {
     @apply h-10 w-9/12 flex-row rounded-md bg-card-info p-px dark:bg-card-info-dark;
   }
@@ -279,6 +287,10 @@
 
   .toggle-btn-label-inactive {
     @apply text-label/55 dark:text-label-dark/55;
+  }
+
+  .round-icon-btn-label {
+    @apply flex-row items-center gap-x-4 self-start rounded-lg border border-stroke bg-card p-3 dark:border-stroke-dark dark:bg-card-dark;
   }
 
   .toggle-btn-label-active {
