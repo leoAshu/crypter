@@ -26,15 +26,15 @@ const AdCard = (props: AdCardProps) => {
           <View className='ad-card-info'>
             <InitialsAvatar
               name={props.ad.userFullName}
-              textStyle='absolute font-clashDisplay-medium text-sm text-on-surface-light dark:text-base-white'
-              containerStyle='bg-base-surface-light dark:bg-base-surface-dark size-8'
+              textStyle='absolute font-clashDisplay-medium text-[6px] text-on-surface-light dark:text-base-white'
+              containerStyle='bg-base-surface-light dark:bg-base-surface-dark size-7'
             />
-            <Text className='ad-card-txt text-lg'>{getMockUserName(props.ad.userFullName)}</Text>
+            <Text className='ad-card-txt text-sm'>{getMockUserName(props.ad.userFullName)}</Text>
           </View>
 
           <View className='ad-card-rating'>
-            <Image source={isDark ? icons.dark.likeTag : icons.light.likeTag} className='size-5' resizeMode='contain' />
-            <Text className='ad-card-txt-muted text-xs'>{props.ad.userCompletionRate.toFixed(0)}%</Text>
+            <Image source={isDark ? icons.dark.likeTag : icons.light.likeTag} className='size-4' resizeMode='contain' />
+            <Text className='ad-card-txt-muted text-[8px]'>{props.ad.userCompletionRate.toFixed(0)}%</Text>
           </View>
         </View>
       </View>
@@ -44,17 +44,17 @@ const AdCard = (props: AdCardProps) => {
         <View className='ad-card-content-left py-1.5'>
           <View className='ad-card-price'>
             <View className='ad-card-amount-label'>
-              <Text className='ad-card-txt-muted text-sm'>{ComponentStrings.AdCard.UNIT_PRICE_LABEL}</Text>
+              <Text className='ad-card-txt-muted text-[10px]'>{ComponentStrings.AdCard.UNIT_PRICE_LABEL}</Text>
               <View className='ad-card-header-badge-bg'>
                 <Text className='ad-card-header-badge-txt'>{cryptoLabels[props.ad.cryptoId]}</Text>
               </View>
             </View>
 
             <View className='ad-card-amount-group'>
-              <Text className='ad-card-txt-md text-2xl'>
+              <Text className='ad-card-txt-md'>
                 {fiatSymbols[props.ad.fiatId] ?? ''} {currencyFormatter.format(props.ad.price).split('.')[0]}.
               </Text>
-              <Text className='ad-card-txt text-lg'>{currencyFormatter.format(props.ad.price).split('.')[1]}</Text>
+              <Text className='ad-card-txt text-sm'>{currencyFormatter.format(props.ad.price).split('.')[1]}</Text>
             </View>
           </View>
 
@@ -62,10 +62,10 @@ const AdCard = (props: AdCardProps) => {
             <View className='ad-card-stats-group'>
               <Image
                 source={isDark ? icons.dark.inactive.receipt : icons.light.inactive.receipt}
-                className='size-5'
+                className='size-4'
                 resizeMode='contain'
               />
-              <Text className='ad-card-txt-muted text-xs'>
+              <Text className='ad-card-txt-muted text-[8px]'>
                 {currencyFormatter.format(props.ad.userTotalTrades).split('.')[0]}{' '}
                 {ComponentStrings.AdCard.STATS_TRADES_SUFFIX}
               </Text>
@@ -74,10 +74,10 @@ const AdCard = (props: AdCardProps) => {
             <View className='ad-card-stats-group'>
               <Image
                 source={isDark ? icons.dark.tickSquare : icons.light.tickSquare}
-                className='size-5'
+                className='size-4'
                 resizeMode='contain'
               />
-              <Text className='ad-card-txt-muted text-xs'>
+              <Text className='ad-card-txt-muted text-[8px]'>
                 {props.ad.userCompletionRate.toFixed(0)}
                 {ComponentStrings.AdCard.STATS_COMPLETION_SUFFIX}
               </Text>
@@ -87,8 +87,8 @@ const AdCard = (props: AdCardProps) => {
 
         <View className='ad-card-content-right'>
           <View className='ad-card-release-time'>
-            <Image source={isDark ? icons.dark.clock : icons.light.clock} className='size-5' resizeMode='contain' />
-            <Text className='ad-card-txt-muted-semi text-sm'>{props.ad.releaseTime}</Text>
+            <Image source={isDark ? icons.dark.clock : icons.light.clock} className='size-4' resizeMode='contain' />
+            <Text className='ad-card-txt-muted-semi text-[10px]'>{props.ad.releaseTime}</Text>
           </View>
 
           <View className='ad-card-btn-wrapper'>

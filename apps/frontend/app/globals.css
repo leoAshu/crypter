@@ -266,7 +266,7 @@
   }
 
   .toggle-btn-wrapper {
-    @apply flex-row rounded-md bg-card-info p-px dark:bg-card-info-dark;
+    @apply h-10 w-9/12 flex-row rounded-md bg-card-info p-px dark:bg-card-info-dark;
   }
 
   .toggle-btn {
@@ -274,7 +274,7 @@
   }
 
   .toggle-btn-label {
-    @apply font-clashDisplay-medium;
+    @apply font-clashDisplay-medium text-xs;
   }
 
   .toggle-btn-label-inactive {
@@ -357,7 +357,7 @@
   }
 
   .ad-card-btn-label {
-    @apply font-clashDisplay-medium text-sm text-title-dark;
+    @apply font-clashDisplay-medium text-[10px] text-title-dark;
   }
 
   .ad-card-txt {
@@ -381,7 +381,7 @@
   }
 
   .ad-card-header-badge-txt {
-    @apply font-satoshi text-xs tracking-widest text-title dark:text-title-dark;
+    @apply font-satoshi text-[8px] tracking-widest text-title dark:text-title-dark;
   }
 
   .pay-method-badge {
