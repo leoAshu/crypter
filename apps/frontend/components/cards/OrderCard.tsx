@@ -26,7 +26,7 @@ const OrderCard = (props: OrderCardProps) => {
       <View className='order-card-header'>
         <View className='order-card-header-left'>
           <View className={cn(Platform.select({ ios: 'w-10', android: 'w-12' }), 'justify-center')}>
-            <Text className={cn('font-clashDisplay-medium text-xl', isBuy ? 'text-success-500' : 'text-error-500')}>
+            <Text className={cn('font-clashDisplay-medium', isBuy ? 'text-success-500' : 'text-error-500')}>
               {capitalizeWords(props.order.type)}
             </Text>
           </View>
@@ -52,33 +52,37 @@ const OrderCard = (props: OrderCardProps) => {
         <View className='order-card-content-left'>
           <View className='order-card-content-left-row'>
             <View className={cn(Platform.select({ ios: 'w-16', android: 'w-20' }))}>
-              <Text className='font-satoshi-medium text-sm text-neutral'>{ComponentStrings.OrderCard.PRICE_LABEL}</Text>
+              <Text className='font-satoshi-medium text-[10px] text-label dark:text-label-dark'>
+                {ComponentStrings.OrderCard.PRICE_LABEL}
+              </Text>
             </View>
 
-            <Text className='font-satoshi-medium text-sm text-neutral-700 dark:text-neutral-300'>
+            <Text className='font-satoshi-medium text-[10px] text-body dark:text-body-dark'>
               {defaultFiat?.symbol ?? ''} {currencyFormatter.format(props.order.pricePerUnit)}
             </Text>
           </View>
 
           <View className='order-card-content-left-row'>
             <View className={cn(Platform.select({ ios: 'w-16', android: 'w-20' }))}>
-              <Text className='font-satoshi-medium text-sm text-neutral'>
+              <Text className='font-satoshi-medium text-[10px] text-label dark:text-label-dark'>
                 {ComponentStrings.OrderCard.QUANTITY_LABEL}
               </Text>
             </View>
-            <Text className='font-satoshi-medium text-sm text-neutral-700 dark:text-neutral-300'>
+            <Text className='font-satoshi-medium text-[10px] text-body dark:text-body-dark'>
               {props.order.quantity}
             </Text>
           </View>
 
           <View className='order-card-content-left-row'>
             <View className={cn(Platform.select({ ios: 'w-16', android: 'w-20' }))}>
-              <Text className='font-satoshi-medium text-sm text-neutral'>{ComponentStrings.OrderCard.ORDER_LABEL}</Text>
+              <Text className='font-satoshi-medium text-[10px] text-label dark:text-label-dark'>
+                {ComponentStrings.OrderCard.ORDER_LABEL}
+              </Text>
             </View>
             <View className='order-card-id-copy-group'>
               <View className='w-32'>
                 <Text
-                  className='font-satoshi-medium text-sm text-neutral-700 dark:text-neutral-300'
+                  className='font-satoshi-medium text-[10px] text-body dark:text-body-dark'
                   numberOfLines={1}
                   ellipsizeMode='middle'
                 >
@@ -92,12 +96,12 @@ const OrderCard = (props: OrderCardProps) => {
         </View>
 
         <View className='order-card-content-right'>
-          <Text className='font-satoshi-medium text-sm text-neutral'>Total Amount</Text>
+          <Text className='font-satoshi-medium text-[10px] text-label dark:text-label-dark'>Total Amount</Text>
           <View className='order-card-total-amount-group'>
-            <Text className='font-clashDisplay-medium text-2xl text-base-black dark:text-base-white'>
+            <Text className='font-clashDisplay-medium text-lg text-title dark:text-title-dark'>
               {defaultFiat?.symbol ?? ''} {currencyFormatter.format(props.order.totalAmount).split('.')[0]}.
             </Text>
-            <Text className='font-clashDisplay-medium text-lg text-base-black dark:text-base-white'>
+            <Text className='font-clashDisplay-medium text-sm text-title dark:text-title-dark'>
               {currencyFormatter.format(props.order.totalAmount).split('.')[1]}
             </Text>
           </View>
@@ -122,17 +126,19 @@ const OrderCard = (props: OrderCardProps) => {
                     ? icons.dark.verify
                     : icons.light.verify
               }
-              className='size-5'
+              className='size-4'
               resizeMode='contain'
             />
-            <Text className='font-clashDisplay-medium text-sm text-neutral'>{props.order.counterparty.name}</Text>
+            <Text className='font-clashDisplay-medium text-[10px] text-label dark:text-label-dark'>
+              {props.order.counterparty.name}
+            </Text>
           </View>
 
           <View className='order-card-date-time'>
-            <Text className='font-satoshi-medium text-xs text-neutral-700 dark:text-neutral-300'>
+            <Text className='font-satoshi-medium text-[8px] text-body dark:text-body-dark'>
               {formatDateTime(props.order.createdAt).split(' ')[0]}
             </Text>
-            <Text className='font-satoshi-medium text-xs text-neutral-700 dark:text-neutral-300'>
+            <Text className='font-satoshi-medium text-[8px] text-body dark:text-body-dark'>
               {formatDateTime(props.order.createdAt).split(' ')[1]}
             </Text>
           </View>

@@ -27,7 +27,7 @@ const ProfileLayout = () => {
           color: isDark ? '#FFFFFF' : '#000000',
           fontWeight: 'semibold',
           fontFamily: 'poppins',
-          fontSize: 18,
+          fontSize: 14,
         },
       })}
     >

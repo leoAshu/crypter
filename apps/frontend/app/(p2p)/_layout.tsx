@@ -23,7 +23,7 @@ const P2PLayout = () => {
             color: isDark ? '#FFFFFF' : '#23262F',
             fontWeight: 'semibold',
             fontFamily: 'poppins',
-            fontSize: 18,
+            fontSize: 14,
           },
           tabBarStyle: {
             backgroundColor: isDark ? '#000000' : '#FFFFFF',
