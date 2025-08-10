@@ -22,6 +22,8 @@ const logos = {
 
 const icons = {
   exchange: require('./icons/exchange.png'),
+  increment: require('./icons/increment.png'),
+  decrement: require('./icons/decrement.png'),
 
   // Light Theme Icons
   light: {
