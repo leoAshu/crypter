@@ -59,12 +59,14 @@ const Edit = () => {
                 disabled={true}
               />
 
-              <PrimaryButton
-                title={Strings.editProfile.SAVE_BTN_TITLE}
-                isLoading={isLoading}
-                disabled={!hasChanged}
-                onPress={saveInfo}
-              />
+              <View className='mt-4'>
+                <PrimaryButton
+                  title={Strings.editProfile.SAVE_BTN_TITLE}
+                  isLoading={isLoading}
+                  disabled={!hasChanged}
+                  onPress={saveInfo}
+                />
+              </View>
             </View>
           </View>
         </ScrollView>

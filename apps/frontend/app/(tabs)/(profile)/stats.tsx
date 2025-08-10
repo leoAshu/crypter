@@ -29,7 +29,7 @@ const Stats = () => {
               [statsTypeFilterItems[0].id]: 'text-base-dark',
               [statsTypeFilterItems[1].id]: 'text-base-dark',
             }}
-            labelStyle='text-sm'
+            labelStyle='text-[10px]'
             wrapperStyle='h-9 w-36'
             onChange={(val) => setStatsTypeFilter(val)}
           />

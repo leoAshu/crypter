@@ -39,7 +39,7 @@ const ProfileLayout = () => {
           headerRight: () => (
             <HeaderActionIcon
               icon={images.edit}
-              iconStyle='size-5'
+              iconStyle='size-4'
               onPress={() => router.push('/(tabs)/(profile)/edit')}
             />
           ),

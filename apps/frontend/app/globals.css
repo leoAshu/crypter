@@ -30,7 +30,7 @@
   }
 
   .welcome-header-txt {
-    @apply font-clashDisplay text-5xl leading-10 tracking-wider text-title dark:text-title-dark;
+    @apply font-clashDisplay text-3xl leading-10 tracking-wider text-title dark:text-title-dark;
   }
 
   .welcome-sub-header-txt {
@@ -61,7 +61,7 @@
   }
 
   .input-txt {
-    @apply border-b-[0.5px] pb-4 pl-1 pr-10 pt-8 font-satoshi text-lg leading-5 text-title dark:text-title-dark;
+    @apply border-b-[0.5px] pb-4 pl-1 pr-10 pt-8 font-satoshi text-sm leading-5 text-title dark:text-title-dark;
   }
 
   .input-icon-wrapper {
@@ -80,7 +80,7 @@
   }
 
   .btn-primary-label {
-    @apply font-clashDisplay-medium text-title;
+    @apply font-clashDisplay-medium text-xs text-title;
   }
 
   .btn-primary-load-indicator {
@@ -104,7 +104,7 @@
   }
 
   .btn-secondary-label {
-    @apply font-clashDisplay-medium text-base;
+    @apply font-clashDisplay-medium text-xs;
   }
 
   .btn-seconday-label-active {
@@ -155,7 +155,7 @@
   }
 
   .tab-icon {
-    @apply size-7;
+    @apply size-6;
   }
 
   .tab-icon-label {
@@ -517,14 +517,14 @@
   }
 
   .stats-label {
-    @apply font-clashDisplay text-label dark:text-label-dark;
+    @apply font-clashDisplay text-xs text-label dark:text-label-dark;
   }
 
   .stats-value {
-    @apply font-clashDisplay text-body dark:text-body-dark;
+    @apply font-clashDisplay text-xs text-body dark:text-body-dark;
   }
 
   .stats-value-bold {
-    @apply font-clashDisplay text-title dark:text-title-dark;
+    @apply font-clashDisplay text-xs text-title dark:text-title-dark;
   }
 }
