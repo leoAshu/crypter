@@ -1,9 +1,9 @@
 import { fetchTickers } from '@/utils';
 import { create } from 'zustand';
 
-let pollingId: NodeJS.Timeout | null = null;
+let pollingId: number | null = null;
 
-const useMarketStore = create<MarketState>((set) => ({
+const useMarketStore = create<MarketState>((set, get) => ({
   tickers: {},
   isLoading: false,
 
@@ -21,9 +21,17 @@ const useMarketStore = create<MarketState>((set) => ({
     }
   },
 
-  startPolling: (intervalMS = 10000) => {},
+  startPolling: (interval = 10000, cryptoIds: string[], fiatId: string) => {
+    if (pollingId) return;
+    pollingId = setInterval(() => get().fetchTickers(cryptoIds, fiatId), interval);
+  },
 
-  stopPolling: () => {},
+  stopPolling: () => {
+    if (pollingId) {
+      clearInterval(pollingId);
+      pollingId = null;
+    }
+  },
 }));
 
 export default useMarketStore;

@@ -1,6 +1,7 @@
 import { icons } from '@/assets';
 import { currencyFormatter } from '@/utils';
 import cn from 'clsx';
+import React from 'react';
 import { Image, ImageSourcePropType, Text, useColorScheme, View } from 'react-native';
 
 interface TickerCardProps {
@@ -56,4 +57,4 @@ const TickerCard = (props: TickerCardProps) => {
   );
 };
 
-export default TickerCard;
+export default React.memo(TickerCard);
