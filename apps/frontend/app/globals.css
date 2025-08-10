@@ -22,7 +22,7 @@
   }
 
   .header-txt {
-    @apply font-clashDisplay-medium text-3xl text-title dark:text-title-dark;
+    @apply font-clashDisplay-medium text-2xl text-title dark:text-title-dark;
   }
 
   .welcome-header-wrapper {
@@ -159,7 +159,7 @@
   }
 
   .tab-icon-label {
-    @apply font-manrope text-sm;
+    @apply font-manrope text-xs;
   }
 
   .tab-icon-label-active {

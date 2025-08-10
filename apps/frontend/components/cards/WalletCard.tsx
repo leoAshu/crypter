@@ -39,7 +39,7 @@ const WalletCard = (props: WalletCardProps) => {
             >
               <View className='header flex gap-y-5'>
                 <View className='flex-row items-center gap-x-2'>
-                  <Text className='font-satoshi-medium text-xl text-body dark:text-body-dark'>Balance</Text>
+                  <Text className='font-satoshi-medium text-body dark:text-body-dark'>Balance</Text>
 
                   <View className='overflow-hidden rounded'>
                     <BlurView
@@ -47,7 +47,7 @@ const WalletCard = (props: WalletCardProps) => {
                       intensity={isIOS ? (isDark ? 4 : 45) : isDark ? 25 : 55}
                       tint={isDark ? 'extraLight' : 'extraLight'}
                     >
-                      <Text className='font-clashDisplay tracking-wider text-title dark:text-title-dark'>
+                      <Text className='font-clashDisplay text-xs tracking-wider text-title dark:text-title-dark'>
                         {cryptoLabels[props.cryptoId]}
                       </Text>
                     </BlurView>
@@ -57,7 +57,7 @@ const WalletCard = (props: WalletCardProps) => {
                 <PrimaryButton
                   title='Add Funds'
                   containerStyle='py-2 rounded-lg elevation'
-                  textStyle='text-sm tracking-wider'
+                  textStyle='text-xs tracking-wider'
                   onPress={() => router.push('/(addFunds)')}
                 />
               </View>
@@ -69,10 +69,10 @@ const WalletCard = (props: WalletCardProps) => {
                   tint={isDark ? 'extraLight' : 'extraLight'}
                 >
                   <View className='flex-row items-baseline justify-end pr-3'>
-                    <Text className='font-clashDisplay text-3xl tracking-wide text-title dark:text-title-dark'>
+                    <Text className='font-clashDisplay text-xl tracking-wide text-title dark:text-title-dark'>
                       {currencyFormatter.format(balance ?? 0).split('.')[0]}.
                     </Text>
-                    <Text className='font-clashDisplay text-xl tracking-wide text-title dark:text-title-dark'>
+                    <Text className='font-clashDisplay tracking-wide text-title dark:text-title-dark'>
                       {currencyFormatter.format(balance ?? 0).split('.')[1]}
                     </Text>
                   </View>
@@ -80,10 +80,10 @@ const WalletCard = (props: WalletCardProps) => {
                   <DividerX style='opacity-1 h-1 w-full my-2' />
 
                   <View className='flex-row items-baseline justify-end pr-3'>
-                    <Text className='font-clashDisplay text-2xl tracking-wide text-title dark:text-title-dark'>
+                    <Text className='font-clashDisplay text-lg tracking-wide text-title dark:text-title-dark'>
                       {defaultFiat?.symbol ?? ''} {currencyFormatter.format(fiatValue ?? 0).split('.')[0]}.
                     </Text>
-                    <Text className='font-clashDisplay text-lg tracking-wide text-title dark:text-title-dark'>
+                    <Text className='font-clashDisplay text-sm tracking-wide text-title dark:text-title-dark'>
                       {currencyFormatter.format(fiatValue ?? 0).split('.')[1]}
                     </Text>
                   </View>
@@ -93,18 +93,18 @@ const WalletCard = (props: WalletCardProps) => {
           </View>
 
           <View className='flex-row justify-center px-10 py-4'>
-            <View className='flex-1 flex-row items-baseline justify-center gap-x-2'>
-              <Text className='font-clashDisplay-medium text-lg text-body dark:text-body-dark'>
+            <View className='flex-1 flex-row items-center justify-center gap-x-1'>
+              <Text className='font-clashDisplay-medium text-sm text-body dark:text-body-dark'>
                 {getActiveAdsCountByUserId(props.cryptoId, user?.id)}
               </Text>
-              <Text className='font-satoshi-medium text-body dark:text-body-dark'>Active Adverts</Text>
+              <Text className='font-satoshi-medium text-sm text-body dark:text-body-dark'>Active Adverts</Text>
             </View>
 
             <View className='mx-8 w-px bg-label' />
 
-            <View className='flex-1 flex-row items-baseline justify-center gap-x-2'>
-              <Text className='font-clashDisplay-medium text-lg text-body dark:text-body-dark'>43</Text>
-              <Text className='font-satoshi-medium text-body dark:text-body-dark'>Open Orders</Text>
+            <View className='flex-1 flex-row items-center justify-center gap-x-1'>
+              <Text className='font-clashDisplay-medium text-sm text-body dark:text-body-dark'>43</Text>
+              <Text className='font-satoshi-medium text-sm text-body dark:text-body-dark'>Open Orders</Text>
             </View>
           </View>
         </View>
