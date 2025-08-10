@@ -2,14 +2,12 @@ import { icons } from '@/assets';
 import { BackIconButton, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Tabs, useSegments } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { Platform, useColorScheme, View } from 'react-native';
 
 const P2PLayout = () => {
   const isDark = useColorScheme() === 'dark';
   const isIOS = Platform.OS === 'ios';
-  const segments = useSegments();
-  const isPostRoute = (segments as string[]).includes('post');
 
   return (
     <View className='flex-1'>
