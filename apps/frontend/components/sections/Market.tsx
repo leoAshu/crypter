@@ -1,5 +1,5 @@
 import { useCrypto, useFiat, useMarket } from '@/hooks';
-import React from 'react';
+import { useEffect } from 'react';
 import { Text, useColorScheme, View } from 'react-native';
 import { TickerCard } from '../cards';
 import { DividerX } from '../dividers';
@@ -7,9 +7,14 @@ import { DividerX } from '../dividers';
 const Market = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { tickers } = useMarket();
+  const { tickers, beginPolling, stopPolling } = useMarket();
   const { cryptos } = useCrypto();
   const { defaultFiat } = useFiat();
+
+  useEffect(() => {
+    beginPolling(15000);
+    return () => stopPolling();
+  }, []);
 
   return (
     <View className='gap-y-4'>

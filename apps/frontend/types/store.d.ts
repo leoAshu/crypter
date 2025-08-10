@@ -71,6 +71,6 @@ interface MarketState {
   isLoading: boolean;
 
   fetchTickers: (cryptoIds: string[], fiatId: string) => Promise<void>;
-  startPolling: (intervalMs?: number) => void;
+  startPolling: (interval?: number, cryptoIds: string[], fiatId: string) => void;
   stopPolling: () => void;
 }
