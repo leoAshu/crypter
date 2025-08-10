@@ -30,15 +30,15 @@
   }
 
   .welcome-header-txt {
-    @apply font-clashDisplay text-3xl leading-10 tracking-wider text-title dark:text-title-dark;
+    @apply font-clashDisplay text-2xl leading-10 tracking-wider text-title dark:text-title-dark;
   }
 
   .welcome-sub-header-txt {
-    @apply mt-6 font-satoshi text-2xl tracking-wider text-title dark:text-title-dark;
+    @apply mt-6 font-satoshi text-xl tracking-wider text-title dark:text-title-dark;
   }
 
   .welcome-body-txt {
-    @apply mt-1 font-satoshi text-2xl tracking-wider text-body dark:text-body-dark;
+    @apply mt-1 font-satoshi text-xl tracking-wider text-body dark:text-body-dark;
   }
 
   /* ──────────────────────────────
@@ -208,11 +208,11 @@
   }
 
   .footer-txt {
-    @apply font-poppins-medium text-sm text-body dark:text-body-dark;
+    @apply font-satoshi-medium text-[10px] text-body dark:text-body-dark;
   }
 
   .footer-link {
-    @apply text-sm text-primary underline;
+    @apply font-clashDisplay text-[10px] text-primary underline;
   }
 
   .footer-socials-ios {
@@ -231,11 +231,11 @@
   }
 
   .divider-line {
-    @apply h-px flex-1 rounded-full bg-muted opacity-35 dark:bg-muted-dark;
+    @apply h-px flex-1 rounded-full bg-stroke opacity-35 dark:bg-stroke-dark;
   }
 
   .divider-txt {
-    @apply mx-4 flex font-poppins-medium text-sm text-muted dark:text-muted-dark;
+    @apply mx-4 flex font-satoshi-medium text-sm text-label dark:text-label-dark;
   }
 
   .divider-x {

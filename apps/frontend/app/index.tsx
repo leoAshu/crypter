@@ -19,8 +19,8 @@ const Index = () => {
   }
 
   return (
-    <View className='flex-1 items-center justify-center bg-surface dark:bg-surface-dark'>
-      <Text className='text-5xl dark:text-white'>Welcome</Text>
+    <View className='flex-1 items-center justify-center bg-card dark:bg-card-dark'>
+      <Text className='text-3xl dark:text-white'>Welcome</Text>
     </View>
   );
 };
