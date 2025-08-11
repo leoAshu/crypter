@@ -30,8 +30,8 @@ const AdCard = (props: AdCardProps) => {
           <View className='ad-card-info'>
             <InitialsAvatar
               name={props.ad.userFullName}
-              textStyle='absolute font-clashDisplay-medium text-[6px] text-on-surface-light dark:text-base-white'
-              containerStyle='bg-base-surface-light dark:bg-base-surface-dark size-7'
+              textStyle='absolute font-clashDisplay-medium text-xs text-title dark:text-title-dark'
+              containerStyle='bg-card dark:bg-card-dark size-8'
             />
             <Text className='ad-card-txt text-sm'>{getMockUserName(props.ad.userFullName)}</Text>
           </View>
