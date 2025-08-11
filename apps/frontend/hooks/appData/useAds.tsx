@@ -1,16 +1,14 @@
 import { allFilterItem } from '@/constants';
 import { AdType } from '@/models';
-import { useAdStore } from '@/store';
+import { useAdStore, useProfileStore } from '@/store';
 import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
-import useCrypto from './useCrypto';
 
 const useAds = () => {
   const { ads } = useAdStore();
-  const { p2pCryptoIds } = useCrypto();
+  const { profile } = useProfileStore();
 
   const adTypes = Object.values(AdType);
-
   const adTypeFilterItems = useMemo(
     () =>
       adTypes.map((e) => ({
@@ -20,12 +18,11 @@ const useAds = () => {
     [adTypes],
   );
 
-  const activeAds = useMemo(() => {
-    return ads.filter((ad) => p2pCryptoIds.has(ad.cryptoId));
-  }, [ads, p2pCryptoIds]);
+  const activeAds = useMemo(() => ads.filter((ad) => ad.isActive), [ads]);
+  const myAds = useMemo(() => ads.filter((ad) => ad.userId === profile?.id), [ads, profile?.id]);
 
-  const filterAdsByType = (adType: AdType, cryptoId: string) => {
-    return activeAds.filter((ad) => {
+  const filterAdsByType = (adsList: Ad[], adType: AdType, cryptoId: string) => {
+    return adsList.filter((ad) => {
       if (ad.type !== adType) return false;
 
       if (cryptoId === allFilterItem.id) return true;
@@ -34,8 +31,8 @@ const useAds = () => {
     });
   };
 
-  const filterAdsByUserId = (adType: AdType, cryptoId: string, userId: string) => {
-    return filterAdsByType(adType, cryptoId).filter((ad) => {
+  const filterAdsByUserId = (adsList: Ad[], adType: AdType, cryptoId: string, userId: string) => {
+    return filterAdsByType(adsList, adType, cryptoId).filter((ad) => {
       return ad.userId === userId;
     });
   };
@@ -51,6 +48,7 @@ const useAds = () => {
   );
 
   return {
+    myAds,
     adTypes,
     activeAds,
     adTypeFilterItems,

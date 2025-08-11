@@ -2,7 +2,6 @@ import { AdCard, ChipFilter, DividerX, PrimaryButton, ToggleButton } from '@/com
 import { screenContentWrapperStyle, Strings } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
 import { AdType } from '@/models';
-import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
@@ -12,13 +11,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const MyAdvert = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { user } = useAuthStore();
-  const { adTypeFilterItems, filterAdsByUserId } = useAds();
+  const { myAds: myP2PAds, adTypeFilterItems, filterAdsByType } = useAds();
   const { p2pCryptosSymbolFilterItems } = useCrypto();
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [crypto, setCrypto] = useState<FilterItem>(p2pCryptosSymbolFilterItems[0]);
-  const [myAds, setMyAds] = useState(filterAdsByUserId(adType.id as AdType, crypto.id, user?.id ?? ''));
+  const [myAds, setMyAds] = useState(filterAdsByType(myP2PAds, adType.id as AdType, crypto.id));
   const isAdsEmpty = myAds.length === 0;
 
   const adsListStyle = Platform.select({
@@ -27,7 +25,7 @@ const MyAdvert = () => {
   });
 
   useEffect(() => {
-    setMyAds(filterAdsByUserId(adType.id as AdType, crypto.id, user?.id ?? ''));
+    setMyAds(filterAdsByType(myP2PAds, adType.id as AdType, crypto.id));
   }, [adType, crypto]);
 
   const EmptyState = () => (

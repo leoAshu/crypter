@@ -9,6 +9,7 @@ interface Ad {
   payMethodIds: string[];
   releaseTime: string;
   type: AdType;
+  isActive: boolean;
   userId: string;
   userFullName: string;
   userAvatar: string;

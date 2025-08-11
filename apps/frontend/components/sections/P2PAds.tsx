@@ -6,6 +6,7 @@ import { DividerX } from '../dividers';
 
 const P2PAds = (props: P2PAdsProps) => {
   const isDark = useColorScheme() === 'dark';
+  const isEmpty = props.ads.length === 0;
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
@@ -21,7 +22,7 @@ const P2PAds = (props: P2PAdsProps) => {
       contentContainerClassName={adsListStyle}
       renderItem={({ item, index }) => <AdCard index={index} ad={item} animationStyle='fadeFloatUp' />}
       ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}
-      ListFooterComponent={() => <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}
+      ListFooterComponent={() => !isEmpty && <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}
     />
   );
 };

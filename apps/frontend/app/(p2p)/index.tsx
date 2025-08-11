@@ -8,15 +8,15 @@ import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
-  const { adTypeFilterItems, filterAdsByType } = useAds();
+  const { activeAds, adTypeFilterItems, filterAdsByType } = useAds();
   const { p2pCryptosSymbolFilterItems } = useCrypto();
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [crypto, setCrypto] = useState<FilterItem>(p2pCryptosSymbolFilterItems[0]);
-  const [ads, setAds] = useState(filterAdsByType(adType.id as AdType, crypto.id));
+  const [ads, setAds] = useState(filterAdsByType(activeAds, adType.id as AdType, crypto.id));
 
   useEffect(() => {
-    setAds(filterAdsByType(adType.id as AdType, crypto.id));
+    setAds(filterAdsByType(activeAds, adType.id as AdType, crypto.id));
   }, [adType, crypto]);
 
   return (
