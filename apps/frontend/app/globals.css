@@ -425,7 +425,7 @@
   }
 
   .order-card-type-badge-txt {
-    @apply font-clashDisplay text-xs tracking-wider text-title dark:text-title-dark;
+    @apply font-clashDisplay text-[8px] tracking-wider text-title dark:text-title-dark;
   }
 
   .order-card-content {

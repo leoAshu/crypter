@@ -55,6 +55,7 @@ const Dropdown = (props: DropdownProps) => {
   return (
     <View className={cn('gap-y-2', props.containerStyle)}>
       {props.title && <Text className='deposit-form-label'>{props.title}</Text>}
+
       <Pressable
         className={cn(
           'deposit-form-row',
@@ -78,7 +79,7 @@ const Dropdown = (props: DropdownProps) => {
         <View className='deposit-form-icon-wrapper'>
           <Image
             source={isDark ? icons.dark.arrowDown : icons.light.arrowDown}
-            className='size-6'
+            className='size-8'
             resizeMode='contain'
           />
         </View>
@@ -88,6 +89,7 @@ const Dropdown = (props: DropdownProps) => {
         <Animated.View className='absolute left-0 right-0 top-full z-50 mt-1' style={dropdownAnimatedStyle}>
           <View className='rounded-md border-[0.5px] border-stroke bg-card shadow-lg dark:border-stroke-dark dark:bg-card-dark'>
             <FlatList
+              scrollEnabled={false}
               data={props.items}
               keyExtractor={(item) => item.id}
               style={{ maxHeight: 300 }}

@@ -9,7 +9,7 @@ const Home = () => {
   const { profile } = useProfileStore();
   const { p2pCryptoSymbolFilterItemsStrict } = useCrypto();
 
-  const [crypto, setCrypto] = useState<FilterItem>(p2pCryptoSymbolFilterItemsStrict[0]);
+  const [crypto, _] = useState<FilterItem>(p2pCryptoSymbolFilterItemsStrict[0]);
 
   return (
     <SafeAreaView className='screen-wrapper'>

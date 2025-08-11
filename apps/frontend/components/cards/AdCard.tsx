@@ -100,8 +100,7 @@ const AdCard = (props: AdCardProps) => {
               disabled={isMyAd}
               className={cn(
                 'ad-card-btn',
-                props.ad.type === 'buy' ? 'bg-success-500' : 'bg-error-500',
-                isMyAd && 'bg-card dark:bg-card-dark',
+                isMyAd ? 'bg-card px-7 dark:bg-card-dark' : props.ad.type === 'buy' ? 'bg-success-500' : 'bg-error-500',
               )}
             >
               <Text className={cn('ad-card-btn-label', isMyAd && 'text-label dark:text-label-dark')}>
