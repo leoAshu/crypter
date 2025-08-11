@@ -2,7 +2,7 @@ import { icons } from '@/assets';
 import { Text, View } from 'react-native';
 import { IndexIconButton } from '../iconButtons';
 
-const PriceSelector = (props: PriceSelectorProps) => {
+const StepperInput = (props: StepperInputProps) => {
   return (
     <View className='gap-y-2'>
       <Text className='text-label'>{props.label}</Text>
@@ -19,4 +19,4 @@ const PriceSelector = (props: PriceSelectorProps) => {
   );
 };
 
-export default PriceSelector;
+export default StepperInput;

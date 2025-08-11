@@ -15,7 +15,7 @@ const usePriceTypes = () => {
   );
 
   const getPriceRangeById = (priceTypeId: string) => {
-    return priceSelectorRange[priceTypeId] || []; 
+    return priceSelectorRange[priceTypeId] || [];
   };
 
   return {

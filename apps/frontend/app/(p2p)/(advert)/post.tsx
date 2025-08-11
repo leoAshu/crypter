@@ -1,4 +1,4 @@
-import { Dropdown, PriceSelector, ToggleButton } from '@/components';
+import { Dropdown, StepperInput, ToggleButton } from '@/components';
 import { screenContentWrapperStyle, Strings } from '@/constants';
 import { useAds, useCrypto, usePriceTypes } from '@/hooks';
 import { priceIndex } from '@/models';
@@ -9,7 +9,6 @@ import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PostAdvert = () => {
-
   const { adTypeFilterItems } = useAds();
   const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
   const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
@@ -91,7 +90,7 @@ const PostAdvert = () => {
           wrapperStyle='w-full h-10'
           onChange={(val) => setpriceType(val)}
         />
-        <PriceSelector
+        <StepperInput
           label={capitalizeWords(priceType.label)}
           onIncrement={() => handlePriceChange(true)}
           onDecrement={() => handlePriceChange(false)}

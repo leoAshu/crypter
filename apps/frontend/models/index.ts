@@ -4,4 +4,3 @@ export * from './payMethods';
 export * from './priceType';
 export * from './review';
 export * from './stats';
-

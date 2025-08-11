@@ -199,8 +199,7 @@ interface ReviewCardProps {
   review: Review;
 }
 
-//doubt can I use FilterItem instead of string
-interface PriceSelectorProps {
+interface StepperInputProps {
   label: string;
   index: number;
   items: string[];
