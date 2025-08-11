@@ -5,7 +5,7 @@ import { useAds, useCrypto } from '@/hooks';
 import { PRICE_SELECTOR_RANGE, PriceType } from '@/models';
 import { capitalizeWords } from '@/utils';
 import cn from 'clsx';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -24,6 +24,16 @@ const PostAdvert = () => {
   const [priceIndices, setPriceIndices] = useState<Record<string, number>>(priceIndex);
 
   const currentIndex = priceIndices[priceType.id];
+
+  const handlePriceChange = useCallback(
+    (increment: boolean) => {
+      setPriceIndices((prev) => ({
+        ...prev,
+        [priceType.id]: prev[priceType.id] + (increment ? 1 : -1),
+      }));
+    },
+    [priceType.id],
+  );
 
   const handleCreateAdvert = async () => {
     if (!selectedCrypto) {
@@ -88,18 +98,8 @@ const PostAdvert = () => {
         />
         <PriceSelector
           label={capitalizeWords(priceType.label)}
-          onIncrement={() => {
-            setPriceIndices((prev) => ({
-              ...prev,
-              [priceType.id]: prev[priceType.id] + 1,
-            }));
-          }}
-          onDecrement={() => {
-            setPriceIndices((prev) => ({
-              ...prev,
-              [priceType.id]: prev[priceType.id] - 1,
-            }));
-          }}
+          onIncrement={() => handlePriceChange(true)}
+          onDecrement={() => handlePriceChange(false)}
           index={currentIndex}
           items={PRICE_SELECTOR_RANGE[priceType.id]}
         />
