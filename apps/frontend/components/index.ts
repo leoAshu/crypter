@@ -11,5 +11,7 @@ export * from './iconButtons';
 export * from './loaders';
 export * from './menu';
 export * from './sections';
+export * from './selectors';
 export * from './tab';
 export * from './toasts';
+

@@ -1,8 +1,7 @@
-import { Dropdown, ToggleButton } from '@/components';
-import { PriceSelector } from '@/components/selectors';
+import { Dropdown, PriceSelector, ToggleButton } from '@/components';
 import { screenContentWrapperStyle, Strings } from '@/constants';
-import { useAds, useCrypto } from '@/hooks';
-import { PRICE_SELECTOR_RANGE, PriceType } from '@/models';
+import { useAds, useCrypto, usePriceTypes } from '@/hooks';
+import { priceIndex } from '@/models';
 import { capitalizeWords } from '@/utils';
 import cn from 'clsx';
 import { useCallback, useState } from 'react';
@@ -10,13 +9,9 @@ import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PostAdvert = () => {
-  const priceIndex: Record<PriceType, number> = {
-    [PriceType.Fixed]: 0,
-    [PriceType.Floating]: 0,
-  } as const;
 
   const { adTypeFilterItems } = useAds();
-  const { priceTypeFilterItems } = useAds();
+  const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
   const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [priceType, setpriceType] = useState<FilterItem>(priceTypeFilterItems[0]);
@@ -101,7 +96,7 @@ const PostAdvert = () => {
           onIncrement={() => handlePriceChange(true)}
           onDecrement={() => handlePriceChange(false)}
           index={currentIndex}
-          items={PRICE_SELECTOR_RANGE[priceType.id]}
+          items={getPriceRangeById(priceType.id)}
         />
       </View>
     </SafeAreaView>
