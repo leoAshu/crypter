@@ -207,3 +207,7 @@ interface StepperInputProps {
   onIncrement?: () => void;
   onDecrement?: () => void;
 }
+
+interface P2PAdsProps {
+  ads: Ad[];
+}

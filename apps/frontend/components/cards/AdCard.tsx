@@ -1,6 +1,7 @@
 import { icons } from '@/assets';
 import { ComponentStrings } from '@/constants';
 import { useCrypto, useFiat } from '@/hooks';
+import { useProfileStore } from '@/store';
 import { capitalizeWords, currencyFormatter, getMockUserName } from '@/utils';
 import cn from 'clsx';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
@@ -14,9 +15,12 @@ const AdCard = (props: AdCardProps) => {
   const isBuy = props.ad.type === 'buy';
   const isDark = useColorScheme() === 'dark';
 
-  const { defaultFiat, fiatSymbols } = useFiat();
   const { cryptoLabels } = useCrypto();
+  const { profile } = useProfileStore();
+  const { defaultFiat, fiatSymbols } = useFiat();
   const animationCombo = adCardAnimConfig[props.animationStyle ?? 'default'](isBuy, props.index);
+
+  const isMyAd = props.ad.userId === profile?.id;
 
   return (
     <Animated.View className='ad-card-wrapper' entering={animationCombo.entering} exiting={animationCombo.exiting}>
@@ -93,9 +97,16 @@ const AdCard = (props: AdCardProps) => {
 
           <View className='ad-card-btn-wrapper'>
             <TouchableOpacity
-              className={cn('ad-card-btn', props.ad.type === 'buy' ? 'bg-success-500' : 'bg-error-500')}
+              disabled={isMyAd}
+              className={cn(
+                'ad-card-btn',
+                props.ad.type === 'buy' ? 'bg-success-500' : 'bg-error-500',
+                isMyAd && 'bg-card dark:bg-card-dark',
+              )}
             >
-              <Text className='ad-card-btn-label'>{capitalizeWords(props.ad.type)}</Text>
+              <Text className={cn('ad-card-btn-label', isMyAd && 'text-label dark:text-label-dark')}>
+                {isMyAd ? 'My Ad' : capitalizeWords(props.ad.type)}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
