@@ -6,7 +6,7 @@ import useCrypto from './useCrypto';
 
 const useAds = () => {
   const { ads } = useAdStore();
-  const { cryptoOptions } = useCrypto();
+  const { p2pCryptoIds } = useCrypto();
 
   const adTypes = Object.values(AdType);
 
@@ -20,8 +20,8 @@ const useAds = () => {
   );
 
   const activeAds = useMemo(() => {
-    return ads.filter((ad) => cryptoOptions.includes(ad.cryptoId));
-  }, [ads, cryptoOptions]);
+    return ads.filter((ad) => p2pCryptoIds.has(ad.cryptoId));
+  }, [ads, p2pCryptoIds]);
 
   const filterAdsByType = (adType: AdType, cryptoId: string) => {
     return activeAds.filter((ad) => {

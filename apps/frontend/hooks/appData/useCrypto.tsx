@@ -4,7 +4,8 @@ import { useMemo } from 'react';
 const useCrypto = () => {
   const { cryptos, p2pCryptos } = useCryptotore();
 
-  const cryptoOptions = useMemo(() => ['all', ...cryptos.map((c) => c.id)], [cryptos]);
+  const cryptoIds = useMemo(() => new Set(cryptos.map((c) => c.id)), [cryptos]);
+  const p2pCryptoIds = useMemo(() => new Set(p2pCryptos.map((c) => c.id)), [p2pCryptos]);
 
   const cryptoLabels: Record<string, string> = useMemo(
     () => ({
@@ -38,8 +39,10 @@ const useCrypto = () => {
 
   return {
     cryptos,
+    cryptoIds,
+    p2pCryptos,
+    p2pCryptoIds,
     cryptoLabels,
-    cryptoOptions,
     cryptoNameFilterItems,
     cryptoNameFilterItemsStrict,
     cryptoSymbolFilterItems,
