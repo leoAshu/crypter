@@ -10,7 +10,7 @@ import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PostAdvert = () => {
-  const PRICE_INDEX: Record<PriceType, number> = {
+  const priceIndex: Record<PriceType, number> = {
     [PriceType.Fixed]: 0,
     [PriceType.Floating]: 0,
   } as const;
@@ -21,7 +21,7 @@ const PostAdvert = () => {
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [priceType, setpriceType] = useState<FilterItem>(priceTypeFilterItems[0]);
   const [selectedCrypto, setSelectedCrypto] = useState<FilterItem>();
-  const [priceIndices, setPriceIndices] = useState<Record<string, number>>(PRICE_INDEX);
+  const [priceIndices, setPriceIndices] = useState<Record<string, number>>(priceIndex);
 
   const currentIndex = priceIndices[priceType.id];
 
