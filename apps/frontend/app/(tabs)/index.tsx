@@ -1,4 +1,4 @@
-import { ChipFilter, InitialsAvatar, Market, WalletCard } from '@/components';
+import { InitialsAvatar, Market, WalletCard } from '@/components';
 import { useCrypto } from '@/hooks';
 import { useProfileStore } from '@/store';
 import { useState } from 'react';
@@ -7,9 +7,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
   const { profile } = useProfileStore();
-  const { cryptoSymbolFilterItemsStrict } = useCrypto();
+  const { p2pCryptoSymbolFilterItemsStrict } = useCrypto();
 
-  const [crypto, setCrypto] = useState<FilterItem>(cryptoSymbolFilterItemsStrict[0]);
+  const [crypto, setCrypto] = useState<FilterItem>(p2pCryptoSymbolFilterItemsStrict[0]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -21,8 +21,6 @@ const Home = () => {
             <Text className='header-txt font-clashDisplay'>Hello,</Text>
             <Text className='header-txt font-clashDisplay'>{profile?.name ?? ''} 👋</Text>
           </View>
-
-          <ChipFilter value={crypto} items={cryptoSymbolFilterItemsStrict} onChange={(item) => setCrypto(item)} />
 
           <WalletCard cryptoId={crypto.id} />
 

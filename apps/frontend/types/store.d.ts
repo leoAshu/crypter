@@ -25,6 +25,7 @@ interface ProfileState {
 
 interface CryptoState {
   cryptos: CryptoCurrency[];
+  p2pCryptos: CryptoCurrency[];
   isLoading: boolean;
 
   fetchCryptos: () => Promise<void>;

@@ -8,6 +8,8 @@ const crpytoToDbMap: Record<keyof CryptoCurrency, string> = {
   decimals: 'decimals',
   contractAddress: 'contract_address',
   isActive: 'is_active',
+  isP2PActive: 'is_p2p_active',
+  position: 'position',
   createdAt: 'created_at',
 };
 
