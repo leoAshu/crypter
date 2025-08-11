@@ -209,5 +209,14 @@ interface StepperInputProps {
 }
 
 interface P2PAdsProps {
-  ads: Ad[];
+  p2pAds: Ad[];
+}
+
+interface MyAdsProps {
+  myAds: Ad[];
+}
+
+interface MyAdCardProps {
+  index: number;
+  ad: Ad;
 }

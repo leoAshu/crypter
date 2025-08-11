@@ -42,7 +42,7 @@ const Home = () => {
           <ChipFilter value={crypto} items={p2pCryptosSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
-        <P2PAds ads={ads} />
+        <P2PAds p2pAds={ads} />
       </View>
     </SafeAreaView>
   );

@@ -6,7 +6,7 @@ import { DividerX } from '../dividers';
 
 const P2PAds = (props: P2PAdsProps) => {
   const isDark = useColorScheme() === 'dark';
-  const isEmpty = props.ads.length === 0;
+  const isEmpty = props.p2pAds.length === 0;
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
@@ -15,7 +15,7 @@ const P2PAds = (props: P2PAdsProps) => {
 
   return (
     <FlatList
-      data={props.ads}
+      data={props.p2pAds}
       initialNumToRender={1}
       showsVerticalScrollIndicator={false}
       keyExtractor={(item, index) => item.id.toString()}
