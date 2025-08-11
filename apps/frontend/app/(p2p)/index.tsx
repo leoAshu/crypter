@@ -11,10 +11,10 @@ const Home = () => {
   const isDark = useColorScheme() === 'dark';
 
   const { adTypeFilterItems, filterAdsByType } = useAds();
-  const { cryptoSymbolFilterItems } = useCrypto();
+  const { p2pCryptosSymbolFilterItems } = useCrypto();
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
-  const [crypto, setCrypto] = useState<FilterItem>(cryptoSymbolFilterItems[0]);
+  const [crypto, setCrypto] = useState<FilterItem>(p2pCryptosSymbolFilterItems[0]);
   const [ads, setAds] = useState(filterAdsByType(adType.id as AdType, crypto.id));
 
   const adsListStyle = Platform.select({
@@ -46,7 +46,7 @@ const Home = () => {
             />
           </View>
 
-          <ChipFilter value={crypto} items={cryptoSymbolFilterItems} onChange={(item) => setCrypto(item)} />
+          <ChipFilter value={crypto} items={p2pCryptosSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
         <FlatList

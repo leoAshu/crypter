@@ -8,5 +8,7 @@ interface CryptoCurrency {
   decimals: number;
   contractAddress?: string;
   isActive: boolean;
+  isP2PActive: boolean;
+  position: number;
   createdAt: string;
 }

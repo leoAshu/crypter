@@ -14,10 +14,10 @@ const MyAdvert = () => {
 
   const { user } = useAuthStore();
   const { adTypeFilterItems, filterAdsByUserId } = useAds();
-  const { cryptoSymbolFilterItems } = useCrypto();
+  const { p2pCryptosSymbolFilterItems } = useCrypto();
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
-  const [crypto, setCrypto] = useState<FilterItem>(cryptoSymbolFilterItems[0]);
+  const [crypto, setCrypto] = useState<FilterItem>(p2pCryptosSymbolFilterItems[0]);
   const [myAds, setMyAds] = useState(filterAdsByUserId(adType.id as AdType, crypto.id, user?.id ?? ''));
   const isAdsEmpty = myAds.length === 0;
 
@@ -59,7 +59,7 @@ const MyAdvert = () => {
             />
           </View>
 
-          <ChipFilter value={crypto} items={cryptoSymbolFilterItems} onChange={(item) => setCrypto(item)} />
+          <ChipFilter value={crypto} items={p2pCryptosSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
         <FlatList
