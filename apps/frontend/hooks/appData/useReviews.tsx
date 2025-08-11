@@ -1,3 +1,4 @@
+import { allFilterItem } from '@/constants';
 import { ReviewType } from '@/models';
 import { useReviewStore } from '@/store';
 import { capitalizeWords } from '@/utils';
@@ -9,14 +10,14 @@ const useReviews = () => {
   const reviewTypes = Object.values(ReviewType);
 
   const reviewTypeFilterItems: FilterItem[] = useMemo(
-    () => [{ id: 'all', label: 'All' }, ...reviewTypes.map((e) => ({ id: e, label: capitalizeWords(e) }))],
+    () => [allFilterItem, ...reviewTypes.map((e) => ({ id: e, label: capitalizeWords(e) }))],
     [reviewTypes],
   );
 
   const filterReviewsByType = useMemo(
     () => (type: string) =>
       reviews.filter((r) => {
-        if (type === 'all') return true;
+        if (type === allFilterItem.id) return true;
 
         return r.type === type;
       }),

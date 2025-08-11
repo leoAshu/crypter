@@ -1,3 +1,4 @@
+import { allFilterItem } from '@/constants';
 import useCryptotore from '@/store/crypto.store';
 import { useMemo } from 'react';
 
@@ -9,14 +10,14 @@ const useCrypto = () => {
 
   const cryptoLabels: Record<string, string> = useMemo(
     () => ({
-      all: 'All',
+      [allFilterItem.id]: allFilterItem.label,
       ...Object.fromEntries(cryptos.map((c) => [c.id, c.symbol])),
     }),
     [cryptos],
   );
 
   const createFilterItems = (cryptosList: CryptoCurrency[], labelKey: 'symbol' | 'name'): FilterItem[] => [
-    { id: 'all', label: 'All' },
+    allFilterItem,
     ...cryptosList.map((c) => ({ id: c.id, label: c[labelKey] })),
   ];
 

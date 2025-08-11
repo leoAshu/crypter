@@ -1,3 +1,4 @@
+import { allFilterItem } from '@/constants';
 import { AdType } from '@/models';
 import { useAdStore } from '@/store';
 import { capitalizeWords } from '@/utils';
@@ -27,7 +28,7 @@ const useAds = () => {
     return activeAds.filter((ad) => {
       if (ad.type !== adType) return false;
 
-      if (cryptoId === 'all') return true;
+      if (cryptoId === allFilterItem.id) return true;
 
       return ad.cryptoId === cryptoId;
     });
@@ -43,7 +44,7 @@ const useAds = () => {
     () => (cryptoId: string, userId: string) =>
       activeAds.filter((ad) => {
         if (ad.userId !== userId) return false;
-        if (cryptoId === 'all') return true;
+        if (cryptoId === allFilterItem.id) return true;
         return ad.cryptoId === cryptoId;
       }).length,
     [activeAds],

@@ -151,6 +151,8 @@ export const P2P_LISTINGS = [
   },
 ];
 
+const allFilterItem: FilterItem = { id: 'all', label: 'All' };
+
 export * from './strings';
 export * from './styles';
-export { EMAIL_REGEX, NAME_REGEX, PASSWORD_REGEX, PHONE_REGEX, SupabaseConfig };
+export { allFilterItem, EMAIL_REGEX, NAME_REGEX, PASSWORD_REGEX, PHONE_REGEX, SupabaseConfig };
