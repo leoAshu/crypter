@@ -1,3 +1,4 @@
+import { allFilterItem } from '@/constants';
 import { CompletedOrderType, orders as mockOrders, OrderType, PendingOrderType } from '@/models';
 import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
@@ -38,7 +39,7 @@ const useOrders = () => {
 
     return orders.filter((o) => {
       if (o.orderType !== type) return false;
-      if (subType === 'all') return true;
+      if (subType === allFilterItem.id) return true;
       return o.subType === subType;
     });
   };

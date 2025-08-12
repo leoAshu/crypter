@@ -3,7 +3,7 @@ import { screenContentWrapperStyle } from '@/constants';
 import { useOrders } from '@/hooks';
 import { CompletedOrderType, OrderType, PendingOrderType } from '@/models';
 import cn from 'clsx';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -16,28 +16,21 @@ const Orders = () => {
   const [orderType, setOrderType] = useState<FilterItem>(orderTypeFilterItems[0]);
   const [pendingOrderType, setPendingOrderType] = useState<FilterItem>(pendingOrderTypeFilterItems[0]);
   const [completedOrderType, setCompletedOrderType] = useState<FilterItem>(completedOrderTypeFilterItems[0]);
-  const [ordersList, setOrdersList] = useState<Order[]>(
-    filterOrdersByType(
-      orderType.id as OrderType,
-      pendingOrderType.id as PendingOrderType,
-      completedOrderType.id as CompletedOrderType,
-    ),
+
+  const orders = useMemo(
+    () =>
+      filterOrdersByType(
+        orderType.id as OrderType,
+        pendingOrderType.id as PendingOrderType,
+        completedOrderType.id as CompletedOrderType,
+      ),
+    [orderType, pendingOrderType, completedOrderType],
   );
 
   const adsListStyle = Platform.select({
     ios: 'pb-20',
     android: 'pb-24',
   });
-
-  useEffect(() => {
-    setOrdersList(
-      filterOrdersByType(
-        orderType.id as OrderType,
-        pendingOrderType.id as PendingOrderType,
-        completedOrderType.id as CompletedOrderType,
-      ),
-    );
-  }, [orderType, pendingOrderType, completedOrderType]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -75,7 +68,7 @@ const Orders = () => {
         </View>
 
         <FlatList
-          data={ordersList}
+          data={orders}
           initialNumToRender={0}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id.toString()}

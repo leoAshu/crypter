@@ -9,6 +9,7 @@ const adToDbMap: Record<keyof Ad, string> = {
   payMethodIds: 'pay_method_ids',
   releaseTime: 'release_time',
   type: 'type',
+  isActive: 'is_active',
   userId: 'user_id',
   userFullName: 'full_name',
   userAvatar: 'avatar_url',

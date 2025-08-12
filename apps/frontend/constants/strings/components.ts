@@ -10,6 +10,11 @@ const ComponentStrings = {
     ORDER_LABEL: 'Order',
     TOTAL_AMT_LABEL: 'Total Amount',
   },
+  MyAdCard: {
+    PRICE_LABEL: 'Price',
+    AVAILABLE_LABEL: 'Available',
+    ORDER_LIMIT_LABEL: 'Limit Per Order',
+  },
 };
 
 export { ComponentStrings };

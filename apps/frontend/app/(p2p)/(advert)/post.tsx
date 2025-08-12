@@ -75,7 +75,7 @@ const PostAdvert = () => {
           value={selectedCrypto}
           onSelect={(crypto) => setSelectedCrypto(getCryptoNameFilterItemById(crypto.id))}
         />
-        <Text className='text-label'>{Strings.postAd.PRICE_SETTING}</Text>
+        <Text className='txt-label'>{Strings.postAd.PRICE_SETTING}</Text>
         <ToggleButton
           value={priceType}
           items={[priceTypeFilterItems[0], priceTypeFilterItems[1]]}

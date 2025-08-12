@@ -1,17 +1,20 @@
-import { icons, images } from '@/assets';
-import { CopyIconButton, DividerX, PrimaryButton } from '@/components';
+import { images } from '@/assets';
+import { CopyIconButton, DividerX, Dropdown, PrimaryButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
+import { useNetwork } from '@/hooks';
 import { useWalletStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
-import { Image, ScrollView, Text, useColorScheme, View } from 'react-native';
+import { useState } from 'react';
+import { Image, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Deposit = () => {
-  const isDark = useColorScheme() === 'dark';
   const { deposit } = useWalletStore();
+  const { networkFilterItems, getNetworkById } = useNetwork();
 
-  const address = '0x5a3c2E1B53F1a871bE8B7F442Ead61a9F2cEb94A';
+  const [network, setNetwork] = useState<FilterItem>(networkFilterItems[0]);
+
   const savePicture = async () => {
     deposit('usdt', Number((Math.random() * (15 - 1) + 1).toFixed(2)));
     setTimeout(() => router.back(), 500);
@@ -19,11 +22,11 @@ const Deposit = () => {
 
   return (
     <SafeAreaView className='screen-wrapper'>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View className={cn('content-wrapper mb-32', screenContentWrapperStyle)}>
           <View className='deposit-form'>
             <View className='qr-wrapper'>
-              <Image source={images.qr} className='h-48 w-48 rounded-lg' resizeMode='contain' />
+              <Image source={images.qr} className='size-48 rounded-lg' resizeMode='contain' />
             </View>
 
             <View className='deposit-form-content'>
@@ -33,33 +36,21 @@ const Deposit = () => {
                 <View className='deposit-form-row'>
                   <View className='deposit-form-value-wrapper'>
                     <Text className='deposit-form-value' numberOfLines={1} ellipsizeMode='middle'>
-                      {address}
+                      {getNetworkById(network.id)?.address ?? ''}
                     </Text>
                   </View>
                   <View className='deposit-form-icon-wrapper'>
-                    <CopyIconButton value={address} iconStyle='size-6' />
+                    <CopyIconButton value={getNetworkById(network.id)?.address ?? ''} iconStyle='size-6' />
                   </View>
                 </View>
               </View>
 
-              <View className='gap-y-2'>
-                <Text className='deposit-form-label'>Network</Text>
-
-                <View className='deposit-form-row'>
-                  <View className='deposit-form-value-wrapper'>
-                    <Text className='deposit-form-value' numberOfLines={1} ellipsizeMode='tail'>
-                      BNB Smart Chain (BEP20)
-                    </Text>
-                  </View>
-                  <View className='deposit-form-icon-wrapper'>
-                    <Image
-                      source={isDark ? icons.dark.arrowDown : icons.light.arrowDown}
-                      className='size-8'
-                      resizeMode='contain'
-                    />
-                  </View>
-                </View>
-              </View>
+              <Dropdown
+                title='Network'
+                value={network}
+                items={networkFilterItems}
+                onSelect={(val) => setNetwork(val)}
+              />
 
               <View className='deposit-form-footer'>
                 <Text className='deposit-form-footer-title'>Additional Info</Text>

@@ -1,0 +1,150 @@
+import cn from 'clsx';
+import * as Haptics from 'expo-haptics';
+import React, { useEffect, useMemo, useRef } from 'react';
+import { AccessibilityProps, Animated, Easing, Pressable, Text, View } from 'react-native';
+
+export type ToggleSize = 'sm' | 'md' | 'lg';
+
+export interface ToggleSwitchProps extends AccessibilityProps {
+  value: boolean;
+  onChange?: (v: boolean) => void;
+  size?: ToggleSize;
+  activeColor?: string; // tailwind utility or direct hex (used inline for background when active)
+  inactiveColor?: string; // tailwind utility or direct hex
+  thumbColor?: string;
+  disabled?: boolean;
+  animate?: boolean;
+  label?: string; // optional label next to the switch
+  labelPosition?: 'left' | 'right';
+  style?: any;
+}
+
+const SIZE_MAP = {
+  sm: {
+    width: 40,
+    height: 22,
+    padding: 2,
+    thumb: 18,
+    translateX: 18,
+  },
+  md: {
+    width: 50,
+    height: 28,
+    padding: 3,
+    thumb: 22,
+    translateX: 22,
+  },
+  lg: {
+    width: 64,
+    height: 36,
+    padding: 4,
+    thumb: 28,
+    translateX: 28,
+  },
+} as const;
+
+const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
+  value,
+  onChange,
+  size = 'md',
+  activeColor = '#10B981', // emerald-500
+  inactiveColor = '#E5E7EB', // gray-200
+  thumbColor = '#FFFFFF',
+  disabled = false,
+  animate = true,
+  label,
+  labelPosition = 'right',
+  accessibilityLabel,
+  style,
+  ...rest
+}) => {
+  const config = useMemo(() => SIZE_MAP[size], [size]);
+
+  // Animated value: 0 => off, 1 => on
+  const anim = useRef(new Animated.Value(value ? 1 : 0)).current;
+
+  // Sync when `value` changes externally
+  useEffect(() => {
+    if (!animate) {
+      anim.setValue(value ? 1 : 0);
+      return;
+    }
+    Animated.timing(anim, {
+      toValue: value ? 1 : 0,
+      duration: 180,
+      easing: Easing.out(Easing.circle),
+      useNativeDriver: false, // animating layout + colors, keep false
+    }).start();
+  }, [value, animate, anim]);
+
+  const translateX = anim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, config.translateX],
+  });
+
+  const backgroundColor = anim.interpolate({
+    inputRange: [0, 1],
+    // fallback to hex strings
+    outputRange: [inactiveColor, activeColor],
+  });
+
+  const onPress = () => {
+    if (disabled) return;
+    // light haptic feedback
+    try {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    } catch (e) {
+      // ignore on platforms where Haptics isn't available
+    }
+
+    onChange?.(!value);
+  };
+
+  const labelClasses = cn('text-xs font-satoshi text-label dark:text-label-dark');
+
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      style={[{ opacity: disabled ? 0.6 : 1 }, style]}
+      {...rest}
+      hitSlop={20}
+    >
+      <View className='flex-row items-center'>
+        {label && labelPosition === 'left' ? <Text className={cn(labelClasses, 'mr-2')}>{label}</Text> : null}
+
+        <Animated.View
+          style={{
+            width: config.width,
+            height: config.height,
+            borderRadius: config.height / 2,
+            padding: config.padding,
+            justifyContent: 'center',
+            // backgroundColor animated
+            backgroundColor,
+          }}
+        >
+          <Animated.View
+            style={{
+              width: config.thumb,
+              height: config.thumb,
+              borderRadius: config.thumb / 2,
+              transform: [{ translateX }],
+              backgroundColor: thumbColor,
+              // shadow / elevation
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 1 },
+              shadowOpacity: 0.12,
+              shadowRadius: 1.5,
+              elevation: 2,
+            }}
+          />
+        </Animated.View>
+
+        {label && labelPosition === 'right' ? <Text className={cn(labelClasses, 'ml-2')}>{label}</Text> : null}
+      </View>
+    </Pressable>
+  );
+};
+
+export default ToggleSwitch;

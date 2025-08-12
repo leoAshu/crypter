@@ -38,7 +38,7 @@ const OrderCard = (props: OrderCardProps) => {
 
         <View
           className={cn(
-            Platform.select({ ios: 'w-[68px]', android: 'w-[72px]' }),
+            Platform.select({ ios: 'w-[68px]', android: 'w-16' }),
             'order-card-type-badge-bg',
             isCanceled ? (isDark ? 'opacity-65' : 'opacity-50') : '',
           )}

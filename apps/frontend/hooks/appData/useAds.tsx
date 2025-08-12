@@ -1,15 +1,14 @@
+import { allFilterItem } from '@/constants';
 import { AdType } from '@/models';
-import { useAdStore } from '@/store';
+import { useAdStore, useProfileStore } from '@/store';
 import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
-import useCrypto from './useCrypto';
 
 const useAds = () => {
-  const { ads } = useAdStore();
-  const { cryptoOptions } = useCrypto();
+  const { ads, isLoading, updateAdStatus } = useAdStore();
+  const { profile } = useProfileStore();
 
   const adTypes = Object.values(AdType);
-
   const adTypeFilterItems = useMemo(
     () =>
       adTypes.map((e) => ({
@@ -19,22 +18,21 @@ const useAds = () => {
     [adTypes],
   );
 
-  const activeAds = useMemo(() => {
-    return ads.filter((ad) => cryptoOptions.includes(ad.cryptoId));
-  }, [ads, cryptoOptions]);
+  const activeAds = useMemo(() => ads.filter((ad) => ad.isActive), [ads]);
+  const myAds = useMemo(() => ads.filter((ad) => ad.userId === profile?.id), [ads, profile?.id]);
 
-  const filterAdsByType = (adType: AdType, cryptoId: string) => {
-    return activeAds.filter((ad) => {
+  const filterAdsByType = (adsList: Ad[], adType: AdType, cryptoId: string) => {
+    return adsList.filter((ad) => {
       if (ad.type !== adType) return false;
 
-      if (cryptoId === 'all') return true;
+      if (cryptoId === allFilterItem.id) return true;
 
       return ad.cryptoId === cryptoId;
     });
   };
 
-  const filterAdsByUserId = (adType: AdType, cryptoId: string, userId: string) => {
-    return filterAdsByType(adType, cryptoId).filter((ad) => {
+  const filterAdsByUserId = (adsList: Ad[], adType: AdType, cryptoId: string, userId: string) => {
+    return filterAdsByType(adsList, adType, cryptoId).filter((ad) => {
       return ad.userId === userId;
     });
   };
@@ -43,19 +41,22 @@ const useAds = () => {
     () => (cryptoId: string, userId: string) =>
       activeAds.filter((ad) => {
         if (ad.userId !== userId) return false;
-        if (cryptoId === 'all') return true;
+        if (cryptoId === allFilterItem.id) return true;
         return ad.cryptoId === cryptoId;
       }).length,
     [activeAds],
   );
 
   return {
+    myAds,
     adTypes,
     activeAds,
+    adsLoading: isLoading,
     adTypeFilterItems,
     filterAdsByType,
     filterAdsByUserId,
     getActiveAdsCountByUserId,
+    updateAdStatus,
   };
 };
 

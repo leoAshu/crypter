@@ -207,3 +207,20 @@ interface StepperInputProps {
   onIncrement?: () => void;
   onDecrement?: () => void;
 }
+
+interface P2PAdsProps {
+  p2pAds: Ad[];
+}
+
+interface MyAdsProps {
+  myAds: Ad[];
+  isAdActive: boolean;
+  toggleAdStatus: (adId: string, isActive: boolean) => void;
+}
+
+interface MyAdCardProps {
+  index: number;
+  ad: Ad;
+  isAdActive: boolean;
+  toggleAdStatus: (adId: string, isActive: boolean) => void;
+}

@@ -269,7 +269,7 @@
     @apply z-10 h-8 w-8;
   }
 
-  .text-label {
+  .txt-label {
     @apply font-satoshi text-lg text-body dark:text-body-dark;
   }
 
@@ -397,7 +397,7 @@
   }
 
   .pay-method-badge {
-    @apply flex-row items-center gap-x-1 rounded-md bg-card px-2 py-1 dark:bg-card-dark;
+    @apply flex-row items-center rounded-md bg-card px-2 py-1 dark:bg-card-dark;
   }
 
   .order-card-wrapper {
@@ -425,7 +425,7 @@
   }
 
   .order-card-type-badge-txt {
-    @apply font-clashDisplay text-xs tracking-wider text-title dark:text-title-dark;
+    @apply font-clashDisplay text-[8px] tracking-wider text-title dark:text-title-dark;
   }
 
   .order-card-content {

@@ -1,30 +1,20 @@
-import { AdCard, ChipFilter, DividerX, ToggleButton } from '@/components';
+import { ChipFilter, P2PAds, ToggleButton } from '@/components';
 import { screenContentWrapperStyle } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
 import { AdType } from '@/models';
 import cn from 'clsx';
-import { useEffect, useState } from 'react';
-import { FlatList, Platform, useColorScheme, View } from 'react-native';
+import { useMemo, useState } from 'react';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
-  const isDark = useColorScheme() === 'dark';
-
-  const { adTypeFilterItems, filterAdsByType } = useAds();
+  const { activeAds, adTypeFilterItems, filterAdsByType } = useAds();
   const { p2pCryptosSymbolFilterItems } = useCrypto();
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [crypto, setCrypto] = useState<FilterItem>(p2pCryptosSymbolFilterItems[0]);
-  const [ads, setAds] = useState(filterAdsByType(adType.id as AdType, crypto.id));
 
-  const adsListStyle = Platform.select({
-    ios: 'pb-20',
-    android: 'pb-24',
-  });
-
-  useEffect(() => {
-    setAds(filterAdsByType(adType.id as AdType, crypto.id));
-  }, [adType, crypto]);
+  const p2pAds = useMemo(() => filterAdsByType(activeAds, adType.id as AdType, crypto.id), [activeAds, adType, crypto]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -49,16 +39,7 @@ const Home = () => {
           <ChipFilter value={crypto} items={p2pCryptosSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
-        <FlatList
-          data={ads}
-          initialNumToRender={0}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item, index) => item.id.toString()}
-          contentContainerClassName={adsListStyle}
-          renderItem={({ item, index }) => <AdCard ad={item} index={index} animationStyle='fadeFloatUp' />}
-          ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}
-          ListFooterComponent={() => <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}
-        />
+        <P2PAds p2pAds={p2pAds} />
       </View>
     </SafeAreaView>
   );
