@@ -65,6 +65,7 @@ interface AdState {
   isLoading: boolean;
 
   fetchAds: () => Promise<void>;
+  updateAdStatus: (adId: string, isActive: boolean) => Promise<void>;
 }
 
 interface MarketState {

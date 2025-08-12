@@ -32,7 +32,9 @@ const MyAds = (props: MyAdsProps) => {
       showsVerticalScrollIndicator={false}
       keyExtractor={(item, index) => item.id.toString()}
       contentContainerClassName={cn(!isAdsEmpty ? adsListStyle : 'flex-1 items-center justify-center pb-48')}
-      renderItem={({ item, index }) => <MyAdCard ad={item} index={index} />}
+      renderItem={({ item, index }) => (
+        <MyAdCard index={index} ad={item} isAdActive={props.isAdActive} toggleAdStatus={props.toggleAdStatus} />
+      )}
       ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}
       ListFooterComponent={() => (!isAdsEmpty ? <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} /> : null)}
       ListEmptyComponent={EmptyState}

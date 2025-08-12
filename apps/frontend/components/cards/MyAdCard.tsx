@@ -2,7 +2,7 @@ import { ComponentStrings } from '@/constants';
 import { useCrypto, useFiat } from '@/hooks';
 import { capitalizeWords, currencyFormatter } from '@/utils';
 import cn from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Platform, Text, useColorScheme, View } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import { PayMethodBadge } from '../badges';
@@ -15,7 +15,21 @@ const MyAdCard = (props: MyAdCardProps) => {
 
   const { fiatSymbols } = useFiat();
   const { cryptoLabels } = useCrypto();
-  const [isOn, setIsOn] = useState(false);
+  const [isOn, setIsOn] = useState(props.ad.isActive);
+
+  useEffect(() => {
+    setIsOn(props.ad.isActive);
+  }, [props.ad.isActive]);
+
+  const onToggle = async (val: boolean) => {
+    setIsOn(val);
+    try {
+      await props.toggleAdStatus(props.ad.id, val);
+    } catch (e) {
+      setIsOn(props.ad.isActive);
+      console.error('Toggle failed', e);
+    }
+  };
 
   return (
     <Animated.View
@@ -41,13 +55,14 @@ const MyAdCard = (props: MyAdCardProps) => {
 
         <ToggleSwitch
           value={isOn}
-          onChange={(v) => setIsOn(v)}
+          onChange={onToggle}
           size='sm'
-          activeColor='#54E6B6'
-          inactiveColor={isDark ? '#1C1C1C' : '#F1F1F1'}
-          thumbColor='#FFFFFF'
           label='Trading'
           labelPosition='left'
+          thumbColor='#FFFFFF'
+          activeColor='#54E6B6'
+          inactiveColor={isDark ? '#1C1C1C' : '#F1F1F1'}
+          disabled={!props.ad.isActive && props.isAdActive}
         />
       </View>
 

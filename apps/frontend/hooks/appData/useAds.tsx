@@ -5,7 +5,7 @@ import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
 
 const useAds = () => {
-  const { ads } = useAdStore();
+  const { ads, isLoading, updateAdStatus } = useAdStore();
   const { profile } = useProfileStore();
 
   const adTypes = Object.values(AdType);
@@ -51,10 +51,12 @@ const useAds = () => {
     myAds,
     adTypes,
     activeAds,
+    adsLoading: isLoading,
     adTypeFilterItems,
     filterAdsByType,
     filterAdsByUserId,
     getActiveAdsCountByUserId,
+    updateAdStatus,
   };
 };
 

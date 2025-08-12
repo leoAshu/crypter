@@ -12,4 +12,10 @@ const fetchAds = async (): Promise<Ad[]> => {
   return ads;
 };
 
-export { fetchAds };
+const updateAdStatus = async (adId: string, isActive: boolean) => {
+  const { error } = await supabaseClient.from('ads').update({ is_active: isActive }).eq('id', adId);
+
+  if (error) throw new Error(error.message);
+};
+
+export { fetchAds, updateAdStatus };

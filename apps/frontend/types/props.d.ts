@@ -214,9 +214,13 @@ interface P2PAdsProps {
 
 interface MyAdsProps {
   myAds: Ad[];
+  isAdActive: boolean;
+  toggleAdStatus: (adId: string, isActive: boolean) => void;
 }
 
 interface MyAdCardProps {
   index: number;
   ad: Ad;
+  isAdActive: boolean;
+  toggleAdStatus: (adId: string, isActive: boolean) => void;
 }

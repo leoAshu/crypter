@@ -3,21 +3,31 @@ import { screenContentWrapperStyle } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
 import { AdType } from '@/models';
 import cn from 'clsx';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyAdvert = () => {
-  const { myAds: myP2PAds, adTypeFilterItems, filterAdsByType } = useAds();
+  const { myAds: myP2PAds, adsLoading, adTypeFilterItems, filterAdsByType, updateAdStatus } = useAds();
   const { p2pCryptosSymbolFilterItems } = useCrypto();
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [crypto, setCrypto] = useState<FilterItem>(p2pCryptosSymbolFilterItems[0]);
-  const [myAds, setMyAds] = useState(filterAdsByType(myP2PAds, adType.id as AdType, crypto.id));
 
-  useEffect(() => {
-    setMyAds(filterAdsByType(myP2PAds, adType.id as AdType, crypto.id));
-  }, [adType, crypto]);
+  const myAds = useMemo(
+    () => filterAdsByType(myP2PAds, adType.id as AdType, crypto.id),
+    [myP2PAds, adType, crypto, filterAdsByType],
+  );
+
+  const isAdActive = useMemo(() => myAds.some((ad) => ad.isActive), [myAds]);
+
+  const toggleAdStatus = async (adId: string, newIsActive: boolean) => {
+    try {
+      await updateAdStatus(adId, newIsActive);
+    } catch (e) {
+      console.log('Failed to update ad status:', e);
+    }
+  };
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -42,7 +52,7 @@ const MyAdvert = () => {
           <ChipFilter value={crypto} items={p2pCryptosSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
-        <MyAds myAds={myAds} />
+        <MyAds myAds={myAds} isAdActive={adsLoading || isAdActive} toggleAdStatus={toggleAdStatus} />
       </View>
     </SafeAreaView>
   );

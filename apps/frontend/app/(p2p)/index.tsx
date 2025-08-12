@@ -3,7 +3,7 @@ import { screenContentWrapperStyle } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
 import { AdType } from '@/models';
 import cn from 'clsx';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -13,11 +13,8 @@ const Home = () => {
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [crypto, setCrypto] = useState<FilterItem>(p2pCryptosSymbolFilterItems[0]);
-  const [ads, setAds] = useState(filterAdsByType(activeAds, adType.id as AdType, crypto.id));
 
-  useEffect(() => {
-    setAds(filterAdsByType(activeAds, adType.id as AdType, crypto.id));
-  }, [adType, crypto]);
+  const p2pAds = useMemo(() => filterAdsByType(activeAds, adType.id as AdType, crypto.id), [activeAds, adType, crypto]);
 
   return (
     <SafeAreaView className='screen-wrapper'>
@@ -42,7 +39,7 @@ const Home = () => {
           <ChipFilter value={crypto} items={p2pCryptosSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
-        <P2PAds p2pAds={ads} />
+        <P2PAds p2pAds={p2pAds} />
       </View>
     </SafeAreaView>
   );
