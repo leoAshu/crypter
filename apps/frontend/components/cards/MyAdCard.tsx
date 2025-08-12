@@ -2,16 +2,20 @@ import { ComponentStrings } from '@/constants';
 import { useCrypto, useFiat } from '@/hooks';
 import { capitalizeWords, currencyFormatter } from '@/utils';
 import cn from 'clsx';
-import { Platform, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Platform, Text, useColorScheme, View } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import { PayMethodBadge } from '../badges';
 import { DividerX } from '../dividers';
+import { ToggleSwitch } from '../filters';
 
 const MyAdCard = (props: MyAdCardProps) => {
+  const isDark = useColorScheme() === 'dark';
   const isBuy = props.ad.type === 'buy';
 
   const { fiatSymbols } = useFiat();
   const { cryptoLabels } = useCrypto();
+  const [isOn, setIsOn] = useState(false);
 
   return (
     <Animated.View
@@ -35,11 +39,16 @@ const MyAdCard = (props: MyAdCardProps) => {
           </View>
         </View>
 
-        <View className={cn('items-center justify-center rounded-sm bg-card dark:bg-card-dark')}>
-          <Text className='font-clashDisplay text-[8px] tracking-wider text-title dark:text-title-dark'>
-            Active/Inactive Switch
-          </Text>
-        </View>
+        <ToggleSwitch
+          value={isOn}
+          onChange={(v) => setIsOn(v)}
+          size='sm'
+          activeColor='#54E6B6'
+          inactiveColor={isDark ? '#1C1C1C' : '#F1F1F1'}
+          thumbColor='#FFFFFF'
+          label='Trading'
+          labelPosition='left'
+        />
       </View>
 
       {/* Content */}
