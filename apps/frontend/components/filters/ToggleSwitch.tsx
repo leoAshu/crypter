@@ -8,6 +8,7 @@ export type ToggleSize = 'sm' | 'md' | 'lg';
 export interface ToggleSwitchProps extends AccessibilityProps {
   value: boolean;
   onChange?: (v: boolean) => void;
+  onDisabledPress?: () => void;
   size?: ToggleSize;
   activeColor?: string; // tailwind utility or direct hex (used inline for background when active)
   inactiveColor?: string; // tailwind utility or direct hex
@@ -46,6 +47,7 @@ const SIZE_MAP = {
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   value,
   onChange,
+  onDisabledPress,
   size = 'md',
   activeColor = '#10B981', // emerald-500
   inactiveColor = '#E5E7EB', // gray-200
@@ -89,7 +91,10 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   });
 
   const onPress = () => {
-    if (disabled) return;
+    if (disabled) {
+      onDisabledPress?.();
+      return;
+    }
     // light haptic feedback
     try {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -100,16 +105,10 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
     onChange?.(!value);
   };
 
-  const labelClasses = cn('text-xs font-satoshi text-label dark:text-label-dark');
+  const labelClasses = cn('text-[10px] font-satoshi text-body dark:text-body-dark');
 
   return (
-    <Pressable
-      onPress={onPress}
-      disabled={disabled}
-      style={[{ opacity: disabled ? 0.6 : 1 }, style]}
-      {...rest}
-      hitSlop={20}
-    >
+    <Pressable onPress={onPress} style={[{ opacity: disabled ? 0.6 : 1 }, style]} {...rest} hitSlop={20}>
       <View className='flex-row items-center'>
         {label && labelPosition === 'left' ? <Text className={cn(labelClasses, 'mr-2')}>{label}</Text> : null}
 

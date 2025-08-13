@@ -1,10 +1,11 @@
-import { ComponentStrings } from '@/constants';
+import { ComponentStrings, ToastStrings } from '@/constants';
 import { useCrypto, useFiat } from '@/hooks';
 import { capitalizeWords, currencyFormatter } from '@/utils';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { Platform, Text, useColorScheme, View } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
+import Toast from 'react-native-toast-message';
 import { PayMethodBadge } from '../badges';
 import { DividerX } from '../dividers';
 import { ToggleSwitch } from '../filters';
@@ -20,6 +21,17 @@ const MyAdCard = (props: MyAdCardProps) => {
   useEffect(() => {
     setIsOn(props.ad.isActive);
   }, [props.ad.isActive]);
+
+  const disabledPress = async () => {
+    Toast.show({
+      type: 'info',
+      text1: ToastStrings.Info.TITLE,
+      text2: ToastStrings.Info.INACTIVE_AD,
+      position: 'bottom',
+      bottomOffset: 112,
+      autoHide: false,
+    });
+  };
 
   const onToggle = async (val: boolean) => {
     setIsOn(val);
@@ -57,12 +69,13 @@ const MyAdCard = (props: MyAdCardProps) => {
           value={isOn}
           onChange={onToggle}
           size='sm'
-          label='Trading'
+          label={props.ad.isActive ? 'Listed' : 'Unlisted'}
           labelPosition='left'
           thumbColor='#FFFFFF'
           activeColor='#54E6B6'
           inactiveColor={isDark ? '#1C1C1C' : '#F1F1F1'}
           disabled={!props.ad.isActive && props.isAdActive}
+          onDisabledPress={disabledPress}
         />
       </View>
 
