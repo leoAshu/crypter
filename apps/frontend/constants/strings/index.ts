@@ -92,6 +92,7 @@ const Strings = {
     EMPTY_STATE: 'No ads available',
     PRICE_SETTING: 'Price Setting',
     BUTTON_NEXT_LABEL: 'Next Steps',
+    HEADER_TITLE_INFO: 'Amount Info',
   },
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',

@@ -4,12 +4,11 @@ import { useAds, useCrypto, usePriceTypes } from '@/hooks';
 import { priceIndex } from '@/models';
 import { capitalizeWords } from '@/utils';
 import cn from 'clsx';
-import { router } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const PostAdvert = () => {
+const PostAdvertInfo = () => {
   const { adTypeFilterItems } = useAds();
   const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
   const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
@@ -31,7 +30,6 @@ const PostAdvert = () => {
   );
 
   const handleCreateAdvert = async () => {
-    router.push('/(p2p)/(advert)/(post)/info');
     if (!selectedCrypto) {
       // Show error - no crypto selected
       return;
@@ -107,4 +105,4 @@ const PostAdvert = () => {
   );
 };
 
-export default PostAdvert;
+export default PostAdvertInfo;

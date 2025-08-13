@@ -30,24 +30,18 @@ const PostLayout = () => {
         },
       }}
     >
-      {/* <Stack.Screen
-        name='index'
-        options={{
-          title: Strings.myAds.HEADER_TITLE,
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
-          headerRight: () => (
-            <HeaderActionIcon
-              icon={images.plus}
-              iconStyle='size-5'
-              onPress={() => router.push('/(p2p)/(advert)/(post)/post')} // Add navigation
-            />
-          ),
-        }}
-      /> */}
       <Stack.Screen
         name='index'
         options={{
           title: Strings.postAd.HEADER_TITLE,
+          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
+        }}
+      />
+
+      <Stack.Screen
+        name='info'
+        options={{
+          title: Strings.postAd.HEADER_TITLE_INFO,
           headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
         }}
       />
