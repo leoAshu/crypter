@@ -22,7 +22,7 @@ const WalletCard = (props: WalletCardProps) => {
   const fiatValue = balance * 87.71;
 
   return (
-    <View className='elevation-md w-full overflow-hidden rounded-2xl bg-card dark:bg-label/35'>
+    <View className='elevation w-full overflow-hidden rounded-2xl bg-card dark:bg-label/35'>
       <WalletCardGradient />
 
       <BlurView

@@ -60,6 +60,9 @@ const icons = {
     eth: require('./icons/light/eth.png'),
     usdt: require('./icons/light/usdt.png'),
 
+    // NavRoutes
+    noteFav: require('./icons/light/note-favorite.png'),
+
     // Active Tab
     active: {
       home: require('./icons/light/active/home.png'),
@@ -117,6 +120,9 @@ const icons = {
     btc: require('./icons/dark/btc.png'),
     eth: require('./icons/dark/eth.png'),
     usdt: require('./icons/dark/usdt.png'),
+
+    // NavRoutes
+    noteFav: require('./icons/dark/note-favorite.png'),
 
     // Active Tab
     active: {
