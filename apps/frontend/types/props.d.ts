@@ -224,3 +224,7 @@ interface MyAdCardProps {
   isAdActive: boolean;
   toggleAdStatus: (adId: string, isActive: boolean) => void;
 }
+
+interface NavCardProps {
+  navRoute: NavRoute;
+}
