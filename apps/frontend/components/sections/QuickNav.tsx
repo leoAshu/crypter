@@ -15,7 +15,7 @@ const QuickNav = () => {
     { id: 'p2p', title: 'P2P', icon: iconsMap['p2p'], route: '/(p2p)' },
     { id: 'orders', title: 'Orders', icon: iconsMap['orders'], route: '/(p2p)/orders' },
     { id: 'myAds', title: 'My Ads', icon: iconsMap['myAds'], route: '/(p2p)/(advert)' },
-    { id: 'createAd', title: 'Create Ad', icon: iconsMap['createAd'], route: '/(p2p)/(advert)/post' },
+    { id: 'createAd', title: 'Create Ad', icon: iconsMap['createAd'], route: '/(p2p)/(advert)/(post)' },
   ];
 
   return (
