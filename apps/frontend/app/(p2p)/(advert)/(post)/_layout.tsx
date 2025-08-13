@@ -1,10 +1,9 @@
-import { images } from '@/assets';
-import { BackIconButton, HeaderActionIcon } from '@/components';
+import { BackIconButton } from '@/components';
 import { Strings } from '@/constants';
-import { router, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import { Platform, useColorScheme } from 'react-native';
 
-const AdvertLayout = () => {
+const PostLayout = () => {
   const isDark = useColorScheme() === 'dark';
   const containerStyle = Platform.select({
     ios: 'pl-0 ml-[8px]',
@@ -34,22 +33,15 @@ const AdvertLayout = () => {
       <Stack.Screen
         name='index'
         options={{
-          title: Strings.myAds.HEADER_TITLE,
+          title: Strings.postAd.HEADER_TITLE,
           headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
-          headerRight: () => (
-            <HeaderActionIcon
-              icon={images.plus}
-              iconStyle='size-5'
-              onPress={() => router.push('/(p2p)/(advert)/(post)')}
-            />
-          ),
         }}
       />
+
       <Stack.Screen
-        name='(post)'
+        name='info'
         options={{
-          headerShown: false,
-          title: Strings.postAd.HEADER_TITLE,
+          title: Strings.postAd.HEADER_TITLE_INFO,
           headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
         }}
       />
@@ -57,4 +49,4 @@ const AdvertLayout = () => {
   );
 };
 
-export default AdvertLayout;
+export default PostLayout;

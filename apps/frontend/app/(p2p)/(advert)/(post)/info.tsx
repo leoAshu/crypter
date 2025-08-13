@@ -1,4 +1,4 @@
-import { Dropdown, StepperInput, ToggleButton } from '@/components';
+import { Dropdown, PrimaryButton, StepperInput, ToggleButton } from '@/components';
 import { screenContentWrapperStyle, Strings } from '@/constants';
 import { useAds, useCrypto, usePriceTypes } from '@/hooks';
 import { priceIndex } from '@/models';
@@ -8,7 +8,7 @@ import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const PostAdvert = () => {
+const PostAdvertInfo = () => {
   const { adTypeFilterItems } = useAds();
   const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
   const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
@@ -97,9 +97,12 @@ const PostAdvert = () => {
           index={currentIndex}
           items={getPriceRangeById(priceType.id)}
         />
+        <View className='mt-8'>
+          <PrimaryButton title={Strings.postAd.BUTTON_NEXT_LABEL} isLoading={false} onPress={handleCreateAdvert} />
+        </View>
       </View>
     </SafeAreaView>
   );
 };
 
-export default PostAdvert;
+export default PostAdvertInfo;
