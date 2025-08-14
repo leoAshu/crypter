@@ -5,5 +5,6 @@ export { default as useMarket } from './useMarket';
 export { default as useNetwork } from './useNetwork';
 export { default as useOrders } from './useOrders';
 export { default as usePriceTypes } from './usePriceType';
+export { default as useProfile } from './useProfile';
 export { default as useReviews } from './useReviews';
 export { default as useStats } from './useStats';

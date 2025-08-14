@@ -1,7 +1,6 @@
 import { icons } from '@/assets';
 import { ComponentStrings } from '@/constants';
-import { useCrypto, useFiat } from '@/hooks';
-import { useProfileStore } from '@/store';
+import { useCrypto, useFiat, useProfile } from '@/hooks';
 import { capitalizeWords, currencyFormatter, getMockUserName } from '@/utils';
 import cn from 'clsx';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
@@ -16,7 +15,7 @@ const AdCard = (props: AdCardProps) => {
   const isDark = useColorScheme() === 'dark';
 
   const { cryptoLabels } = useCrypto();
-  const { profile } = useProfileStore();
+  const { profile } = useProfile();
   const { fiatSymbols } = useFiat();
   const animationCombo = adCardAnimConfig[props.animationStyle ?? 'default'](isBuy, props.index);
 

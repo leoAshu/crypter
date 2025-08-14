@@ -1,6 +1,5 @@
 import { AccountInfo, ChipFilter, DividerX, ReviewCard } from '@/components';
-import { useReviews } from '@/hooks';
-import { useProfileStore } from '@/store';
+import { useProfile, useReviews } from '@/hooks';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { FlatList, Platform, useColorScheme, View } from 'react-native';
@@ -9,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Feedback = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { profile } = useProfileStore();
+  const { profile } = useProfile();
   const { reviewTypeFilterItems, filterReviewsByType } = useReviews();
 
   const [reviewType, setReviewType] = useState<FilterItem>(reviewTypeFilterItems[0]);

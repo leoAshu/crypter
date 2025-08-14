@@ -1,13 +1,13 @@
 import { images } from '@/assets';
 import { PrimaryButton } from '@/components';
 import { Strings } from '@/constants';
-import { useProfileStore } from '@/store';
+import { useProfile } from '@/hooks';
 import { router } from 'expo-router';
 import { Dimensions, Image, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Welcome = () => {
-  const { profile } = useProfileStore();
+  const { profile } = useProfile();
 
   return (
     <SafeAreaView className='screen-wrapper'>
