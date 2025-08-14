@@ -8,8 +8,8 @@ import { Text, View } from 'react-native';
 disableFontScaling();
 
 const Index = () => {
-  const { isLoading, isAuthenticated, fetchAuthenticatedUser } = useAuthStore();
   const { isLoading: isTickerLoading, fetchAllTickers } = useMarket();
+  const { isLoading, isAuthenticated, fetchAuthenticatedUser } = useAuthStore();
 
   useEffect(() => {
     fetchAuthenticatedUser();

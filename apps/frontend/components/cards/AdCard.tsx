@@ -14,9 +14,9 @@ const AdCard = (props: AdCardProps) => {
   const isBuy = props.ad.type === 'buy';
   const isDark = useColorScheme() === 'dark';
 
-  const { cryptoLabels } = useCrypto();
   const { profile } = useProfile();
   const { fiatSymbols } = useFiat();
+  const { cryptoLabels } = useCrypto();
   const animationCombo = adCardAnimConfig[props.animationStyle ?? 'default'](isBuy, props.index);
 
   const isMyAd = props.ad.userId === profile?.id;

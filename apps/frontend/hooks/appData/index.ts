@@ -8,3 +8,4 @@ export { default as usePriceTypes } from './usePriceType';
 export { default as useProfile } from './useProfile';
 export { default as useReviews } from './useReviews';
 export { default as useStats } from './useStats';
+export { default as useWallet } from './useWallet';
