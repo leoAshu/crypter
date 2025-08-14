@@ -1,6 +1,6 @@
 import { icons } from '@/assets';
 import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
-import { AlertStrings, screenContentWrapperStyle, Strings } from '@/constants';
+import { AlertStrings, Strings } from '@/constants';
 import { useStats } from '@/hooks';
 import { useAuthStore, useProfileStore, useStatsStore } from '@/store';
 import cn from 'clsx';
@@ -38,9 +38,9 @@ const Profile = () => {
   };
 
   return (
-    <SafeAreaView className='screen-wrapper'>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <ScrollView>
-        <View className={cn('content-wrapper gap-y-4 pb-28', screenContentWrapperStyle)}>
+        <View className='content-wrapper mt-4 pb-28'>
           <AccountInfo name={profile?.name ?? ''} username={profile?.name ?? ''} />
 
           <DividerX />
@@ -72,7 +72,7 @@ const Profile = () => {
             {/* Stats Content */}
             <View className='stats-content flex-row'>
               <View className='col-left flex-1 gap-y-6'>
-                <View className='gap-y-2'>
+                <View className='gap-y-1'>
                   <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
                     {stats?.totalTrades ?? 0}
                   </Text>
@@ -81,7 +81,7 @@ const Profile = () => {
                   </Text>
                 </View>
 
-                <View className='gap-y-2'>
+                <View className='gap-y-1'>
                   <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
                     {stats?.avgReleaseTime ?? 0} Minutes
                   </Text>
@@ -92,7 +92,7 @@ const Profile = () => {
               </View>
 
               <View className='col-right flex-1 gap-y-6'>
-                <View className='gap-y-2'>
+                <View className='gap-y-1'>
                   <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
                     {stats?.completionRate ?? 0}%
                   </Text>
@@ -101,7 +101,7 @@ const Profile = () => {
                   </Text>
                 </View>
 
-                <View className='gap-y-2'>
+                <View className='gap-y-1'>
                   <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
                     {stats?.avgPayTime ?? 0} Minutes
                   </Text>

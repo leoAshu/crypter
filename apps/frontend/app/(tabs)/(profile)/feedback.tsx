@@ -1,5 +1,4 @@
 import { AccountInfo, ChipFilter, DividerX, ReviewCard } from '@/components';
-import { screenContentWrapperStyle } from '@/constants';
 import { useReviews } from '@/hooks';
 import { useProfileStore } from '@/store';
 import cn from 'clsx';
@@ -26,8 +25,8 @@ const Feedback = () => {
   }, [reviewType]);
 
   return (
-    <SafeAreaView className='screen-wrapper'>
-      <View className={cn('content-wrapper gap-y-4', screenContentWrapperStyle)}>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
+      <View className='content-wrapper mt-4'>
         <View className='gap-y-4'>
           <AccountInfo name={profile?.name ?? ''} username={profile?.name ?? ''} />
 

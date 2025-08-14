@@ -228,3 +228,9 @@ interface MyAdCardProps {
 interface NavCardProps {
   navRoute: NavRoute;
 }
+
+interface AppHeaderProps {
+  title: string;
+  left?: ReactNode;
+  right?: ReactNode;
+}

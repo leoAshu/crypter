@@ -7,11 +7,11 @@ const HeaderActionIcon = (props: HeaderActionIconProps) => {
 
   return (
     <View className={cn('app-header-icon-wrapper', props.containerStyle)}>
-      <Pressable onPress={props.onPress} hitSlop={10}>
+      <Pressable onPress={props.onPress} hitSlop={20}>
         <Image
           className={iconStyle}
           source={props.icon}
-          tintColor={isDark ? '#FFFFFF' : '#23262F'}
+          tintColor={isDark ? '#FFFFFF' : '#333333'}
           resizeMode='contain'
         />
       </Pressable>

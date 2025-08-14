@@ -1,15 +1,11 @@
 import { images } from '@/assets';
-import { BackIconButton, HeaderActionIcon } from '@/components';
+import { AppBar, HeaderActionIcon } from '@/components';
 import { Strings } from '@/constants';
 import { router, Stack } from 'expo-router';
-import { Platform, useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native';
 
 const ProfileLayout = () => {
   const isDark = useColorScheme() === 'dark';
-  const containerStyle = Platform.select({
-    ios: 'pl-0 ml-[8px]',
-    android: 'pl-0 ml-[8px]',
-  });
 
   return (
     <Stack
@@ -18,38 +14,33 @@ const ProfileLayout = () => {
         contentStyle: {
           backgroundColor: isDark ? '#000000' : '#FFFFFF',
         },
-        headerTransparent: true,
-        headerStyle: {
-          backgroundColor: isDark ? '#000000' : '#FFFFFF',
-        },
-        headerTitleAlign: 'center',
-        headerTitleStyle: {
-          color: isDark ? '#FFFFFF' : '#000000',
-          fontWeight: 'semibold',
-          fontFamily: 'poppins',
-          fontSize: 14,
-        },
+        header: () => null,
       })}
     >
       <Stack.Screen
         name='index'
         options={{
           title: Strings.profile.HEADER_TITLE,
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
-          headerRight: () => (
-            <HeaderActionIcon
-              icon={images.edit}
-              iconStyle='size-4'
-              onPress={() => router.push('/(tabs)/(profile)/edit')}
+          header: () => (
+            <AppBar
+              title={Strings.profile.HEADER_TITLE}
+              right={
+                <HeaderActionIcon
+                  icon={images.edit}
+                  iconStyle='size-4'
+                  onPress={() => router.push('/(tabs)/(profile)/edit')}
+                />
+              }
             />
           ),
         }}
       />
+
       <Stack.Screen
         name='edit'
         options={{
           title: Strings.editProfile.HEADER_TITLE,
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
+          header: () => <AppBar title={Strings.editProfile.HEADER_TITLE} />,
         }}
       />
 
@@ -57,7 +48,7 @@ const ProfileLayout = () => {
         name='stats'
         options={{
           title: Strings.stats.HEADER_TITLE,
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
+          header: () => <AppBar title={Strings.stats.HEADER_TITLE} />,
         }}
       />
 
@@ -65,7 +56,7 @@ const ProfileLayout = () => {
         name='feedback'
         options={{
           title: Strings.feedback.HEADER_TITLE,
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
+          header: () => <AppBar title={Strings.feedback.HEADER_TITLE} />,
         }}
       />
     </Stack>
