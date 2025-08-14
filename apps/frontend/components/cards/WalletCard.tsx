@@ -1,5 +1,4 @@
-import { useAds, useCrypto, useFiat } from '@/hooks';
-import { useAuthStore, useWalletStore } from '@/store';
+import { useAds, useAuth, useCrypto, useFiat, useWallet } from '@/hooks';
 import { currencyFormatter } from '@/utils';
 import { BlurView } from 'expo-blur';
 import { router } from 'expo-router';
@@ -12,10 +11,10 @@ const WalletCard = (props: WalletCardProps) => {
   const isIOS = Platform.OS === 'ios';
   const isDark = useColorScheme() === 'dark';
 
-  const { user } = useAuthStore();
+  const { user } = useAuth();
+  const { balances } = useWallet();
   const { defaultFiat } = useFiat();
   const { cryptoLabels } = useCrypto();
-  const { balances } = useWalletStore();
   const { getActiveAdsCountByUserId } = useAds();
 
   const balance = balances[props.cryptoId]['available'];

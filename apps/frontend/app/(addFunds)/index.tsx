@@ -1,14 +1,13 @@
 import { images } from '@/assets';
 import { CopyIconButton, DividerX, Dropdown, PrimaryButton } from '@/components';
-import { useNetwork } from '@/hooks';
-import { useWalletStore } from '@/store';
+import { useNetwork, useWallet } from '@/hooks';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Image, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Deposit = () => {
-  const { deposit } = useWalletStore();
+  const { deposit } = useWallet();
   const { networkFilterItems, getNetworkById } = useNetwork();
 
   const [network, setNetwork] = useState<FilterItem>(networkFilterItems[0]);

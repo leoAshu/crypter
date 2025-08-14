@@ -1,5 +1,5 @@
+import { successHapticFeedback, warningHapticFeedback } from '@/utils';
 import cn from 'clsx';
-import * as Haptics from 'expo-haptics';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { AccessibilityProps, Animated, Easing, Pressable, Text, View } from 'react-native';
 
@@ -92,17 +92,12 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
 
   const onPress = () => {
     if (disabled) {
+      warningHapticFeedback();
       onDisabledPress?.();
       return;
     }
-    // light haptic feedback
-    try {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    } catch (e) {
-      // ignore on platforms where Haptics isn't available
-    }
-
     onChange?.(!value);
+    successHapticFeedback();
   };
 
   const labelClasses = cn('text-[10px] font-satoshi text-body dark:text-body-dark');

@@ -29,7 +29,8 @@ const MyAdCard = (props: MyAdCardProps) => {
       text2: ToastStrings.Info.INACTIVE_AD,
       position: 'bottom',
       bottomOffset: 112,
-      autoHide: false,
+      autoHide: true,
+      visibilityTime: 2500,
     });
   };
 
@@ -37,6 +38,15 @@ const MyAdCard = (props: MyAdCardProps) => {
     setIsOn(val);
     try {
       await props.toggleAdStatus(props.ad.id, val);
+      Toast.show({
+        type: 'success',
+        text1: ToastStrings.Success.TITLE,
+        text2: val ? ToastStrings.Success.AD_ACTIVE : ToastStrings.Success.AD_INACTIVE,
+        position: 'bottom',
+        bottomOffset: 112,
+        autoHide: true,
+        visibilityTime: 1500,
+      });
     } catch (e) {
       setIsOn(props.ad.isActive);
       console.error('Toggle failed', e);

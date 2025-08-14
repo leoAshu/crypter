@@ -68,5 +68,6 @@ const getMockUserName = (name: string) => {
 };
 
 export * from './api';
+export * from './haptics';
 export * from './validations';
 export { capitalizeWords, currencyFormatter, formatDateTime, formatPhoneNumber, getInitialsFromName, getMockUserName };

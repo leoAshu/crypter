@@ -1,6 +1,7 @@
 import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useAuthStore, useProfileStore } from '@/store';
+import { useProfile } from '@/hooks';
+import { useAuthStore } from '@/store';
 import { formatPhoneNumber, validateName } from '@/utils';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
@@ -8,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Edit = () => {
   const { user } = useAuthStore();
-  const { isLoading, profile, updateProfile } = useProfileStore();
+  const { isLoading, profile, updateProfile } = useProfile();
   const [formData, setFormData] = useState<Partial<Profile>>(profile ?? {});
 
   const updateInfo = (key: string, value: string) => {

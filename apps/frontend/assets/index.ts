@@ -51,6 +51,7 @@ const icons = {
     closeCircle: require('./icons/light/close-circle.png'),
     infoCircle: require('./icons/light/info-circle.png'),
     tickCircle: require('./icons/light/tick-circle.png'),
+    warnCircle: require('./icons/light/warn-circle.png'),
 
     // InputFields
     arrowDown: require('./icons/light/arrow-down.png'),
@@ -113,6 +114,7 @@ const icons = {
     closeCircle: require('./icons/dark/close-circle.png'),
     infoCircle: require('./icons/dark/info-circle.png'),
     tickCircle: require('./icons/dark/tick-circle.png'),
+    warnCircle: require('./icons/dark/warn-circle.png'),
 
     // InputFields
     arrowDown: require('./icons/dark/arrow-down.png'),

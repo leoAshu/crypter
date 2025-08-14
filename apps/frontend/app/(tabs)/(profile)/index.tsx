@@ -1,8 +1,8 @@
 import { icons } from '@/assets';
 import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useStats } from '@/hooks';
-import { useAuthStore, useProfileStore } from '@/store';
+import { useProfile, useStats } from '@/hooks';
+import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -13,8 +13,8 @@ const Profile = () => {
   const isDark = useColorScheme() === 'dark';
 
   const { stats } = useStats();
+  const { profile } = useProfile();
   const { statsTypeFilterItems } = useStats();
-  const { profile } = useProfileStore();
   const { isLoading, signout } = useAuthStore();
 
   const [statsType, setStatsTypeFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
