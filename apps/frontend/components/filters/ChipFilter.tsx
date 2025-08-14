@@ -1,6 +1,6 @@
 import { allFilterItem } from '@/constants';
+import { lightHapticFeedback } from '@/utils';
 import cn from 'clsx';
-import * as Haptics from 'expo-haptics';
 import { FlatList, Pressable, Text, useColorScheme, View } from 'react-native';
 import { DividerX } from '../dividers';
 
@@ -19,7 +19,7 @@ const ChipFilter = (props: ChipFilterProps) => {
   })();
 
   const onPress = (option: FilterItem) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    lightHapticFeedback();
     props.onChange?.(option);
   };
 

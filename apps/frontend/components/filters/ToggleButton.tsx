@@ -1,10 +1,10 @@
+import { rigidHapticFeedback } from '@/utils';
 import cn from 'clsx';
-import * as Haptics from 'expo-haptics';
 import { Pressable, Text, View } from 'react-native';
 
 const ToggleButton = (props: ToggleButtonProps) => {
   const onPress = (item: FilterItem) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
+    rigidHapticFeedback();
     props.onChange?.(item);
   };
 
