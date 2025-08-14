@@ -11,6 +11,7 @@ const PostAdvertInfo = () => {
   const { adTypeFilterItems } = useAds();
   const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
   const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
+
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [priceType, setpriceType] = useState<FilterItem>(priceTypeFilterItems[0]);
   const [selectedCrypto, setSelectedCrypto] = useState<FilterItem>();

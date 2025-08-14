@@ -2,7 +2,7 @@ import { icons } from '@/assets';
 import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
 import { useStats } from '@/hooks';
-import { useAuthStore, useProfileStore, useStatsStore } from '@/store';
+import { useAuthStore, useProfileStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Profile = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { stats } = useStatsStore();
+  const { stats } = useStats();
   const { statsTypeFilterItems } = useStats();
   const { profile } = useProfileStore();
   const { isLoading, signout } = useAuthStore();

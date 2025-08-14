@@ -24,7 +24,7 @@ const SignIn = () => {
   const isIOS = Platform.OS === 'ios';
 
   const { fetchAllTickers } = useMarket();
-  const { signin, isLoading, user } = useAuthStore();
+  const { signin, isLoading } = useAuthStore();
 
   const [formData, setFormData] = useState({ email: '', password: '' });
 

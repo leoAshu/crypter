@@ -1,15 +1,13 @@
 import { DividerX, ToggleButton, VerticalGradient } from '@/components';
 import { Strings } from '@/constants';
 import { useCrypto, useStats } from '@/hooks';
-import { useStatsStore } from '@/store';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Stats = () => {
-  const { stats } = useStatsStore();
   const { cryptos } = useCrypto();
-  const { statsTypeFilterItems } = useStats();
+  const { stats, statsTypeFilterItems } = useStats();
 
   const [statsType, setStatsTypeFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
 

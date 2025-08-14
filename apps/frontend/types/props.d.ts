@@ -234,3 +234,12 @@ interface AppHeaderProps {
   right?: ReactNode;
   onBackPress?: () => void;
 }
+
+interface TickerCardProps {
+  index?: number;
+  cryptoId: string;
+  cryptoName: string;
+  cryptoSymbol: string;
+  tickerData: Ticker;
+  fiatSymbol: string;
+}
