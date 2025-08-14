@@ -9,7 +9,9 @@ const AppBar = (props: AppHeaderProps) => {
   return (
     <SafeAreaView edges={['top']}>
       <View className='flex-row p-4'>
-        <View className='w-8 items-center justify-center'>{canGoBack && <BackIconButton />}</View>
+        <View className='w-8 items-center justify-center'>
+          {canGoBack && <BackIconButton onPress={props.onBackPress} />}
+        </View>
 
         <View className='flex-1 items-center justify-center'>
           <Text className='font-clashDisplay-medium text-title dark:text-title-dark'>{props.title}</Text>

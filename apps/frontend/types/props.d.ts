@@ -231,6 +231,6 @@ interface NavCardProps {
 
 interface AppHeaderProps {
   title: string;
-  left?: ReactNode;
   right?: ReactNode;
+  onBackPress?: () => void;
 }

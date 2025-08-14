@@ -23,6 +23,7 @@ const AdvertLayout = () => {
           header: () => (
             <AppBar
               title={Strings.myAds.HEADER_TITLE}
+              onBackPress={() => router.canDismiss() && router.dismiss()}
               right={
                 <HeaderActionIcon
                   icon={isDark ? icons.dark.addSquare : icons.light.addSquare}

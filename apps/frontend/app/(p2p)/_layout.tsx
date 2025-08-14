@@ -2,7 +2,7 @@ import { icons } from '@/assets';
 import { AppBar, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Tabs } from 'expo-router';
+import { router, Tabs } from 'expo-router';
 import { Platform, useColorScheme, View } from 'react-native';
 
 const P2PLayout = () => {
@@ -36,7 +36,9 @@ const P2PLayout = () => {
         <Tabs.Screen
           name='index'
           options={{
-            header: () => <AppBar title={Strings.p2p.HEADER_TITLE} />,
+            header: () => (
+              <AppBar title={Strings.p2p.HEADER_TITLE} onBackPress={() => router.canDismiss() && router.dismiss()} />
+            ),
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
@@ -58,7 +60,9 @@ const P2PLayout = () => {
         <Tabs.Screen
           name='orders'
           options={{
-            header: () => <AppBar title={Strings.orders.HEADER_TITLE} />,
+            header: () => (
+              <AppBar title={Strings.orders.HEADER_TITLE} onBackPress={() => router.canDismiss() && router.dismiss()} />
+            ),
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
