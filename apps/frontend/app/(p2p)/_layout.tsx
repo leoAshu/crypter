@@ -1,5 +1,5 @@
 import { icons } from '@/assets';
-import { BackIconButton, TabBarIcon } from '@/components';
+import { AppBar, TabBarIcon } from '@/components';
 import { Strings } from '@/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Tabs } from 'expo-router';
@@ -14,15 +14,11 @@ const P2PLayout = () => {
       <Tabs
         screenOptions={() => ({
           animation: 'shift',
-          headerTransparent: true,
-          headerTitleAlign: 'center',
-          tabBarShowLabel: false,
-          headerTitleStyle: {
-            color: isDark ? '#FFFFFF' : '#23262F',
-            fontWeight: 'semibold',
-            fontFamily: 'poppins',
-            fontSize: 14,
+          header: () => null,
+          sceneStyle: {
+            backgroundColor: isDark ? '#000000' : '#FFFFFF',
           },
+          tabBarShowLabel: false,
           tabBarStyle: {
             backgroundColor: isDark ? '#000000' : '#FFFFFF',
             borderTopWidth: 0,
@@ -35,15 +31,12 @@ const P2PLayout = () => {
             shadowOpacity: 0.12,
             shadowRadius: 16,
           },
-          sceneStyle: {
-            backgroundColor: isDark ? '#000000' : '#FFFFFF',
-          },
         })}
       >
         <Tabs.Screen
           name='index'
           options={{
-            title: Strings.p2p.HEADER_TITLE,
+            header: () => <AppBar title={Strings.p2p.HEADER_TITLE} />,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
@@ -59,14 +52,13 @@ const P2PLayout = () => {
                 }
               />
             ),
-            headerLeft: () => <BackIconButton />,
           }}
         />
 
         <Tabs.Screen
           name='orders'
           options={{
-            title: Strings.orders.HEADER_TITLE,
+            header: () => <AppBar title={Strings.orders.HEADER_TITLE} />,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
@@ -82,7 +74,6 @@ const P2PLayout = () => {
                 }
               />
             ),
-            headerLeft: () => <BackIconButton />,
           }}
         />
 
@@ -90,7 +81,6 @@ const P2PLayout = () => {
           name='(advert)'
           options={{
             headerShown: false,
-            title: Strings.myAds.HEADER_TITLE,
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}

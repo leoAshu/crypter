@@ -1,9 +1,8 @@
 import { Dropdown, PrimaryButton, StepperInput, ToggleButton } from '@/components';
-import { screenContentWrapperStyle, Strings } from '@/constants';
+import { Strings } from '@/constants';
 import { useAds, useCrypto, usePriceTypes } from '@/hooks';
 import { priceIndex } from '@/models';
 import { capitalizeWords } from '@/utils';
-import cn from 'clsx';
 import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -51,8 +50,8 @@ const PostAdvertInfo = () => {
   };
 
   return (
-    <SafeAreaView className='screen-wrapper'>
-      <View className={cn('content-wrapper', screenContentWrapperStyle)}>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
+      <View className='content-wrapper'>
         <View className='flex-row justify-center'>
           <ToggleButton
             value={adType}

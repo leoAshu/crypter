@@ -1,5 +1,4 @@
 import { ChipFilter, DividerX, OrderCard, ToggleButton } from '@/components';
-import { screenContentWrapperStyle } from '@/constants';
 import { useOrders } from '@/hooks';
 import { CompletedOrderType, OrderType, PendingOrderType } from '@/models';
 import cn from 'clsx';
@@ -33,8 +32,8 @@ const Orders = () => {
   });
 
   return (
-    <SafeAreaView className='screen-wrapper'>
-      <View className={cn('content-wrapper', screenContentWrapperStyle)}>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
+      <View className='content-wrapper'>
         <View className='flex gap-y-3'>
           <View className='flex-row justify-center'>
             <ToggleButton

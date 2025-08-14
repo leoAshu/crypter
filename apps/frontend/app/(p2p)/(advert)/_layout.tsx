@@ -1,15 +1,11 @@
-import { images } from '@/assets';
-import { BackIconButton, HeaderActionIcon } from '@/components';
+import { icons } from '@/assets';
+import { AppBar, HeaderActionIcon } from '@/components';
 import { Strings } from '@/constants';
 import { router, Stack } from 'expo-router';
-import { Platform, useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native';
 
 const AdvertLayout = () => {
   const isDark = useColorScheme() === 'dark';
-  const containerStyle = Platform.select({
-    ios: 'pl-0 ml-[8px]',
-    android: 'pl-0 ml-[8px]',
-  });
 
   return (
     <Stack
@@ -18,29 +14,22 @@ const AdvertLayout = () => {
         contentStyle: {
           backgroundColor: isDark ? '#000000' : '#FFFFFF',
         },
-        headerTransparent: true,
-        headerStyle: {
-          backgroundColor: isDark ? '#000000' : '#FFFFFF',
-        },
-        headerTitleAlign: 'center',
-        headerTitleStyle: {
-          color: isDark ? '#FFFFFF' : '#000000',
-          fontWeight: 'semibold',
-          fontFamily: 'poppins',
-          fontSize: 14,
-        },
+        header: () => null,
       }}
     >
       <Stack.Screen
         name='index'
         options={{
-          title: Strings.myAds.HEADER_TITLE,
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
-          headerRight: () => (
-            <HeaderActionIcon
-              icon={images.plus}
-              iconStyle='size-5'
-              onPress={() => router.push('/(p2p)/(advert)/(post)')}
+          header: () => (
+            <AppBar
+              title={Strings.myAds.HEADER_TITLE}
+              right={
+                <HeaderActionIcon
+                  icon={isDark ? icons.dark.addSquare : icons.light.addSquare}
+                  iconStyle='size-6'
+                  onPress={() => router.push('/(p2p)/(advert)/(post)')}
+                />
+              }
             />
           ),
         }}
@@ -50,7 +39,6 @@ const AdvertLayout = () => {
         options={{
           headerShown: false,
           title: Strings.postAd.HEADER_TITLE,
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
         }}
       />
     </Stack>
