@@ -3,6 +3,7 @@ import { Image, Platform, Text, View } from 'react-native';
 
 const TabBarIcon = (props: TabBarIconProps) => {
   const isIOS = Platform.OS === 'ios';
+
   return (
     <View className={cn('tab-icon-wrapper', isIOS ? 'mt-12' : 'mt-10')}>
       <Image source={props.icon} className={cn('tab-icon', props.iconStyle)} resizeMode='contain' />

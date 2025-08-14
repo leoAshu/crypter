@@ -21,7 +21,7 @@ const MyAds = (props: MyAdsProps) => {
       <Text className={cn('header-txt', isDark ? 'text-base-white' : 'text-base-dark')}>
         {Strings.postAd.EMPTY_STATE}
       </Text>
-      <PrimaryButton title='Post Advert' onPress={() => router.push('/(p2p)/(advert)/post')} />
+      <PrimaryButton title='Post Advert' onPress={() => router.push('/(p2p)/(advert)/(post)')} />
     </View>
   );
 

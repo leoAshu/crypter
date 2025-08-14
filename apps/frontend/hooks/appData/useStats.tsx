@@ -1,6 +1,8 @@
 import { StatsType } from '@/models';
+import { useStatsStore } from '@/store';
 
 const useStats = () => {
+  const { stats } = useStatsStore();
   const statsTypes = Object.values(StatsType);
 
   const statsTypeFilterItems = [
@@ -15,6 +17,7 @@ const useStats = () => {
   ];
 
   return {
+    stats,
     statsTypes,
     statsTypeFilterItems,
   };

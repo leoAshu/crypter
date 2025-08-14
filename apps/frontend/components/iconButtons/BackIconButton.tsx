@@ -1,21 +1,14 @@
 import { icons } from '@/assets';
-import cn from 'clsx';
 import { router } from 'expo-router';
-import { Image, Platform, Pressable, useColorScheme, View } from 'react-native';
+import { Image, Pressable, useColorScheme, View } from 'react-native';
 
 const BackIconButton = (props: BackIconButtonProps) => {
   const isDark = useColorScheme() === 'dark';
-  const containerStyle =
-    props.containerStyle ??
-    Platform.select({
-      ios: 'pl-4',
-      android: 'pl-4',
-    });
 
   return (
-    <View className={cn(containerStyle)}>
+    <View className={props.containerStyle}>
       <Pressable
-        hitSlop={15}
+        hitSlop={20}
         onPress={() => {
           if (props.onPress) return props.onPress();
 

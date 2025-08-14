@@ -228,3 +228,18 @@ interface MyAdCardProps {
 interface NavCardProps {
   navRoute: NavRoute;
 }
+
+interface AppHeaderProps {
+  title: string;
+  right?: ReactNode;
+  onBackPress?: () => void;
+}
+
+interface TickerCardProps {
+  index?: number;
+  cryptoId: string;
+  cryptoName: string;
+  cryptoSymbol: string;
+  tickerData: Ticker;
+  fiatSymbol: string;
+}

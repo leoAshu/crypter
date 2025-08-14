@@ -1,9 +1,8 @@
 import { Dropdown, PrimaryButton, StepperInput, ToggleButton } from '@/components';
-import { screenContentWrapperStyle, Strings } from '@/constants';
+import { Strings } from '@/constants';
 import { useAds, useCrypto, usePriceTypes } from '@/hooks';
 import { priceIndex } from '@/models';
 import { capitalizeWords } from '@/utils';
-import cn from 'clsx';
 import { router } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
@@ -13,6 +12,7 @@ const PostAdvert = () => {
   const { adTypeFilterItems } = useAds();
   const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
   const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
+
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [priceType, setpriceType] = useState<FilterItem>(priceTypeFilterItems[0]);
   const [selectedCrypto, setSelectedCrypto] = useState<FilterItem>();
@@ -53,8 +53,8 @@ const PostAdvert = () => {
   };
 
   return (
-    <SafeAreaView className='screen-wrapper'>
-      <View className={cn('content-wrapper', screenContentWrapperStyle)}>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
+      <View className='content-wrapper'>
         <View className='flex-row justify-center'>
           <ToggleButton
             value={adType}

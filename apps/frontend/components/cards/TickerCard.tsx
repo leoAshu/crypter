@@ -4,15 +4,6 @@ import cn from 'clsx';
 import React from 'react';
 import { Image, ImageSourcePropType, Text, useColorScheme, View } from 'react-native';
 
-interface TickerCardProps {
-  index?: number;
-  cryptoId: string;
-  cryptoName: string;
-  cryptoSymbol: string;
-  tickerData: Ticker;
-  fiatSymbol: string;
-}
-
 const TickerCard = (props: TickerCardProps) => {
   const isDark = useColorScheme() === 'dark';
 

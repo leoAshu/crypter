@@ -1,8 +1,6 @@
 import { ChipFilter, MyAds, ToggleButton } from '@/components';
-import { screenContentWrapperStyle } from '@/constants';
 import { useAds, useCrypto } from '@/hooks';
 import { AdType } from '@/models';
-import cn from 'clsx';
 import { useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -30,8 +28,8 @@ const MyAdvert = () => {
   };
 
   return (
-    <SafeAreaView className='screen-wrapper'>
-      <View className={cn('content-wrapper', screenContentWrapperStyle)}>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
+      <View className='content-wrapper'>
         <View className='flex gap-y-3'>
           <View className='flex-row justify-center'>
             <ToggleButton

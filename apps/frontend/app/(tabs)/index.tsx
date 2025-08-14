@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
-        <View className='content-wrapper mt-6 gap-y-6'>
+        <View className='content-wrapper mt-4'>
           <InitialsAvatar name={profile?.name ?? ''} size='sm' />
 
           <View className='flex'>

@@ -7,9 +7,9 @@ import { DividerX } from '../dividers';
 const Market = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { tickers, beginPolling, stopPolling } = useMarket();
   const { cryptos } = useCrypto();
   const { defaultFiat } = useFiat();
+  const { tickers, beginPolling, stopPolling } = useMarket();
 
   useEffect(() => {
     beginPolling(15000);

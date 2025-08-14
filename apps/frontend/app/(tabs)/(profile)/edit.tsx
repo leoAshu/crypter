@@ -1,8 +1,7 @@
 import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
-import { AlertStrings, screenContentWrapperStyle, Strings } from '@/constants';
+import { AlertStrings, Strings } from '@/constants';
 import { useAuthStore, useProfileStore } from '@/store';
 import { formatPhoneNumber, validateName } from '@/utils';
-import cn from 'clsx';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -35,10 +34,10 @@ const Edit = () => {
   };
 
   return (
-    <SafeAreaView className='screen-wrapper'>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView keyboardShouldPersistTaps='handled'>
-          <View className={cn('content-wrapper mt-20', screenContentWrapperStyle)}>
+          <View className='content-wrapper mt-4'>
             <View className='items-center'>
               <InitialsAvatar name={profile?.name ?? ''} size='lg' />
             </View>

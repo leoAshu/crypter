@@ -1,9 +1,7 @@
 import { images } from '@/assets';
 import { CopyIconButton, DividerX, Dropdown, PrimaryButton } from '@/components';
-import { screenContentWrapperStyle } from '@/constants';
 import { useNetwork } from '@/hooks';
 import { useWalletStore } from '@/store';
-import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Image, ScrollView, Text, View } from 'react-native';
@@ -21,9 +19,9 @@ const Deposit = () => {
   };
 
   return (
-    <SafeAreaView className='screen-wrapper'>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View className={cn('content-wrapper mb-32', screenContentWrapperStyle)}>
+        <View className='content-wrapper mb-32 mt-2'>
           <View className='deposit-form'>
             <View className='qr-wrapper'>
               <Image source={images.qr} className='size-48 rounded-lg' resizeMode='contain' />
@@ -83,7 +81,7 @@ const Deposit = () => {
         </View>
       </ScrollView>
 
-      <View className='absolute-bottom-cta'>
+      <View className='absolute bottom-48 left-0 right-0 px-4'>
         <PrimaryButton title='Save Picture' onPress={savePicture} />
       </View>
     </SafeAreaView>

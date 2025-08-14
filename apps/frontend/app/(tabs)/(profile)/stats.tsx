@@ -1,23 +1,20 @@
 import { DividerX, ToggleButton, VerticalGradient } from '@/components';
-import { screenContentWrapperStyle, Strings } from '@/constants';
+import { Strings } from '@/constants';
 import { useCrypto, useStats } from '@/hooks';
-import { useStatsStore } from '@/store';
-import cn from 'clsx';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Stats = () => {
-  const { stats } = useStatsStore();
   const { cryptos } = useCrypto();
-  const { statsTypeFilterItems } = useStats();
+  const { stats, statsTypeFilterItems } = useStats();
 
   const [statsType, setStatsTypeFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
 
   return (
-    <SafeAreaView className='screen-wrapper'>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <ScrollView>
-        <View className={cn('content-wrapper gap-y-4', screenContentWrapperStyle)}>
+        <View className='content-wrapper mt-4'>
           <ToggleButton
             value={statsType}
             items={[statsTypeFilterItems[0], statsTypeFilterItems[1]]}
