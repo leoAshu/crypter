@@ -1,4 +1,5 @@
 export { default as useAds } from './useAds';
+export { default as useAuth } from './useAuth';
 export { default as useCrypto } from './useCrypto';
 export { default as useFiat } from './useFiat';
 export { default as useMarket } from './useMarket';

@@ -1,8 +1,7 @@
 import { images } from '@/assets';
 import { InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useMarket } from '@/hooks';
-import useAuthStore from '@/store/auth.store';
+import { useAuth, useMarket } from '@/hooks';
 import { formatPhoneNumber, validateConfirmPassword, validateName, validatePassword, validatePhone } from '@/utils';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
@@ -11,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SignUpInfo = () => {
   const { fetchAllTickers } = useMarket();
-  const { signup, isLoading } = useAuthStore();
+  const { signup, isLoading } = useAuth();
   const { email } = useLocalSearchParams<{ email: string }>();
 
   const [formData, setFormData] = useState({ name: '', email: email, password: '', confirmPassword: '', phone: '' });

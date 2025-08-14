@@ -1,5 +1,4 @@
-import { useMarket } from '@/hooks';
-import { useAuthStore } from '@/store';
+import { useAuth, useMarket } from '@/hooks';
 import { disableFontScaling } from '@/utils/fontScale';
 import { Redirect } from 'expo-router';
 import { useEffect } from 'react';
@@ -9,7 +8,7 @@ disableFontScaling();
 
 const Index = () => {
   const { isLoading: isTickerLoading, fetchAllTickers } = useMarket();
-  const { isLoading, isAuthenticated, fetchAuthenticatedUser } = useAuthStore();
+  const { isLoading, isAuthenticated, fetchAuthenticatedUser } = useAuth();
 
   useEffect(() => {
     fetchAuthenticatedUser();
@@ -25,7 +24,7 @@ const Index = () => {
 
   return (
     <View className='flex-1 items-center justify-center bg-card dark:bg-card-dark'>
-      <Text className='text-3xl dark:text-white'>Welcome</Text>
+      <Text className='text-3xl text-title dark:text-title-dark'>Welcome</Text>
     </View>
   );
 };

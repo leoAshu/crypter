@@ -1,8 +1,7 @@
 import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useMarket } from '@/hooks';
-import useAuthStore from '@/store/auth.store';
+import { useAuth, useMarket } from '@/hooks';
 import { validateEmail, validatePassword } from '@/utils';
 import cn from 'clsx';
 import { router } from 'expo-router';
@@ -24,7 +23,7 @@ const SignIn = () => {
   const isIOS = Platform.OS === 'ios';
 
   const { fetchAllTickers } = useMarket();
-  const { signin, isLoading } = useAuthStore();
+  const { signin, isLoading } = useAuth();
 
   const [formData, setFormData] = useState({ email: '', password: '' });
 
