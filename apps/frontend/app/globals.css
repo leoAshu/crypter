@@ -473,7 +473,7 @@
   }
 
   .deposit-form {
-    @apply items-center gap-y-6;
+    @apply items-center gap-y-4;
   }
 
   .qr-wrapper {
@@ -481,7 +481,7 @@
   }
 
   .deposit-form-content {
-    @apply gap-y-6;
+    @apply gap-y-3;
   }
 
   .deposit-form-label {
@@ -505,7 +505,7 @@
   }
 
   .deposit-form-footer {
-    @apply mt-6 gap-y-4;
+    @apply mt-4 gap-y-4;
   }
 
   .deposit-form-footer-title {

@@ -1,4 +1,4 @@
-import { BackIconButton } from '@/components';
+import { AppBar } from '@/components';
 import { Stack } from 'expo-router';
 import { Platform, useColorScheme } from 'react-native';
 
@@ -15,21 +15,13 @@ const AddFundsLayout = () => {
         contentStyle: {
           backgroundColor: isDark ? '#000000' : '#FFFFFF',
         },
-        headerTransparent: true,
-        headerTitleAlign: 'center',
-        headerTitleStyle: {
-          color: isDark ? '#FFFFFF' : '#23262F',
-          fontWeight: 'semibold',
-          fontFamily: 'poppins',
-          fontSize: 14,
-        },
+        header: () => null,
       })}
     >
       <Stack.Screen
         name='index'
         options={{
-          headerTitle: 'Deposit Asset',
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
+          header: () => <AppBar title='Deposit Asset' />,
         }}
       />
     </Stack>
