@@ -1,4 +1,4 @@
-import { InitialsAvatar, Market, QuickNav, WalletCard } from '@/components';
+import { InitialsAvatar, QuickNav, WalletCard } from '@/components';
 import { useCrypto } from '@/hooks';
 import { useProfileStore } from '@/store';
 import { useState } from 'react';
@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
-        <View className='content-wrapper mt-6 gap-y-6'>
+        <View className='content-wrapper mt-8'>
           <InitialsAvatar name={profile?.name ?? ''} size='sm' />
 
           <View className='flex'>
@@ -26,7 +26,7 @@ const Home = () => {
 
           <QuickNav />
 
-          <Market />
+          {/* <Market /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

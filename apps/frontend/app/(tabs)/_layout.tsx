@@ -15,16 +15,11 @@ const TabLayout = () => {
       <Tabs
         screenOptions={() => ({
           animation: 'shift',
-          headerTransparent: true,
-          headerShown: false,
-          headerTitleAlign: 'center',
-          tabBarShowLabel: false,
-          headerTitleStyle: {
-            color: isDark ? '#FFFFFF' : '#000000',
-            fontWeight: 'semibold',
-            fontFamily: 'poppins',
-            fontSize: 14,
+          header: () => null,
+          sceneStyle: {
+            backgroundColor: isDark ? '#000000' : '#FFFFFF',
           },
+          tabBarShowLabel: false,
           tabBarStyle: {
             backgroundColor: isDark ? '#000000' : '#FFFFFF',
             borderTopWidth: 0,
@@ -36,9 +31,6 @@ const TabLayout = () => {
             shadowOffset: { width: 0, height: -4 },
             shadowOpacity: 0.12,
             shadowRadius: 16,
-          },
-          sceneStyle: {
-            backgroundColor: isDark ? '#000000' : '#FFFFFF',
           },
         })}
       >

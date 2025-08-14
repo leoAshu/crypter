@@ -18,7 +18,7 @@ const RootLayout = () => {
           contentStyle: {
             backgroundColor: isDark ? '#000000' : '#FFFFFF',
           },
-          headerShown: false,
+          header: () => null,
         }}
       />
       <Toast config={toastConfig} />
