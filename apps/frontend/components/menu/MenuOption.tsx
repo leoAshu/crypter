@@ -1,3 +1,4 @@
+import { icons } from '@/assets';
 import { router } from 'expo-router';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import { DividerX } from '../dividers';
@@ -13,7 +14,15 @@ const MenuOption = (props: MenuOptionProps) => {
             {props.leftIcon && <Image source={props.leftIcon} className='size-6' resizeMode='contain' />}
             <Text className='font-clashDisplay text-sm text-base-dark dark:text-base-white'>{props.title}</Text>
           </View>
-          {props.rightIcon && <Image source={props.rightIcon} className='size-6' resizeMode='contain' />}
+          {props.rightIcon ? (
+            <Image source={props.rightIcon} className='size-6' resizeMode='contain' />
+          ) : (
+            <Image
+              source={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
+              className='size-6'
+              resizeMode='contain'
+            />
+          )}
         </View>
       </TouchableOpacity>
       <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />

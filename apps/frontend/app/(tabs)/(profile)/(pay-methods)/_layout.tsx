@@ -1,5 +1,6 @@
-import { AppBar } from '@/components';
-import { Stack } from 'expo-router';
+import { icons } from '@/assets';
+import { AppBar, HeaderActionIcon } from '@/components';
+import { router, Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
 
 const PayMethodsLayout = () => {
@@ -18,7 +19,24 @@ const PayMethodsLayout = () => {
       <Stack.Screen
         name='index'
         options={{
-          header: () => <AppBar title='Pay Methods' />,
+          header: () => (
+            <AppBar
+              title='Pay Methods'
+              right={
+                <HeaderActionIcon
+                  icon={isDark ? icons.dark.addSquare : icons.light.addSquare}
+                  onPress={() => router.push('/add-method')}
+                />
+              }
+            />
+          ),
+        }}
+      />
+
+      <Stack.Screen
+        name='add-method'
+        options={{
+          header: () => <AppBar title='New Pay Method' />,
         }}
       />
     </Stack>

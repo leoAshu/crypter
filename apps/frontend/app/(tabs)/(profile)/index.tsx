@@ -131,33 +131,28 @@ const Profile = () => {
             <MenuOption
               title={Strings.profile.MENU_FEEDBACK_TITLE}
               leftIcon={isDark ? icons.dark.likeTag : icons.light.likeTag}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
               route='/feedback'
             />
 
             {/* <MenuOption
               title={Strings.profile.MENU_NOTIF_TITLE}
               leftIcon={isDark ? icons.dark.notification : icons.light.notification}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             /> */}
 
             {/* <MenuOption
               title={Strings.profile.MENU_MERCHANT_TITLE}
               leftIcon={isDark ? icons.dark.verify : icons.light.verify}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             /> */}
 
             <MenuOption
               title={Strings.profile.MENU_PAY_METHODS_TITLE}
               leftIcon={isDark ? icons.dark.money : icons.light.money}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
               route='/(pay-methods)'
             />
 
             {/* <MenuOption
               title={Strings.profile.MENU_HELP_TITLE}
               leftIcon={isDark ? icons.dark.messageQuestion : icons.light.messageQuestion}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             /> */}
           </View>
 
