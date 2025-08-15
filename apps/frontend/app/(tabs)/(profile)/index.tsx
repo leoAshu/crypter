@@ -73,7 +73,7 @@ const Profile = () => {
             <View className='stats-content flex-row'>
               <View className='col-left flex-1 gap-y-6'>
                 <View className='gap-y-1'>
-                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                     {stats?.totalTrades ?? 0}
                   </Text>
                   <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
@@ -82,7 +82,7 @@ const Profile = () => {
                 </View>
 
                 <View className='gap-y-1'>
-                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                     {stats?.avgReleaseTime ?? 0} Minutes
                   </Text>
                   <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
@@ -93,7 +93,7 @@ const Profile = () => {
 
               <View className='col-right flex-1 gap-y-6'>
                 <View className='gap-y-1'>
-                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                     {stats?.completionRate ?? 0}%
                   </Text>
                   <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
@@ -102,7 +102,7 @@ const Profile = () => {
                 </View>
 
                 <View className='gap-y-1'>
-                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                     {stats?.avgPayTime ?? 0} Minutes
                   </Text>
                   <Text className='font-satoshi text-xs text-body dark:text-body-dark'>

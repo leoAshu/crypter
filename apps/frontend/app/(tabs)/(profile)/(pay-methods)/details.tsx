@@ -41,7 +41,8 @@ const Details = () => {
 
     try {
       await addNewPayMethod(detail);
-      router.navigate('/(tabs)/(profile)/(pay-methods)');
+      router.back();
+      router.back();
     } catch (error: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, 'Pay Method already exists');
     }
