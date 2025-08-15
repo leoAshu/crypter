@@ -127,7 +127,7 @@ interface HeaderActionIconProps {
 }
 
 interface PayMethodBadgeProps {
-  payMethodId: string;
+  payMethodTypeId: string;
 }
 
 interface AdCardProps {
@@ -242,4 +242,9 @@ interface TickerCardProps {
   cryptoSymbol: string;
   tickerData: Ticker;
   fiatSymbol: string;
+}
+
+interface PayMethodCardProps {
+  index?: number;
+  payMethod: PayMethod;
 }

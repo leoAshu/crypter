@@ -127,7 +127,7 @@ const Profile = () => {
 
           <DividerX />
 
-          <View className='menu'>
+          <View className='menu gap-y-3'>
             <MenuOption
               title={Strings.profile.MENU_FEEDBACK_TITLE}
               leftIcon={isDark ? icons.dark.likeTag : icons.light.likeTag}
@@ -147,11 +147,12 @@ const Profile = () => {
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             /> */}
 
-            {/* <MenuOption
+            <MenuOption
               title={Strings.profile.MENU_PAY_METHODS_TITLE}
               leftIcon={isDark ? icons.dark.money : icons.light.money}
               rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
-            /> */}
+              route='/(pay-methods)'
+            />
 
             {/* <MenuOption
               title={Strings.profile.MENU_HELP_TITLE}

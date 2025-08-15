@@ -6,7 +6,7 @@ import cn from 'clsx';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { InitialsAvatar } from '../avatars';
-import { PayMethodBadge } from '../badges';
+import { PayMethodTypeBadge } from '../badges';
 import { DividerX } from '../dividers';
 import { adCardAnimConfig } from './animations';
 
@@ -111,14 +111,14 @@ const AdCard = (props: AdCardProps) => {
       </View>
 
       {/* Card Footer */}
-      {props.ad.payMethodIds && Boolean(props.ad.payMethodIds.length) && (
+      {props.ad.payMethodTypeIds && Boolean(props.ad.payMethodTypeIds.length) && (
         <View className='ad-card-footer'>
           <View className='my-px flex-row justify-center'>
             <DividerX style='w-2/6' />
           </View>
           <View className='ad-card-pay-methods'>
-            {props.ad.payMethodIds.map((item: string, index: number) => (
-              <PayMethodBadge key={index} payMethodId={item} />
+            {props.ad.payMethodTypeIds.map((item: string, index: number) => (
+              <PayMethodTypeBadge key={index} payMethodTypeId={item} />
             ))}
           </View>
         </View>

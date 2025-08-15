@@ -6,7 +6,7 @@ const adToDbMap: Record<keyof Ad, string> = {
   minLimit: 'min_limit',
   maxLimit: 'max_limit',
   available: 'available',
-  payMethodIds: 'pay_method_ids',
+  payMethodTypeIds: 'pay_method_type_ids',
   releaseTime: 'release_time',
   type: 'type',
   isActive: 'is_active',

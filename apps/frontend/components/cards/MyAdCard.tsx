@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Platform, Text, useColorScheme, View } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import Toast from 'react-native-toast-message';
-import { PayMethodBadge } from '../badges';
+import { PayMethodTypeBadge } from '../badges';
 import { DividerX } from '../dividers';
 import { ToggleSwitch } from '../filters';
 
@@ -133,14 +133,14 @@ const MyAdCard = (props: MyAdCardProps) => {
       </View>
 
       {/* Footer */}
-      {props.ad.payMethodIds && Boolean(props.ad.payMethodIds.length) && (
+      {props.ad.payMethodTypeIds && Boolean(props.ad.payMethodTypeIds.length) && (
         <View className='ad-card-footer'>
           <View className='my-px flex-row justify-center'>
             <DividerX style='w-2/6' />
           </View>
           <View className='ad-card-pay-methods'>
-            {props.ad.payMethodIds.map((item: string, index: number) => (
-              <PayMethodBadge key={index} payMethodId={item} />
+            {props.ad.payMethodTypeIds.map((item: string, index: number) => (
+              <PayMethodTypeBadge key={index} payMethodTypeId={item} />
             ))}
           </View>
         </View>

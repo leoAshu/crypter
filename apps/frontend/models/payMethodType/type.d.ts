@@ -1,4 +1,4 @@
-interface PayMethod {
+interface PayMethodType {
   id: string;
   name: string;
   isActive: boolean;

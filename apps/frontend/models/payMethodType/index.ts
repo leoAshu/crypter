@@ -1,6 +1,6 @@
 import { logos } from '@/assets';
 
-const payMethods: PayMethod[] = [
+const payMethodTypes: PayMethodType[] = [
   { id: 'upi', name: 'UPI', isActive: true, logoUrl: logos.upi },
   { id: 'imps', name: 'IMPS', isActive: true, logoUrl: logos.imps },
   { id: 'phonepe', name: 'PhonePe', isActive: true, logoUrl: logos.phonepe },
@@ -8,8 +8,8 @@ const payMethods: PayMethod[] = [
   { id: 'gpay', name: 'GPay', isActive: true, logoUrl: logos.gPay },
 ];
 
-function getPayMethodById(id: string): PayMethod | undefined {
-  return payMethods.find((pm) => pm.id === id);
+function getPayMethodTypeById(id: string): PayMethodType | undefined {
+  return payMethodTypes.find((pm) => pm.id === id);
 }
 
-export { getPayMethodById, payMethods };
+export { getPayMethodTypeById, payMethodTypes };

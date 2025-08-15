@@ -5,6 +5,7 @@ export { default as useFiat } from './useFiat';
 export { default as useMarket } from './useMarket';
 export { default as useNetwork } from './useNetwork';
 export { default as useOrders } from './useOrders';
+export { default as usePayMethod } from './usePayMethod';
 export { default as usePriceTypes } from './usePriceType';
 export { default as useProfile } from './useProfile';
 export { default as useReviews } from './useReviews';
