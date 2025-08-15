@@ -1,5 +1,4 @@
-import { useProfile } from '@/hooks';
-import { getPayMethodTypeById } from '@/models';
+import { usePayMethodType, useProfile } from '@/hooks';
 import { useState } from 'react';
 import { Image, Text, View } from 'react-native';
 import { ToggleSwitch } from '../filters';
@@ -8,6 +7,7 @@ const PayMethodCard = (props: PayMethodCardProps) => {
   const [isOn, setIsOn] = useState<boolean>(props.payMethod.isActive);
 
   const { profile } = useProfile();
+  const { getPayMethodTypeById } = usePayMethodType();
 
   const payMethodType = getPayMethodTypeById(props.payMethod.payMethodTypeId);
 
