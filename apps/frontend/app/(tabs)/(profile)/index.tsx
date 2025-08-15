@@ -73,7 +73,7 @@ const Profile = () => {
             <View className='stats-content flex-row'>
               <View className='col-left flex-1 gap-y-6'>
                 <View className='gap-y-1'>
-                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                     {stats?.totalTrades ?? 0}
                   </Text>
                   <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
@@ -82,7 +82,7 @@ const Profile = () => {
                 </View>
 
                 <View className='gap-y-1'>
-                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                     {stats?.avgReleaseTime ?? 0} Minutes
                   </Text>
                   <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
@@ -93,7 +93,7 @@ const Profile = () => {
 
               <View className='col-right flex-1 gap-y-6'>
                 <View className='gap-y-1'>
-                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                     {stats?.completionRate ?? 0}%
                   </Text>
                   <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
@@ -102,7 +102,7 @@ const Profile = () => {
                 </View>
 
                 <View className='gap-y-1'>
-                  <Text className='font-clashDisplay text-lg text-base-dark dark:text-base-white'>
+                  <Text className='font-clashDisplay text-base-dark dark:text-base-white'>
                     {stats?.avgPayTime ?? 0} Minutes
                   </Text>
                   <Text className='font-satoshi text-xs text-body dark:text-body-dark'>
@@ -127,36 +127,32 @@ const Profile = () => {
 
           <DividerX />
 
-          <View className='menu'>
+          <View className='menu gap-y-3'>
             <MenuOption
               title={Strings.profile.MENU_FEEDBACK_TITLE}
               leftIcon={isDark ? icons.dark.likeTag : icons.light.likeTag}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
-              route='/feedback'
+              onPress={() => router.push('/feedback')}
             />
 
             {/* <MenuOption
               title={Strings.profile.MENU_NOTIF_TITLE}
               leftIcon={isDark ? icons.dark.notification : icons.light.notification}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             /> */}
 
             {/* <MenuOption
               title={Strings.profile.MENU_MERCHANT_TITLE}
               leftIcon={isDark ? icons.dark.verify : icons.light.verify}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             /> */}
 
-            {/* <MenuOption
+            <MenuOption
               title={Strings.profile.MENU_PAY_METHODS_TITLE}
               leftIcon={isDark ? icons.dark.money : icons.light.money}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
-            /> */}
+              onPress={() => router.push('/(tabs)/(profile)/(pay-methods)')}
+            />
 
             {/* <MenuOption
               title={Strings.profile.MENU_HELP_TITLE}
               leftIcon={isDark ? icons.dark.messageQuestion : icons.light.messageQuestion}
-              rightIcon={isDark ? icons.dark.arrowRight : icons.light.arrowRight}
             /> */}
           </View>
 

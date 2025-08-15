@@ -6,7 +6,7 @@ interface Ad {
   minLimit: number;
   maxLimit: number;
   available: number;
-  payMethodIds: string[];
+  payMethodTypeIds: string[];
   releaseTime: string;
   type: AdType;
   isActive: boolean;

@@ -1,7 +1,7 @@
 import { successHapticFeedback, warningHapticFeedback } from '@/utils';
 import cn from 'clsx';
 import React, { useEffect, useMemo, useRef } from 'react';
-import { AccessibilityProps, Animated, Easing, Pressable, Text, View } from 'react-native';
+import { AccessibilityProps, Animated, Easing, Pressable, Text, useColorScheme, View } from 'react-native';
 
 export type ToggleSize = 'sm' | 'md' | 'lg';
 
@@ -49,7 +49,7 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   onChange,
   onDisabledPress,
   size = 'md',
-  activeColor = '#10B981', // emerald-500
+  activeColor = '#54E6B6', // emerald-500
   inactiveColor = '#E5E7EB', // gray-200
   thumbColor = '#FFFFFF',
   disabled = false,
@@ -60,7 +60,10 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   style,
   ...rest
 }) => {
+  const isDark = useColorScheme() === 'dark';
   const config = useMemo(() => SIZE_MAP[size], [size]);
+
+  const themeInactiveColor = isDark ? '#1C1C1C' : '#F1F1F1';
 
   // Animated value: 0 => off, 1 => on
   const anim = useRef(new Animated.Value(value ? 1 : 0)).current;
@@ -87,7 +90,7 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   const backgroundColor = anim.interpolate({
     inputRange: [0, 1],
     // fallback to hex strings
-    outputRange: [inactiveColor, activeColor],
+    outputRange: [themeInactiveColor, activeColor],
   });
 
   const onPress = () => {

@@ -1,4 +1,5 @@
 import { router } from 'expo-router';
+import React from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackIconButton } from '../iconButtons';
@@ -23,4 +24,4 @@ const AppBar = (props: AppHeaderProps) => {
   );
 };
 
-export default AppBar;
+export default React.memo(AppBar);

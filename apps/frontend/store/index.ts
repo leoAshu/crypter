@@ -2,6 +2,8 @@ export { default as useAdStore } from './ad.store';
 export { default as useAuthStore } from './auth.store';
 export { default as useFiatStore } from './fiat.store';
 export { default as useMarketStore } from './market.store';
+export { default as usePayMethodStore } from './payMethod.store';
+export { default as usePayMethodTypeStore } from './payMethodType.store';
 export { default as useProfileStore } from './profile.store';
 export { default as useReviewStore } from './review.store';
 export { default as useStatsStore } from './stats.store';
