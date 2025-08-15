@@ -3,4 +3,6 @@ interface PayMethodType {
   name: string;
   isActive: boolean;
   logoUrl?: ImageSourcePropType;
+  createdAt?: string;
+  updatedAt?: string;
 }

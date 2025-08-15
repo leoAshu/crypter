@@ -18,8 +18,8 @@ const P2PAds = (props: P2PAdsProps) => {
       data={props.p2pAds}
       initialNumToRender={1}
       showsVerticalScrollIndicator={false}
-      keyExtractor={(item, index) => item.id.toString()}
       contentContainerClassName={adsListStyle}
+      keyExtractor={(item, index) => item.id.toString()}
       renderItem={({ item, index }) => <AdCard index={index} ad={item} animationStyle='fadeFloatUp' />}
       ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}
       ListFooterComponent={() => !isEmpty && <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}

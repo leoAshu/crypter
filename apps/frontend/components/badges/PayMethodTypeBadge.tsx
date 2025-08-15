@@ -2,11 +2,11 @@ import { usePayMethodType } from '@/hooks';
 import { Image, View } from 'react-native';
 
 const PayMethodTypeBadge = (props: PayMethodBadgeProps) => {
-  const { getPayMethodTypeById } = usePayMethodType();
+  const { getPayMethodTypeLogoUrlById } = usePayMethodType();
 
   return (
     <View className='pay-method-badge'>
-      <Image source={getPayMethodTypeById(props.payMethodTypeId)?.logoUrl} className='h-4 w-8' resizeMode='contain' />
+      <Image source={getPayMethodTypeLogoUrlById(props.payMethodTypeId)} className='h-4 w-8' resizeMode='contain' />
     </View>
   );
 };

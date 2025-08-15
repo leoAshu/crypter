@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import useAdStore from './ad.store';
 import useCryptotore from './crypto.store';
 import useFiatStore from './fiat.store';
+import usePayMethodTypeStore from './payMethodType.store';
 import useProfileStore from './profile.store';
 import useReviewStore from './review.store';
 import useStatsStore from './stats.store';
@@ -32,9 +33,10 @@ const useAuthStore = create<AuthState>((set) => ({
           createdAt: user.created_at,
         };
 
+        await useAdStore.getState().fetchAds();
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
-        await useAdStore.getState().fetchAds();
+        await usePayMethodTypeStore.getState().fetchPayMethodTypes();
         await useProfileStore.getState().createProfile(profile);
         await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
@@ -58,9 +60,10 @@ const useAuthStore = create<AuthState>((set) => ({
       const user = await getUser();
 
       if (user) {
+        await useAdStore.getState().fetchAds();
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
-        await useAdStore.getState().fetchAds();
+        await usePayMethodTypeStore.getState().fetchPayMethodTypes();
         await useProfileStore.getState().fetchProfile(user.id);
         await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
@@ -98,9 +101,10 @@ const useAuthStore = create<AuthState>((set) => ({
       const user = await getUser();
 
       if (user) {
+        await useAdStore.getState().fetchAds();
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
-        await useAdStore.getState().fetchAds();
+        await usePayMethodTypeStore.getState().fetchPayMethodTypes();
         await useProfileStore.getState().fetchProfile(user.id);
         await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);

@@ -81,9 +81,6 @@ const MyAdCard = (props: MyAdCardProps) => {
           size='sm'
           label={props.ad.isActive ? 'Listed' : 'Unlisted'}
           labelPosition='left'
-          thumbColor='#FFFFFF'
-          activeColor='#54E6B6'
-          inactiveColor={isDark ? '#1C1C1C' : '#F1F1F1'}
           disabled={!props.ad.isActive && props.isAdActive}
           onDisabledPress={disabledPress}
         />
