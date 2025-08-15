@@ -1,4 +1,4 @@
-import { InitialsAvatar, QuickNav, WalletCard } from '@/components';
+import { InitialsAvatar, Market, QuickNav, WalletCard } from '@/components';
 import { useCrypto, useProfile } from '@/hooks';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
@@ -25,7 +25,7 @@ const Home = () => {
 
           <QuickNav />
 
-          {/* <Market /> */}
+          <Market />
         </View>
       </ScrollView>
     </SafeAreaView>
