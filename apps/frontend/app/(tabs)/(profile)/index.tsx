@@ -131,7 +131,7 @@ const Profile = () => {
             <MenuOption
               title={Strings.profile.MENU_FEEDBACK_TITLE}
               leftIcon={isDark ? icons.dark.likeTag : icons.light.likeTag}
-              route='/feedback'
+              onPress={() => router.push('/feedback')}
             />
 
             {/* <MenuOption
@@ -147,7 +147,7 @@ const Profile = () => {
             <MenuOption
               title={Strings.profile.MENU_PAY_METHODS_TITLE}
               leftIcon={isDark ? icons.dark.money : icons.light.money}
-              route='/(pay-methods)'
+              onPress={() => router.push('/(tabs)/(profile)/(pay-methods)')}
             />
 
             {/* <MenuOption

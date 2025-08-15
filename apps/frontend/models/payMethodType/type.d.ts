@@ -3,6 +3,7 @@ interface PayMethodType {
   name: string;
   isActive: boolean;
   logoUrl?: ImageSourcePropType;
+  category: PayMethodCategory;
   createdAt?: string;
   updatedAt?: string;
 }

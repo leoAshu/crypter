@@ -1,51 +1,40 @@
+import { usePayMethodStore } from '@/store';
+import SHA256 from 'crypto-js/sha256';
+
 const usePayMethod = () => {
-  const payMethods: PayMethod[] = [
-    {
-      id: 'pm-001',
-      userId: 'user-123',
-      payMethodTypeId: 'bank',
-      address: 'HDFC00012341234567890',
-      isActive: true,
-    },
-    {
-      id: 'pm-006',
-      userId: 'user-123',
-      payMethodTypeId: 'gpay',
-      address: 'username@okhdfc',
-      isActive: true,
-    },
-    {
-      id: 'pm-002',
-      userId: 'user-123',
-      payMethodTypeId: 'imps',
-      address: '9876543210@imps',
-      isActive: false,
-    },
-    {
-      id: 'pm-003',
-      userId: 'user-123',
-      payMethodTypeId: 'paytm',
-      address: '9876543210@paytm',
-      isActive: false,
-    },
-    {
-      id: 'pm-004',
-      userId: 'user-123',
-      payMethodTypeId: 'phonepe',
-      address: '9876543210@ybl',
-      isActive: true,
-    },
-    {
-      id: 'pm-005',
-      userId: 'user-123',
-      payMethodTypeId: 'upi',
-      address: 'username@upi',
-      isActive: false,
-    },
-  ];
+  const { payMethods, isLoading, addNewPayMethod: addPayMethod } = usePayMethodStore();
+
+  const generatePayMethodId = (detail: Omit<PayMethod, 'id' | 'isActive'>): string => {
+    const rawString = [
+      detail.userId,
+      detail.payMethodTypeId,
+      detail.bankName || '',
+      detail.branchName || '',
+      detail.accountType || '',
+      detail.ifsc || '',
+      detail.accountNo || '',
+      detail.upiId || '',
+      detail.phone || '',
+    ]
+      .join('|')
+      .toLowerCase();
+
+    return SHA256(rawString).toString().slice(0, 16);
+  };
+
+  const addNewPayMethod = async (detail: PayMethod) => {
+    if (payMethods.some((item) => item.id === detail.id)) {
+      console.log('Pay Method already exists.');
+      throw new Error('Pay Method already exists.');
+    }
+    await addPayMethod(detail);
+  };
 
   return {
+    isLoading,
     payMethods,
+    addNewPayMethod,
+    generatePayMethodId,
   };
 };
 

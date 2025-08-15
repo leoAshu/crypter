@@ -1,5 +1,4 @@
 import { icons } from '@/assets';
-import { router } from 'expo-router';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import { DividerX } from '../dividers';
 
@@ -8,7 +7,7 @@ const MenuOption = (props: MenuOptionProps) => {
 
   return (
     <>
-      <TouchableOpacity onPress={() => props.route && router.push(props.route)}>
+      <TouchableOpacity onPress={props.onPress}>
         <View className='flex-row items-center justify-between px-2 py-4'>
           <View className='flex-row items-center gap-x-4'>
             {props.leftIcon && <Image source={props.leftIcon} className='size-6' resizeMode='contain' />}

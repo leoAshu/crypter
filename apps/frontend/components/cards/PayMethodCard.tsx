@@ -27,7 +27,7 @@ const PayMethodCard = (props: PayMethodCardProps) => {
         <View className='gap-y-2'>
           <Text className='font-clashDisplay text-sm text-title dark:text-title-dark'>{profile?.name}</Text>
           <Text className='font-clashDisplay text-xs tracking-wider text-body dark:text-body-dark'>
-            {props.payMethod.address}
+            {props.payMethod.phone || props.payMethod.upiId || props.payMethod.accountNo}
           </Text>
         </View>
 

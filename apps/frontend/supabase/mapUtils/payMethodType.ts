@@ -3,6 +3,7 @@ const crpytoToDbMap: Record<keyof PayMethodType, string> = {
   name: 'name',
   isActive: 'is_active',
   logoUrl: 'logo_url',
+  category: 'category',
   createdAt: 'created_at',
   updatedAt: 'updated_at',
 };

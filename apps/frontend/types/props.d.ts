@@ -86,9 +86,9 @@ interface InitialsAvatarProps {
 /** Props for a menu item with optional right-side icon and route navigation */
 interface MenuOptionProps {
   title: string;
-  route?: LinkProps['href'];
   leftIcon?: ImageSourcePropType;
   rightIcon?: ImageSourcePropType;
+  onPress?: () => void;
 }
 
 // ====================
@@ -247,4 +247,18 @@ interface TickerCardProps {
 interface PayMethodCardProps {
   index?: number;
   payMethod: PayMethod;
+}
+
+interface DetailsFormProps {
+  isLoading: boolean;
+  category: PayMethodCategory;
+  formData?: Partial<PayMethod>;
+  onChange?: (key: string, val: string) => void;
+}
+
+interface ListEmptyStateProps {
+  title?: string;
+  ctaLabel?: string;
+  ctaStyle?: string;
+  ctaOnPresss?: () => void;
 }

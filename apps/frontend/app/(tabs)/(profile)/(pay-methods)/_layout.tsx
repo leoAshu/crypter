@@ -39,6 +39,13 @@ const PayMethodsLayout = () => {
           header: () => <AppBar title='New Pay Method' />,
         }}
       />
+
+      <Stack.Screen
+        name='details'
+        options={{
+          header: () => <AppBar title='Details' />,
+        }}
+      />
     </Stack>
   );
 };

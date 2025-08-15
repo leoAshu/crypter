@@ -1,4 +1,4 @@
-import { DividerX, PayMethodCard, PrimaryButton } from '@/components';
+import { DividerX, ListEmptyState, PayMethodCard } from '@/components';
 import { usePayMethod } from '@/hooks';
 import cn from 'clsx';
 import { router } from 'expo-router';
@@ -12,26 +12,32 @@ const PayMethods = () => {
   const { payMethods } = usePayMethod();
 
   const isEmpty = payMethods.length === 0;
-  const adsListStyle = Platform.select({
-    ios: 'pb-20',
-    android: 'pb-24',
-  });
+  const listStyle = !isEmpty
+    ? Platform.select({
+        ios: 'pb-60',
+        android: 'pb-24',
+      })
+    : 'flex-1 items-center justify-center pb-48';
 
   return (
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <View className='content-wrapper mt-2'>
         <FlatList
-          data={payMethods.slice(0, 3)}
+          data={payMethods}
           keyExtractor={(item) => item.id}
-          contentContainerClassName={adsListStyle}
+          showsVerticalScrollIndicator={false}
+          contentContainerClassName={listStyle}
           renderItem={({ item, index }) => <PayMethodCard index={index} payMethod={item} />}
           ItemSeparatorComponent={() => <DividerX style={cn('mb-1', isDark ? 'opacity-40' : 'opacity-25')} />}
-          ListFooterComponent={() => (
-            <View className='gap-y-6'>
-              {!isEmpty && <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}
-              <PrimaryButton title='New Pay Method' onPress={() => router.push('/add-method')} />
-            </View>
-          )}
+          ListFooterComponent={() => !isEmpty && <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />}
+          ListEmptyComponent={
+            <ListEmptyState
+              title='No Pay Methods Available'
+              ctaLabel='Add'
+              ctaStyle='py-4 px-8 rounded-lg'
+              ctaOnPresss={() => router.push('/add-method')}
+            />
+          }
         />
       </View>
     </SafeAreaView>

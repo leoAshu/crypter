@@ -8,7 +8,7 @@ const P2PAds = (props: P2PAdsProps) => {
   const isDark = useColorScheme() === 'dark';
   const isEmpty = props.p2pAds.length === 0;
 
-  const adsListStyle = Platform.select({
+  const listStyle = Platform.select({
     ios: 'pb-20',
     android: 'pb-24',
   });
@@ -18,7 +18,7 @@ const P2PAds = (props: P2PAdsProps) => {
       data={props.p2pAds}
       initialNumToRender={1}
       showsVerticalScrollIndicator={false}
-      contentContainerClassName={adsListStyle}
+      contentContainerClassName={listStyle}
       keyExtractor={(item, index) => item.id.toString()}
       renderItem={({ item, index }) => <AdCard index={index} ad={item} animationStyle='fadeFloatUp' />}
       ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}

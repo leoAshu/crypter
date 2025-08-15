@@ -76,3 +76,11 @@ interface MarketState {
   startPolling: (interval?: number, cryptoIds: string[], fiatId: string) => void;
   stopPolling: () => void;
 }
+
+interface PayMethodState {
+  payMethods: PayMethod[];
+  isLoading: boolean;
+
+  fetchPayMethods: () => Promise<void>;
+  addNewPayMethod: (detail: PayMethod) => Promise<void>;
+}

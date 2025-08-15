@@ -1,5 +1,6 @@
 import { icons } from '@/assets';
 import cn from 'clsx';
+import React from 'react';
 import { FlatList, ImageSourcePropType } from 'react-native';
 import { NavCard } from '../cards';
 
@@ -33,4 +34,4 @@ const QuickNav = () => {
   );
 };
 
-export default QuickNav;
+export default React.memo(QuickNav);
