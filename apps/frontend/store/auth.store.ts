@@ -37,11 +37,13 @@ const useAuthStore = create<AuthState>((set) => ({
         await useAdStore.getState().fetchAds();
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
-        await usePayMethodStore.getState().fetchPayMethods();
         await usePayMethodTypeStore.getState().fetchPayMethodTypes();
+
         await useProfileStore.getState().createProfile(profile);
+
         await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
+        await usePayMethodStore.getState().fetchPayMethods(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
         set({ isAuthenticated: false, user: null });
@@ -65,11 +67,12 @@ const useAuthStore = create<AuthState>((set) => ({
         await useAdStore.getState().fetchAds();
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
-        await usePayMethodStore.getState().fetchPayMethods();
         await usePayMethodTypeStore.getState().fetchPayMethodTypes();
-        await useProfileStore.getState().fetchProfile(user.id);
+
         await useStatsStore.getState().fetchStats(user.id);
+        await useProfileStore.getState().fetchProfile(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
+        await usePayMethodStore.getState().fetchPayMethods(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
         set({ isAuthenticated: false, user: null });
@@ -107,11 +110,12 @@ const useAuthStore = create<AuthState>((set) => ({
         await useAdStore.getState().fetchAds();
         await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
-        await usePayMethodStore.getState().fetchPayMethods();
         await usePayMethodTypeStore.getState().fetchPayMethodTypes();
-        await useProfileStore.getState().fetchProfile(user.id);
+
         await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
+        await useProfileStore.getState().fetchProfile(user.id);
+        await usePayMethodStore.getState().fetchPayMethods(user.id);
         set({ isAuthenticated: true, user: user });
       } else {
         set({ isAuthenticated: false, user: null });
