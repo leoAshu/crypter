@@ -1,16 +1,20 @@
-import { images } from '@/assets';
+import { logos } from '@/assets';
 import { CopyIconButton, DividerX, Dropdown, PrimaryButton } from '@/components';
 import { useNetwork, useWallet } from '@/hooks';
 import { router } from 'expo-router';
-import { useState } from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
+import { useMemo, useState } from 'react';
+import { ScrollView, Text, useColorScheme, View } from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Deposit = () => {
+  const isDark = useColorScheme() === 'dark';
   const { deposit } = useWallet();
   const { networkFilterItems, getNetworkById } = useNetwork();
 
   const [network, setNetwork] = useState<FilterItem>(networkFilterItems[0]);
+
+  const address = useMemo(() => getNetworkById(network.id)?.address, [network]);
 
   const savePicture = async () => {
     deposit('usdt', Number((Math.random() * (15 - 1) + 1).toFixed(2)));
@@ -23,7 +27,17 @@ const Deposit = () => {
         <View className='content-wrapper mb-32 mt-2'>
           <View className='deposit-form'>
             <View className='qr-wrapper'>
-              <Image source={images.qr} className='size-48 rounded-lg' resizeMode='contain' />
+              <QRCode
+                size={200}
+                quietZone={6}
+                logoSize={40}
+                value={address}
+                logoMargin={-10}
+                logo={logos.crypter}
+                logoBackgroundColor='transparent'
+                color={isDark ? '#F1F1F1' : '#1C1C1C'}
+                backgroundColor={isDark ? 'black' : 'white'}
+              />
             </View>
 
             <View className='deposit-form-content'>
@@ -33,7 +47,7 @@ const Deposit = () => {
                 <View className='deposit-form-row'>
                   <View className='deposit-form-value-wrapper'>
                     <Text className='deposit-form-value' numberOfLines={1} ellipsizeMode='middle'>
-                      {getNetworkById(network.id)?.address ?? ''}
+                      {address}
                     </Text>
                   </View>
                   <View className='deposit-form-icon-wrapper'>

@@ -18,6 +18,7 @@ const logos = {
   paytm: require('./pay-methods/paytm.png'),
   phonepe: require('./pay-methods/phonepe.png'),
   upi: require('./pay-methods/upi.png'),
+  crypter: require('./images/logo.png'),
 };
 
 const icons = {
