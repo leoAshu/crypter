@@ -2,9 +2,9 @@ import { usePayMethodStore } from '@/store';
 import SHA256 from 'crypto-js/sha256';
 
 const usePayMethod = () => {
-  const { payMethods, isLoading, addNewPayMethod: addPayMethod } = usePayMethodStore();
+  const { payMethods, isLoading, addNewPayMethod: addPayMethod, updatePayMethodStatus } = usePayMethodStore();
 
-  const generatePayMethodId = (detail: Omit<PayMethod, 'id' | 'isActive'>): string => {
+  const generatePayMethodId = (detail: Omit<PayMethod, 'id' | 'isActive' | 'createdAt' | 'updatedAt'>): string => {
     const rawString = [
       detail.userId,
       detail.payMethodTypeId,
@@ -22,12 +22,11 @@ const usePayMethod = () => {
     return SHA256(rawString).toString().slice(0, 16);
   };
 
-  const addNewPayMethod = async (detail: PayMethod) => {
-    if (payMethods.some((item) => item.id === detail.id)) {
-      console.log('Pay Method already exists.');
+  const addNewPayMethod = async (newPayMethod: PayMethod) => {
+    if (payMethods.some((item) => item.id === newPayMethod.id)) {
       throw new Error('Pay Method already exists.');
     }
-    await addPayMethod(detail);
+    await addPayMethod(newPayMethod);
   };
 
   return {
@@ -35,6 +34,7 @@ const usePayMethod = () => {
     payMethods,
     addNewPayMethod,
     generatePayMethodId,
+    updatePayMethodStatus,
   };
 };
 

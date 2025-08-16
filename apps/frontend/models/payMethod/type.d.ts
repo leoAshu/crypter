@@ -10,4 +10,6 @@ interface PayMethod {
   accountNo?: string;
   upiId?: string;
   phone?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

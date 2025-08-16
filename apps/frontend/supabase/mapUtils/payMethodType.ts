@@ -1,4 +1,4 @@
-const crpytoToDbMap: Record<keyof PayMethodType, string> = {
+const payMethodTypeToDbMap: Record<keyof PayMethodType, string> = {
   id: 'id',
   name: 'name',
   isActive: 'is_active',
@@ -8,7 +8,7 @@ const crpytoToDbMap: Record<keyof PayMethodType, string> = {
   updatedAt: 'updated_at',
 };
 
-const dbToPayMethodTypeMap: Record<string, keyof PayMethodType> = Object.entries(crpytoToDbMap).reduce(
+const dbToPayMethodTypeMap: Record<string, keyof PayMethodType> = Object.entries(payMethodTypeToDbMap).reduce(
   (acc, [camelKey, snakeKey]) => {
     acc[snakeKey] = camelKey as keyof PayMethodType;
     return acc;

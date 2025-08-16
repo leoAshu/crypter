@@ -27,7 +27,7 @@ const Details = () => {
   };
 
   const submitForm = async () => {
-    const detail: PayMethod = {
+    const newPayMethod: PayMethod = {
       id: generatePayMethodId({
         ...formData,
         userId: profile?.id ?? '',
@@ -40,7 +40,7 @@ const Details = () => {
     };
 
     try {
-      await addNewPayMethod(detail);
+      await addNewPayMethod(newPayMethod);
       router.back();
       router.back();
     } catch (error: any) {

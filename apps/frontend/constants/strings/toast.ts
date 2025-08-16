@@ -4,6 +4,8 @@ const ToastStrings = {
     COPY: 'Copied to clipboard',
     AD_ACTIVE: 'Ad is now listed.',
     AD_INACTIVE: 'Ad is now unlisted.',
+    PAY_METHOD_ACTIVE: 'Pay Method Activated.',
+    PAY_METHOD_INACTIVE: 'Pay Method Deactivated.',
   },
   Info: {
     TITLE: 'Information',
