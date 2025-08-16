@@ -25,9 +25,7 @@ const MyAds = (props: MyAdsProps) => {
       showsVerticalScrollIndicator={false}
       contentContainerClassName={listStyle}
       keyExtractor={(item, index) => item.id.toString()}
-      renderItem={({ item, index }) => (
-        <MyAdCard index={index} ad={item} isAdActive={props.isAdActive} toggleAdStatus={props.toggleAdStatus} />
-      )}
+      renderItem={({ item, index }) => <MyAdCard index={index} ad={item} isAdActive={props.isAdActive} />}
       ItemSeparatorComponent={() => <DividerX style={cn('mb-4', isDark ? 'opacity-40' : 'opacity-25')} />}
       ListFooterComponent={() => (!isAdsEmpty ? <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} /> : null)}
       ListEmptyComponent={

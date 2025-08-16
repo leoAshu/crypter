@@ -31,4 +31,17 @@ const convertToPayMethodKeys = (obj: Record<string, any>): PayMethod => {
   }, {} as Partial<PayMethod>) as PayMethod;
 };
 
-export { convertToPayMethodKeys };
+// camelCase → snake_case
+const convertPayMethodToDbKeys = (obj: Partial<PayMethod>): Record<string, any> => {
+  return Object.entries(obj).reduce(
+    (acc, [camelKey, value]) => {
+      const snakeKey = payMethodToDbMap[camelKey as keyof PayMethod];
+      if (!snakeKey) return acc;
+      acc[snakeKey] = value;
+      return acc;
+    },
+    {} as Record<string, any>,
+  );
+};
+
+export { convertPayMethodToDbKeys, convertToPayMethodKeys };

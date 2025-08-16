@@ -1,9 +1,9 @@
 import { ComponentStrings, ToastStrings } from '@/constants';
-import { useCrypto, useFiat } from '@/hooks';
+import { useAds, useCrypto, useFiat } from '@/hooks';
 import { capitalizeWords, currencyFormatter } from '@/utils';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
-import { Platform, Text, useColorScheme, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 import Toast from 'react-native-toast-message';
 import { PayMethodTypeBadge } from '../badges';
@@ -11,11 +11,12 @@ import { DividerX } from '../dividers';
 import { ToggleSwitch } from '../filters';
 
 const MyAdCard = (props: MyAdCardProps) => {
-  const isDark = useColorScheme() === 'dark';
   const isBuy = props.ad.type === 'buy';
 
   const { fiatSymbols } = useFiat();
+  const { updateAdStatus } = useAds();
   const { cryptoLabels } = useCrypto();
+
   const [isOn, setIsOn] = useState(props.ad.isActive);
 
   useEffect(() => {
@@ -35,9 +36,9 @@ const MyAdCard = (props: MyAdCardProps) => {
   };
 
   const onToggle = async (val: boolean) => {
-    setIsOn(val);
     try {
-      await props.toggleAdStatus(props.ad.id, val);
+      await updateAdStatus(props.ad.id, val);
+      setIsOn(val);
       Toast.show({
         type: 'success',
         text1: ToastStrings.Success.TITLE,
@@ -48,7 +49,6 @@ const MyAdCard = (props: MyAdCardProps) => {
         visibilityTime: 1500,
       });
     } catch (e) {
-      setIsOn(props.ad.isActive);
       console.error('Toggle failed', e);
     }
   };

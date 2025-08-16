@@ -19,14 +19,6 @@ const MyAdvert = () => {
 
   const isAdActive = useMemo(() => myAds.some((ad) => ad.isActive), [myAds]);
 
-  const toggleAdStatus = async (adId: string, newIsActive: boolean) => {
-    try {
-      await updateAdStatus(adId, newIsActive);
-    } catch (e) {
-      console.log('Failed to update ad status:', e);
-    }
-  };
-
   return (
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <View className='content-wrapper'>
@@ -50,7 +42,7 @@ const MyAdvert = () => {
           <ChipFilter value={crypto} items={p2pCryptosSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
-        <MyAds myAds={myAds} isAdActive={adsLoading || isAdActive} toggleAdStatus={toggleAdStatus} />
+        <MyAds myAds={myAds} isAdActive={adsLoading || isAdActive} />
       </View>
     </SafeAreaView>
   );

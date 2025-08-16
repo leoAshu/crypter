@@ -82,5 +82,6 @@ interface PayMethodState {
   isLoading: boolean;
 
   fetchPayMethods: (userId: string) => Promise<void>;
-  addNewPayMethod: (detail: PayMethod) => Promise<void>;
+  addNewPayMethod: (newPayMethod: PayMethod) => Promise<void>;
+  updatePayMethodStatus: (payMethodId: string, isActive: boolean) => Promise<void>;
 }
