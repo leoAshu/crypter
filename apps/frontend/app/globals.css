@@ -477,7 +477,7 @@
   }
 
   .qr-wrapper {
-    @apply elevation rounded-lg border border-stroke dark:border-stroke-dark;
+    @apply elevation overflow-hidden rounded-md border border-stroke dark:border-stroke-dark;
   }
 
   .deposit-form-content {
