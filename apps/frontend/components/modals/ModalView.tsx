@@ -1,6 +1,6 @@
 import { Modal, Text, View, useColorScheme } from 'react-native';
 
-const BottomSheet = ({ visible, onClose, title, children, maxHeight = '50%' }: BottomSheetProps) => {
+const ModalView = ({ visible, onClose, title, children, maxHeight = '50%' }: ModalViewProps) => {
   const isDark = useColorScheme() === 'dark';
 
   return (
@@ -23,4 +23,4 @@ const BottomSheet = ({ visible, onClose, title, children, maxHeight = '50%' }: B
   );
 };
 
-export default BottomSheet;
+export default ModalView;

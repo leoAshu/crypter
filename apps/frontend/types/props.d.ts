@@ -58,7 +58,8 @@ interface InputFieldProps {
   onChangeText?: (text: string) => void;
 }
 
-interface BottomSheetProps {
+
+interface ModalViewProps {
   visible: boolean;
   onClose: () => void;
   title: string;
