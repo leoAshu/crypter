@@ -62,8 +62,6 @@ interface BottomSheetProps {
   visible: boolean;
   onClose: () => void;
   title: string;
-  items?: { id: string; name: string }[];
-  onItemPress?: (item: { id: string; name: string }) => void;
   children?: ReactNode;
   maxHeight?: number | `${number}%`;
 }
