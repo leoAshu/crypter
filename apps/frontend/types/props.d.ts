@@ -58,12 +58,29 @@ interface InputFieldProps {
   onChangeText?: (text: string) => void;
 }
 
-interface BottomSheetProps {
+interface FormInputFieldProps {
+  label?: string;
+  innerLabel?: string;
+  placeholder?: string;
+  value?: string;
+  error?: string;
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'decimal-pad';
+  disabled?: boolean;
+  onChangeText?: (text: string) => void;
+}
+
+interface PaymentMethodChipsProps {
+  selectedPayMethods: string[];
+  onRemovePayMethod: (payMethodId: string) => void;
+  onOpenBottomSheet: () => void;
+  canAddMore: boolean;
+  maxSelections?: number;
+}
+
+interface ModalViewProps {
   visible: boolean;
   onClose: () => void;
   title: string;
-  items?: { id: string; name: string }[];
-  onItemPress?: (item: { id: string; name: string }) => void;
   children?: ReactNode;
   maxHeight?: number | `${number}%`;
 }
