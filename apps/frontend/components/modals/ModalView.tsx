@@ -1,24 +1,25 @@
-import { Modal, Text, View, useColorScheme } from 'react-native';
+import { Modal, Text } from 'react-native';
+import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-native-reanimated';
 
 const ModalView = ({ visible, onClose, title, children, maxHeight = '50%' }: ModalViewProps) => {
-  const isDark = useColorScheme() === 'dark';
-
   return (
-    <Modal visible={visible} transparent={true} animationType='slide' onRequestClose={onClose}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' }} onTouchEnd={onClose}>
-        <View
-          style={{
-            backgroundColor: isDark ? '#1C1C1F' : 'white',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            padding: 20,
-            maxHeight: typeof maxHeight === 'string' ? maxHeight : maxHeight,
-          }}
+    <Modal visible={visible} transparent={true} animationType='none' onRequestClose={onClose}>
+      <Animated.View
+        className='flex-1 justify-end bg-black/50'
+        entering={FadeIn.duration(200)}
+        exiting={FadeOut.duration(150)}
+        onTouchEnd={onClose}
+      >
+        <Animated.View
+          className='rounded-t-[20px] bg-base p-5 dark:bg-base-surface-dark'
+          style={{ maxHeight: typeof maxHeight === 'string' ? maxHeight : maxHeight }}
+          entering={SlideInDown.duration(300)}
+          exiting={SlideOutDown.duration(250)}
         >
           <Text className='mb-4 font-clashDisplay-medium text-lg text-title dark:text-title-dark'>{title}</Text>
           {children}
-        </View>
-      </View>
+        </Animated.View>
+      </Animated.View>
     </Modal>
   );
 };
