@@ -58,6 +58,24 @@ interface InputFieldProps {
   onChangeText?: (text: string) => void;
 }
 
+interface FormInputFieldProps {
+  label?: string;
+  innerLabel?: string;
+  placeholder?: string;
+  value?: string;
+  error?: string;
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'decimal-pad';
+  disabled?: boolean;
+  onChangeText?: (text: string) => void;
+}
+
+interface PaymentMethodChipsProps {
+  selectedPayMethods: string[];
+  onRemovePayMethod: (payMethodId: string) => void;
+  onOpenBottomSheet: () => void;
+  canAddMore: boolean;
+  maxSelections?: number;
+}
 
 interface ModalViewProps {
   visible: boolean;
