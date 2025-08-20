@@ -69,6 +69,11 @@ module.exports = {
           'on-surface-light': '#333333',
         },
 
+        backdrop: {
+          DEFAULT: '#00000033',
+          dark: '#FFFFFF1A',
+        },
+
         card: {
           DEFAULT: '#F1F1F1',
           info: '#E6E6E6',
