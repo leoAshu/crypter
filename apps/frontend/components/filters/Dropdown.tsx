@@ -54,11 +54,11 @@ const Dropdown = (props: DropdownProps) => {
 
   return (
     <View className={cn('gap-y-2', props.containerStyle)}>
-      {props.title && <Text className='deposit-form-label'>{props.title}</Text>}
+      {props.title && <Text className='font-clashDisplay text-xs text-label dark:text-label-dark'>{props.title}</Text>}
 
       <Pressable
         className={cn(
-          'deposit-form-row',
+          'dropdown-wrapper',
           props.disabled ? 'opacity-50' : '',
           props.error ? 'border-red-500' : '',
           props.buttonStyle,
@@ -66,9 +66,9 @@ const Dropdown = (props: DropdownProps) => {
         onPress={handleOpenDropdown}
         disabled={props.disabled}
       >
-        <View className='deposit-form-value-wrapper'>
+        <View className='dropdown-value-wrapper'>
           <Text
-            className={cn('deposit-form-value', !value ? 'text-label dark:text-label' : '', props.textStyle)}
+            className={cn('dropdown-placeholder', value && 'dropdown-value', props.textStyle)}
             numberOfLines={1}
             ellipsizeMode='tail'
           >
@@ -76,7 +76,7 @@ const Dropdown = (props: DropdownProps) => {
           </Text>
         </View>
 
-        <View className='deposit-form-icon-wrapper'>
+        <View className='dropdown-icon-wrapper'>
           <Image
             source={isDark ? icons.dark.arrowDown : icons.light.arrowDown}
             className='size-8'
@@ -84,30 +84,30 @@ const Dropdown = (props: DropdownProps) => {
           />
         </View>
       </Pressable>
-      {props.error && <Text className='font-satoshi-medium text-sm text-red-500'>{props.error}</Text>}
+      {props.error && <Text className='dropdown-error'>{props.error}</Text>}
       {isOpen && (
         <Animated.View className='absolute left-0 right-0 top-full z-50 mt-1' style={dropdownAnimatedStyle}>
-          <View className='rounded-md border-[0.5px] border-stroke bg-card shadow-lg dark:border-stroke-dark dark:bg-card-dark'>
+          <View className='dropdown-options-wrapper'>
             <FlatList
-              scrollEnabled={false}
               data={props.items}
-              keyExtractor={(item) => item.id}
+              scrollEnabled={false}
               style={{ maxHeight: 300 }}
+              keyExtractor={(item) => item.id}
               renderItem={({ item, index }) => (
                 <Pressable
                   className={cn(
-                    'flex-row items-center px-4 py-3',
-                    index === 0 ? 'rounded-t-md' : '',
+                    'dropdown-option',
+                    index === 0 && 'rounded-t-md',
                     index !== props.items.length - 1
                       ? 'border-b-[0.5px] border-stroke dark:border-stroke-dark'
                       : 'rounded-b-md',
-                    item.id === props.value?.id ? 'bg-primary' : '',
+                    item.id === props.value?.id && 'bg-primary',
                   )}
                   onPress={() => handleSelect(item)}
                 >
                   <Text
                     className={cn(
-                      'flex-1 font-satoshi',
+                      'dropdown-option-txt',
                       item.id === props.value?.id ? 'text-title dark:text-title-dark' : 'text-label dark:text-label',
                     )}
                   >
