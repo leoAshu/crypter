@@ -6,7 +6,7 @@ const ModalView = ({ visible, onClose, title, children, maxHeight = '50%' }: Mod
     <Modal visible={visible} transparent={true} animationType='none' onRequestClose={onClose}>
       {/* Backdrop */}
       <Animated.View
-        className='bg-backdrop dark:bg-backdrop-dark flex-1 justify-end'
+        className='flex-1 justify-end bg-backdrop dark:bg-backdrop-dark'
         entering={FadeIn.duration(250).easing(Easing.out(Easing.cubic))}
         exiting={FadeOut.duration(200).easing(Easing.in(Easing.cubic))}
       >
