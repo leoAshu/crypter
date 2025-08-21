@@ -10,6 +10,8 @@ const images = {
   plus: require('./images/plus.png'),
   walletBackground: require('./images/wallet-bg.png'),
   qr: require('./images/qr.png'),
+  greenShield: require('./images/green-shield.png'),
+  greenShieldDark: require('./images/green-shield-dark.png'),
 };
 
 const logos = {
