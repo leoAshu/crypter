@@ -33,6 +33,8 @@ const FormInputField = (props: FormInputFieldProps) => {
             value={value}
             autoCapitalize='none'
             cursorColor='#54E6B6'
+            placeholder={props.placeholder ?? ''}
+            placeholderTextColor='#667085'
             editable={!props.disabled}
             keyboardType={props.keyboardType}
             secureTextEntry={props.secureTextEntry ? !showPassword : false}

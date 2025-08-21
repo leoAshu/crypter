@@ -1,5 +1,5 @@
 interface Requirement {
-  id: string;
+  id: RequirementType;
   label: string;
   status: RequirementStatus;
 }

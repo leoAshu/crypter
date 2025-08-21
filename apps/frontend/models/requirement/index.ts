@@ -4,4 +4,10 @@ enum RequirementStatus {
   Pending,
 }
 
-export { RequirementStatus };
+enum RequirementType {
+  Email = 'email',
+  Phone = 'phone',
+  Identity = 'identity',
+}
+
+export { RequirementStatus, RequirementType };

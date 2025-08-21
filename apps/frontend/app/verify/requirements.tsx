@@ -2,24 +2,13 @@ import { icons } from '@/assets';
 import { PrimaryButton, RequirementOption } from '@/components';
 import { Strings } from '@/constants';
 import { useRequirements } from '@/hooks';
-import { RequirementStatus } from '@/models';
+import { router } from 'expo-router';
 import { Image, Text, useColorScheme, View } from 'react-native';
 
 const Requirements = () => {
   const isDark = useColorScheme() === 'dark';
 
   const { requirements, requirementsMet, setRequirements } = useRequirements();
-
-  const onVerify = (reqId: string) => {
-    setRequirements((prev) =>
-      prev.map((req) => (req.id === reqId ? { ...req, status: RequirementStatus.Pending } : req)),
-    );
-    setTimeout(() => {
-      setRequirements((prev) =>
-        prev.map((req) => (req.id === reqId ? { ...req, status: RequirementStatus.Verified } : req)),
-      );
-    }, 2500);
-  };
 
   return (
     <>
@@ -30,7 +19,7 @@ const Requirements = () => {
               key={item.id}
               label={item.label}
               status={item.status}
-              onPress={() => onVerify(item.id)}
+              onPress={() => router.push({ pathname: '/verify/[reqId]', params: { reqId: item.id } })}
             />
           ))}
         </View>
