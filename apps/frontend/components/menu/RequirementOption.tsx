@@ -1,8 +1,9 @@
 import { icons } from '@/assets';
-import { DividerX, PrimaryButton } from '@/components';
 import { RequirementStatus } from '@/models';
 import cn from 'clsx';
 import { Image, Text, useColorScheme, View } from 'react-native';
+import { PrimaryButton } from '../buttons';
+import { DividerX } from '../dividers';
 
 const RequirementOption = (props: RequirementOptionProps) => {
   const isDark = useColorScheme() === 'dark';
