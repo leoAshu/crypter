@@ -1,3 +1,4 @@
+import { AppBar } from '@/components';
 import { Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
 
@@ -15,6 +16,8 @@ const VerifyLayout = () => {
       })}
     >
       <Stack.Screen name='index' />
+
+      <Stack.Screen name='requirements' options={{ header: () => <AppBar title='Requirements' /> }} />
     </Stack>
   );
 };

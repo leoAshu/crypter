@@ -68,6 +68,11 @@ const icons = {
     noteFav: require('./icons/light/note-favorite.png'),
     addSquare: require('./icons/light/add-square.png'),
 
+    // Verify
+    tick: require('./icons/light/tickbox.png'),
+    tickSuccess: require('./icons/light/tickbox-success.png'),
+    danger: require('./icons/light/danger.png'),
+
     // Active Tab
     active: {
       home: require('./icons/light/active/home.png'),
@@ -130,6 +135,11 @@ const icons = {
     // Routes
     noteFav: require('./icons/dark/note-favorite.png'),
     addSquare: require('./icons/dark/add-square.png'),
+
+    // Verify
+    tick: require('./icons/dark/tickbox.png'),
+    tickSuccess: require('./icons/dark/tickbox-success.png'),
+    danger: require('./icons/dark/danger.png'),
 
     // Active Tab
     active: {

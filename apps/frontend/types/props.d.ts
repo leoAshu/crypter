@@ -298,3 +298,9 @@ interface FormInputFieldProps {
   disabled?: boolean;
   onChangeText?: (text: string) => void;
 }
+
+interface RequirementOptionProps {
+  label: string;
+  status: RequirementStatus;
+  onPress?: () => void;
+}
