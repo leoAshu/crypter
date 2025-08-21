@@ -11,10 +11,10 @@ const FormInputField = (props: FormInputFieldProps) => {
 
   return (
     <View className='gap-y-2'>
-      <Text className='font-clashDisplay text-sm text-title dark:text-title-dark'>{props.label}</Text>
+      <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>{props.label}</Text>
       <View
         className={cn(
-          'flex-row items-stretch rounded-md border',
+          'flex-row items-stretch rounded-lg border',
           isFocused ? 'border-primary' : 'border-stroke dark:border-stroke-dark',
         )}
       >
@@ -26,17 +26,18 @@ const FormInputField = (props: FormInputFieldProps) => {
         >
           <TextInput
             className={cn(
-              'font-satoshi text-sm leading-4',
-              isIOS && 'py-3 pb-4',
-              props.disabled ? 'text-label/55 dark:text-label-dark/55' : 'text-title dark:text-title-dark',
+              'font-satoshi text-sm',
+              isIOS ? 'py-2 pb-3' : 'py-3',
+              props.disabled ? 'text-body/55 dark:text-body-dark/55' : 'text-body dark:text-body-dark',
             )}
             value={value}
             autoCapitalize='none'
             cursorColor='#54E6B6'
-            placeholder={props.placeholder ?? ''}
-            placeholderTextColor='#667085'
             editable={!props.disabled}
+            placeholderTextColor='#667085'
+            placeholder={props.placeholder ?? ''}
             keyboardType={props.keyboardType}
+            textAlignVertical='center'
             secureTextEntry={props.secureTextEntry ? !showPassword : false}
             onChangeText={props.onChangeText}
             onFocus={() => setIsFocused(true)}

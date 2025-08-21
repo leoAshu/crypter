@@ -68,7 +68,7 @@ const Dropdown = (props: DropdownProps) => {
       >
         <View className='dropdown-value-wrapper'>
           <Text
-            className={cn('dropdown-placeholder', value && 'dropdown-value', props.textStyle)}
+            className={cn(value == undefined ? 'dropdown-placeholder' : 'dropdown-value')}
             numberOfLines={1}
             ellipsizeMode='tail'
           >

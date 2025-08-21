@@ -204,6 +204,10 @@
     @apply absolute bottom-24 left-0 right-0 px-4;
   }
 
+  .absolute-bottom-form-cta {
+    @apply absolute bottom-0 left-0 right-0 bg-base-white px-4 pt-4 dark:bg-base-dark;
+  }
+
   /* ──────────────────────────────
      🔗 Footer & Links
   ─────────────────────────────── */
@@ -553,7 +557,7 @@
   }
 
   .dropdown-placeholder {
-    @apply text-label dark:text-label;
+    @apply font-satoshi text-sm text-label dark:text-label-dark;
   }
 
   .dropdown-icon-wrapper {

@@ -121,6 +121,8 @@ const Strings = {
     EMAIL_HINT: 'Enter your email address',
     PHONE_LABEL: 'Phone Number',
     PHONE_HINT: 'Enter your phone number',
+    UPLOAD_ID_LABEL: 'Upload ID or Passport',
+    UPLOAD_ADDRESS_LABEL: 'Upload Address Proof',
     CTA_LABEL: 'Confirm Information',
   },
 };
