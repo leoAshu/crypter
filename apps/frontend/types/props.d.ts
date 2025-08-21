@@ -287,3 +287,14 @@ interface ListEmptyStateProps {
   ctaStyle?: string;
   ctaOnPresss?: () => void;
 }
+
+interface FormInputFieldProps {
+  label: string;
+  value?: string;
+  placeholder?: string;
+  secondarylabel?: string;
+  secureTextEntry?: boolean;
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'decimal-pad';
+  disabled?: boolean;
+  onChangeText?: (text: string) => void;
+}
