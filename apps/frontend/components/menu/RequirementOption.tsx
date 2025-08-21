@@ -21,7 +21,7 @@ const RequirementOption = (props: RequirementOptionProps) => {
   return (
     <View className='gap-y-2'>
       <View className='flex-row items-center justify-between py-3'>
-        <View className='flex-1 flex-row gap-x-4 py-2'>
+        <View className='flex-1 flex-row items-center gap-x-4 py-2'>
           <Image source={tickIcon} className='size-6' resizeMode='contain' />
           <Text className='font-satoshi text-body dark:text-body-dark'>{props.label}</Text>
         </View>
