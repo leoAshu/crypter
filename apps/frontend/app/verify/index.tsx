@@ -1,6 +1,7 @@
 import { images } from '@/assets';
 import { PrimaryButton } from '@/components';
 import { Strings } from '@/constants';
+import { router } from 'expo-router';
 import { Image, Text, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -28,7 +29,7 @@ const Verify = () => {
       </View>
 
       <View className='absolute bottom-24 left-0 right-0 px-4'>
-        <PrimaryButton title={Strings.verify.CTA_LABEL} />
+        <PrimaryButton title={Strings.verify.CTA_LABEL} onPress={() => router.push('/verify/requirements')} />
       </View>
     </SafeAreaView>
   );

@@ -102,6 +102,13 @@ const Strings = {
     SCREEN_SUBTITLE: 'Become a registered and verified P2P Merchant on the Crypter P2P Market',
     CTA_LABEL: 'Get Started',
   },
+  requirements: {
+    VERIFY_EMAIL_LABEL: 'Complete email verification',
+    VERIFY_IDENTITY_LABEL: 'Complete identity verification',
+    ATTENTION_LABEL: 'Attention',
+    ATTENTION_TEXT: 'To become a merchant, you need to verify your identity and contact information',
+    CTA_LABEL: 'Send Application',
+  },
 };
 
 export * from './alert';
