@@ -97,6 +97,11 @@ const Strings = {
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',
   },
+  verify: {
+    SCREEN_TITLE: 'Become A Verified Crypter P2P Merchant',
+    SCREEN_SUBTITLE: 'Become a registered and verified P2P Merchant on the Crypter P2P Market',
+    CTA_LABEL: 'Get Started',
+  },
 };
 
 export * from './alert';

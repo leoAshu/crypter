@@ -139,10 +139,11 @@ const Profile = () => {
               leftIcon={isDark ? icons.dark.notification : icons.light.notification}
             /> */}
 
-            {/* <MenuOption
+            <MenuOption
               title={Strings.profile.MENU_MERCHANT_TITLE}
               leftIcon={isDark ? icons.dark.verify : icons.light.verify}
-            /> */}
+              onPress={() => router.push('/verify')}
+            />
 
             <MenuOption
               title={Strings.profile.MENU_PAY_METHODS_TITLE}
