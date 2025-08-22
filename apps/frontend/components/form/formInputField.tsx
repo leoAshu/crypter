@@ -1,40 +1,62 @@
 import cn from 'clsx';
 import { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Platform, Text, TextInput, View } from 'react-native';
 
 const FormInputField = (props: FormInputFieldProps) => {
+  const isIOS = Platform.OS === 'ios';
   const value = props.value ?? '';
+
   const [isFocused, setIsFocused] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <View className='input-wrapper'>
-      <Text className='input-label text-title dark:text-title-dark'>{props.label ?? ''}</Text>
-
-      <View className='relative'>
-        <TextInput
+    <View className='gap-y-2'>
+      <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>{props.label}</Text>
+      <View
+        className={cn(
+          'flex-row items-stretch rounded-lg border',
+          isFocused ? 'border-primary' : 'border-stroke dark:border-stroke-dark',
+        )}
+      >
+        <View
           className={cn(
-            'input-txt',
-            isFocused ? 'border-b-primary' : 'border-b-stroke dark:border-b-stroke-dark',
-            props.disabled ? 'text-body/45 dark:text-body-dark/45' : '',
-            props.innerLabel ? 'pr-24' : '',
+            'relative flex-1 bg-card px-4 font-satoshi text-sm dark:bg-card-dark',
+            props.secondarylabel ? 'rounded-l-lg' : 'rounded-lg',
           )}
-          value={value}
-          onChangeText={props.onChangeText}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          cursorColor='#54E6B6'
-          autoCapitalize='none'
-          keyboardType={props.keyboardType}
-          editable={!props.disabled}
-        />
+        >
+          <TextInput
+            className={cn(
+              'px-0 font-satoshi text-sm',
+              isIOS ? 'py-2 pb-3' : 'py-3',
+              props.disabled ? 'text-body/75 dark:text-body-dark/75' : 'text-body dark:text-body-dark',
+            )}
+            value={value}
+            autoCapitalize='none'
+            cursorColor='#54E6B6'
+            editable={!props.disabled}
+            placeholderTextColor='#66708573'
+            placeholder={props.placeholder ?? ''}
+            keyboardType={props.keyboardType}
+            textAlignVertical='center'
+            secureTextEntry={props.secureTextEntry ? !showPassword : false}
+            onChangeText={props.onChangeText}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          />
+        </View>
 
-        {props.innerLabel && (
-          <Text
-            className='absolute right-4 top-1/2 -translate-y-1/2 text-sm text-body dark:text-body-dark'
-            style={{ color: '#667085' }}
+        {props.secondarylabel && (
+          <View
+            className={cn(
+              'justify-center rounded-r-lg px-4 py-3',
+              isFocused ? 'bg-primary' : 'bg-base dark:bg-base-dark',
+              props.disabled && 'opacity-45',
+            )}
           >
-            {props.innerLabel}
-          </Text>
+            <Text className={cn('font-satoshi text-sm', isFocused ? 'text-title' : 'text-title dark:text-title-dark')}>
+              {props.secondarylabel}
+            </Text>
+          </View>
         )}
       </View>
     </View>
