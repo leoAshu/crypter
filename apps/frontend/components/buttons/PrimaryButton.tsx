@@ -7,7 +7,6 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
       className={cn(
         'btn-primary',
         props.disabled || props.isLoading ? 'bg-primary-disabled' : 'bg-primary',
-        props.isLoading ? 'py-4' : '',
         props.containerStyle,
       )}
       disabled={props.isLoading || props.disabled}

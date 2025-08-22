@@ -123,7 +123,15 @@ const Strings = {
     PHONE_HINT: 'Enter your phone number',
     UPLOAD_ID_LABEL: 'Upload ID or Passport',
     UPLOAD_ADDRESS_LABEL: 'Upload Address Proof',
-    CTA_LABEL: 'Confirm Information',
+    CTA_LABEL: 'Confirm',
+  },
+  otp: {
+    TITLE: 'Enter Code',
+    SUBTITLE: 'Enter the code sent to your',
+    CODE_NOT_RECEIVED: "Didn't receive code?",
+    RESEND_CODE: 'Resend Code',
+    RESEND_IN: 'Resend in',
+    CTA: 'Confirm OTP',
   },
 };
 

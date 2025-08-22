@@ -29,8 +29,9 @@ const RequirementOption = (props: RequirementOptionProps) => {
         {(!verified || pending) && (
           <PrimaryButton
             title={ctaTitle}
-            containerStyle={cn('py-2.5 rounded-lg', !verified && !pending && 'px-[26px]')}
             disabled={pending}
+            textStyle='text-xs'
+            containerStyle={cn('py-2.5 rounded-lg', !verified && !pending && 'px-[26px]')}
             onPress={props.onPress}
           />
         )}

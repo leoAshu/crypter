@@ -80,7 +80,7 @@
   }
 
   .btn-primary-label {
-    @apply font-clashDisplay-medium text-xs text-title;
+    @apply font-clashDisplay text-sm text-title;
   }
 
   .btn-primary-load-indicator {
@@ -104,7 +104,7 @@
   }
 
   .btn-secondary-label {
-    @apply font-clashDisplay-medium text-xs;
+    @apply font-clashDisplay text-sm;
   }
 
   .btn-seconday-label-active {

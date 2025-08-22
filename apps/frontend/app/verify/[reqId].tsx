@@ -3,7 +3,7 @@ import { Strings } from '@/constants';
 import { RequirementType } from '@/models';
 import { capitalizeWords } from '@/utils';
 import cn from 'clsx';
-import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useLayoutEffect } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -16,6 +16,13 @@ const Info = () => {
     android: 'pb-52',
     ios: 'pb-72',
   });
+
+  const handlePress = () => {
+    if (reqId === RequirementType.Email || reqId === RequirementType.Phone)
+      return router.push({ pathname: '/verify/otp', params: { reqId } });
+
+    console.log('Coming Soon');
+  };
 
   useLayoutEffect(() => {
     const appBarTitle = `${capitalizeWords(reqId)} Verification`;
@@ -40,7 +47,7 @@ const Info = () => {
         </KeyboardAvoidingView>
 
         <View className={cn('absolute-bottom-form-cta', Platform.select({ android: 'pb-48', ios: 'pb-56' }))}>
-          <PrimaryButton title={Strings.info.CTA_LABEL} />
+          <PrimaryButton title={Strings.info.CTA_LABEL} onPress={handlePress} />
         </View>
       </SafeAreaView>
     </>
