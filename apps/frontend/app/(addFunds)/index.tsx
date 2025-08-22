@@ -1,9 +1,10 @@
 import { logos } from '@/assets';
 import { CopyIconButton, DividerX, Dropdown, PrimaryButton } from '@/components';
 import { useNetwork, useWallet } from '@/hooks';
+import cn from 'clsx';
 import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { ScrollView, Text, useColorScheme, View } from 'react-native';
+import { Platform, ScrollView, Text, useColorScheme, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -15,6 +16,10 @@ const Deposit = () => {
   const [network, setNetwork] = useState<FilterItem>(networkFilterItems[0]);
 
   const address = useMemo(() => getNetworkById(network.id)?.address, [network]);
+  const formStyle = Platform.select({
+    android: 'pb-56',
+    ios: 'pb-72',
+  });
 
   const savePicture = async () => {
     deposit('usdt', Number((Math.random() * (15 - 1) + 1).toFixed(2)));
@@ -24,15 +29,15 @@ const Deposit = () => {
   return (
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View className='content-wrapper mb-32 mt-2'>
+        <View className={cn('content-wrapper mt-2', formStyle)}>
           <View className='deposit-form'>
             <View className='qr-wrapper'>
               <QRCode
                 size={200}
-                quietZone={6}
-                logoSize={40}
+                quietZone={8}
+                logoSize={36}
                 value={address}
-                logoMargin={-10}
+                logoMargin={-8}
                 logo={logos.crypter}
                 logoBackgroundColor='transparent'
                 color={isDark ? '#F1F1F1' : '#1C1C1C'}
@@ -77,11 +82,11 @@ const Deposit = () => {
                       <DividerX style='opacity-30' />
                     </View>
                     <View className='gap-y-2'>
-                      <Text className='deposit-form-label text-sm'>
+                      <Text className='deposit-form-label text-xs'>
                         Please deposit the exact amount to the address provided above. The platform will not be
                         responsible for any loss of funds resulting from incorrect or abnormal deposit amounts.
                       </Text>
-                      <Text className='deposit-form-label text-sm'>
+                      <Text className='deposit-form-label text-xs'>
                         Only TRC20-USDT deposits are supported — do not deposit any other asset type to this address, as
                         those funds cannot be recovered.
                       </Text>
@@ -94,7 +99,7 @@ const Deposit = () => {
         </View>
       </ScrollView>
 
-      <View className='absolute bottom-48 left-0 right-0 px-4'>
+      <View className={cn('absolute-bottom-form-cta', Platform.select({ android: 'pb-48', ios: 'pb-52' }))}>
         <PrimaryButton title='Save Picture' onPress={savePicture} />
       </View>
     </SafeAreaView>

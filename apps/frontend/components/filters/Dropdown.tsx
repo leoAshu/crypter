@@ -54,7 +54,7 @@ const Dropdown = (props: DropdownProps) => {
 
   return (
     <View className={cn('gap-y-2', props.containerStyle)}>
-      {props.title && <Text className='font-clashDisplay text-xs text-label dark:text-label-dark'>{props.title}</Text>}
+      {props.title && <Text className='dropdown-label'>{props.title}</Text>}
 
       <Pressable
         className={cn(

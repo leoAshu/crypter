@@ -18,7 +18,6 @@ const VerifyIdentity = () => {
         label={Strings.info.NAME_LABEL}
         placeholder={Strings.info.NAME_HINT}
         value={profile?.name}
-        secondarylabel='Name'
         disabled
       />
 

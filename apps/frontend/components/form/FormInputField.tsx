@@ -21,20 +21,20 @@ const FormInputField = (props: FormInputFieldProps) => {
         <View
           className={cn(
             'relative flex-1 bg-card px-4 font-satoshi text-sm dark:bg-card-dark',
-            props.secondarylabel ? 'rounded-l-md' : 'rounded-md',
+            props.secondarylabel ? 'rounded-l-lg' : 'rounded-lg',
           )}
         >
           <TextInput
             className={cn(
-              'font-satoshi text-sm',
+              'px-0 font-satoshi text-sm',
               isIOS ? 'py-2 pb-3' : 'py-3',
-              props.disabled ? 'text-body/55 dark:text-body-dark/55' : 'text-body dark:text-body-dark',
+              props.disabled ? 'text-body/75 dark:text-body-dark/75' : 'text-body dark:text-body-dark',
             )}
             value={value}
             autoCapitalize='none'
             cursorColor='#54E6B6'
             editable={!props.disabled}
-            placeholderTextColor='#667085'
+            placeholderTextColor='#66708573'
             placeholder={props.placeholder ?? ''}
             keyboardType={props.keyboardType}
             textAlignVertical='center'
@@ -48,7 +48,7 @@ const FormInputField = (props: FormInputFieldProps) => {
         {props.secondarylabel && (
           <View
             className={cn(
-              'justify-center rounded-r-md px-4 py-3',
+              'justify-center rounded-r-lg px-4 py-3',
               isFocused ? 'bg-primary' : 'bg-base dark:bg-base-dark',
               props.disabled && 'opacity-45',
             )}

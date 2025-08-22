@@ -24,8 +24,8 @@ const Requirements = () => {
           ))}
         </View>
 
-        <View className='mt-6 gap-y-4 rounded-md border-[0.5px] border-dashed border-warning-100 bg-warning-100/10 px-3 py-4'>
-          <View className='flex-row items-center gap-x-3'>
+        <View className='mt-6 gap-y-4 rounded-md border-[0.5px] border-dashed border-warning-500 bg-warning-500/10 px-3 py-4 dark:border-warning-100 dark:bg-warning-100/10'>
+          <View className='flex-row items-center gap-x-2'>
             <Image source={isDark ? icons.dark.danger : icons.light.danger} className='size-4' resizeMode='contain' />
             <Text className='font-clashDisplay text-sm text-title dark:text-title-dark'>
               {Strings.requirements.ATTENTION_LABEL}

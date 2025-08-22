@@ -7,6 +7,7 @@ const SecondaryButton = (props: SecondaryButtonProps) => {
       className={cn(
         'btn-secondary',
         props.disabled || props.isLoading ? 'btn-secondary-disabled' : 'btn-secondary-active',
+        props.isLoading ? 'py-4' : '',
       )}
       disabled={props.isLoading || props.disabled}
       onPress={props.onPress}
