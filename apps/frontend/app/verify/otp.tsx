@@ -3,7 +3,7 @@ import { Strings } from '@/constants';
 import { RequirementType } from '@/models';
 import cn from 'clsx';
 import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Keyboard, Pressable, Text, View } from 'react-native';
 import { CodeField, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,11 +11,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const OTP = () => {
   const { reqId } = useLocalSearchParams<{ reqId: RequirementType }>();
 
+  const [timer, setTimer] = useState(30);
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({ value, cellCount: 4 });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
 
-  const [timer, setTimer] = useState(30);
+  const ctaDisabled = useMemo(() => value.length < 4, [value]);
+
   useEffect(() => {
     if (timer > 0) {
       const t = setTimeout(() => setTimer(timer - 1), 1000);
@@ -51,7 +53,7 @@ const OTP = () => {
                   key={index}
                   className={cn(
                     'mx-2 size-16 items-center justify-center rounded-xl border-2 bg-card dark:bg-card-dark',
-                    isFocused ? 'border-primary' : 'border-stroke dark:border-stroke-dark',
+                    isFocused ? 'elevation-md border-primary' : 'border-stroke dark:border-stroke-dark',
                   )}
                   onLayout={getCellOnLayoutHandler(index)}
                 >
@@ -77,7 +79,7 @@ const OTP = () => {
           </View>
 
           <View className='mt-12 w-full'>
-            <PrimaryButton title={Strings.otp.CTA} />
+            <PrimaryButton title={Strings.otp.CTA} disabled={ctaDisabled} />
           </View>
         </View>
       </Pressable>
