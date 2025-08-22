@@ -304,3 +304,7 @@ interface RequirementOptionProps {
   status: RequirementStatus;
   onPress?: () => void;
 }
+
+interface FileUploadProps {
+  label?: string;
+}

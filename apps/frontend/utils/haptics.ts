@@ -48,12 +48,19 @@ const errorHapticFeedback = () => {
   } catch (error) {}
 };
 
+const selectionHapticFeedback = () => {
+  try {
+    Haptics.selectionAsync();
+  } catch (error) {}
+};
+
 export {
   errorHapticFeedback,
   heavyHapticFeedback,
   lightHapticFeedback,
   mediumHapticFeedback,
   rigidHapticFeedback,
+  selectionHapticFeedback,
   softHapticFeedback,
   successHapticFeedback,
   warningHapticFeedback,

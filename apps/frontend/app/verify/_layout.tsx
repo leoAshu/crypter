@@ -18,6 +18,10 @@ const VerifyLayout = () => {
       <Stack.Screen name='index' />
 
       <Stack.Screen name='requirements' options={{ header: () => <AppBar title='Requirements' /> }} />
+
+      <Stack.Screen name='[reqId]' options={{ header: () => <AppBar title='Verification' /> }} />
+
+      <Stack.Screen name='otp' options={{ header: () => <AppBar title='' /> }} />
     </Stack>
   );
 };
