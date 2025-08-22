@@ -80,7 +80,7 @@
   }
 
   .btn-primary-label {
-    @apply font-clashDisplay-medium text-xs text-title;
+    @apply font-clashDisplay text-sm text-title;
   }
 
   .btn-primary-load-indicator {
@@ -104,7 +104,7 @@
   }
 
   .btn-secondary-label {
-    @apply font-clashDisplay-medium text-xs;
+    @apply font-clashDisplay text-sm;
   }
 
   .btn-seconday-label-active {
@@ -202,6 +202,10 @@
 
   .absolute-bottom-cta {
     @apply absolute bottom-24 left-0 right-0 px-4;
+  }
+
+  .absolute-bottom-form-cta {
+    @apply absolute bottom-0 left-0 right-0 bg-base-white px-4 pt-4 dark:bg-base-dark;
   }
 
   /* ──────────────────────────────
@@ -477,7 +481,7 @@
   }
 
   .qr-wrapper {
-    @apply elevation overflow-hidden rounded-md border border-stroke dark:border-stroke-dark;
+    @apply elevation overflow-hidden rounded-lg border border-stroke dark:border-stroke-dark;
   }
 
   .deposit-form-content {
@@ -485,15 +489,15 @@
   }
 
   .deposit-form-label {
-    @apply font-clashDisplay text-xs text-label dark:text-label-dark;
+    @apply font-clashDisplay text-sm text-label dark:text-label-dark;
   }
 
   .deposit-form-row {
-    @apply flex-row rounded-md border border-stroke dark:border-stroke-dark;
+    @apply flex-row rounded-lg border border-stroke dark:border-stroke-dark;
   }
 
   .deposit-form-value-wrapper {
-    @apply flex-1 rounded-l-md bg-card px-4 py-3 dark:bg-card-dark;
+    @apply flex-1 rounded-l-lg bg-card px-4 py-3 dark:bg-card-dark;
   }
 
   .deposit-form-value {
@@ -501,19 +505,19 @@
   }
 
   .deposit-form-icon-wrapper {
-    @apply w-14 items-center justify-center rounded-r-md bg-base dark:bg-base-dark;
+    @apply w-14 items-center justify-center rounded-r-lg bg-base dark:bg-base-dark;
   }
 
   .deposit-form-footer {
-    @apply mt-4 gap-y-4;
+    @apply mt-4 gap-y-2;
   }
 
   .deposit-form-footer-title {
-    @apply font-clashDisplay text-sm text-title dark:text-title-dark;
+    @apply font-clashDisplay text-sm text-body dark:text-body-dark;
   }
 
   .deposit-form-footer-wrapper {
-    @apply gap-y-4 border border-stroke bg-card-info px-3 py-4 dark:border-stroke-dark dark:bg-card-info-dark;
+    @apply gap-y-4 rounded-lg border border-dashed border-stroke bg-card px-3 py-4 dark:border-stroke-dark dark:bg-card-info-dark;
   }
 
   .stats-wrapper {
@@ -541,11 +545,15 @@
   }
 
   .dropdown-wrapper {
-    @apply flex-row rounded-md border border-stroke dark:border-stroke-dark;
+    @apply flex-row rounded-lg border border-stroke dark:border-stroke-dark;
+  }
+
+  .dropdown-label {
+    @apply font-clashDisplay text-sm text-label dark:text-label-dark;
   }
 
   .dropdown-value-wrapper {
-    @apply flex-1 rounded-l-md bg-card px-4 py-3 dark:bg-card-dark;
+    @apply flex-1 rounded-l-lg bg-card px-4 py-3 dark:bg-card-dark;
   }
 
   .dropdown-value {
@@ -553,11 +561,11 @@
   }
 
   .dropdown-placeholder {
-    @apply text-label dark:text-label;
+    @apply font-satoshi text-sm text-label opacity-45 dark:text-label-dark;
   }
 
   .dropdown-icon-wrapper {
-    @apply w-14 items-center justify-center rounded-r-md bg-base dark:bg-base-dark;
+    @apply w-14 items-center justify-center rounded-r-lg bg-base dark:bg-base-dark;
   }
 
   .dropdown-error {
@@ -565,7 +573,7 @@
   }
 
   .dropdown-options-wrapper {
-    @apply rounded-md border-[0.5px] border-stroke bg-card shadow-lg dark:border-stroke-dark dark:bg-card-dark;
+    @apply rounded-lg border-[0.5px] border-stroke bg-card shadow-lg dark:border-stroke-dark dark:bg-card-dark;
   }
 
   .dropdown-option {

@@ -1,5 +1,5 @@
 import { icons } from '@/assets';
-import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
+import { Image, Text, TouchableHighlight, useColorScheme, View } from 'react-native';
 import { DividerX } from '../dividers';
 
 const MenuOption = (props: MenuOptionProps) => {
@@ -7,7 +7,7 @@ const MenuOption = (props: MenuOptionProps) => {
 
   return (
     <>
-      <TouchableOpacity onPress={props.onPress}>
+      <TouchableHighlight underlayColor={isDark ? '#1C1C1C' : '#F1F1F1'} onPress={props.onPress}>
         <View className='flex-row items-center justify-between px-2 py-4'>
           <View className='flex-row items-center gap-x-4'>
             {props.leftIcon && <Image source={props.leftIcon} className='size-6' resizeMode='contain' />}
@@ -23,7 +23,7 @@ const MenuOption = (props: MenuOptionProps) => {
             />
           )}
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
       <DividerX style={isDark ? 'opacity-40' : 'opacity-25'} />
     </>
   );

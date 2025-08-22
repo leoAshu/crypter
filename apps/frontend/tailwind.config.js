@@ -19,6 +19,11 @@ module.exports = {
         full: '1 0 100%',
       },
 
+      borderStyle: {
+        dotted: 'dotted',
+        dashed: 'dashed',
+      },
+
       colors: {
         // ====================== Default ====================
         // accent

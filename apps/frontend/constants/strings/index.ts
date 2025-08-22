@@ -97,6 +97,42 @@ const Strings = {
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',
   },
+  verify: {
+    SCREEN_TITLE: 'Become A Verified Crypter P2P Merchant',
+    SCREEN_SUBTITLE: 'Become a registered and verified P2P Merchant on the Crypter P2P Market',
+    CTA_LABEL: 'Get Started',
+  },
+  requirements: {
+    VERIFY_EMAIL_LABEL: 'Complete email verification',
+    VERIFY_PHONE_LABEL: 'Complete phone verification',
+    VERIFY_IDENTITY_LABEL: 'Complete identity verification',
+    ATTENTION_LABEL: 'Attention',
+    ATTENTION_TEXT: 'To become a merchant, you need to verify your identity and contact information',
+    CTA_LABEL: 'Send Application',
+  },
+  info: {
+    NAME_LABEL: 'Full Legal Name',
+    NAME_HINT: 'Enter your full name',
+    COUNTRY_LABEL: 'Country of Residence',
+    COUNTRY_HINT: 'Select country of residence',
+    ADDRESS_LABEL: 'Address',
+    ADDRESS_HINT: 'Enter your address',
+    EMAIL_LABEL: 'Email Address',
+    EMAIL_HINT: 'Enter your email address',
+    PHONE_LABEL: 'Phone Number',
+    PHONE_HINT: 'Enter your phone number',
+    UPLOAD_ID_LABEL: 'Upload ID or Passport',
+    UPLOAD_ADDRESS_LABEL: 'Upload Address Proof',
+    CTA_LABEL: 'Confirm',
+  },
+  otp: {
+    TITLE: 'Enter Code',
+    SUBTITLE: 'Enter the code sent to your',
+    CODE_NOT_RECEIVED: "Didn't receive code?",
+    RESEND_CODE: 'Resend Code',
+    RESEND_IN: 'Resend in',
+    CTA: 'Confirm OTP',
+  },
 };
 
 export * from './alert';

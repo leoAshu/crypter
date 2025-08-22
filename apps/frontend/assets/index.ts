@@ -10,6 +10,8 @@ const images = {
   plus: require('./images/plus.png'),
   walletBackground: require('./images/wallet-bg.png'),
   qr: require('./images/qr.png'),
+  greenShield: require('./images/green-shield.png'),
+  greenShieldDark: require('./images/green-shield-dark.png'),
 };
 
 const logos = {
@@ -25,6 +27,7 @@ const icons = {
   exchange: require('./icons/exchange.png'),
   increment: require('./icons/increment.png'),
   decrement: require('./icons/decrement.png'),
+  upload: require('./icons/upload.png'),
 
   // Light Theme Icons
   light: {
@@ -65,6 +68,11 @@ const icons = {
     // Routes
     noteFav: require('./icons/light/note-favorite.png'),
     addSquare: require('./icons/light/add-square.png'),
+
+    // Verify
+    tick: require('./icons/light/tickbox.png'),
+    tickSuccess: require('./icons/light/tickbox-success.png'),
+    danger: require('./icons/light/danger.png'),
 
     // Active Tab
     active: {
@@ -128,6 +136,11 @@ const icons = {
     // Routes
     noteFav: require('./icons/dark/note-favorite.png'),
     addSquare: require('./icons/dark/add-square.png'),
+
+    // Verify
+    tick: require('./icons/dark/tickbox.png'),
+    tickSuccess: require('./icons/dark/tickbox-success.png'),
+    danger: require('./icons/dark/danger.png'),
 
     // Active Tab
     active: {

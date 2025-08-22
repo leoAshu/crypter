@@ -15,6 +15,10 @@ const ComponentStrings = {
     AVAILABLE_LABEL: 'Available',
     ORDER_LIMIT_LABEL: 'Limit Per Order',
   },
+  FileUpload: {
+    UPLOAD_DOC_LABEL: 'Upload Document',
+    UPLOAD_DOC_HINT: 'PNG, JPG, or PDF  (under 10MB)',
+  },
 };
 
 export { ComponentStrings };
