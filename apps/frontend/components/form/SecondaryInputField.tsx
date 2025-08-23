@@ -2,7 +2,7 @@ import cn from 'clsx';
 import { useState } from 'react';
 import { Platform, Text, TextInput, View } from 'react-native';
 
-const FormInputField = (props: FormInputFieldProps) => {
+const SecondaryInputField = (props: SecondaryInputFieldProps) => {
   const isIOS = Platform.OS === 'ios';
   const value = props.value ?? '';
 
@@ -49,7 +49,7 @@ const FormInputField = (props: FormInputFieldProps) => {
           <View
             className={cn(
               'justify-center rounded-r-lg px-4 py-3',
-              isFocused ? 'bg-primary' : 'bg-base dark:bg-base-dark',
+              isFocused ? 'bg-primary' : 'bg-base-white dark:bg-base-dark',
               props.disabled && 'opacity-45',
             )}
           >
@@ -63,4 +63,4 @@ const FormInputField = (props: FormInputFieldProps) => {
   );
 };
 
-export default FormInputField;
+export default SecondaryInputField;

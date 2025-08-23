@@ -34,7 +34,7 @@ const PayMethodCard = (props: PayMethodCardProps) => {
   };
 
   return (
-    <View className='gap-y-3 rounded px-2 pb-4 pt-2'>
+    <View className='gap-y-3 rounded pb-4 pt-2'>
       <View className='flex-row items-center justify-between'>
         <Text className='font-clashDisplay-medium text-sm text-label dark:text-label-dark'>{payMethodType?.name}</Text>
         <Image source={payMethodTypeLogoUrl} className='size-12' resizeMode='contain' />

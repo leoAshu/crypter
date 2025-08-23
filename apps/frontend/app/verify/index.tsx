@@ -19,7 +19,7 @@ const Verify = () => {
           />
         </View>
 
-        <View className='flex-1 gap-y-4 bg-base px-4 py-8 dark:bg-base-dark'>
+        <View className='flex-1 gap-y-4 bg-base-white px-4 py-8 dark:bg-base-dark'>
           <Text className='font-clashDisplay-medium text-2xl text-title dark:text-title-dark'>
             {Strings.verify.SCREEN_TITLE}
           </Text>

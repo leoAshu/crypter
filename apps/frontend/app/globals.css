@@ -505,7 +505,7 @@
   }
 
   .deposit-form-icon-wrapper {
-    @apply w-14 items-center justify-center rounded-r-lg bg-base dark:bg-base-dark;
+    @apply w-14 items-center justify-center rounded-r-lg bg-base-white dark:bg-base-dark;
   }
 
   .deposit-form-footer {
@@ -565,7 +565,7 @@
   }
 
   .dropdown-icon-wrapper {
-    @apply w-14 items-center justify-center rounded-r-lg bg-base dark:bg-base-dark;
+    @apply w-14 items-center justify-center rounded-r-lg bg-base-white dark:bg-base-dark;
   }
 
   .dropdown-error {

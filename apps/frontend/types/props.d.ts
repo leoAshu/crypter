@@ -71,7 +71,7 @@ interface ModalViewProps {
   onClose: () => void;
   title: string;
   children?: ReactNode;
-  maxHeight?: number | `${number}%`;
+  maxHeight?: number;
 }
 
 // ====================
@@ -277,7 +277,7 @@ interface ListEmptyStateProps {
   ctaOnPresss?: () => void;
 }
 
-interface FormInputFieldProps {
+interface SecondaryInputFieldProps {
   label: string;
   value?: string;
   placeholder?: string;
