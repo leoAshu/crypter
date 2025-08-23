@@ -1,17 +1,12 @@
 import { Strings } from '@/constants';
-import { useAuth } from '@/hooks';
+import { useKyc } from '@/hooks';
 import { FormInputField } from '../form';
 
 const VerifyEmail = () => {
-  const { user } = useAuth();
+  const { kyc } = useKyc();
 
   return (
-    <FormInputField
-      label={Strings.info.EMAIL_LABEL}
-      placeholder={Strings.info.EMAIL_HINT}
-      value={user.email}
-      disabled
-    />
+    <FormInputField label={Strings.info.EMAIL_LABEL} placeholder={Strings.info.EMAIL_HINT} value={kyc.email} disabled />
   );
 };
 

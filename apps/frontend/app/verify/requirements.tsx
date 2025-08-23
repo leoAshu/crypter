@@ -1,14 +1,14 @@
 import { icons } from '@/assets';
 import { PrimaryButton, RequirementOption } from '@/components';
 import { Strings } from '@/constants';
-import { useRequirements } from '@/hooks';
+import { useKyc } from '@/hooks';
 import { router } from 'expo-router';
 import { Image, Text, useColorScheme, View } from 'react-native';
 
 const Requirements = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { requirements, requirementsMet, setRequirements } = useRequirements();
+  const { requirements, requirementsMet } = useKyc();
 
   return (
     <>
