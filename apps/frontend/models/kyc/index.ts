@@ -1,7 +1,14 @@
+enum KycStatus {
+  Incomplete,
+  Pending,
+  Approved,
+  Rejected,
+}
+
 enum RequirementStatus {
-  Verified,
   NotVerified,
   Pending,
+  Verified,
 }
 
 enum RequirementType {
@@ -10,4 +17,4 @@ enum RequirementType {
   Identity = 'identity',
 }
 
-export { RequirementStatus, RequirementType };
+export { KycStatus, RequirementStatus, RequirementType };
