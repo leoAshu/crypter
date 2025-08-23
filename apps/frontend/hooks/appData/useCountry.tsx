@@ -1,20 +1,8 @@
+import { useCountryStore } from '@/store';
 import { useMemo } from 'react';
 
 const useCountry = () => {
-  const countries: Country[] = [
-    {
-      id: 'IN',
-      name: 'India',
-      iso2: 'IN',
-      iso3: 'IND',
-      phoneCode: '+91',
-      currencyCode: 'INR',
-      currencySymbol: '₹',
-      currencyName: 'Indian Rupee',
-      isActive: true,
-      position: 1,
-    },
-  ];
+  const { countries, currentCountry } = useCountryStore();
 
   const getCountryById = (countryId: string) => countries.find((country) => country.id === countryId);
 
@@ -31,6 +19,7 @@ const useCountry = () => {
 
   return {
     countries,
+    currentCountry,
     countryNameFilterItems,
     getCountryById,
     getCountryNameFilterItemById,

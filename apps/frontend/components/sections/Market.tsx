@@ -8,7 +8,7 @@ const Market = () => {
   const isDark = useColorScheme() === 'dark';
 
   const { cryptos } = useCrypto();
-  const { defaultFiat } = useFiat();
+  const { currentFiatSymbol } = useFiat();
   const { tickers, beginPolling, stopPolling } = useMarket();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Market = () => {
               cryptoName={item.name}
               cryptoSymbol={item.symbol}
               tickerData={tickers[item.name.toLowerCase()]}
-              fiatSymbol={defaultFiat?.symbol ?? ''}
+              fiatSymbol={currentFiatSymbol ?? ''}
             />
           );
         })}

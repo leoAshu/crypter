@@ -1,8 +1,8 @@
 import { getUser, signIn, signOut, signUp } from '@/supabase';
 import { create } from 'zustand';
 import useAdStore from './ad.store';
+import useCountryStore from './country.store';
 import useCryptotore from './crypto.store';
-import useFiatStore from './fiat.store';
 import usePayMethodStore from './payMethod.store';
 import usePayMethodTypeStore from './payMethodType.store';
 import useProfileStore from './profile.store';
@@ -35,8 +35,8 @@ const useAuthStore = create<AuthState>((set) => ({
         };
 
         await useAdStore.getState().fetchAds();
-        await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
+        await useCountryStore.getState().fetchCountries();
         await usePayMethodTypeStore.getState().fetchPayMethodTypes();
 
         await useProfileStore.getState().createProfile(profile);
@@ -65,8 +65,8 @@ const useAuthStore = create<AuthState>((set) => ({
 
       if (user) {
         await useAdStore.getState().fetchAds();
-        await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
+        await useCountryStore.getState().fetchCountries();
         await usePayMethodTypeStore.getState().fetchPayMethodTypes();
 
         await useStatsStore.getState().fetchStats(user.id);
@@ -108,8 +108,8 @@ const useAuthStore = create<AuthState>((set) => ({
 
       if (user) {
         await useAdStore.getState().fetchAds();
-        await useFiatStore.getState().fetchFiats();
         await useCryptotore.getState().fetchCryptos();
+        await useCountryStore.getState().fetchCountries();
         await usePayMethodTypeStore.getState().fetchPayMethodTypes();
 
         await useStatsStore.getState().fetchStats(user.id);

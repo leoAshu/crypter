@@ -15,7 +15,7 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    fetchAllTickers();
+    !isLoading && fetchAllTickers();
   }, [isLoading]);
 
   if (!isLoading && !isTickerLoading) {
