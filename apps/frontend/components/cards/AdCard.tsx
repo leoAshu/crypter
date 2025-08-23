@@ -55,7 +55,7 @@ const AdCard = (props: AdCardProps) => {
 
             <View className='ad-card-amount-group'>
               <Text className='ad-card-txt-md'>
-                {fiatSymbols[props.ad.fiatId] ?? ''} {currencyFormatter.format(props.ad.price).split('.')[0]}.
+                {fiatSymbols[props.ad.countryId] ?? ''} {currencyFormatter.format(props.ad.price).split('.')[0]}.
               </Text>
               <Text className='ad-card-txt text-sm'>{currencyFormatter.format(props.ad.price).split('.')[1]}</Text>
             </View>

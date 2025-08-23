@@ -13,8 +13,8 @@ const WalletCard = (props: WalletCardProps) => {
 
   const { user } = useAuth();
   const { balances } = useWallet();
-  const { defaultFiat } = useFiat();
   const { cryptoLabels } = useCrypto();
+  const { currentFiatSymbol } = useFiat();
   const { getActiveAdsCountByUserId } = useAds();
 
   const balance = balances[props.cryptoId]['available'];
@@ -80,7 +80,7 @@ const WalletCard = (props: WalletCardProps) => {
 
                   <View className='flex-row items-baseline justify-end pr-3'>
                     <Text className='font-clashDisplay text-lg tracking-wide text-title dark:text-title-dark'>
-                      {defaultFiat?.symbol ?? ''} {currencyFormatter.format(fiatValue ?? 0).split('.')[0]}.
+                      {currentFiatSymbol ?? ''} {currencyFormatter.format(fiatValue ?? 0).split('.')[0]}.
                     </Text>
                     <Text className='font-clashDisplay text-sm tracking-wide text-title dark:text-title-dark'>
                       {currencyFormatter.format(fiatValue ?? 0).split('.')[1]}

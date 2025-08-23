@@ -2,7 +2,7 @@ const adToDbMap: Record<keyof Ad, string> = {
   id: 'id',
   price: 'price',
   cryptoId: 'crypto_id',
-  fiatId: 'fiat_id',
+  countryId: 'country_id',
   minLimit: 'min_limit',
   maxLimit: 'max_limit',
   available: 'available',

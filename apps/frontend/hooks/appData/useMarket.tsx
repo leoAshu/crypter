@@ -5,14 +5,14 @@ import useFiat from './useFiat';
 
 const useMarket = () => {
   const { cryptos } = useCrypto();
-  const { defaultFiat } = useFiat();
+  const { currentFiatId } = useFiat();
   const { isLoading, tickers, fetchTickers, startPolling, stopPolling } = useMarketStore();
 
   const cryptoIds = useMemo(() => cryptos.map((c) => c.name.toLowerCase()), [cryptos]);
 
-  const fetchAllTickers = () => fetchTickers(cryptoIds, defaultFiat?.id ?? 'inr');
+  const fetchAllTickers = () => fetchTickers(cryptoIds, currentFiatId ?? 'inr');
 
-  const beginPolling = (interval: number) => startPolling(interval, cryptoIds, defaultFiat?.id ?? 'inr');
+  const beginPolling = (interval: number) => startPolling(interval, cryptoIds, currentFiatId ?? 'inr');
 
   return {
     tickers,

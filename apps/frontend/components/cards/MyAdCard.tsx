@@ -108,7 +108,7 @@ const MyAdCard = (props: MyAdCardProps) => {
             </View>
 
             <Text className='font-satoshi-medium text-[10px] text-body dark:text-body-dark'>
-              {fiatSymbols[props.ad.fiatId] ?? ''} {currencyFormatter.format(props.ad.minLimit)} -{' '}
+              {fiatSymbols[props.ad.countryId] ?? ''} {currencyFormatter.format(props.ad.minLimit)} -{' '}
               {currencyFormatter.format(props.ad.maxLimit)}
             </Text>
           </View>
@@ -120,7 +120,7 @@ const MyAdCard = (props: MyAdCardProps) => {
           </Text>
           <View className='flex-row items-baseline'>
             <Text className='font-clashDisplay-medium text-lg text-title dark:text-title-dark'>
-              {fiatSymbols[props.ad.fiatId] ?? ''} {currencyFormatter.format(props.ad.price).split('.')[0]}.
+              {fiatSymbols[props.ad.countryId] ?? ''} {currencyFormatter.format(props.ad.price).split('.')[0]}.
             </Text>
             <Text className='font-clashDisplay-medium text-sm text-title dark:text-title-dark'>
               {currencyFormatter.format(props.ad.price).split('.')[1]}

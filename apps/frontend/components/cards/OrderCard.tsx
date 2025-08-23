@@ -13,8 +13,8 @@ const OrderCard = (props: OrderCardProps) => {
   const isBuy = props.order.type === 'buy';
   const isCanceled = props.order.subType === 'canceled';
 
-  const { defaultFiat } = useFiat();
   const { cryptoLabels } = useCrypto();
+  const { currentFiatSymbol } = useFiat();
 
   return (
     <Animated.View
@@ -58,7 +58,7 @@ const OrderCard = (props: OrderCardProps) => {
             </View>
 
             <Text className='font-satoshi-medium text-[10px] text-body dark:text-body-dark'>
-              {defaultFiat?.symbol ?? ''} {currencyFormatter.format(props.order.pricePerUnit)}
+              {currentFiatSymbol ?? ''} {currencyFormatter.format(props.order.pricePerUnit)}
             </Text>
           </View>
 
@@ -99,7 +99,7 @@ const OrderCard = (props: OrderCardProps) => {
           <Text className='font-satoshi-medium text-[10px] text-label dark:text-label-dark'>Total Amount</Text>
           <View className='order-card-total-amount-group'>
             <Text className='font-clashDisplay-medium text-lg text-title dark:text-title-dark'>
-              {defaultFiat?.symbol ?? ''} {currencyFormatter.format(props.order.totalAmount).split('.')[0]}.
+              {currentFiatSymbol ?? ''} {currencyFormatter.format(props.order.totalAmount).split('.')[0]}.
             </Text>
             <Text className='font-clashDisplay-medium text-sm text-title dark:text-title-dark'>
               {currencyFormatter.format(props.order.totalAmount).split('.')[1]}

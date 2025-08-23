@@ -50,16 +50,6 @@ interface WalletState {
   deposit: (assetId: string, amount: number) => void;
 }
 
-interface FiatState {
-  fiats: FiatCurrency[];
-  isLoading: boolean;
-  defaultFiat: FiatCurrency | null;
-
-  setDefaultFiat: (fiat: FiatCurrency) => void;
-
-  fetchFiats: () => Promise<void>;
-}
-
 interface AdState {
   ads: Ad[];
   isLoading: boolean;
@@ -84,4 +74,21 @@ interface PayMethodState {
   fetchPayMethods: (userId: string) => Promise<void>;
   addNewPayMethod: (newPayMethod: PayMethod) => Promise<void>;
   updatePayMethodStatus: (payMethodId: string, isActive: boolean) => Promise<void>;
+}
+
+interface CountryState {
+  countries: Country[];
+  currentCountry?: Country;
+  isLoading: boolean;
+
+  fetchCountries: () => Promise<void>;
+}
+
+interface KycState {
+  kyc: Kyc | null;
+  isLoading: boolean;
+
+  fetchKyc: () => Promise<void>;
+  updateKyc: (updates: Partial<Kyc>) => Promise<void>;
+  verifyOtp: (code: string) => Promise<boolean>;
 }

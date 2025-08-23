@@ -2,7 +2,7 @@ interface Ad {
   id: string;
   price: number;
   cryptoId: string;
-  fiatId: string;
+  countryId: string;
   minLimit: number;
   maxLimit: number;
   available: number;

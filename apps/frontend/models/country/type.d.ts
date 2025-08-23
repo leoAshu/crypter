@@ -4,9 +4,9 @@ interface Country {
   iso2: string;
   iso3: string;
   phoneCode: string;
-  currencyCode: string;
-  currencySymbol: string;
-  currencyName: string;
+  fiatCode: string;
+  fiatSymbol: string;
+  fiatName: string;
   isActive: boolean;
   position: number;
   createdAt?: string;

@@ -1,20 +1,24 @@
 import { PrimaryButton } from '@/components';
-import { Strings } from '@/constants';
-import { RequirementType } from '@/models';
+import { Strings, ToastStrings } from '@/constants';
+import { useKyc } from '@/hooks';
+import { RequirementStatus, RequirementType } from '@/models';
 import cn from 'clsx';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { Keyboard, Pressable, Text, View } from 'react-native';
 import { CodeField, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
 
 const OTP = () => {
+  const { isLoading, verifyOtp: verify, updateKyc } = useKyc();
   const { reqId } = useLocalSearchParams<{ reqId: RequirementType }>();
 
   const [timer, setTimer] = useState(30);
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({ value, cellCount: 4 });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
+  const [verificationResult, setVerificationResult] = useState<boolean | undefined>();
 
   const ctaDisabled = useMemo(() => value.length < 4, [value]);
 
@@ -24,6 +28,37 @@ const OTP = () => {
       return () => clearTimeout(t);
     }
   }, [timer]);
+
+  useEffect(() => {
+    if (value.length < 4) return setVerificationResult(undefined);
+    if (value.length === 4) {
+      verifyOtp();
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (verificationResult) {
+      Toast.show({
+        type: 'success',
+        text1: ToastStrings.Success.TITLE,
+        text2: ToastStrings.Success.OTP_SUCCESS,
+        position: 'bottom',
+        bottomOffset: 112,
+        autoHide: true,
+        visibilityTime: 1500,
+        onHide: () => {
+          updateKyc(`${reqId}Status`, RequirementStatus.Verified);
+          router.back();
+          router.back();
+        },
+      });
+    }
+  }, [verificationResult]);
+
+  const verifyOtp = async () => {
+    const result = await verify(value);
+    setVerificationResult(result);
+  };
 
   return (
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
@@ -53,7 +88,11 @@ const OTP = () => {
                   key={index}
                   className={cn(
                     'mx-2 size-16 items-center justify-center rounded-xl border-2 bg-card dark:bg-card-dark',
-                    isFocused ? 'elevation-md border-primary' : 'border-stroke dark:border-stroke-dark',
+                    verificationResult === false
+                      ? 'border-error-500'
+                      : isFocused
+                        ? 'elevation-md border-primary'
+                        : 'border-stroke dark:border-stroke-dark',
                   )}
                   onLayout={getCellOnLayoutHandler(index)}
                 >
@@ -79,7 +118,12 @@ const OTP = () => {
           </View>
 
           <View className='mt-12 w-full'>
-            <PrimaryButton title={Strings.otp.CTA} disabled={ctaDisabled} />
+            <PrimaryButton
+              title={Strings.otp.CTA}
+              isLoading={isLoading}
+              disabled={ctaDisabled || verificationResult !== undefined}
+              onPress={verifyOtp}
+            />
           </View>
         </View>
       </Pressable>
