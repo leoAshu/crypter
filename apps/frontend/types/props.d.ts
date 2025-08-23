@@ -277,7 +277,7 @@ interface ListEmptyStateProps {
   ctaOnPresss?: () => void;
 }
 
-interface FormInputFieldProps {
+interface SecondaryInputFieldProps {
   label: string;
   value?: string;
   placeholder?: string;

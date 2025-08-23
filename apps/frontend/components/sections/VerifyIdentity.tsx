@@ -1,7 +1,7 @@
 import { Strings } from '@/constants';
 import { useCountry, useKyc } from '@/hooks';
 import { Dropdown } from '../filters';
-import { FormInputField } from '../form';
+import { SecondaryInputField } from '../form';
 import FileUpload from '../form/FileUpload';
 
 const VerifyIdentity = () => {
@@ -12,7 +12,12 @@ const VerifyIdentity = () => {
 
   return (
     <>
-      <FormInputField label={Strings.info.NAME_LABEL} placeholder={Strings.info.NAME_HINT} value={kyc?.name} disabled />
+      <SecondaryInputField
+        label={Strings.info.NAME_LABEL}
+        placeholder={Strings.info.NAME_HINT}
+        value={kyc?.name}
+        disabled
+      />
 
       <FileUpload label={Strings.info.UPLOAD_ID_LABEL} />
 
@@ -23,7 +28,7 @@ const VerifyIdentity = () => {
         onSelect={(item) => updateKyc('countryId', item.id)}
       />
 
-      <FormInputField
+      <SecondaryInputField
         label={Strings.info.ADDRESS_LABEL}
         placeholder={Strings.info.ADDRESS_HINT}
         value={kyc?.address}

@@ -1,12 +1,12 @@
 import { Strings } from '@/constants';
 import { useKyc } from '@/hooks';
-import { FormInputField } from '../form';
+import { SecondaryInputField } from '../form';
 
 const VerifyEmail = () => {
   const { kyc } = useKyc();
 
   return (
-    <FormInputField
+    <SecondaryInputField
       label={Strings.info.EMAIL_LABEL}
       placeholder={Strings.info.EMAIL_HINT}
       value={kyc?.email}

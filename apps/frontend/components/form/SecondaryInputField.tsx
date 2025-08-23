@@ -2,7 +2,7 @@ import cn from 'clsx';
 import { useState } from 'react';
 import { Platform, Text, TextInput, View } from 'react-native';
 
-const FormInputField = (props: FormInputFieldProps) => {
+const SecondaryInputField = (props: SecondaryInputFieldProps) => {
   const isIOS = Platform.OS === 'ios';
   const value = props.value ?? '';
 
@@ -63,4 +63,4 @@ const FormInputField = (props: FormInputFieldProps) => {
   );
 };
 
-export default FormInputField;
+export default SecondaryInputField;
