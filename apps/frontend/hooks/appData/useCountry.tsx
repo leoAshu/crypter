@@ -1,19 +1,39 @@
 import { useMemo } from 'react';
 
 const useCountry = () => {
-  const countries: Country[] = [{ id: 'ind', name: 'India', code: '+91', symbol: 'IND' }];
+  const countries: Country[] = [
+    {
+      id: 'IN',
+      name: 'India',
+      iso2: 'IN',
+      iso3: 'IND',
+      phoneCode: '+91',
+      currencyCode: 'INR',
+      currencySymbol: '₹',
+      currencyName: 'Indian Rupee',
+      isActive: true,
+      position: 1,
+    },
+  ];
 
-  const createFilterItems = (countries: Country[], labelKey: 'name' | 'symbol'): FilterItem[] => [
+  const getCountryById = (countryId: string) => countries.find((country) => country.id === countryId);
+
+  const createFilterItems = (countries: Country[], labelKey: 'name'): FilterItem[] => [
     ...countries.map((c) => ({ id: c.id, label: c[labelKey] })),
   ];
 
   const countryNameFilterItems = useMemo(() => createFilterItems(countries, 'name'), [countries]);
-  const countrySymbolFilterItems = useMemo(() => createFilterItems(countries, 'symbol'), [countries]);
+
+  const getCountryNameFilterItemById = useMemo(
+    () => (id: string) => countryNameFilterItems.find((c) => c.id === id),
+    [countryNameFilterItems],
+  );
 
   return {
     countries,
     countryNameFilterItems,
-    countrySymbolFilterItems,
+    getCountryById,
+    getCountryNameFilterItemById,
   };
 };
 

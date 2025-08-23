@@ -1,28 +1,32 @@
-import { useFiatStore } from '@/store';
 import { useMemo } from 'react';
+import useCountry from './useCountry';
 
 const useFiat = () => {
-  const { fiats, defaultFiat } = useFiatStore();
+  const { countries } = useCountry();
 
-  const fiatOptions = useMemo(() => [...fiats.map((f) => f.id)], [fiats]);
+  // needs refactor
+  const defaultFiat: FiatCurrency = useMemo(() => {
+    const defaultCountry = countries.find((country) => country.id === 'IN');
+    return {
+      id: defaultCountry?.id ?? '',
+      code: defaultCountry?.currencyCode ?? '',
+      country: defaultCountry?.name ?? '',
+      name: defaultCountry?.currencyName ?? '',
+      position: defaultCountry?.position ?? 1,
+      isActive: defaultCountry?.isActive ?? true,
+      symbol: defaultCountry?.currencySymbol ?? '',
+    };
+  }, [countries]);
+
   const fiatSymbols: Record<string, string> = useMemo(
-    () => Object.fromEntries(fiats.map((f) => [f.id, f.symbol])),
-    [fiats],
-  );
-  const fiatLabels: Record<string, string> = useMemo(
-    () => Object.fromEntries(fiats.map((f) => [f.id, f.code])),
-    [fiats],
+    () => Object.fromEntries(countries.map((country) => [country.id, country.currencySymbol])),
+    [countries],
   );
 
   return {
-    fiatOptions,
     fiatSymbols,
-    fiatLabels,
     defaultFiat,
   };
 };
 
-type FiatOption = ReturnType<typeof useFiat>['fiatOptions'][number];
-
 export default useFiat;
-export { FiatOption };
