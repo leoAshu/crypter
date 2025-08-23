@@ -71,7 +71,7 @@ interface ModalViewProps {
   onClose: () => void;
   title: string;
   children?: ReactNode;
-  maxHeight?: number | `${number}%`;
+  maxHeight?: number;
 }
 
 // ====================

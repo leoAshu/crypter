@@ -18,8 +18,8 @@ const PayMethods = () => {
   const isEmpty = payMethods.length === 0;
   const listStyle = !isEmpty
     ? Platform.select({
-        ios: 'pb-60 px-2 pt-4',
-        android: 'pb-24 px-2 pt-4',
+        ios: 'pb-60',
+        android: 'pb-24',
       })
     : 'flex-1 items-center justify-center pb-48';
 
@@ -31,40 +31,43 @@ const PayMethods = () => {
           right={
             <HeaderActionIcon
               icon={isDark ? icons.dark.addSquare : icons.light.addSquare}
-              onPress={() => setModalVisible(true)} // 👈 opens modal
+              onPress={() => setModalVisible(true)}
             />
           }
         />
       ),
     });
-  });
+  }, []);
 
   return (
-    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
-      <View className='content-wrapper mt-2'>
-        <FlatList
-          data={payMethods}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={false}
-          contentContainerClassName={listStyle}
-          renderItem={({ item, index }) => <PayMethodCard index={index} payMethod={item} />}
-          ItemSeparatorComponent={() => <DividerX style={cn('mt-px mb-2', isDark ? 'opacity-40' : 'opacity-25')} />}
-          ListFooterComponent={() => !isEmpty && <DividerX style={cn('mt-px', isDark ? 'opacity-40' : 'opacity-25')} />}
-          ListEmptyComponent={
-            <ListEmptyState
-              title='No Pay Methods Available'
-              ctaLabel='Add'
-              ctaStyle='py-4 px-8 rounded-lg'
-              ctaOnPresss={() => {
-                setModalVisible(true);
-              }}
-            />
-          }
-        />
-      </View>
-
+    <>
+      <SafeAreaView className='screen-wrapper' edges={['bottom']}>
+        <View className='content-wrapper mt-2'>
+          <FlatList
+            data={payMethods}
+            keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={false}
+            contentContainerClassName={listStyle}
+            renderItem={({ item, index }) => <PayMethodCard index={index} payMethod={item} />}
+            ItemSeparatorComponent={() => <DividerX style={cn('mt-px mb-2', isDark ? 'opacity-40' : 'opacity-25')} />}
+            ListFooterComponent={() =>
+              !isEmpty && <DividerX style={cn('mt-px', isDark ? 'opacity-40' : 'opacity-25')} />
+            }
+            ListEmptyComponent={
+              <ListEmptyState
+                title='No Pay Methods Available'
+                ctaLabel='Add'
+                ctaStyle='py-4 px-8 rounded-lg'
+                ctaOnPresss={() => {
+                  setModalVisible(true);
+                }}
+              />
+            }
+          />
+        </View>
+      </SafeAreaView>
       <NewPayMethodModal visible={modalVisible} onClose={() => setModalVisible(false)} />
-    </SafeAreaView>
+    </>
   );
 };
 

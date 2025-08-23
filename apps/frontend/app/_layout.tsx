@@ -2,6 +2,7 @@ import toastConfig from '@/components/toasts';
 import { useCustomFonts } from '@/hooks';
 import { Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
+import { Host } from 'react-native-portalize';
 import Toast from 'react-native-toast-message';
 import './globals.css';
 
@@ -11,7 +12,7 @@ const RootLayout = () => {
   if (!fontsLoaded) return null;
 
   return (
-    <>
+    <Host>
       <Stack
         screenOptions={{
           animation: 'simple_push',
@@ -22,7 +23,7 @@ const RootLayout = () => {
         }}
       />
       <Toast config={toastConfig} />
-    </>
+    </Host>
   );
 };
 

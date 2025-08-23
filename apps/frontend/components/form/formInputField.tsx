@@ -49,7 +49,7 @@ const FormInputField = (props: FormInputFieldProps) => {
           <View
             className={cn(
               'justify-center rounded-r-lg px-4 py-3',
-              isFocused ? 'bg-primary' : 'bg-base dark:bg-base-dark',
+              isFocused ? 'bg-primary' : 'bg-base-white dark:bg-base-dark',
               props.disabled && 'opacity-45',
             )}
           >
