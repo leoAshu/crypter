@@ -4,7 +4,7 @@ import { useKycStore } from '@/store';
 import { useMemo } from 'react';
 
 const useKyc = () => {
-  const { kyc, isLoading, fetchKyc, updateKyc: update } = useKycStore();
+  const { kyc, isLoading, fetchKyc, updateKyc: update, verifyOtp } = useKycStore();
 
   const requirements: Requirement[] = useMemo(
     () => [
@@ -33,7 +33,6 @@ const useKyc = () => {
   );
 
   const updateKyc = async (key: string, value: any) => {
-    // setKyc((prev) => ({ ...prev, [key]: value }));
     await update({ [key]: value });
   };
 
@@ -44,6 +43,7 @@ const useKyc = () => {
     requirementsMet,
     fetchKyc,
     updateKyc,
+    verifyOtp,
   };
 };
 

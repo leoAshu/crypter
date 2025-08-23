@@ -1,15 +1,18 @@
 import { AppBar, PrimaryButton, VerifyEmail, VerifyIdentity, VerifyPhone } from '@/components';
-import { Strings } from '@/constants';
-import { RequirementType } from '@/models';
+import { Strings, ToastStrings } from '@/constants';
+import { useKyc } from '@/hooks';
+import { RequirementStatus, RequirementType } from '@/models';
 import { capitalizeWords } from '@/utils';
 import cn from 'clsx';
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useLayoutEffect } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
 
 const Info = () => {
   const navigation = useNavigation();
+  const { isLoading, updateKyc } = useKyc();
   const { reqId } = useLocalSearchParams<{ reqId: string }>();
 
   const formStyle = Platform.select({
@@ -17,11 +20,22 @@ const Info = () => {
     ios: 'pb-72',
   });
 
-  const handlePress = () => {
+  const handlePress = async () => {
     if (reqId === RequirementType.Email || reqId === RequirementType.Phone)
       return router.push({ pathname: '/verify/otp', params: { reqId } });
 
-    console.log('Coming Soon');
+    await updateKyc('identityStatus', RequirementStatus.Pending);
+    Toast.show({
+      type: 'success',
+      text1: ToastStrings.Info.VERIFICATION_SUBMIT_TITLE,
+      text2: ToastStrings.Info.VERIFICATION_SUBMIT,
+      position: 'bottom',
+      bottomOffset: 112,
+      autoHide: false,
+      onHide: () => {
+        router.back();
+      },
+    });
   };
 
   useLayoutEffect(() => {
@@ -47,7 +61,7 @@ const Info = () => {
         </KeyboardAvoidingView>
 
         <View className={cn('absolute-bottom-form-cta', Platform.select({ android: 'pb-48', ios: 'pb-56' }))}>
-          <PrimaryButton title={Strings.info.CTA_LABEL} onPress={handlePress} />
+          <PrimaryButton title={Strings.info.CTA_LABEL} isLoading={isLoading} onPress={handlePress} />
         </View>
       </SafeAreaView>
     </>

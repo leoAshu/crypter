@@ -67,7 +67,17 @@ const getMockUserName = (name: string) => {
   return name.toLowerCase().split(' ').join('_');
 };
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export * from './api';
 export * from './haptics';
 export * from './validations';
-export { capitalizeWords, currencyFormatter, formatDateTime, formatPhoneNumber, getInitialsFromName, getMockUserName };
+export {
+  capitalizeWords,
+  currencyFormatter,
+  delay,
+  formatDateTime,
+  formatPhoneNumber,
+  getInitialsFromName,
+  getMockUserName,
+};

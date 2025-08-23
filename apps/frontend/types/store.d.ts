@@ -90,4 +90,5 @@ interface KycState {
 
   fetchKyc: () => Promise<void>;
   updateKyc: (updates: Partial<Kyc>) => Promise<void>;
+  verifyOtp: (code: string) => Promise<boolean>;
 }

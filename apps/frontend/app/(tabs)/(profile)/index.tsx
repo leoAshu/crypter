@@ -1,17 +1,20 @@
 import { icons } from '@/assets';
 import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
-import { AlertStrings, Strings } from '@/constants';
-import { useProfile, useStats } from '@/hooks';
+import { AlertStrings, Strings, ToastStrings } from '@/constants';
+import { useKyc, useProfile, useStats } from '@/hooks';
+import { KycStatus } from '@/models';
 import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Alert, ScrollView, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
 
 const Profile = () => {
   const isDark = useColorScheme() === 'dark';
 
+  const { kyc } = useKyc();
   const { stats } = useStats();
   const { profile } = useProfile();
   const { statsTypeFilterItems } = useStats();
@@ -142,7 +145,18 @@ const Profile = () => {
             <MenuOption
               title={Strings.profile.MENU_MERCHANT_TITLE}
               leftIcon={isDark ? icons.dark.verify : icons.light.verify}
-              onPress={() => router.push('/verify')}
+              onPress={() => {
+                if (kyc?.kycStatus === KycStatus.Incomplete) return router.push('/verify');
+
+                Toast.show({
+                  type: 'success',
+                  text1: ToastStrings.Info.KYC_SUBMIT_TITLE,
+                  text2: ToastStrings.Info.KYC_SUBMIT,
+                  position: 'bottom',
+                  bottomOffset: 112,
+                  autoHide: false,
+                });
+              }}
             />
 
             <MenuOption

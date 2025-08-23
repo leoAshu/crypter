@@ -1,14 +1,32 @@
 import { icons } from '@/assets';
 import { PrimaryButton, RequirementOption } from '@/components';
-import { Strings } from '@/constants';
+import { Strings, ToastStrings } from '@/constants';
 import { useKyc } from '@/hooks';
+import { KycStatus } from '@/models';
 import { router } from 'expo-router';
 import { Image, Text, useColorScheme, View } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 const Requirements = () => {
   const isDark = useColorScheme() === 'dark';
 
-  const { requirements, requirementsMet } = useKyc();
+  const { isLoading, requirements, requirementsMet, updateKyc } = useKyc();
+
+  const sendApplication = async () => {
+    await updateKyc('kycStatus', KycStatus.Pending);
+    Toast.show({
+      type: 'success',
+      text1: ToastStrings.Info.KYC_SUBMIT_TITLE,
+      text2: ToastStrings.Info.KYC_SUBMIT,
+      position: 'bottom',
+      bottomOffset: 112,
+      autoHide: false,
+      onHide: () => {
+        router.back();
+        router.back();
+      },
+    });
+  };
 
   return (
     <>
@@ -39,7 +57,12 @@ const Requirements = () => {
       </View>
 
       <View className='absolute bottom-24 left-0 right-0 px-4'>
-        <PrimaryButton title={Strings.requirements.CTA_LABEL} disabled={!requirementsMet} />
+        <PrimaryButton
+          title={Strings.requirements.CTA_LABEL}
+          isLoading={isLoading}
+          disabled={!requirementsMet}
+          onPress={sendApplication}
+        />
       </View>
     </>
   );
