@@ -6,7 +6,12 @@ const VerifyEmail = () => {
   const { kyc } = useKyc();
 
   return (
-    <FormInputField label={Strings.info.EMAIL_LABEL} placeholder={Strings.info.EMAIL_HINT} value={kyc.email} disabled />
+    <FormInputField
+      label={Strings.info.EMAIL_LABEL}
+      placeholder={Strings.info.EMAIL_HINT}
+      value={kyc?.email}
+      disabled
+    />
   );
 };
 

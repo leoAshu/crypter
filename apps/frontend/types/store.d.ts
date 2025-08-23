@@ -83,3 +83,11 @@ interface CountryState {
 
   fetchCountries: () => Promise<void>;
 }
+
+interface KycState {
+  kyc: Kyc | null;
+  isLoading: boolean;
+
+  fetchKyc: () => Promise<void>;
+  updateKyc: (updates: Partial<Kyc>) => Promise<void>;
+}

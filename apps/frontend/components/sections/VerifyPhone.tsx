@@ -10,7 +10,7 @@ const VerifyPhone = () => {
     <FormInputField
       label={Strings.info.PHONE_LABEL}
       placeholder={Strings.info.PHONE_HINT}
-      value={formatPhoneNumber(kyc.phone)}
+      value={formatPhoneNumber(kyc?.phone ?? '')}
       keyboardType='phone-pad'
       disabled
     />
