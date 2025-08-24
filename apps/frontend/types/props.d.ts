@@ -68,10 +68,10 @@ interface PaymentMethodChipsProps {
 
 interface ModalViewProps {
   visible: boolean;
-  onClose: () => void;
   title: string;
   children?: ReactNode;
   maxHeight?: number;
+  onClose?: () => void;
 }
 
 // ====================
@@ -296,4 +296,24 @@ interface RequirementOptionProps {
 
 interface FileUploadProps {
   label?: string;
+}
+
+interface NewPayMethodModalProps {
+  visible: boolean;
+  onClose?: () => void;
+}
+
+interface NotificationModalProps {
+  visible: boolean;
+  title?: string;
+  label?: string;
+  icon?: ImageSourcePropType;
+  onClose?: () => void;
+}
+
+interface SelectPayMethodModalProps {
+  visible: boolean;
+  payMethodTypes: PayMethodType[];
+  onClose?: () => void;
+  onTapPayMethodType?: (id: string) => void;
 }

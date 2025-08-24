@@ -109,6 +109,8 @@ const Strings = {
     ATTENTION_LABEL: 'Attention',
     ATTENTION_TEXT: 'To become a merchant, you need to verify your identity and contact information',
     CTA_LABEL: 'Send Application',
+    TITLE_KYC_SUBMIT: 'Application Sent',
+    KYC_SUBMIT: 'Your application has been sent. The P2P team will contact you within a few days if you are qualified.',
   },
   info: {
     NAME_LABEL: 'Full Legal Name',
@@ -132,6 +134,14 @@ const Strings = {
     RESEND_CODE: 'Resend Code',
     RESEND_IN: 'Resend in',
     CTA: 'Confirm OTP',
+    OTP_SUCCESS: 'Success',
+    EMAIL_SUCCESS: 'Your email address has been verified successfully.',
+    PHONE_SUCCESS: 'Your phone number has been verified successfully.',
+  },
+  verifyIdentity: {
+    TITLE_DOC_SUBMIT: 'Documents Submitted',
+    DOC_SUBMIT:
+      'Your documents are being verified. You will receive a confirmation mail once your verfication is complete.',
   },
 };
 

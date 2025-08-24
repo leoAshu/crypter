@@ -3,13 +3,6 @@ import { FlatList, Image, Text, TouchableHighlight, useColorScheme, View } from 
 import { DividerX } from '../dividers';
 import ModalView from './ModalView';
 
-interface SelectPayMethodModalProps {
-  visible: boolean;
-  payMethodTypes: PayMethodType[];
-  onClose: () => void;
-  onTapPayMethodType: (id: string) => void;
-}
-
 const SelectPayMethodModal = (props: SelectPayMethodModalProps) => {
   const isDark = useColorScheme() === 'dark';
   const { getPayMethodTypeById, getPayMethodTypeLogoUrlById } = usePayMethodType();
@@ -30,8 +23,8 @@ const SelectPayMethodModal = (props: SelectPayMethodModalProps) => {
               className='flex-1'
               underlayColor={isDark ? '#1C1C1C' : '#F1F1F1'}
               onPress={() => {
-                props.onTapPayMethodType(payMethodType!.id);
-                props.onClose();
+                props.onTapPayMethodType?.(payMethodType!.id);
+                props.onClose?.();
               }}
             >
               <View className='flex-row items-center justify-between px-6 py-6'>
