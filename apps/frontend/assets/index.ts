@@ -73,6 +73,8 @@ const icons = {
     tick: require('./icons/light/tickbox.png'),
     tickSuccess: require('./icons/light/tickbox-success.png'),
     danger: require('./icons/light/danger.png'),
+    tickHalo: require('./icons/light/tick-halo.png'),
+    clockHalo: require('./icons/light/clock-halo.png'),
 
     // Active Tab
     active: {
@@ -141,6 +143,8 @@ const icons = {
     tick: require('./icons/dark/tickbox.png'),
     tickSuccess: require('./icons/dark/tickbox-success.png'),
     danger: require('./icons/dark/danger.png'),
+    tickHalo: require('./icons/dark/tick-halo.png'),
+    clockHalo: require('./icons/dark/clock-halo.png'),
 
     // Active Tab
     active: {

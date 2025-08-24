@@ -10,12 +10,13 @@ const ToastStrings = {
   },
   Info: {
     TITLE: 'Information',
+    TITLE_KYC_SUBMIT: 'Application Sent',
     INACTIVE_AD: 'Only one ad can be active. Deactivate the other first.',
-    VERIFICATION_SUBMIT_TITLE: 'Documents Submitted',
-    VERIFICATION_SUBMIT:
-      'Your documents are being verified. You will receive a confirmation mail once your verfication is complete.',
-    KYC_SUBMIT_TITLE: 'Application Sent',
     KYC_SUBMIT: 'Your application has been sent. The P2P team will contact you within a few days if you are qualified.',
+  },
+  Error: {
+    TITLE: 'Error',
+    OTP_ERROR: 'OTP Verification Failed. Try Again!',
   },
 };
 

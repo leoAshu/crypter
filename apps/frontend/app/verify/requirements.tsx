@@ -1,31 +1,22 @@
 import { icons } from '@/assets';
-import { PrimaryButton, RequirementOption } from '@/components';
-import { Strings, ToastStrings } from '@/constants';
+import { NotificationModal, PrimaryButton, RequirementOption } from '@/components';
+import { Strings } from '@/constants';
 import { useKyc } from '@/hooks';
 import { KycStatus } from '@/models';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { Image, Text, useColorScheme, View } from 'react-native';
-import Toast from 'react-native-toast-message';
 
 const Requirements = () => {
   const isDark = useColorScheme() === 'dark';
 
   const { isLoading, requirements, requirementsMet, updateKyc } = useKyc();
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   const sendApplication = async () => {
     await updateKyc('kycStatus', KycStatus.Pending);
-    Toast.show({
-      type: 'success',
-      text1: ToastStrings.Info.KYC_SUBMIT_TITLE,
-      text2: ToastStrings.Info.KYC_SUBMIT,
-      position: 'bottom',
-      bottomOffset: 112,
-      autoHide: false,
-      onHide: () => {
-        router.back();
-        router.back();
-      },
-    });
+    setModalVisible(true);
   };
 
   return (
@@ -64,6 +55,17 @@ const Requirements = () => {
           onPress={sendApplication}
         />
       </View>
+
+      <NotificationModal
+        icon={isDark ? icons.dark.clockHalo : icons.light.clockHalo}
+        title={Strings.requirements.TITLE_KYC_SUBMIT}
+        label={Strings.requirements.KYC_SUBMIT}
+        visible={modalVisible}
+        onClose={() => {
+          router.back();
+          router.back();
+        }}
+      />
     </>
   );
 };

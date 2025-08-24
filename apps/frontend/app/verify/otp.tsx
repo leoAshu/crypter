@@ -1,63 +1,70 @@
-import { PrimaryButton } from '@/components';
+import { icons } from '@/assets';
+import { NotificationModal, PrimaryButton } from '@/components';
 import { Strings, ToastStrings } from '@/constants';
 import { useKyc } from '@/hooks';
 import { RequirementStatus, RequirementType } from '@/models';
 import cn from 'clsx';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
-import { Keyboard, Pressable, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Keyboard, Pressable, Text, useColorScheme, View } from 'react-native';
 import { CodeField, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
 
 const OTP = () => {
+  const isDark = useColorScheme() === 'dark';
   const { isLoading, verifyOtp: verify, updateKyc } = useKyc();
   const { reqId } = useLocalSearchParams<{ reqId: RequirementType }>();
 
   const [timer, setTimer] = useState(30);
   const [value, setValue] = useState('');
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [verificationFailed, setVerificationFailed] = useState<boolean>(false);
+
   const ref = useBlurOnFulfill({ value, cellCount: 4 });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
-  const [verificationResult, setVerificationResult] = useState<boolean | undefined>();
 
-  const ctaDisabled = useMemo(() => value.length < 4, [value]);
+  const ctaDisabled = value.length < 4;
 
   useEffect(() => {
-    if (timer > 0) {
-      const t = setTimeout(() => setTimer(timer - 1), 1000);
-      return () => clearTimeout(t);
-    }
+    if (timer === 0) return;
+    const interval = setInterval(() => setTimer((t) => t - 1), 1000);
+    return () => clearInterval(interval);
   }, [timer]);
 
-  useEffect(() => {
-    if (value.length < 4) return setVerificationResult(undefined);
-    if (value.length === 4) {
-      verifyOtp();
-    }
-  }, [value]);
+  const verifyOtp = async () => {
+    if (value.length < 4) return;
 
-  useEffect(() => {
-    if (verificationResult) {
+    const result = await verify(value);
+
+    if (result) {
+      setModalVisible(true);
+    } else {
+      setVerificationFailed(true);
       Toast.show({
-        type: 'success',
-        text1: ToastStrings.Success.TITLE,
-        text2: ToastStrings.Success.OTP_SUCCESS,
+        type: 'error',
+        text1: ToastStrings.Error.TITLE,
+        text2: ToastStrings.Error.OTP_ERROR,
         position: 'bottom',
         bottomOffset: 112,
-        autoHide: true,
-        visibilityTime: 1500,
+        autoHide: false,
         onHide: () => {
-          updateKyc(`${reqId}Status`, RequirementStatus.Verified);
-          router.back();
-          router.back();
+          setValue('');
+          setVerificationFailed(false);
         },
       });
     }
-  }, [verificationResult]);
+  };
 
-  const verifyOtp = async () => {
-    const result = await verify(value);
-    setVerificationResult(result);
+  useEffect(() => {
+    verifyOtp();
+  }, [value]);
+
+  const onModalClose = () => {
+    setModalVisible(false);
+    updateKyc(`${reqId}Status`, RequirementStatus.Verified);
+    router.back();
+    router.back();
   };
 
   return (
@@ -88,7 +95,7 @@ const OTP = () => {
                   key={index}
                   className={cn(
                     'mx-2 size-16 items-center justify-center rounded-xl border-2 bg-card dark:bg-card-dark',
-                    verificationResult === false
+                    verificationFailed
                       ? 'border-error-500'
                       : isFocused
                         ? 'elevation-md border-primary'
@@ -118,15 +125,18 @@ const OTP = () => {
           </View>
 
           <View className='mt-12 w-full'>
-            <PrimaryButton
-              title={Strings.otp.CTA}
-              isLoading={isLoading}
-              disabled={ctaDisabled || verificationResult !== undefined}
-              onPress={verifyOtp}
-            />
+            <PrimaryButton title={Strings.otp.CTA} isLoading={isLoading} disabled={ctaDisabled} onPress={verifyOtp} />
           </View>
         </View>
       </Pressable>
+
+      <NotificationModal
+        title={Strings.otp.OTP_SUCCESS}
+        icon={isDark ? icons.dark.tickHalo : icons.light.tickHalo}
+        label={reqId === RequirementType.Email ? Strings.otp.EMAIL_SUCCESS : Strings.otp.PHONE_SUCCESS}
+        visible={modalVisible}
+        onClose={onModalClose}
+      />
     </SafeAreaView>
   );
 };

@@ -150,7 +150,7 @@ const Profile = () => {
 
                 Toast.show({
                   type: 'success',
-                  text1: ToastStrings.Info.KYC_SUBMIT_TITLE,
+                  text1: ToastStrings.Info.TITLE_KYC_SUBMIT,
                   text2: ToastStrings.Info.KYC_SUBMIT,
                   position: 'bottom',
                   bottomOffset: 112,

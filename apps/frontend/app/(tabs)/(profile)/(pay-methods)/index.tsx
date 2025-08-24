@@ -40,34 +40,30 @@ const PayMethods = () => {
   }, []);
 
   return (
-    <>
-      <SafeAreaView className='screen-wrapper' edges={['bottom']}>
-        <View className='content-wrapper mt-2'>
-          <FlatList
-            data={payMethods}
-            keyExtractor={(item) => item.id}
-            showsVerticalScrollIndicator={false}
-            contentContainerClassName={listStyle}
-            renderItem={({ item, index }) => <PayMethodCard index={index} payMethod={item} />}
-            ItemSeparatorComponent={() => <DividerX style={cn('mt-px mb-2', isDark ? 'opacity-40' : 'opacity-25')} />}
-            ListFooterComponent={() =>
-              !isEmpty && <DividerX style={cn('mt-px', isDark ? 'opacity-40' : 'opacity-25')} />
-            }
-            ListEmptyComponent={
-              <ListEmptyState
-                title='No Pay Methods Available'
-                ctaLabel='Add'
-                ctaStyle='py-4 px-8 rounded-lg'
-                ctaOnPresss={() => {
-                  setModalVisible(true);
-                }}
-              />
-            }
-          />
-        </View>
-      </SafeAreaView>
+    <SafeAreaView className='screen-wrapper' edges={['bottom']}>
+      <View className='content-wrapper mt-2'>
+        <FlatList
+          data={payMethods}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          contentContainerClassName={listStyle}
+          renderItem={({ item, index }) => <PayMethodCard index={index} payMethod={item} />}
+          ItemSeparatorComponent={() => <DividerX style={cn('mt-px mb-2', isDark ? 'opacity-40' : 'opacity-25')} />}
+          ListFooterComponent={() => !isEmpty && <DividerX style={cn('mt-px', isDark ? 'opacity-40' : 'opacity-25')} />}
+          ListEmptyComponent={
+            <ListEmptyState
+              title='No Pay Methods Available'
+              ctaLabel='Add'
+              ctaStyle='py-4 px-8 rounded-lg'
+              ctaOnPresss={() => {
+                setModalVisible(true);
+              }}
+            />
+          }
+        />
+      </View>
       <NewPayMethodModal visible={modalVisible} onClose={() => setModalVisible(false)} />
-    </>
+    </SafeAreaView>
   );
 };
 
