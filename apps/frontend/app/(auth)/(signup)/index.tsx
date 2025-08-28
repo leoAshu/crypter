@@ -28,7 +28,7 @@ const Signup = () => {
   };
 
   const submitForm = async () => {
-    const { email } = formData;
+    const email = formData.email.toLowerCase();
     const emailValidationResult = validateEmail(email);
 
     if (!emailValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, emailValidationResult.error);

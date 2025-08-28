@@ -18,7 +18,7 @@ const useKycStore = create<KycState>((set) => ({
         kyc: {
           id: 'kyc-1',
           userId: profile?.id ?? '',
-          name: profile?.name ?? '',
+          name: `${profile?.firstName ?? ''} ${profile?.lastName ?? ''}`,
           email: user?.email,
           phone: user?.user_metadata?.phone,
           address: '',

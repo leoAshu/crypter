@@ -18,7 +18,7 @@ const useAuthStore = create<AuthState>((set) => ({
   setIsLoading: (value) => set({ isLoading: value }),
   setIsAuthenticated: (value) => set({ isAuthenticated: value }),
 
-  signup: async (signUpParams: SignUpParams) => {
+  signup: async (signUpParams: SignUpParams, profileData: Partial<Profile>) => {
     set({ isLoading: true });
 
     try {
@@ -28,7 +28,12 @@ const useAuthStore = create<AuthState>((set) => ({
       if (user) {
         const profile: Profile = {
           id: user.id,
-          name: signUpParams.name,
+          username: profileData.username!,
+          firstName: profileData.firstName!,
+          lastName: profileData.lastName!,
+          email: profileData.email!,
+          phoneCountryId: profileData.phoneCountryId!,
+          phone: profileData.phone!,
           verified: false,
           avatarUrl: '',
           createdAt: user.created_at,
@@ -41,6 +46,7 @@ const useAuthStore = create<AuthState>((set) => ({
 
         await useProfileStore.getState().createProfile(profile);
 
+        await useStatsStore.getState().createStats(user.id);
         await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
         await usePayMethodStore.getState().fetchPayMethods(user.id);

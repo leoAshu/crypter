@@ -7,7 +7,7 @@ interface AuthState {
   setIsLoading: (value: boolean) => void;
   setIsAuthenticated: (value: boolean) => void;
 
-  signup: (signUpParams: SignUpParams) => Promise<void>;
+  signup: (signUpParams: SignUpParams, profile: Partial<Profile>) => Promise<void>;
   signin: (signInParams: SignInParams) => Promise<void>;
   signout: () => Promise<void>;
   fetchAuthenticatedUser: () => Promise<void>;
@@ -35,6 +35,7 @@ interface StatState {
   stats: Stats | null;
   isLoading: boolean;
 
+  createStats: (userId: string) => Promise<void>;
   fetchStats: (userId: string) => Promise<void>;
 }
 

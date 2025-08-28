@@ -44,7 +44,10 @@ const Profile = () => {
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <ScrollView>
         <View className='content-wrapper mt-4 pb-28'>
-          <AccountInfo name={profile?.name ?? ''} username={profile?.name ?? ''} />
+          <AccountInfo
+            name={`${profile?.firstName ?? ''} ${profile?.lastName ?? ''}`.trim()}
+            username={profile?.username ?? ''}
+          />
 
           <DividerX />
 

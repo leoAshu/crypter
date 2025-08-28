@@ -10,7 +10,7 @@ const SecondaryInputField = (props: SecondaryInputFieldProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <View className='gap-y-2'>
+    <View className={cn('gap-y-2', props.containerStyle)}>
       {props.label && <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>{props.label}</Text>}
       <View
         className={cn(

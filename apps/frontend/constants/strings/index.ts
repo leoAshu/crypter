@@ -20,7 +20,8 @@ const Strings = {
   signupInfo: {
     SCREEN_TITLE: 'Almost there...',
     EMAIL_LABEL: 'Email Address',
-    NAME_LABEL: 'First Name',
+    FNAME_LABEL: 'First Name',
+    LNAME_LABEL: 'Last Name',
     PHONE_LABEL: 'Phone Number',
     PASSWORD_LABEL: 'Password',
     CONFIRM_PASSWORD_LABEL: 'Confirm Password',
@@ -55,6 +56,8 @@ const Strings = {
   editProfile: {
     HEADER_TITLE: 'Edit',
     NAME_LABEL: 'Your name',
+    FNAME_LABEL: 'Your first name',
+    LNAME_LABEL: 'Your last name',
     EMAIL_LABEL: 'Email Address',
     PASSWORD_LABEL: 'Your Password',
     PHONE_LABEL: 'Phone Number',

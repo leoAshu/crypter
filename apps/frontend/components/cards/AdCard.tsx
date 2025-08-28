@@ -1,7 +1,7 @@
 import { icons } from '@/assets';
 import { ComponentStrings } from '@/constants';
 import { useCrypto, useFiat, useProfile } from '@/hooks';
-import { capitalizeWords, currencyFormatter, getMockUserName } from '@/utils';
+import { capitalizeWords, currencyFormatter } from '@/utils';
 import cn from 'clsx';
 import { Image, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -28,11 +28,11 @@ const AdCard = (props: AdCardProps) => {
         <View className='ad-card-info-wrapper'>
           <View className='ad-card-info'>
             <InitialsAvatar
-              name={props.ad.userFullName}
+              name={props.ad.userFirstName}
               textStyle='absolute font-clashDisplay-medium text-xs text-title dark:text-title-dark'
               containerStyle='bg-card dark:bg-card-dark size-8'
             />
-            <Text className='ad-card-txt text-sm'>{getMockUserName(props.ad.userFullName)}</Text>
+            <Text className='ad-card-txt text-sm'>{props.ad.username}</Text>
           </View>
 
           <View className='ad-card-rating'>

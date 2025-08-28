@@ -11,7 +11,9 @@ interface Ad {
   type: AdType;
   isActive: boolean;
   userId: string;
-  userFullName: string;
+  username: string;
+  userFirstName: string;
+  userLastName: string;
   userAvatar: string;
   userVerified: boolean;
   userTotalTrades: number;

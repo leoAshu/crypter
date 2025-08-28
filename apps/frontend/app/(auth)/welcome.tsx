@@ -19,7 +19,7 @@ const Welcome = () => {
         <View className='welcome-header-wrapper'>
           <View className=''>
             <Text className='welcome-header-txt'>
-              {Strings.welcome.SCREEN_GREETING} {(profile?.name ?? '').split(' ')[0]}
+              {Strings.welcome.SCREEN_GREETING} {profile?.firstName ?? ''}
               {'  '}👋
             </Text>
 

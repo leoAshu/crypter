@@ -12,7 +12,7 @@ const DetailsForm = (props: DetailsFormProps) => {
 
   return (
     <View className='gap-y-2'>
-      <InputField label='Name' value={profile?.name} disabled />
+      <InputField label='Name' value={`${profile?.firstName ?? ''} ${profile?.lastName ?? ''}`} disabled />
 
       {isBank && (
         <InputField
