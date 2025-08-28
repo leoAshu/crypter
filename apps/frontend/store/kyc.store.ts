@@ -1,7 +1,6 @@
 import { KycStatus, RequirementStatus } from '@/models';
 import { delay } from '@/utils';
 import { create } from 'zustand';
-import useAuthStore from './auth.store';
 import useProfileStore from './profile.store';
 
 const useKycStore = create<KycState>((set) => ({
@@ -13,14 +12,13 @@ const useKycStore = create<KycState>((set) => ({
 
     try {
       const profile = useProfileStore.getState().profile;
-      const user = useAuthStore.getState().user;
       set({
         kyc: {
           id: 'kyc-1',
           userId: profile?.id ?? '',
           name: `${profile?.firstName ?? ''} ${profile?.lastName ?? ''}`,
-          email: user?.email,
-          phone: user?.user_metadata?.phone,
+          email: profile?.email ?? '',
+          phone: profile?.phone ?? '',
           address: '',
           countryId: '',
           emailStatus: RequirementStatus.NotVerified,

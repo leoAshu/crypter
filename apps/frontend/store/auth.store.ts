@@ -1,10 +1,7 @@
 import { getUser, signIn, signOut, signUp } from '@/supabase';
 import { create } from 'zustand';
-import useAdStore from './ad.store';
-import useCountryStore from './country.store';
-import useCryptotore from './crypto.store';
+import useKycStore from './kyc.store';
 import usePayMethodStore from './payMethod.store';
-import usePayMethodTypeStore from './payMethodType.store';
 import useProfileStore from './profile.store';
 import useReviewStore from './review.store';
 import useStatsStore from './stats.store';
@@ -38,14 +35,9 @@ const useAuthStore = create<AuthState>((set) => ({
           avatarUrl: '',
           createdAt: user.created_at,
         };
-
-        await useAdStore.getState().fetchAds();
-        await useCryptotore.getState().fetchCryptos();
-        await useCountryStore.getState().fetchCountries();
-        await usePayMethodTypeStore.getState().fetchPayMethodTypes();
-
         await useProfileStore.getState().createProfile(profile);
 
+        await useKycStore.getState().fetchKyc();
         await useStatsStore.getState().createStats(user.id);
         await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
@@ -70,11 +62,7 @@ const useAuthStore = create<AuthState>((set) => ({
       const user = await getUser();
 
       if (user) {
-        await useAdStore.getState().fetchAds();
-        await useCryptotore.getState().fetchCryptos();
-        await useCountryStore.getState().fetchCountries();
-        await usePayMethodTypeStore.getState().fetchPayMethodTypes();
-
+        await useKycStore.getState().fetchKyc();
         await useStatsStore.getState().fetchStats(user.id);
         await useProfileStore.getState().fetchProfile(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
@@ -113,11 +101,7 @@ const useAuthStore = create<AuthState>((set) => ({
       const user = await getUser();
 
       if (user) {
-        await useAdStore.getState().fetchAds();
-        await useCryptotore.getState().fetchCryptos();
-        await useCountryStore.getState().fetchCountries();
-        await usePayMethodTypeStore.getState().fetchPayMethodTypes();
-
+        await useKycStore.getState().fetchKyc();
         await useStatsStore.getState().fetchStats(user.id);
         await useReviewStore.getState().fetchReviews(user.id);
         await useProfileStore.getState().fetchProfile(user.id);
