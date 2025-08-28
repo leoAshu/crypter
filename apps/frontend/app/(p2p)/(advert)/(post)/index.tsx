@@ -1,6 +1,6 @@
 import { Dropdown, PrimaryButton, StepperInput, ToggleButton } from '@/components';
 import { Strings } from '@/constants';
-import { useAds, useCrypto, usePriceTypes } from '@/hooks';
+import { useAds, useCrypto, useFiat, usePriceTypes } from '@/hooks';
 import { priceIndex } from '@/models';
 import { capitalizeWords } from '@/utils';
 import { router } from 'expo-router';
@@ -12,12 +12,13 @@ const PostAdvert = () => {
   const { adTypeFilterItems } = useAds();
   const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
   const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
+  const { fiatSymbolFilterItemsStrict } = useFiat();
+  const [selectedFiat, setSelectedFiat] = useState<FilterItem>(fiatSymbolFilterItemsStrict[0]);
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
   const [priceType, setpriceType] = useState<FilterItem>(priceTypeFilterItems[0]);
   const [selectedCrypto, setSelectedCrypto] = useState<FilterItem>();
   const [priceIndices, setPriceIndices] = useState<Record<string, number>>(priceIndex);
-
   const currentIndex = priceIndices[priceType.id];
 
   const handlePriceChange = useCallback(
@@ -31,18 +32,22 @@ const PostAdvert = () => {
   );
 
   const handleCreateAdvert = async () => {
-    router.push('/(p2p)/(advert)/(post)/info');
     if (!selectedCrypto) {
       // Show error - no crypto selected
       return;
     }
 
     const advertData = {
-      type: adType,
-      cryptoId: selectedCrypto.id,
-      priceType: priceType,
-      // we will add more fields here later
+      type: JSON.stringify(adType.label),
+      priceType: JSON.stringify(priceType.label),
+      selectedCrypto: JSON.stringify(selectedCrypto.id.toUpperCase()),
+      selectedFiat: selectedFiat ? JSON.stringify(selectedFiat.label) : undefined,
     };
+
+    router.push({
+      pathname: '/(p2p)/(advert)/(post)/info',
+      params: advertData,
+    });
 
     try {
       // we will call API to create the advert
@@ -75,9 +80,17 @@ const PostAdvert = () => {
           title='Select Cryptocurrency'
           items={cryptoNameFilterItemsStrict}
           value={selectedCrypto}
-          onSelect={(crypto) => setSelectedCrypto(getCryptoNameFilterItemById(crypto.id))}
+          onSelect={(crypto) => setSelectedCrypto(getCryptoNameFilterItemById(crypto.id)!)}
         />
-        <Text className='txt-label'>{Strings.postAd.PRICE_SETTING}</Text>
+        <Dropdown
+          title='Select Fiat'
+          items={fiatSymbolFilterItemsStrict}
+          value={selectedFiat}
+          onSelect={(fiat) => setSelectedFiat(fiat)}
+        />
+        <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>
+          {Strings.postAd.PRICE_SETTING}
+        </Text>
         <ToggleButton
           value={priceType}
           items={[priceTypeFilterItems[0], priceTypeFilterItems[1]]}

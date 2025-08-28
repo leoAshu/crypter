@@ -25,8 +25,6 @@ const logos = {
 
 const icons = {
   exchange: require('./icons/exchange.png'),
-  increment: require('./icons/increment.png'),
-  decrement: require('./icons/decrement.png'),
   upload: require('./icons/upload.png'),
 
   // Light Theme Icons
@@ -87,6 +85,10 @@ const icons = {
       // Rating
       like: require('./icons/light/active/like.png'),
       dislike: require('./icons/light/active/dislike.png'),
+
+      // Stepper
+      increment: require('./icons/light/active/add-circle.png'),
+      decrement: require('./icons/light/active/minus-cirlce.png'),
     },
 
     // Inactive Tab
@@ -96,6 +98,8 @@ const icons = {
       p2p: require('./icons/light/inactive/p2p.png'),
       receipt: require('./icons/light/inactive/receipt.png'),
       subtitle: require('./icons/light/inactive/subtitle.png'),
+      increment: require('./icons/light/inactive/add-circle.png'),
+      decrement: require('./icons/light/inactive/minus-cirlce.png'),
     },
   },
 
@@ -157,6 +161,10 @@ const icons = {
       // Rating
       like: require('./icons/dark/active/like.png'),
       dislike: require('./icons/dark/active/dislike.png'),
+
+      // Stepper
+      increment: require('./icons/dark/active/add-circle.png'),
+      decrement: require('./icons/dark/active/minus-cirlce.png'),
     },
 
     // Inactive Tab
@@ -166,6 +174,8 @@ const icons = {
       p2p: require('./icons/dark/inactive/p2p.png'),
       receipt: require('./icons/dark/inactive/receipt.png'),
       subtitle: require('./icons/dark/inactive/subtitle.png'),
+      increment: require('./icons/dark/inactive/add-circle.png'),
+      decrement: require('./icons/dark/inactive/minus-cirlce.png'),
     },
   },
 };

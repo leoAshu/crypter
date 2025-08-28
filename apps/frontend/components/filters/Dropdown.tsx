@@ -12,8 +12,9 @@ const Dropdown = (props: DropdownProps) => {
 
   const animationProgress = useSharedValue(0);
 
-  const showIcon = props.showIcon ?? 'true';
-  const value = props.items.find((item) => item.id === props.value?.id);
+  const showIcon = props.showIcon ?? true;
+  const isSingleItem = props.items.length == 1;
+  const value = props.items.length == 1 ? props.items[0] : props.items.find((item) => item.id === props.value?.id);
   const displayValue = value?.label || props.placeholder || 'Select an option';
   const disabled = props.disabled ?? props.items.length === 1;
 
@@ -74,7 +75,7 @@ const Dropdown = (props: DropdownProps) => {
           <Text
             className={cn(
               value == undefined ? 'dropdown-placeholder' : 'dropdown-value',
-              disabled && 'text-body/45 dark:text-body-dark/45',
+              (disabled || !isSingleItem) && 'text-body/45 dark:text-body-dark/45',
             )}
             numberOfLines={1}
             ellipsizeMode='tail'

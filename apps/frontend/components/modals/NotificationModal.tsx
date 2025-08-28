@@ -18,7 +18,12 @@ const NotificationModal = (props: NotificationModalProps) => {
           )}
 
           {props.label && (
-            <Text className='text-center font-satoshi text-lg text-body dark:text-body-dark'>{props.label}</Text>
+            <Text
+              onPress={props.onLabelPress}
+              className='text-center font-satoshi text-lg text-body dark:text-body-dark'
+            >
+              {props.label}
+            </Text>
           )}
         </View>
       </View>

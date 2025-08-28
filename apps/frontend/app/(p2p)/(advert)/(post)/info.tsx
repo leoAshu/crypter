@@ -1,106 +1,166 @@
-import { Dropdown, PrimaryButton, StepperInput, ToggleButton } from '@/components';
+import { icons } from '@/assets';
+import {
+  DividerX,
+  NotificationModal,
+  PaymentMethodChips,
+  PayTimeLimitModal,
+  PrimaryButton,
+  SecondaryInputField,
+  SelectPayMethodModal,
+} from '@/components';
 import { Strings } from '@/constants';
-import { useAds, useCrypto, usePriceTypes } from '@/hooks';
-import { priceIndex } from '@/models';
-import { capitalizeWords } from '@/utils';
-import { useCallback, useState } from 'react';
-import { Text, View } from 'react-native';
+import { usePaymentTimeLimits, usePayMethodType } from '@/hooks';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  useColorScheme,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PostAdvertInfo = () => {
-  const { adTypeFilterItems } = useAds();
-  const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
-  const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
+  const isDark = useColorScheme() === 'dark';
+  const params = useLocalSearchParams();
+  const receivedCrypto = params.selectedCrypto ? JSON.parse(params.selectedCrypto as string) : null;
+  const receivedFiat = params.selectedFiat ? JSON.parse(params.selectedFiat as string) : null;
+  const [totalAmount, setTotalAmount] = useState<string>('');
+  const [orderLimitFrom, setOrderLimitFrom] = useState<string>('');
+  const [orderLimitTo, setOrderLimitTo] = useState<string>('');
+  const { payMethodTypes, getPayMethodTypeById } = usePayMethodType();
+  const [selectedPayMethods, setSelectedPayMethods] = useState<string[]>([]);
+  const [availablePayMethods, setAvailablePayMethods] = useState<string[]>(payMethodTypes.map((item) => item.id));
+  const [openBottomSheetPayMethod, setOpenBottomSheetPayMethod] = useState(false);
+  const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
+  const {
+    payTimeLimits,
+    selectedPayTimeLimitData,
+    isBottomSheetVisible: isPayTimeLimitBottomSheetVisible,
+    selectPayTimeLimit,
+    openBottomSheet: openPayTimeLimitBottomSheet,
+    closeBottomSheet: closePayTimeLimitBottomSheet,
+  } = usePaymentTimeLimits();
 
-  const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
-  const [priceType, setpriceType] = useState<FilterItem>(priceTypeFilterItems[0]);
-  const [selectedCrypto, setSelectedCrypto] = useState<FilterItem>();
-  const [priceIndices, setPriceIndices] = useState<Record<string, number>>(priceIndex);
-
-  const currentIndex = priceIndices[priceType.id];
-
-  const handlePriceChange = useCallback(
-    (increment: boolean) => {
-      setPriceIndices((prev) => ({
-        ...prev,
-        [priceType.id]: prev[priceType.id] + (increment ? 1 : -1),
-      }));
-    },
-    [priceType.id],
-  );
+  const orderMap: Record<string, number> = {};
+  payMethodTypes.forEach((item, idx) => {
+    orderMap[item.id] = idx;
+  });
 
   const handleCreateAdvert = async () => {
-    if (!selectedCrypto) {
-      // Show error - no crypto selected
-      return;
-    }
+    setIsNotificationModalVisible(true);
+  };
 
-    const advertData = {
-      type: adType,
-      cryptoId: selectedCrypto.id,
-      priceType: priceType,
-      // we will add more fields here later
-    };
+  const handleViewAdvert = () => {
+    router.back();
+    router.back();
+  };
 
-    try {
-      // we will call API to create the advert
-      console.log('Creating advert:', advertData);
-    } catch (error) {
-      console.error('Error creating advert:', error);
-    }
+  const sortByOriginal = (arr: string[]) => arr.sort((a, b) => orderMap[a] - orderMap[b]);
+
+  const selectPayMethod = (id: string) => {
+    setSelectedPayMethods((prev) => [...prev, id]);
+    setAvailablePayMethods((prev) => prev.filter((item) => item !== id));
+  };
+
+  const deselectPayMethod = (id: string) => {
+    setAvailablePayMethods((prev) => sortByOriginal([...prev, id]));
+    setSelectedPayMethods((prev) => sortByOriginal(prev.filter((item) => item !== id)));
   };
 
   return (
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
-      <View className='content-wrapper'>
-        <View className='flex-row justify-center'>
-          <ToggleButton
-            value={adType}
-            items={[adTypeFilterItems[0], adTypeFilterItems[1]]}
-            activeButtonColors={{
-              [adTypeFilterItems[0].id]: 'bg-primary',
-              [adTypeFilterItems[1].id]: 'bg-error-500',
-            }}
-            activeLabelColors={{
-              [adTypeFilterItems[0].id]: 'text-base-dark',
-              [adTypeFilterItems[1].id]: 'text-base-white',
-            }}
-            onChange={(val) => setAdType(val)}
-          />
-        </View>
-
-        <Dropdown
-          title='Select Cryptocurrency'
-          items={cryptoNameFilterItemsStrict}
-          value={selectedCrypto}
-          onSelect={(crypto) => setSelectedCrypto(getCryptoNameFilterItemById(crypto.id))}
-        />
-        <Text className='txt-label'>{Strings.postAd.PRICE_SETTING}</Text>
-        <ToggleButton
-          value={priceType}
-          items={[priceTypeFilterItems[0], priceTypeFilterItems[1]]}
-          activeButtonColors={{
-            [priceTypeFilterItems[0].id]: 'bg-card-info',
-            [priceTypeFilterItems[1].id]: 'bg-card-info',
-          }}
-          activeLabelColors={{
-            [priceTypeFilterItems[0].id]: 'text-base-dark',
-            [priceTypeFilterItems[1].id]: 'text-base-dark',
-          }}
-          wrapperStyle='w-full h-10'
-          onChange={(val) => setpriceType(val)}
-        />
-        <StepperInput
-          label={capitalizeWords(priceType.label)}
-          onIncrement={() => handlePriceChange(true)}
-          onDecrement={() => handlePriceChange(false)}
-          index={currentIndex}
-          items={getPriceRangeById(priceType.id)}
-        />
-        <View className='mt-8'>
-          <PrimaryButton title={Strings.postAd.BUTTON_NEXT_LABEL} isLoading={false} onPress={handleCreateAdvert} />
-        </View>
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+          <ScrollView keyboardShouldPersistTaps='handled'>
+            <View className='content-wrapper pt-6'>
+              <SecondaryInputField
+                label='Total Amount'
+                secondarylabel={receivedCrypto}
+                value={totalAmount}
+                onChangeText={setTotalAmount}
+                keyboardType='numeric'
+              />
+              <View className='mt-4 flex-row items-end gap-4'>
+                <View style={{ flex: 1 }}>
+                  <SecondaryInputField
+                    label='Order Limit'
+                    secondarylabel={receivedFiat}
+                    value={orderLimitFrom}
+                    onChangeText={setOrderLimitFrom}
+                    keyboardType='numeric'
+                  />
+                </View>
+                <View className='flex-1'>
+                  <SecondaryInputField
+                    label=''
+                    secondarylabel={receivedFiat}
+                    value={orderLimitTo}
+                    onChangeText={setOrderLimitTo}
+                    keyboardType='numeric'
+                  />
+                </View>
+              </View>
+              <DividerX style='my-4' />
+              <PaymentMethodChips
+                selectedPayMethods={selectedPayMethods.map((id) => getPayMethodTypeById(id)!.id)}
+                onRemovePayMethod={deselectPayMethod}
+                onOpenBottomSheet={() => {
+                  Keyboard.dismiss();
+                  setOpenBottomSheetPayMethod(true);
+                }}
+                canAddMore={selectedPayMethods.length < 3}
+                maxSelections={3}
+              />
+              <DividerX style='my-4' />
+              <View className='flex-row items-center justify-between'>
+                <Text className='input-label text-title dark:text-title-dark'>Payment TimeLimit</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    Keyboard.dismiss();
+                    openPayTimeLimitBottomSheet();
+                  }}
+                >
+                  <Text className='mt-1 font-satoshi text-sm text-label dark:text-label-dark'>
+                    {selectedPayTimeLimitData ? selectedPayTimeLimitData.label : 'Select'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View className='mt-4 rounded-lg border border-dashed border-warning-500 bg-warning-500/10 px-3 py-4 dark:border-warning-100 dark:bg-warning-100/10'>
+                <Text className='font-satoshi text-sm text-label dark:text-label-dark'>Estimated Fee - 0.876 ALGO</Text>
+              </View>
+              <View className='mt-8'>
+                <PrimaryButton title={Strings.postAd.PUBLISH_AD_LABEL} isLoading={false} onPress={handleCreateAdvert} />
+              </View>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
+      <SelectPayMethodModal
+        payMethodTypes={availablePayMethods.map((id) => getPayMethodTypeById(id)!)}
+        visible={openBottomSheetPayMethod}
+        onClose={() => setOpenBottomSheetPayMethod(false)}
+        onTapPayMethodType={selectPayMethod}
+      />
+      <PayTimeLimitModal
+        payTimeLimits={payTimeLimits}
+        visible={isPayTimeLimitBottomSheetVisible}
+        onClose={closePayTimeLimitBottomSheet}
+        onSelectPayTimeLimit={selectPayTimeLimit}
+      />
+      <NotificationModal
+        visible={isNotificationModalVisible}
+        onClose={() => setIsNotificationModalVisible(false)}
+        title='Your ad has been published'
+        label='View Advert here'
+        onLabelPress={handleViewAdvert}
+        icon={isDark ? icons.dark.tickHalo : icons.light.tickHalo}
+      />
     </SafeAreaView>
   );
 };
