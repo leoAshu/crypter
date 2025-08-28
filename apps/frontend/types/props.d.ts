@@ -328,4 +328,5 @@ interface PhoneInputFieldProps {
   countryId?: string;
   disabled?: boolean;
   onChange?: (val: string) => void;
+  onSelect?: (item: FilterItem) => void;
 }

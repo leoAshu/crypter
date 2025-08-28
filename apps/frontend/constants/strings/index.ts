@@ -20,7 +20,8 @@ const Strings = {
   signupInfo: {
     SCREEN_TITLE: 'Almost there...',
     EMAIL_LABEL: 'Email Address',
-    NAME_LABEL: 'First Name',
+    FNAME_LABEL: 'First Name',
+    LNAME_LABEL: 'Last Name',
     PHONE_LABEL: 'Phone Number',
     PASSWORD_LABEL: 'Password',
     CONFIRM_PASSWORD_LABEL: 'Confirm Password',

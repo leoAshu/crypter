@@ -16,8 +16,10 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    !isLoading && fetchAllTickers();
-    !isLoading && fetchKyc();
+    if (!isLoading && isAuthenticated) {
+      fetchAllTickers();
+      fetchKyc();
+    }
   }, [isLoading]);
 
   if (!isLoading && !isTickerLoading && !isKycLoading) {

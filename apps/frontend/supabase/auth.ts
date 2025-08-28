@@ -9,16 +9,10 @@ const signIn = async ({ email, password }: SignInParams) => {
   if (error) throw new Error(error.message);
 };
 
-const signUp = async ({ name, phone, email, password }: SignUpParams) => {
+const signUp = async ({ email, password }: SignUpParams) => {
   const { data, error } = await supabaseClient.auth.signUp({
     email: email,
     password: password,
-    options: {
-      data: {
-        name: name,
-        phone: phone,
-      },
-    },
   });
 
   if (error) throw new Error(error.message);

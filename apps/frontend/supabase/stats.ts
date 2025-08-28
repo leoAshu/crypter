@@ -9,4 +9,9 @@ const fetchStats = async (userId: string): Promise<Stats> => {
   return stats;
 };
 
-export { fetchStats };
+const createStats = async (userId: string) => {
+  const { error } = await supabaseClient.from('stats').insert({ user_id: userId });
+  if (error) throw new Error(error.message);
+};
+
+export { createStats, fetchStats };

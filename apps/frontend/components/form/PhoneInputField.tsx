@@ -19,6 +19,7 @@ const PhoneInputField = (props: PhoneInputFieldProps) => {
           showIcon={false}
           containerStyle='w-28'
           disabled={disabled || countryPhoneCodeFilterItems.length === 1}
+          onSelect={props.onSelect}
         />
 
         <View className='flex-1 justify-start'>

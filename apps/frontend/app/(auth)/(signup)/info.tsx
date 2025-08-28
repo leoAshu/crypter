@@ -21,27 +21,37 @@ const SignUpInfo = () => {
   const { currentCountry } = useCountry();
   const { email } = useLocalSearchParams<{ email: string }>();
 
-  const [formData, setFormData] = useState({ name: '', email: email, password: '', confirmPassword: '', phone: '' });
+  const [profileData, setProfileData] = useState<Partial<Profile>>({
+    email: email,
+    phoneCountryId: currentCountry?.id,
+  });
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const submitForm = async () => {
-    const { name, email, password, confirmPassword } = formData;
-    const phone = trimPhoneNumber(formData.phone);
+    const { firstName, lastName } = profileData;
+    const phone = trimPhoneNumber(profileData.phone ?? '');
+    profileData.phone = phone;
+    profileData.username = profileData.email?.split('@')[0];
 
-    const nameValidationResult = validateName(name);
+    const fNameValidationResult = validateName(firstName!);
+    const lNameValidationResult = validateName(lastName!);
+
     const phoneValidationResult = validatePhone(phone);
     const passwordValidationResult = validatePassword(password);
     const confirmPasswordValidationresult = validateConfirmPassword(password, confirmPassword);
 
-    if (!nameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, nameValidationResult.error);
+    if (!fNameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, AlertStrings.ERROR.FNAME);
+    if (!lNameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, AlertStrings.ERROR.LNAME);
     if (!phoneValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, phoneValidationResult.error);
     if (!passwordValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, passwordValidationResult.error);
     if (!confirmPasswordValidationresult.isValid)
       return Alert.alert(AlertStrings.TITLE.ERROR, confirmPasswordValidationresult.error);
 
     try {
-      await signup({ name, phone, email, password });
+      await signup({ email, password }, profileData);
       await fetchAllTickers();
-      router.replace({ pathname: '/welcome', params: { name } });
+      router.replace('/welcome');
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);
     }
@@ -60,40 +70,56 @@ const SignUpInfo = () => {
 
             {/* Form */}
             <View className='form-group'>
-              <InputField
-                label={Strings.signupInfo.NAME_LABEL}
-                keyboardType='default'
-                value={formData.name}
-                disabled={isLoading}
-                onChangeText={(value) => setFormData((prev) => ({ ...prev, name: value }))}
-              />
+              <View className='flex-row gap-x-4'>
+                <View className='flex-1'>
+                  <InputField
+                    label={Strings.signupInfo.FNAME_LABEL}
+                    keyboardType='default'
+                    value={profileData.firstName}
+                    disabled={isLoading}
+                    onChangeText={(value) => setProfileData((prev) => ({ ...prev, firstName: value }))}
+                  />
+                </View>
+
+                <View className='flex-1'>
+                  <InputField
+                    label={Strings.signupInfo.LNAME_LABEL}
+                    keyboardType='default'
+                    value={profileData.lastName}
+                    disabled={isLoading}
+                    onChangeText={(value) => setProfileData((prev) => ({ ...prev, lastName: value }))}
+                  />
+                </View>
+              </View>
+
               <InputField
                 label={Strings.signupInfo.EMAIL_LABEL}
                 keyboardType='email-address'
-                value={formData.email}
+                value={profileData.email}
                 disabled={true}
               />
 
               <PhoneInputField
                 label={Strings.signupInfo.PHONE_LABEL}
-                number={formatPhoneNumber(formData.phone)}
-                countryId={currentCountry?.id}
-                onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                number={formatPhoneNumber(profileData.phone ?? '')}
+                countryId={profileData.phoneCountryId}
+                onChange={(value) => setProfileData((prev) => ({ ...prev, phone: value }))}
+                onSelect={(item) => setProfileData((prev) => ({ ...prev, phoneCountryId: item.id }))}
               />
 
               <InputField
                 label={Strings.signupInfo.PASSWORD_LABEL}
                 secureTextEntry
-                value={formData.password}
+                value={password}
                 disabled={isLoading}
-                onChangeText={(value) => setFormData((prev) => ({ ...prev, password: value }))}
+                onChangeText={(value) => setPassword(value)}
               />
               <InputField
                 label={Strings.signupInfo.CONFIRM_PASSWORD_LABEL}
                 secureTextEntry
-                value={formData.confirmPassword}
+                value={confirmPassword}
                 disabled={isLoading}
-                onChangeText={(value) => setFormData((prev) => ({ ...prev, confirmPassword: value }))}
+                onChangeText={(value) => setConfirmPassword(value)}
               />
 
               <View className='mt-8'>

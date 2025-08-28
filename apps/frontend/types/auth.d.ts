@@ -4,8 +4,6 @@ interface SignInParams {
 }
 
 interface SignUpParams {
-  name: string;
-  phone: string;
   email: string;
   password: string;
 }
