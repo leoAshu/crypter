@@ -1,4 +1,5 @@
 export { default as useAdStore } from './ad.store';
+export { default as useAppDataStore } from './appData.store';
 export { default as useAuthStore } from './auth.store';
 export { default as useCountryStore } from './country.store';
 export { default as useKycStore } from './kyc.store';

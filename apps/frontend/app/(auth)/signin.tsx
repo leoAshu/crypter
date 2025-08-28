@@ -1,7 +1,7 @@
 import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useAuth, useMarket } from '@/hooks';
+import { useAuth } from '@/hooks';
 import { validateEmail, validatePassword } from '@/utils';
 import cn from 'clsx';
 import { router } from 'expo-router';
@@ -21,8 +21,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SignIn = () => {
   const isIOS = Platform.OS === 'ios';
-
-  const { fetchAllTickers } = useMarket();
   const { signin, isLoading } = useAuth();
 
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -41,7 +39,6 @@ const SignIn = () => {
 
     try {
       await signin({ email, password });
-      await fetchAllTickers();
       router.replace('/welcome');
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);

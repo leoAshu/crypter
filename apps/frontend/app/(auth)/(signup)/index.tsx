@@ -20,8 +20,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Signup = () => {
   const isIOS = Platform.OS === 'ios';
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ email: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const resetForm = () => {
     setFormData({ email: '' });

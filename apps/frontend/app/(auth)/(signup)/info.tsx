@@ -1,7 +1,7 @@
 import { images } from '@/assets';
 import { InputField, PhoneInputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useAuth, useCountry, useMarket } from '@/hooks';
+import { useAuth, useCountry } from '@/hooks';
 import {
   formatPhoneNumber,
   trimPhoneNumber,
@@ -16,7 +16,6 @@ import { Alert, Dimensions, Image, KeyboardAvoidingView, Platform, ScrollView, T
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SignUpInfo = () => {
-  const { fetchAllTickers } = useMarket();
   const { signup, isLoading } = useAuth();
   const { currentCountry } = useCountry();
   const { email } = useLocalSearchParams<{ email: string }>();
@@ -50,7 +49,6 @@ const SignUpInfo = () => {
 
     try {
       await signup({ email, password }, profileData);
-      await fetchAllTickers();
       router.replace('/welcome');
     } catch (err: any) {
       Alert.alert(AlertStrings.TITLE.ERROR, err.message);

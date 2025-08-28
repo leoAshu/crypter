@@ -93,3 +93,9 @@ interface KycState {
   updateKyc: (updates: Partial<Kyc>) => Promise<void>;
   verifyOtp: (code: string) => Promise<boolean>;
 }
+
+interface AppDataState {
+  isLoading: boolean;
+
+  fetchAppData: () => Promise<void>;
+}
