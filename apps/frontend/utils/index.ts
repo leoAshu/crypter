@@ -22,6 +22,13 @@ const formatPhoneNumber = (value: string) => {
   return formatted.trim();
 };
 
+const trimPhoneNumber = (value: string) => {
+  if (!value) return value;
+  console.log(value.replace(/\D/g, ''));
+
+  return value.replace(/\D/g, '');
+};
+
 const currencyFormatter = new Intl.NumberFormat('en-IN', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
@@ -70,4 +77,5 @@ export {
   formatPhoneNumber,
   getInitialsFromName,
   getMockUserName,
+  trimPhoneNumber,
 };

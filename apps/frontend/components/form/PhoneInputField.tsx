@@ -5,7 +5,7 @@ import { Dropdown } from '../filters';
 import SecondaryInputField from './SecondaryInputField';
 
 const PhoneInputField = (props: PhoneInputFieldProps) => {
-  const { countryPhoneCodeFilterItems, getCountryById, getCountryFilterItemById } = useCountry();
+  const { countryPhoneCodeFilterItems, getCountryFilterItemById } = useCountry();
   const countryFilter = getCountryFilterItemById(countryPhoneCodeFilterItems, props.countryId ?? '');
   const disabled = props.disabled ?? false;
 
@@ -18,11 +18,16 @@ const PhoneInputField = (props: PhoneInputFieldProps) => {
           items={countryPhoneCodeFilterItems}
           showIcon={false}
           containerStyle='w-28'
-          disabled={disabled}
+          disabled={disabled || countryPhoneCodeFilterItems.length === 1}
         />
 
         <View className='flex-1 justify-start'>
-          <SecondaryInputField label='' value={formatPhoneNumber(props.number ?? '')} disabled={disabled} />
+          <SecondaryInputField
+            label=''
+            value={formatPhoneNumber(props.number ?? '')}
+            disabled={disabled}
+            onChangeText={props.onChange}
+          />
         </View>
       </View>
     </View>
