@@ -59,20 +59,23 @@ const Dropdown = (props: DropdownProps) => {
       {props.title && <Text className='dropdown-label'>{props.title}</Text>}
 
       <Pressable
-        className={cn(
-          'dropdown-wrapper',
-          disabled ? 'opacity-50' : '',
-          props.error ? 'border-red-500' : '',
-          props.buttonStyle,
-        )}
+        className={cn('dropdown-wrapper', props.error ? 'border-red-500' : '', props.buttonStyle)}
         onPress={handleOpenDropdown}
         disabled={disabled}
       >
         <View
-          className={cn('dropdown-value-wrapper flex-row items-center justify-between', !showIcon && 'rounded-r-lg')}
+          className={cn(
+            'dropdown-value-wrapper flex-row items-center',
+            !showIcon && 'rounded-r-lg',
+            value?.secondaryLabel && 'justify-between',
+            disabled && 'bg-card dark:bg-card-info-dark',
+          )}
         >
           <Text
-            className={cn(value == undefined ? 'dropdown-placeholder' : 'dropdown-value')}
+            className={cn(
+              value == undefined ? 'dropdown-placeholder' : 'dropdown-value',
+              disabled && 'text-body/45 dark:text-body-dark/45',
+            )}
             numberOfLines={1}
             ellipsizeMode='tail'
           >
@@ -81,7 +84,10 @@ const Dropdown = (props: DropdownProps) => {
 
           {value?.secondaryLabel && (
             <Text
-              className={cn(value == undefined ? 'dropdown-placeholder' : 'dropdown-value')}
+              className={cn(
+                value == undefined ? 'dropdown-placeholder' : 'dropdown-value',
+                disabled && 'text-body/45 dark:text-body-dark/45',
+              )}
               numberOfLines={1}
               ellipsizeMode='tail'
             >

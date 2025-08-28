@@ -10,24 +10,14 @@ const getInitialsFromName = (name: string) => {
 const formatPhoneNumber = (value: string) => {
   if (!value) return value;
 
-  // Remove all non-digit characters
-  const digits = value.replace(/\D/g, '');
+  let digits = value.replace(/\D/g, '');
+  if (digits.length > 10) digits = digits.slice(-10);
 
-  // Apply formatting — Example: +1 234 567 8901
   let formatted = '';
 
-  if (digits.startsWith('1')) {
-    formatted = '+1';
-    if (digits.length > 1) formatted += ' ' + digits.slice(1, 4);
-    if (digits.length > 4) formatted += ' ' + digits.slice(4, 7);
-    if (digits.length > 7) formatted += ' ' + digits.slice(7, 11);
-  } else {
-    // Generic international fallback
-    formatted = '+' + digits.slice(0, 2);
-    if (digits.length > 2) formatted += ' ' + digits.slice(2, 5);
-    if (digits.length > 5) formatted += ' ' + digits.slice(5, 8);
-    if (digits.length > 8) formatted += ' ' + digits.slice(8, 12);
-  }
+  formatted = digits.slice(0, 3);
+  if (digits.length > 3) formatted += ' ' + digits.slice(3, 6);
+  if (digits.length > 6) formatted += ' ' + digits.slice(6, 11);
 
   return formatted.trim();
 };

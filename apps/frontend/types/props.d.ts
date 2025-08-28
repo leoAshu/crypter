@@ -320,3 +320,10 @@ interface SelectPayMethodModalProps {
   onClose?: () => void;
   onTapPayMethodType?: (id: string) => void;
 }
+
+interface PhoneInputFieldProps {
+  label?: string;
+  number?: string;
+  countryId?: string;
+  disabled?: boolean;
+}
