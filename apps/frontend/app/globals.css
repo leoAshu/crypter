@@ -123,10 +123,6 @@
     @apply rounded-full p-1.5;
   }
 
-  .round-icon-btn-bg {
-    @apply absolute inset-0 rounded-full bg-[#ECEDF1] dark:bg-[#3E436D];
-  }
-
   .round-icon-btn-img-wrapper {
     @apply items-center justify-center;
   }
@@ -294,7 +290,7 @@
   }
 
   .round-icon-btn-label {
-    @apply flex-row items-center gap-x-4 self-start rounded-lg border border-stroke bg-card p-3 dark:border-stroke-dark dark:bg-card-dark;
+    @apply flex-row items-center gap-x-4 self-start rounded-lg border border-stroke  bg-base-white p-3  px-4 py-3 dark:border-stroke-dark dark:bg-base-dark;
   }
 
   .toggle-btn-label-active {
@@ -561,7 +557,7 @@
   }
 
   .dropdown-placeholder {
-    @apply font-satoshi text-sm text-label opacity-45 dark:text-label-dark;
+    @apply font-satoshi text-sm text-label opacity-85 dark:text-label-dark;
   }
 
   .dropdown-icon-wrapper {
@@ -582,5 +578,9 @@
 
   .dropdown-option-txt {
     @apply font-satoshi text-sm;
+  }
+
+  .increment-icon-wrapper {
+    @apply w-14 items-center justify-center rounded-r-lg bg-card dark:bg-card-dark;
   }
 }

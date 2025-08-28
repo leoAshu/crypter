@@ -37,9 +37,9 @@ interface SecondaryButtonProps {
 }
 
 interface IndexIconButtonProps {
-  icon: ImageSourcePropType;
   disabled?: boolean;
   onPress?: (e: GestureResponderEvent) => void;
+  icon?: ImageSourcePropType;
 }
 
 // ====================
@@ -312,6 +312,7 @@ interface NotificationModalProps {
   title?: string;
   label?: string;
   icon?: ImageSourcePropType;
+  onLabelPress?: () => void;
   onClose?: () => void;
 }
 
@@ -329,4 +330,11 @@ interface PhoneInputFieldProps {
   disabled?: boolean;
   onChange?: (val: string) => void;
   onSelect?: (item: FilterItem) => void;
+}
+
+interface PayTimeLimitModalProps {
+  visible: boolean;
+  payTimeLimits?: { id: string; label: string; value: number }[];
+  onClose?: () => void;
+  onSelectPayTimeLimit?: (id: string) => void;
 }

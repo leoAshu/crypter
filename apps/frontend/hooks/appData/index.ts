@@ -4,5 +4,6 @@ export { default as useCrypto } from './useCrypto';
 export { default as useFiat } from './useFiat';
 export { default as useMarket } from './useMarket';
 export { default as useNetwork } from './useNetwork';
+export { default as usePaymentTimeLimits } from './usePaymentTimeLimits';
 export { default as usePayMethodType } from './usePayMethodType';
 export { default as usePriceTypes } from './usePriceType';
