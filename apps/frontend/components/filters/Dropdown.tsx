@@ -12,8 +12,10 @@ const Dropdown = (props: DropdownProps) => {
 
   const animationProgress = useSharedValue(0);
 
+  const showIcon = props.showIcon ?? 'true';
   const value = props.items.find((item) => item.id === props.value?.id);
   const displayValue = value?.label || props.placeholder || 'Select an option';
+  const disabled = props.disabled ?? props.items.length === 1;
 
   const handleSelect = (item: FilterItem) => {
     handleCloseDropdown();
@@ -23,7 +25,7 @@ const Dropdown = (props: DropdownProps) => {
   };
 
   const handleOpenDropdown = () => {
-    if (props.disabled) return;
+    if (disabled) return;
     setIsOpen(true);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -59,14 +61,16 @@ const Dropdown = (props: DropdownProps) => {
       <Pressable
         className={cn(
           'dropdown-wrapper',
-          props.disabled ? 'opacity-50' : '',
+          disabled ? 'opacity-50' : '',
           props.error ? 'border-red-500' : '',
           props.buttonStyle,
         )}
         onPress={handleOpenDropdown}
-        disabled={props.disabled}
+        disabled={disabled}
       >
-        <View className='dropdown-value-wrapper'>
+        <View
+          className={cn('dropdown-value-wrapper flex-row items-center justify-between', !showIcon && 'rounded-r-lg')}
+        >
           <Text
             className={cn(value == undefined ? 'dropdown-placeholder' : 'dropdown-value')}
             numberOfLines={1}
@@ -74,15 +78,27 @@ const Dropdown = (props: DropdownProps) => {
           >
             {displayValue}
           </Text>
+
+          {value?.secondaryLabel && (
+            <Text
+              className={cn(value == undefined ? 'dropdown-placeholder' : 'dropdown-value')}
+              numberOfLines={1}
+              ellipsizeMode='tail'
+            >
+              {value?.secondaryLabel}
+            </Text>
+          )}
         </View>
 
-        <View className='dropdown-icon-wrapper'>
-          <Image
-            source={isDark ? icons.dark.arrowDown : icons.light.arrowDown}
-            className='size-8'
-            resizeMode='contain'
-          />
-        </View>
+        {showIcon && (
+          <View className='dropdown-icon-wrapper'>
+            <Image
+              source={isDark ? icons.dark.arrowDown : icons.light.arrowDown}
+              className='size-8'
+              resizeMode='contain'
+            />
+          </View>
+        )}
       </Pressable>
       {props.error && <Text className='dropdown-error'>{props.error}</Text>}
       {isOpen && (
@@ -96,7 +112,7 @@ const Dropdown = (props: DropdownProps) => {
               renderItem={({ item, index }) => (
                 <Pressable
                   className={cn(
-                    'dropdown-option',
+                    'dropdown-option flex-row items-center justify-between',
                     index === 0 && 'rounded-t-md',
                     index !== props.items.length - 1
                       ? 'border-b-[0.5px] border-stroke dark:border-stroke-dark'
@@ -108,11 +124,21 @@ const Dropdown = (props: DropdownProps) => {
                   <Text
                     className={cn(
                       'dropdown-option-txt',
-                      item.id === props.value?.id ? 'text-title dark:text-title-dark' : 'text-label dark:text-label',
+                      item.id === props.value?.id ? 'text-title' : 'text-label dark:text-label',
                     )}
                   >
                     {item.label}
                   </Text>
+                  {value?.secondaryLabel && (
+                    <Text
+                      className={cn(
+                        'dropdown-option-txt',
+                        item.id === props.value?.id ? 'text-title' : 'text-label dark:text-label',
+                      )}
+                    >
+                      {value?.secondaryLabel}
+                    </Text>
+                  )}
                 </Pressable>
               )}
               showsVerticalScrollIndicator={false}

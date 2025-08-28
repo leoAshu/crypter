@@ -7,10 +7,10 @@ const useCountry = () => {
   const getCountryById = (countryId: string) => countries.find((country) => country.id === countryId);
 
   const createFilterItems = (countries: Country[], labelKey: 'name'): FilterItem[] => [
-    ...countries.map((c) => ({ id: c.id, label: c[labelKey] })),
+    ...countries.map((c) => ({ id: c.id, label: c[labelKey], secondaryLabel: `(${c.phoneCode})` })),
   ];
 
-  const countryNameFilterItems = useMemo(() => createFilterItems(countries, 'name'), [countries]);
+  const countryNameFilterItems: FilterItem[] = useMemo(() => createFilterItems(countries, 'name'), [countries]);
 
   const getCountryNameFilterItemById = useMemo(
     () => (id: string) => countryNameFilterItems.find((c) => c.id === id),

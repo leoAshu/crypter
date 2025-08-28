@@ -23,6 +23,7 @@ const VerifyIdentity = () => {
 
       <Dropdown
         value={country}
+        disabled={false}
         title={Strings.info.COUNTRY_LABEL}
         items={countryNameFilterItems}
         onSelect={(item) => updateKyc('countryId', item.id)}

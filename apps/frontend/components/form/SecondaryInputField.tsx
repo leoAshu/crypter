@@ -11,7 +11,7 @@ const SecondaryInputField = (props: SecondaryInputFieldProps) => {
 
   return (
     <View className='gap-y-2'>
-      <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>{props.label}</Text>
+      {props.label && <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>{props.label}</Text>}
       <View
         className={cn(
           'flex-row items-stretch rounded-lg border',
@@ -20,15 +20,16 @@ const SecondaryInputField = (props: SecondaryInputFieldProps) => {
       >
         <View
           className={cn(
-            'relative flex-1 bg-card px-4 font-satoshi text-sm dark:bg-card-dark',
+            'flex-1 px-4 font-satoshi text-sm',
             props.secondarylabel ? 'rounded-l-lg' : 'rounded-lg',
+            props.disabled ? 'bg-card dark:bg-card-info-dark' : 'bg-base-white dark:bg-base-dark',
           )}
         >
           <TextInput
             className={cn(
               'px-0 font-satoshi text-sm',
               isIOS ? 'py-2 pb-3' : 'py-3',
-              props.disabled ? 'text-body/75 dark:text-body-dark/75' : 'text-body dark:text-body-dark',
+              props.disabled ? 'text-body/45 dark:text-body-dark/45' : 'text-body dark:text-body-dark',
             )}
             value={value}
             autoCapitalize='none'
@@ -48,8 +49,8 @@ const SecondaryInputField = (props: SecondaryInputFieldProps) => {
         {props.secondarylabel && (
           <View
             className={cn(
-              'justify-center rounded-r-lg px-4 py-3',
-              isFocused ? 'bg-primary' : 'bg-base-white dark:bg-base-dark',
+              'it w-14 items-center justify-center rounded-r-lg py-3',
+              isFocused ? 'bg-primary' : 'bg-card dark:bg-card-dark',
               props.disabled && 'opacity-45',
             )}
           >
