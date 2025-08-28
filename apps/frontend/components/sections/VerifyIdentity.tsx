@@ -6,9 +6,9 @@ import FileUpload from '../form/FileUpload';
 
 const VerifyIdentity = () => {
   const { kyc, updateKyc } = useKyc();
-  const { countryNameFilterItems, getCountryNameFilterItemById } = useCountry();
+  const { countryNameFilterItems, getCountryFilterItemById } = useCountry();
 
-  const country = getCountryNameFilterItemById(kyc?.countryId ?? '');
+  const country = getCountryFilterItemById(countryNameFilterItems, kyc?.countryId ?? '');
 
   return (
     <>
@@ -23,8 +23,10 @@ const VerifyIdentity = () => {
 
       <Dropdown
         value={country}
+        disabled={false}
         title={Strings.info.COUNTRY_LABEL}
         items={countryNameFilterItems}
+        placeholder={Strings.info.COUNTRY_HINT}
         onSelect={(item) => updateKyc('countryId', item.id)}
       />
 

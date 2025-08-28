@@ -52,9 +52,9 @@
     @apply gap-y-4;
   }
 
-  .input-wrapper {
+  /* .input-wrapper {
     @apply w-full;
-  }
+  } */
 
   .input-label {
     @apply pl-1 font-clashDisplay;
@@ -497,7 +497,7 @@
   }
 
   .deposit-form-value-wrapper {
-    @apply flex-1 rounded-l-lg bg-card px-4 py-3 dark:bg-card-dark;
+    @apply flex-1 rounded-l-lg bg-base-white px-4 py-3 dark:bg-base-dark;
   }
 
   .deposit-form-value {
@@ -505,7 +505,7 @@
   }
 
   .deposit-form-icon-wrapper {
-    @apply w-14 items-center justify-center rounded-r-lg bg-base-white dark:bg-base-dark;
+    @apply w-14 items-center justify-center rounded-r-lg bg-card dark:bg-card-dark;
   }
 
   .deposit-form-footer {
@@ -545,7 +545,7 @@
   }
 
   .dropdown-wrapper {
-    @apply flex-row rounded-lg border border-stroke dark:border-stroke-dark;
+    @apply w-full flex-row rounded-lg border border-stroke dark:border-stroke-dark;
   }
 
   .dropdown-label {
@@ -553,7 +553,7 @@
   }
 
   .dropdown-value-wrapper {
-    @apply flex-1 rounded-l-lg bg-card px-4 py-3 dark:bg-card-dark;
+    @apply flex-1 rounded-l-lg bg-base-white px-4 py-3 dark:bg-base-dark;
   }
 
   .dropdown-value {
@@ -565,7 +565,7 @@
   }
 
   .dropdown-icon-wrapper {
-    @apply w-14 items-center justify-center rounded-r-lg bg-base-white dark:bg-base-dark;
+    @apply w-14 items-center justify-center rounded-r-lg bg-card dark:bg-card-dark;
   }
 
   .dropdown-error {
@@ -573,7 +573,7 @@
   }
 
   .dropdown-options-wrapper {
-    @apply rounded-lg border-[0.5px] border-stroke bg-card shadow-lg dark:border-stroke-dark dark:bg-card-dark;
+    @apply rounded-lg border-[0.5px] border-stroke bg-card shadow-lg dark:border-stroke-dark dark:bg-card-info-dark;
   }
 
   .dropdown-option {

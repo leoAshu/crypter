@@ -1,15 +1,17 @@
-import { InitialsAvatar, InputField, PrimaryButton } from '@/components';
+import { InitialsAvatar, InputField, PhoneInputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useProfile } from '@/hooks';
+import { useCountry, useProfile } from '@/hooks';
 import { useAuthStore } from '@/store';
-import { formatPhoneNumber, validateName } from '@/utils';
+import { validateName } from '@/utils';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Edit = () => {
   const { user } = useAuthStore();
+  const { currentCountry } = useCountry();
   const { isLoading, profile, updateProfile } = useProfile();
+
   const [formData, setFormData] = useState<Partial<Profile>>(profile ?? {});
 
   const updateInfo = (key: string, value: string) => {
@@ -53,9 +55,10 @@ const Edit = () => {
 
               <InputField label={Strings.editProfile.EMAIL_LABEL} value={user?.user_metadata.email} disabled={true} />
 
-              <InputField
+              <PhoneInputField
                 label={Strings.editProfile.PHONE_LABEL}
-                value={formatPhoneNumber(user?.user_metadata.phone)}
+                countryId={currentCountry?.id}
+                number={user?.user_metadata.phone}
                 disabled={true}
               />
 

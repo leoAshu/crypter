@@ -174,6 +174,7 @@ interface WalletCardProps {
 interface FilterItem {
   id: string;
   label: string;
+  secondaryLabel?: string;
 }
 
 // ====================
@@ -191,6 +192,8 @@ interface DropdownProps {
   containerStyle?: string;
   buttonStyle?: string;
   textStyle?: string;
+  right?: JSX.Element;
+  showIcon?: boolean;
   onSelect?: (item: FilterItem) => void;
 }
 
@@ -278,7 +281,7 @@ interface ListEmptyStateProps {
 }
 
 interface SecondaryInputFieldProps {
-  label: string;
+  label?: string;
   value?: string;
   placeholder?: string;
   secondarylabel?: string;
@@ -316,4 +319,12 @@ interface SelectPayMethodModalProps {
   payMethodTypes: PayMethodType[];
   onClose?: () => void;
   onTapPayMethodType?: (id: string) => void;
+}
+
+interface PhoneInputFieldProps {
+  label?: string;
+  number?: string;
+  countryId?: string;
+  disabled?: boolean;
+  onChange?: (val: string) => void;
 }

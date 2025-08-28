@@ -1,8 +1,15 @@
 import { images } from '@/assets';
-import { InputField, PrimaryButton } from '@/components';
+import { InputField, PhoneInputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useAuth, useMarket } from '@/hooks';
-import { formatPhoneNumber, validateConfirmPassword, validateName, validatePassword, validatePhone } from '@/utils';
+import { useAuth, useCountry, useMarket } from '@/hooks';
+import {
+  formatPhoneNumber,
+  trimPhoneNumber,
+  validateConfirmPassword,
+  validateName,
+  validatePassword,
+  validatePhone,
+} from '@/utils';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Dimensions, Image, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
@@ -11,12 +18,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const SignUpInfo = () => {
   const { fetchAllTickers } = useMarket();
   const { signup, isLoading } = useAuth();
+  const { currentCountry } = useCountry();
   const { email } = useLocalSearchParams<{ email: string }>();
 
   const [formData, setFormData] = useState({ name: '', email: email, password: '', confirmPassword: '', phone: '' });
 
   const submitForm = async () => {
-    const { name, email, password, confirmPassword, phone } = formData;
+    const { name, email, password, confirmPassword } = formData;
+    const phone = trimPhoneNumber(formData.phone);
 
     const nameValidationResult = validateName(name);
     const phoneValidationResult = validatePhone(phone);
@@ -64,13 +73,14 @@ const SignUpInfo = () => {
                 value={formData.email}
                 disabled={true}
               />
-              <InputField
+
+              <PhoneInputField
                 label={Strings.signupInfo.PHONE_LABEL}
-                keyboardType='phone-pad'
-                value={formatPhoneNumber(formData.phone)}
-                disabled={isLoading}
-                onChangeText={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                number={formatPhoneNumber(formData.phone)}
+                countryId={currentCountry?.id}
+                onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
               />
+
               <InputField
                 label={Strings.signupInfo.PASSWORD_LABEL}
                 secureTextEntry

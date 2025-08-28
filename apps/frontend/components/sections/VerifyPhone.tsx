@@ -1,17 +1,17 @@
 import { Strings } from '@/constants';
-import { useKyc } from '@/hooks';
+import { useCountry, useKyc } from '@/hooks';
 import { formatPhoneNumber } from '@/utils';
-import { SecondaryInputField } from '../form';
+import { PhoneInputField } from '../form';
 
 const VerifyPhone = () => {
   const { kyc } = useKyc();
+  const { currentCountry } = useCountry();
 
   return (
-    <SecondaryInputField
+    <PhoneInputField
       label={Strings.info.PHONE_LABEL}
-      placeholder={Strings.info.PHONE_HINT}
-      value={formatPhoneNumber(kyc?.phone ?? '')}
-      keyboardType='phone-pad'
+      number={formatPhoneNumber(kyc?.phone ?? '')}
+      countryId={currentCountry?.id}
       disabled
     />
   );
