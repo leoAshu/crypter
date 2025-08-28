@@ -6,7 +6,9 @@ const reviewToDbMap: Record<keyof Review, string> = {
   type: 'type',
   review: 'review',
   createdAt: 'created_at',
-  fromName: 'from_name',
+  fromUsername: 'from_username',
+  fromFirstName: 'from_first_name',
+  fromLastName: 'from_last_name',
   fromAvatarUrl: 'from_avatar_url',
   fromVerified: 'from_verified',
 };
