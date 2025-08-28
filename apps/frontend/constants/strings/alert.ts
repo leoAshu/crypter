@@ -12,6 +12,10 @@ const AlertStrings = {
     CANCEL: 'Cancel',
     LOGOUT: 'Log Out',
   },
+  ERROR: {
+    FNAME: 'Enter a valid first name.',
+    LNAME: 'Enter a valid last name.',
+  },
 };
 
 export { AlertStrings };

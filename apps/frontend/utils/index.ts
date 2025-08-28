@@ -1,10 +1,7 @@
 const getInitialsFromName = (name: string) => {
   if (!name) return '';
 
-  const parts = name.trim().split(' ');
-  const initials = parts.map((p) => p[0]?.toUpperCase()).join('');
-
-  return initials.slice(0, 1);
+  return name.toUpperCase()[0];
 };
 
 const formatPhoneNumber = (value: string) => {
@@ -59,11 +56,6 @@ const formatDateTime = (isoString: string): string => {
   );
 };
 
-const getMockUserName = (name: string) => {
-  if (!name) return '';
-  return name.toLowerCase().split(' ').join('_');
-};
-
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export * from './api';
@@ -76,6 +68,5 @@ export {
   formatDateTime,
   formatPhoneNumber,
   getInitialsFromName,
-  getMockUserName,
   trimPhoneNumber,
 };

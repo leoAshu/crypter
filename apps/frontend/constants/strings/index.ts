@@ -55,6 +55,8 @@ const Strings = {
   editProfile: {
     HEADER_TITLE: 'Edit',
     NAME_LABEL: 'Your name',
+    FNAME_LABEL: 'Your first name',
+    LNAME_LABEL: 'Your last name',
     EMAIL_LABEL: 'Email Address',
     PASSWORD_LABEL: 'Your Password',
     PHONE_LABEL: 'Phone Number',

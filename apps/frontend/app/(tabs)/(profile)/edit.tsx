@@ -1,6 +1,6 @@
-import { InitialsAvatar, InputField, PhoneInputField, PrimaryButton } from '@/components';
+import { InitialsAvatar, PhoneInputField, PrimaryButton, SecondaryInputField } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
-import { useCountry, useProfile } from '@/hooks';
+import { useProfile } from '@/hooks';
 import { useAuthStore } from '@/store';
 import { validateName } from '@/utils';
 import { useState } from 'react';
@@ -9,7 +9,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Edit = () => {
   const { user } = useAuthStore();
-  const { currentCountry } = useCountry();
   const { isLoading, profile, updateProfile } = useProfile();
 
   const [formData, setFormData] = useState<Partial<Profile>>(profile ?? {});
@@ -23,10 +22,12 @@ const Edit = () => {
   );
 
   const saveInfo = async () => {
-    const { name } = formData;
-    const nameValidationResult = validateName(name!);
+    const { firstName, lastName } = formData;
+    const fNameValidationResult = validateName(firstName!);
+    const lNameValidationResult = validateName(lastName!);
 
-    if (!nameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, nameValidationResult.error);
+    if (!fNameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, AlertStrings.ERROR.FNAME);
+    if (!lNameValidationResult.isValid) return Alert.alert(AlertStrings.TITLE.ERROR, AlertStrings.ERROR.LNAME);
 
     try {
       await updateProfile(user?.id, formData);
@@ -42,23 +43,34 @@ const Edit = () => {
         <ScrollView keyboardShouldPersistTaps='handled'>
           <View className='content-wrapper mt-4'>
             <View className='items-center'>
-              <InitialsAvatar name={profile?.name ?? ''} size='lg' />
+              <InitialsAvatar name={profile?.firstName ?? ''} size='lg' />
             </View>
 
             <View className='form-group mt-4'>
-              <InputField
-                label={Strings.editProfile.NAME_LABEL}
-                value={formData.name}
-                disabled={isLoading}
-                onChangeText={(value) => updateInfo('name', value)}
-              />
+              <View className='flex-row gap-x-4'>
+                <SecondaryInputField
+                  containerStyle='flex-1'
+                  label={Strings.editProfile.FNAME_LABEL}
+                  value={formData.firstName}
+                  disabled={isLoading}
+                  onChangeText={(value) => updateInfo('firstName', value)}
+                />
 
-              <InputField label={Strings.editProfile.EMAIL_LABEL} value={user?.user_metadata.email} disabled={true} />
+                <SecondaryInputField
+                  containerStyle='flex-1'
+                  label={Strings.editProfile.LNAME_LABEL}
+                  value={formData.lastName}
+                  disabled={isLoading}
+                  onChangeText={(value) => updateInfo('lastName', value)}
+                />
+              </View>
+
+              <SecondaryInputField label={Strings.editProfile.EMAIL_LABEL} value={formData.email} disabled={true} />
 
               <PhoneInputField
                 label={Strings.editProfile.PHONE_LABEL}
-                countryId={currentCountry?.id}
-                number={user?.user_metadata.phone}
+                countryId={formData.phoneCountryId}
+                number={formData.phone}
                 disabled={true}
               />
 

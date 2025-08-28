@@ -1,6 +1,6 @@
 import { icons } from '@/assets';
 import { ReviewType } from '@/models';
-import { formatDateTime, getMockUserName } from '@/utils';
+import { formatDateTime } from '@/utils';
 import { Image, Text, useColorScheme, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { InitialsAvatar } from '../avatars';
@@ -21,9 +21,7 @@ const ReviewCard = (props: ReviewCardProps) => {
             textStyle='absolute font-clashDisplay-medium text-xs text-title dark:text-title-dark'
             containerStyle='bg-card-info dark:bg-card-dark size-6'
           />
-          <Text className='font-clashDisplay text-xs text-title dark:text-title-dark'>
-            @{getMockUserName(props.review.fromName)}
-          </Text>
+          <Text className='font-clashDisplay text-xs text-title dark:text-title-dark'>@{props.review.fromName}</Text>
           <Image
             source={
               props.review.fromVerified

@@ -288,6 +288,7 @@ interface SecondaryInputFieldProps {
   secureTextEntry?: boolean;
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'decimal-pad';
   disabled?: boolean;
+  containerStyle?: string;
   onChangeText?: (text: string) => void;
 }
 

@@ -27,7 +27,7 @@ const Feedback = () => {
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <View className='content-wrapper mt-4'>
         <View className='gap-y-4'>
-          <AccountInfo name={profile?.name ?? ''} username={profile?.name ?? ''} />
+          <AccountInfo name={profile?.firstName ?? ''} username={profile?.username ?? ''} />
 
           <ChipFilter value={reviewType} items={reviewTypeFilterItems} onChange={(val) => setReviewType(val)} />
         </View>

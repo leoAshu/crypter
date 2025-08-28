@@ -1,6 +1,11 @@
 const profileToDbMap: Record<keyof Profile, string> = {
   id: 'id',
-  name: 'full_name',
+  username: 'username',
+  firstName: 'first_name',
+  lastName: 'last_name',
+  email: 'email',
+  phoneCountryId: 'phone_country_id',
+  phone: 'phone',
   avatarUrl: 'avatar_url',
   verified: 'verified',
   createdAt: 'created_at',

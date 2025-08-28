@@ -14,12 +14,9 @@ const Home = () => {
     <SafeAreaView className='screen-wrapper'>
       <ScrollView>
         <View className='content-wrapper mt-4'>
-          <InitialsAvatar name={profile?.name ?? ''} size='sm' />
+          <InitialsAvatar name={profile?.firstName ?? ''} size='sm' />
 
-          <View className='flex'>
-            <Text className='header-txt font-clashDisplay'>Hello,</Text>
-            <Text className='header-txt font-clashDisplay'>{profile?.name ?? ''} 👋</Text>
-          </View>
+          <Text className='header-txt font-clashDisplay'>Hello {profile?.firstName ?? ''} 👋</Text>
 
           <WalletCard cryptoId={crypto.id} />
 
