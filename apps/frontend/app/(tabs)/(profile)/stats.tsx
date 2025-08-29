@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Stats = () => {
   const { cryptos } = useCrypto();
-  const { filterReviewsByType } = useReviews()
+  const { filterReviewsByType } = useReviews();
   const { stats, statsTypeFilterItems } = useStats();
 
   const [statsType, setStatsTypeFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
