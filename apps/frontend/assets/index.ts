@@ -74,6 +74,9 @@ const icons = {
     tickHalo: require('./icons/light/tick-halo.png'),
     clockHalo: require('./icons/light/clock-halo.png'),
 
+    // Feedback
+    messageFav: require('./icons/light/message-favorite.png'),
+
     // Active Tab
     active: {
       home: require('./icons/light/active/home.png'),
@@ -149,6 +152,9 @@ const icons = {
     danger: require('./icons/dark/danger.png'),
     tickHalo: require('./icons/dark/tick-halo.png'),
     clockHalo: require('./icons/dark/clock-halo.png'),
+
+    // Feedback
+    messageFav: require('./icons/dark/message-favorite.png'),
 
     // Active Tab
     active: {
