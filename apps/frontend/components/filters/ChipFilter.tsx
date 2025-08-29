@@ -6,7 +6,7 @@ import { DividerX } from '../dividers';
 
 const ChipFilter = (props: ChipFilterProps) => {
   const isDark = useColorScheme() === 'dark';
-  const disabled = props.disabled ?? false
+  const disabled = props.disabled ?? false;
 
   const showFilter = (() => {
     let count = 0;
@@ -36,8 +36,16 @@ const ChipFilter = (props: ChipFilterProps) => {
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {
             const isActive = item.id === props.value.id;
-            const borderStyle = isActive ? (disabled ? 'border-b-stroke dark:border-b-stroke-dark' : 'border-b-primary') : 'border-b-transparent';
-            const labelStyle = isActive ? (disabled ? 'text-body dark:text-body-dark' : 'text-base-dark dark:text-base-white') : 'text-label dark:text-label-dark';
+            const borderStyle = isActive
+              ? disabled
+                ? 'border-b-stroke dark:border-b-stroke-dark'
+                : 'border-b-primary'
+              : 'border-b-transparent';
+            const labelStyle = isActive
+              ? disabled
+                ? 'text-body dark:text-body-dark'
+                : 'text-base-dark dark:text-base-white'
+              : 'text-label dark:text-label-dark';
 
             return (
               <Pressable disabled={disabled} onPress={() => onPress(item)}>
