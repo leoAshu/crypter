@@ -200,6 +200,7 @@ interface DropdownProps {
 interface ChipFilterProps {
   value: FilterItem;
   items: FilterItem[];
+  disabled?: boolean;
   onChange?: (val: FilterItem) => void;
 }
 
