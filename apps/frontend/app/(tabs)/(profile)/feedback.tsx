@@ -54,7 +54,12 @@ const Feedback = () => {
         <View className='gap-y-4'>
           <AccountInfo name={profile?.firstName ?? ''} username={profile?.username ?? ''} />
 
-          <ChipFilter value={reviewType} items={reviewTypeFilterItems} onChange={(val) => setReviewType(val)} />
+          <ChipFilter
+            value={reviewType}
+            items={reviewTypeFilterItems}
+            disabled={isAllEmpty}
+            onChange={(val) => setReviewType(val)}
+          />
         </View>
 
         <FlatList
