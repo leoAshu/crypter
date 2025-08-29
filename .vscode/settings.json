@@ -16,5 +16,6 @@
   "tailwindCSS.experimental.classRegex": [
     ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
     ["className\\s*=\\s*\"([^\"]*)", "([a-zA-Z0-9\\-:]+)"]
-  ]
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
