@@ -1,12 +1,14 @@
 import { DividerX, ToggleButton, VerticalGradient } from '@/components';
 import { Strings } from '@/constants';
-import { useCrypto, useStats } from '@/hooks';
+import { useCrypto, useReviews, useStats } from '@/hooks';
+import { ReviewType } from '@/models';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Stats = () => {
   const { cryptos } = useCrypto();
+  const { filterReviewsByType } = useReviews();
   const { stats, statsTypeFilterItems } = useStats();
 
   const [statsType, setStatsTypeFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
@@ -76,12 +78,12 @@ const Stats = () => {
               <View className='stats-group'>
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.FEEDBACK_POSITIVE_LABEL}</Text>
-                  <Text className='stats-value'>1</Text>
+                  <Text className='stats-value'>{filterReviewsByType(ReviewType.Positive).length}</Text>
                 </View>
 
                 <View className='stats-row'>
                   <Text className='stats-label'>{Strings.stats.FEEDBACK_NEGATIVE_LABEL}</Text>
-                  <Text className='stats-value'>0</Text>
+                  <Text className='stats-value'>{filterReviewsByType(ReviewType.Negative).length}</Text>
                 </View>
               </View>
 
