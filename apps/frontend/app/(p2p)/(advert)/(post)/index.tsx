@@ -61,7 +61,7 @@ const PostAdvert = () => {
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <View className='content-wrapper'>
         <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>
-          {Strings.postAd.ORDER_TYPE_LABEL}
+          {Strings.postAd.AD_TYPE_LABEL}
         </Text>
         <ToggleButton
           value={adType}
