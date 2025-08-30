@@ -8,11 +8,12 @@ import {
   SecondaryInputField,
   SelectPayMethodModal,
 } from '@/components';
-import { Strings } from '@/constants';
-import { usePaymentTimeLimits, usePayMethodType } from '@/hooks';
+import { AlertStrings, Strings } from '@/constants';
+import { usePaymentTimeLimits, usePayMethod, usePayMethodType } from '@/hooks';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -33,9 +34,12 @@ const PostAdvertInfo = () => {
   const [totalAmount, setTotalAmount] = useState<string>('');
   const [orderLimitFrom, setOrderLimitFrom] = useState<string>('');
   const [orderLimitTo, setOrderLimitTo] = useState<string>('');
-  const { payMethodTypes, getPayMethodTypeById } = usePayMethodType();
+  const { getPayMethodTypeById, payMethodTypes } = usePayMethodType();
+  const { getActivePayMethodTypeIds } = usePayMethod();
   const [selectedPayMethods, setSelectedPayMethods] = useState<string[]>([]);
-  const [availablePayMethods, setAvailablePayMethods] = useState<string[]>(payMethodTypes.map((item) => item.id));
+  const activeUserPayMethods = getActivePayMethodTypeIds();
+  const [availablePayMethods, setAvailablePayMethods] = useState<string[]>(activeUserPayMethods);
+
   const [openBottomSheetPayMethod, setOpenBottomSheetPayMethod] = useState(false);
   const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
   const {
@@ -47,11 +51,6 @@ const PostAdvertInfo = () => {
     closeBottomSheet: closePayTimeLimitBottomSheet,
   } = usePaymentTimeLimits();
 
-  const orderMap: Record<string, number> = {};
-  payMethodTypes.forEach((item, idx) => {
-    orderMap[item.id] = idx;
-  });
-
   const handleCreateAdvert = async () => {
     setIsNotificationModalVisible(true);
   };
@@ -61,11 +60,13 @@ const PostAdvertInfo = () => {
     router.back();
   };
 
-  const sortByOriginal = (arr: string[]) => arr.sort((a, b) => orderMap[a] - orderMap[b]);
+  const sortByOriginal = (arr: string[]) => {
+    return arr.sort();
+  };
 
   const selectPayMethod = (id: string) => {
-    setSelectedPayMethods((prev) => [...prev, id]);
-    setAvailablePayMethods((prev) => prev.filter((item) => item !== id));
+    setSelectedPayMethods((prev) => sortByOriginal([...prev, id]));
+    setAvailablePayMethods((prev) => sortByOriginal(prev.filter((item) => item !== id)));
   };
 
   const deselectPayMethod = (id: string) => {
@@ -108,13 +109,20 @@ const PostAdvertInfo = () => {
               </View>
               <DividerX style='my-4' />
               <PaymentMethodChips
-                selectedPayMethods={selectedPayMethods.map((id) => getPayMethodTypeById(id)!.id)}
+                selectedPayMethods={selectedPayMethods.filter((id) => getPayMethodTypeById(id))}
                 onRemovePayMethod={deselectPayMethod}
                 onOpenBottomSheet={() => {
+                  if (!activeUserPayMethods.length) {
+                    Alert.alert(
+                      AlertStrings.TITLE.ERROR,
+                      'Please add a payment method first to continue posting your ad.',
+                    );
+                    return;
+                  }
                   Keyboard.dismiss();
                   setOpenBottomSheetPayMethod(true);
                 }}
-                canAddMore={selectedPayMethods.length < 3}
+                canAddMore={selectedPayMethods.length < 3 && activeUserPayMethods.length > 0}
                 maxSelections={3}
               />
               <DividerX style='my-4' />
@@ -142,7 +150,9 @@ const PostAdvertInfo = () => {
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
       <SelectPayMethodModal
-        payMethodTypes={availablePayMethods.map((id) => getPayMethodTypeById(id)!)}
+        payMethodTypes={sortByOriginal(availablePayMethods)
+          .map((payMethodTypeId) => getPayMethodTypeById(payMethodTypeId))
+          .filter((payMethodType): payMethodType is PayMethodType => payMethodType !== undefined)}
         visible={openBottomSheetPayMethod}
         onClose={() => setOpenBottomSheetPayMethod(false)}
         onTapPayMethodType={selectPayMethod}
