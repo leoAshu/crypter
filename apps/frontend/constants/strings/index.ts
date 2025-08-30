@@ -91,12 +91,13 @@ const Strings = {
     HEADER_TITLE: 'My Adverts',
   },
   postAd: {
-    HEADER_TITLE: 'Post Adverts',
-    EMPTY_STATE: 'No ads available',
+    HEADER_TITLE: 'Post Ad',
+    EMPTY_STATE: 'No ad available',
     PRICE_SETTING: 'Price Setting',
     BUTTON_NEXT_LABEL: 'Next Steps',
     HEADER_TITLE_INFO: 'Amount Info',
     PUBLISH_AD_LABEL: 'Publish Ad',
+    AD_TYPE_LABEL: 'Ad Type',
   },
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',
