@@ -52,10 +52,6 @@
     @apply gap-y-4;
   }
 
-  /* .input-wrapper {
-    @apply w-full;
-  } */
-
   .input-label {
     @apply pl-1 font-clashDisplay;
   }
@@ -582,5 +578,9 @@
 
   .increment-icon-wrapper {
     @apply w-14 items-center justify-center rounded-r-lg bg-card dark:bg-card-dark;
+  }
+
+  .field-label {
+    @apply font-clashDisplay text-sm text-label dark:text-label-dark;
   }
 }

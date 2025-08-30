@@ -207,6 +207,7 @@ interface ChipFilterProps {
 interface ToggleButtonProps {
   value: FilterItem;
   items: [FilterItem, FilterItem];
+  title?: string;
   labelStyle?: string;
   wrapperStyle?: string;
   activeButtonColors?: Record<string, string>;
