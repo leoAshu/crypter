@@ -60,22 +60,23 @@ const PostAdvert = () => {
   return (
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
       <View className='content-wrapper'>
-        <View className='flex-row justify-center'>
-          <ToggleButton
-            value={adType}
-            items={[adTypeFilterItems[0], adTypeFilterItems[1]]}
-            activeButtonColors={{
-              [adTypeFilterItems[0].id]: 'bg-primary',
-              [adTypeFilterItems[1].id]: 'bg-error-500',
-            }}
-            activeLabelColors={{
-              [adTypeFilterItems[0].id]: 'text-base-dark',
-              [adTypeFilterItems[1].id]: 'text-base-white',
-            }}
-            onChange={(val) => setAdType(val)}
-          />
-        </View>
-
+        <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>
+          {Strings.postAd.ORDER_TYPE_LABEL}
+        </Text>
+        <ToggleButton
+          value={adType}
+          items={[adTypeFilterItems[0], adTypeFilterItems[1]]}
+          activeButtonColors={{
+            [adTypeFilterItems[0].id]: 'bg-primary',
+            [adTypeFilterItems[1].id]: 'bg-error-500',
+          }}
+          activeLabelColors={{
+            [adTypeFilterItems[0].id]: 'text-base-dark',
+            [adTypeFilterItems[1].id]: 'text-base-white',
+          }}
+          wrapperStyle='w-full h-10'
+          onChange={(val) => setAdType(val)}
+        />
         <Dropdown
           title='Select Cryptocurrency'
           items={cryptoNameFilterItemsStrict}

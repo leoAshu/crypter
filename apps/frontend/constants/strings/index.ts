@@ -97,6 +97,7 @@ const Strings = {
     BUTTON_NEXT_LABEL: 'Next Steps',
     HEADER_TITLE_INFO: 'Amount Info',
     PUBLISH_AD_LABEL: 'Publish Ad',
+    ORDER_TYPE_LABEL: 'Order Type',
   },
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',
