@@ -1,5 +1,5 @@
 import { icons } from '@/assets';
-import { AccountInfo, DividerX, MenuOption, SecondaryButton, ToggleButton } from '@/components';
+import { AccountInfo, DividerX, MenuOption, SecondaryButton } from '@/components';
 import { AlertStrings, Strings, ToastStrings } from '@/constants';
 import { useKyc, useProfile, useStats } from '@/hooks';
 import { KycStatus } from '@/models';
@@ -58,7 +58,7 @@ const Profile = () => {
                 {Strings.profile.TRADING_STATS_TITLE}
               </Text>
 
-              <ToggleButton
+              {/* <ToggleButton
                 value={statsType}
                 items={[statsTypeFilterItems[0], statsTypeFilterItems[1]]}
                 activeButtonColors={{
@@ -72,7 +72,7 @@ const Profile = () => {
                 labelStyle='text-[8px]'
                 wrapperStyle='h-9 w-36'
                 onChange={(val) => setStatsTypeFilter(val)}
-              />
+              /> */}
             </View>
 
             {/* Stats Content */}
