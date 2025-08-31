@@ -21,8 +21,6 @@ const formatPhoneNumber = (value: string) => {
 
 const trimPhoneNumber = (value: string) => {
   if (!value) return value;
-  console.log(value.replace(/\D/g, ''));
-
   return value.replace(/\D/g, '');
 };
 

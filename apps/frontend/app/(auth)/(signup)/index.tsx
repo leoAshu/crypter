@@ -37,8 +37,8 @@ const Signup = () => {
     setIsSubmitting(true);
 
     try {
-      const emailFound = await emailExists(email);
-      if (emailFound) throw new Error('Email already exists! Please login or use a different email address!');
+      const exists = await emailExists(email);
+      if (exists) throw new Error('Email already exists! Please login or use a different email address!');
 
       router.push({ pathname: '/info', params: { email: email } });
     } catch (err: any) {

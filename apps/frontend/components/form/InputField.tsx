@@ -1,7 +1,7 @@
 import { images } from '@/assets';
 import cn from 'clsx';
 import { useState } from 'react';
-import { TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { RoundIconButton } from '../iconButtons';
 
@@ -21,7 +21,7 @@ const InputField = (props: InputFieldProps) => {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
-    color: withTiming(isFocused ? '#54E6B6' : '#667085', {
+    color: withTiming(props.error ? '#F04438' : isFocused ? '#54E6B6' : '#667085', {
       duration: 200,
       easing: Easing.out(Easing.cubic),
     }),
@@ -44,8 +44,12 @@ const InputField = (props: InputFieldProps) => {
       <TextInput
         className={cn(
           'input-txt',
-          isFocused ? 'border-b-primary' : 'border-b-stroke dark:border-b-stroke-dark',
-          props.disabled ? 'text-body/45 dark:text-body-dark/45' : '',
+          props.disabled && 'text-body/45 dark:text-body-dark/45',
+          props.error
+            ? 'border-b-error-500 text-error-500'
+            : isFocused
+              ? 'border-b-primary'
+              : 'border-b-stroke dark:border-b-stroke-dark',
         )}
         value={value}
         onChangeText={props.onChangeText}
@@ -66,6 +70,8 @@ const InputField = (props: InputFieldProps) => {
           />
         </View>
       )}
+
+      {props.error && <Text className='mt-1 font-satoshi text-xs text-error-500'>{props.error}</Text>}
     </View>
   );
 };

@@ -9,4 +9,22 @@ const emailExists = async (email: string) => {
   return false;
 };
 
-export { emailExists };
+const userNameExists = async (username: string) => {
+  const { data, error } = await supabaseClient.from('profiles').select('*').eq('username', username).maybeSingle();
+
+  if (error) throw new Error(error.message);
+
+  if (data) return true;
+  return false;
+};
+
+const phoneExists = async (phone: string) => {
+  const { data, error } = await supabaseClient.from('profiles').select('*').eq('phone', phone).maybeSingle();
+
+  if (error) throw new Error(error.message);
+
+  if (data) return true;
+  return false;
+};
+
+export { emailExists, phoneExists, userNameExists };

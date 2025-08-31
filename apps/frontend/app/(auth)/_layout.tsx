@@ -1,4 +1,4 @@
-import { BackIconButton } from '@/components';
+import { AppBar } from '@/components';
 import { Stack } from 'expo-router';
 import { Platform, useColorScheme } from 'react-native';
 
@@ -15,20 +15,16 @@ const AuthLayout = () => {
         contentStyle: {
           backgroundColor: isDark ? '#000000' : '#FFFFFF',
         },
-        headerTransparent: true,
-        headerStyle: {
-          backgroundColor: isDark ? '#000000' : '#FFFFFF',
-        },
+        header: () => null,
       })}
     >
-      <Stack.Screen name='signin' options={{ headerShown: false }} />
-      <Stack.Screen name='welcome' options={{ headerShown: false }} />
-      <Stack.Screen name='(signup)/index' options={{ headerShown: false }} />
+      <Stack.Screen name='signin' />
+      <Stack.Screen name='welcome' />
+      <Stack.Screen name='(signup)/index' />
       <Stack.Screen
         name='(signup)/info'
         options={{
-          headerTitle: '',
-          headerLeft: () => <BackIconButton containerStyle={containerStyle} />,
+          header: () => <AppBar title='' />,
         }}
       />
     </Stack>

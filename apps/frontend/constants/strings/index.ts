@@ -22,6 +22,7 @@ const Strings = {
     EMAIL_LABEL: 'Email Address',
     FNAME_LABEL: 'First Name',
     LNAME_LABEL: 'Last Name',
+    UNAME_LABEL: 'Username',
     PHONE_LABEL: 'Phone Number',
     PASSWORD_LABEL: 'Password',
     CONFIRM_PASSWORD_LABEL: 'Confirm Password',
