@@ -7,9 +7,3 @@ interface SignUpParams {
   email: string;
   password: string;
 }
-
-interface UpdateUserParams {
-  email: string;
-  name: string;
-  phone: string;
-}
