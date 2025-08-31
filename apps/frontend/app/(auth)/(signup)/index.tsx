@@ -1,6 +1,7 @@
 import { images } from '@/assets';
 import { IconButton, InputField, PrimaryButton } from '@/components';
 import { AlertStrings, Strings } from '@/constants';
+import { emailExists } from '@/supabase';
 import { validateEmail } from '@/utils';
 import cn from 'clsx';
 import { router } from 'expo-router';
@@ -36,9 +37,12 @@ const Signup = () => {
     setIsSubmitting(true);
 
     try {
+      const exists = await emailExists(email);
+      if (exists) throw new Error('Email already exists! Please login or use a different email address!');
+
       router.push({ pathname: '/info', params: { email: email } });
     } catch (err: any) {
-      Alert.alert(AlertStrings.TITLE.ERROR, err.message);
+      Alert.alert(AlertStrings.TITLE.ERROR, err.message, [{ text: 'OK', onPress: resetForm }]);
     } finally {
       setIsSubmitting(false);
     }
