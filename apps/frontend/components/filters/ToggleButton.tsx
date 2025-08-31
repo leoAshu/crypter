@@ -9,7 +9,7 @@ const ToggleButton = (props: ToggleButtonProps) => {
   };
 
   return (
-    <View className='gap-y-2'>
+    <View className='w-full gap-y-2'>
       {props.title && <Text className='field-label'>{props.title}</Text>}
 
       <View className={cn('toggle-btn-wrapper', props.wrapperStyle)}>

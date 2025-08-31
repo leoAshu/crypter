@@ -1,25 +1,32 @@
 import { allFilterItem } from '@/constants';
-import { AdType } from '@/models';
+import { AdType, PriceType } from '@/models';
 import { useAdStore, useProfileStore } from '@/store';
-import { capitalizeWords } from '@/utils';
 import { useMemo } from 'react';
 
 const useAds = () => {
-  const { ads, isLoading, updateAdStatus } = useAdStore();
   const { profile } = useProfileStore();
+  const { ads, isLoading, updateAdStatus } = useAdStore();
 
   const adTypes = Object.values(AdType);
-  const adTypeFilterItems = useMemo(
-    () =>
-      adTypes.map((e) => ({
-        id: e,
-        label: capitalizeWords(e),
-      })),
-    [adTypes],
-  );
 
   const activeAds = useMemo(() => ads.filter((ad) => ad.isActive), [ads]);
   const myAds = useMemo(() => ads.filter((ad) => ad.userId === profile?.id), [ads, profile?.id]);
+
+  const newAd: AdFormData = {
+    price: '',
+    cryptoId: '',
+    countryId: '',
+    minLimit: '',
+    maxLimit: '',
+    available: '',
+    payMethodTypeIds: [],
+    releaseTime: '',
+    type: AdType.Buy,
+    isActive: false,
+    userId: '',
+    priceType: PriceType.Fixed,
+    priceTypeValue: '',
+  };
 
   const filterAdsByType = (adsList: Ad[], adType: AdType, cryptoId: string) => {
     return adsList.filter((ad) => {
@@ -51,12 +58,12 @@ const useAds = () => {
     myAds,
     adTypes,
     activeAds,
+    newAd,
     adsLoading: isLoading,
-    adTypeFilterItems,
+    updateAdStatus,
     filterAdsByType,
     filterAdsByUserId,
     getActiveAdsCountByUserId,
-    updateAdStatus,
   };
 };
 

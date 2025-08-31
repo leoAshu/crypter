@@ -20,3 +20,19 @@ interface Ad {
   userCompletionRate: number;
   createdAt: string;
 }
+
+interface AdFormData {
+  type: AdType;
+  userId: string;
+  cryptoId: string;
+  countryId: string;
+  priceType: PriceType;
+  priceTypeValue: string;
+  price: string;
+  minLimit: string;
+  maxLimit: string;
+  payMethodTypeIds: string[];
+  releaseTime: string;
+  isActive: boolean;
+  available: string;
+}

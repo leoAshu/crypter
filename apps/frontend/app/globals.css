@@ -270,7 +270,7 @@
   }
 
   .toggle-btn-wrapper {
-    @apply h-10 w-9/12 flex-row rounded-md bg-card-info p-px dark:bg-card-info-dark;
+    @apply h-10 w-9/12 flex-row self-center rounded-md bg-card-info p-px dark:bg-card-info-dark;
   }
 
   .toggle-btn {

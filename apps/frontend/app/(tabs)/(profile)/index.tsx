@@ -6,7 +6,6 @@ import { KycStatus } from '@/models';
 import { useAuthStore } from '@/store';
 import cn from 'clsx';
 import { router } from 'expo-router';
-import { useState } from 'react';
 import { Alert, ScrollView, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
@@ -17,10 +16,7 @@ const Profile = () => {
   const { kyc } = useKyc();
   const { stats } = useStats();
   const { profile } = useProfile();
-  const { statsTypeFilterItems } = useStats();
   const { isLoading, signout } = useAuthStore();
-
-  const [statsType, setStatsTypeFilter] = useState<FilterItem>(statsTypeFilterItems[0]);
 
   const confirmLogout = async () => {
     Alert.alert(AlertStrings.TITLE.LOGOUT, AlertStrings.MSG.CONFIRM_LOGOUT, [

@@ -1,6 +1,6 @@
 import { logos } from '@/assets';
 import { CopyIconButton, DividerX, Dropdown, PrimaryButton } from '@/components';
-import { useNetwork, useWallet } from '@/hooks';
+import { useFilter, useNetwork, useWallet } from '@/hooks';
 import cn from 'clsx';
 import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
@@ -10,8 +10,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Deposit = () => {
   const isDark = useColorScheme() === 'dark';
+
   const { deposit } = useWallet();
-  const { networkFilterItems, getNetworkById } = useNetwork();
+  const { getNetworkById } = useNetwork();
+  const { networkFilterItems } = useFilter();
 
   const [network, setNetwork] = useState<FilterItem>(networkFilterItems[0]);
 

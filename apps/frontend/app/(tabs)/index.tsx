@@ -1,12 +1,12 @@
-import { InitialsAvatar, Market, QuickNav, WalletCard } from '@/components';
-import { useCrypto, useProfile } from '@/hooks';
+import { InitialsAvatar, QuickNav, WalletCard } from '@/components';
+import { useFilter, useProfile } from '@/hooks';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = () => {
   const { profile } = useProfile();
-  const { p2pCryptoSymbolFilterItemsStrict } = useCrypto();
+  const { p2pCryptoSymbolFilterItemsStrict } = useFilter();
 
   const [crypto, _] = useState<FilterItem>(p2pCryptoSymbolFilterItemsStrict[0]);
 
@@ -22,7 +22,7 @@ const Home = () => {
 
           <QuickNav />
 
-          <Market />
+          {/* <Market /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

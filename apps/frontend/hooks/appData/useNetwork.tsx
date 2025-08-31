@@ -22,16 +22,10 @@ const useNetwork = () => {
     },
   ];
 
-  const networkFilterItems: FilterItem[] = useMemo(
-    () => networks.map((n) => ({ id: n.id, label: `${n.name} (${n.code})` })),
-    [networks],
-  );
-
   const getNetworkById = useMemo(() => (networkId: string) => networks.find((n) => n.id === networkId), [networks]);
 
   return {
     networks,
-    networkFilterItems,
     getNetworkById,
   };
 };

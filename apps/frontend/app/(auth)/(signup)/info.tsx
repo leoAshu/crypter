@@ -112,6 +112,7 @@ const SignUpInfo = () => {
                 disabled={isLoading}
                 onChangeText={(value) => setPassword(value)}
               />
+
               <InputField
                 label={Strings.signupInfo.CONFIRM_PASSWORD_LABEL}
                 secureTextEntry
@@ -120,7 +121,7 @@ const SignUpInfo = () => {
                 onChangeText={(value) => setConfirmPassword(value)}
               />
 
-              <View className='mt-8'>
+              <View className='mt-4'>
                 <PrimaryButton title={Strings.signupInfo.BUTTON_LABEL} isLoading={isLoading} onPress={submitForm} />
               </View>
             </View>
