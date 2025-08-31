@@ -1,4 +1,3 @@
-import { allFilterItem } from '@/constants';
 import { useMemo } from 'react';
 import useCountry from './useCountry';
 
@@ -14,20 +13,10 @@ const useFiat = () => {
     [countries],
   );
 
-  const createFilterItems = (countriesList: Country[]): FilterItem[] => [
-    allFilterItem,
-    ...countriesList.map((c) => ({ id: c.id, label: c.fiatSymbol })),
-  ];
-
-  const fiatSymbolFilterItems = useMemo(() => createFilterItems(countries), [countries]);
-  const fiatSymbolFilterItemsStrict = useMemo(() => fiatSymbolFilterItems.slice(1), [fiatSymbolFilterItems]);
-
   return {
     fiatSymbols,
     currentFiatId,
     currentFiatSymbol,
-    fiatSymbolFilterItems,
-    fiatSymbolFilterItemsStrict,
   };
 };
 

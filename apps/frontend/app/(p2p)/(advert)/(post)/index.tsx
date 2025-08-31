@@ -1,25 +1,36 @@
 import { Dropdown, PrimaryButton, StepperInput, ToggleButton } from '@/components';
 import { Strings } from '@/constants';
-import { useAds, useCrypto, useFiat, usePriceTypes } from '@/hooks';
+import { useAds, useFilter, usePriceTypes } from '@/hooks';
 import { priceIndex } from '@/models';
 import { capitalizeWords } from '@/utils';
 import { router } from 'expo-router';
-import { useCallback, useState } from 'react';
-import { Text, View } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PostAdvert = () => {
-  const { adTypeFilterItems } = useAds();
-  const { priceTypeFilterItems, getPriceRangeById } = usePriceTypes();
-  const { cryptoNameFilterItemsStrict, getCryptoNameFilterItemById } = useCrypto();
-  const { fiatSymbolFilterItemsStrict } = useFiat();
-  const [selectedFiat, setSelectedFiat] = useState<FilterItem>(fiatSymbolFilterItemsStrict[0]);
+  const { newAd } = useAds();
+  const { getPriceRangeById } = usePriceTypes();
+  const {
+    adTypeFilterItems: adTypes,
+    cryptoNameFilterItemsStrict: cryptos,
+    fiatSymbolFilterItemsStrict: fiats,
+    priceTypeFilterItems: priceTypes,
+    getFilterItemById,
+  } = useFilter();
 
-  const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
-  const [priceType, setpriceType] = useState<FilterItem>(priceTypeFilterItems[0]);
-  const [selectedCrypto, setSelectedCrypto] = useState<FilterItem>();
+  const [formData, setFormData] = useState<AdFormData>(newAd);
   const [priceIndices, setPriceIndices] = useState<Record<string, number>>(priceIndex);
+
+  const adType = getFilterItemById(adTypes, formData.type) ?? adTypes[0];
+  const selectedCrypto = getFilterItemById(cryptos, formData.cryptoId);
+  const selectedFiat = getFilterItemById(fiats, formData.countryId) ?? fiats[0];
+  const priceType = getFilterItemById(priceTypes, formData.priceType) ?? priceTypes[0];
   const currentIndex = priceIndices[priceType.id];
+
+  const updateForm = (key: keyof AdFormData, val: any) => {
+    setFormData((prev) => ({ ...prev, [key]: val }));
+  };
 
   const handlePriceChange = useCallback(
     (increment: boolean) => {
@@ -33,87 +44,94 @@ const PostAdvert = () => {
 
   const handleCreateAdvert = async () => {
     if (!selectedCrypto) {
-      // Show error - no crypto selected
       return;
     }
 
-    const advertData = {
-      type: JSON.stringify(adType.label),
-      priceType: JSON.stringify(priceType.label),
-      selectedCrypto: JSON.stringify(selectedCrypto.id.toUpperCase()),
-      selectedFiat: selectedFiat ? JSON.stringify(selectedFiat.label) : undefined,
-    };
-
     router.push({
       pathname: '/(p2p)/(advert)/(post)/info',
-      params: advertData,
+      params: { formData: JSON.stringify(formData) },
     });
-
-    try {
-      // we will call API to create the advert
-      console.log('Creating advert:', advertData);
-    } catch (error) {
-      console.error('Error creating advert:', error);
-    }
   };
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      cryptoId: selectedCrypto?.id ?? '',
+      countryId: selectedFiat?.id ?? '',
+      type: adType.id,
+      priceType: priceType.id,
+      priceTypeValue: getPriceRangeById(priceType.id)[priceIndices[priceType.id]],
+    }));
+  }, []);
+
+  useEffect(() => {
+    updateForm('priceTypeValue', getPriceRangeById(priceType.id)[priceIndices[priceType.id]]);
+  }, [priceIndices]);
 
   return (
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
-      <View className='content-wrapper'>
-        <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>
-          {Strings.postAd.AD_TYPE_LABEL}
-        </Text>
+      <View className='content-wrapper form-group mt-4'>
         <ToggleButton
+          title={Strings.postAd.AD_TYPE_LABEL}
           value={adType}
-          items={[adTypeFilterItems[0], adTypeFilterItems[1]]}
+          items={[adTypes[0], adTypes[1]]}
           activeButtonColors={{
-            [adTypeFilterItems[0].id]: 'bg-primary',
-            [adTypeFilterItems[1].id]: 'bg-error-500',
+            [adTypes[0].id]: 'bg-primary',
+            [adTypes[1].id]: 'bg-error-500',
           }}
           activeLabelColors={{
-            [adTypeFilterItems[0].id]: 'text-base-dark',
-            [adTypeFilterItems[1].id]: 'text-base-white',
+            [adTypes[0].id]: 'text-base-dark',
+            [adTypes[1].id]: 'text-base-white',
           }}
           wrapperStyle='w-full h-10'
-          onChange={(val) => setAdType(val)}
+          onChange={(val) => updateForm('type', val.id)}
         />
+
         <Dropdown
           title='Select Cryptocurrency'
-          items={cryptoNameFilterItemsStrict}
+          items={cryptos}
           value={selectedCrypto}
-          onSelect={(crypto) => setSelectedCrypto(getCryptoNameFilterItemById(crypto.id)!)}
+          onSelect={(crypto) => updateForm('cryptoId', crypto.id)}
         />
+
         <Dropdown
           title='Select Fiat'
-          items={fiatSymbolFilterItemsStrict}
+          items={fiats}
           value={selectedFiat}
-          onSelect={(fiat) => setSelectedFiat(fiat)}
+          onSelect={(fiat) => updateForm('countryId', fiat.id)}
         />
-        <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>
-          {Strings.postAd.PRICE_SETTING}
-        </Text>
+
         <ToggleButton
+          title={Strings.postAd.PRICE_SETTING}
           value={priceType}
-          items={[priceTypeFilterItems[0], priceTypeFilterItems[1]]}
+          items={[priceTypes[0], priceTypes[1]]}
           activeButtonColors={{
-            [priceTypeFilterItems[0].id]: 'bg-card-info',
-            [priceTypeFilterItems[1].id]: 'bg-card-info',
+            [priceTypes[0].id]: 'bg-base-white dark:bg-card-info',
+            [priceTypes[1].id]: 'bg-base-white dark:bg-card-info',
           }}
           activeLabelColors={{
-            [priceTypeFilterItems[0].id]: 'text-base-dark',
-            [priceTypeFilterItems[1].id]: 'text-base-dark',
+            [priceTypes[0].id]: 'text-title',
+            [priceTypes[1].id]: 'text-title',
           }}
           wrapperStyle='w-full h-10'
-          onChange={(val) => setpriceType(val)}
+          onChange={(val) =>
+            setFormData((prev) => ({
+              ...prev,
+              priceType: val.id,
+              priceTypeValue: getPriceRangeById(val.id)[priceIndices[val.id]],
+            }))
+          }
         />
+
         <StepperInput
+          index={currentIndex}
+          items={getPriceRangeById(priceType.id)}
           label={capitalizeWords(priceType.label)}
           onIncrement={() => handlePriceChange(true)}
           onDecrement={() => handlePriceChange(false)}
-          index={currentIndex}
-          items={getPriceRangeById(priceType.id)}
         />
-        <View className='mt-8'>
+
+        <View className='mt-4'>
           <PrimaryButton title={Strings.postAd.BUTTON_NEXT_LABEL} isLoading={false} onPress={handleCreateAdvert} />
         </View>
       </View>

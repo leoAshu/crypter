@@ -8,7 +8,7 @@ const paymentTimeLimits = [
   { id: '5', label: '2 Hours', value: 120 },
 ];
 
-export const usePaymentTimeLimits = () => {
+const usePaymentTimeLimits = () => {
   const [selectedPayTimeLimit, setSelectedPayTimeLimit] = useState<string | null>(null);
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
 

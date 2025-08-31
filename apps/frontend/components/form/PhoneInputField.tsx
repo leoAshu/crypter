@@ -1,12 +1,12 @@
-import { useCountry } from '@/hooks';
+import { useFilter } from '@/hooks';
 import { formatPhoneNumber } from '@/utils';
 import { Text, View } from 'react-native';
 import { Dropdown } from '../filters';
 import SecondaryInputField from './SecondaryInputField';
 
 const PhoneInputField = (props: PhoneInputFieldProps) => {
-  const { countryPhoneCodeFilterItems, getCountryFilterItemById } = useCountry();
-  const countryFilter = getCountryFilterItemById(countryPhoneCodeFilterItems, props.countryId ?? '');
+  const { countryPhoneCodeFilterItems, getFilterItemById } = useFilter();
+  const countryFilter = getFilterItemById(countryPhoneCodeFilterItems, props.countryId ?? '');
   const disabled = props.disabled ?? false;
 
   return (

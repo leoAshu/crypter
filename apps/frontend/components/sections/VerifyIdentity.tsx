@@ -1,14 +1,14 @@
 import { Strings } from '@/constants';
-import { useCountry, useKyc } from '@/hooks';
+import { useFilter, useKyc } from '@/hooks';
 import { Dropdown } from '../filters';
 import { SecondaryInputField } from '../form';
 import FileUpload from '../form/FileUpload';
 
 const VerifyIdentity = () => {
   const { kyc, updateKyc } = useKyc();
-  const { countryNameFilterItems, getCountryFilterItemById } = useCountry();
+  const { countryNameFilterItems, getFilterItemById } = useFilter();
 
-  const country = getCountryFilterItemById(countryNameFilterItems, kyc?.countryId ?? '');
+  const country = getFilterItemById(countryNameFilterItems, kyc?.countryId ?? '');
 
   return (
     <>

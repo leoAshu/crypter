@@ -1,16 +1,16 @@
 import { ChipFilter, MyAds, ToggleButton } from '@/components';
-import { useAds, useCrypto } from '@/hooks';
+import { useAds, useFilter } from '@/hooks';
 import { AdType } from '@/models';
 import { useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyAdvert = () => {
-  const { p2pCryptosSymbolFilterItems } = useCrypto();
-  const { myAds: myP2PAds, adsLoading, adTypeFilterItems, filterAdsByType, updateAdStatus } = useAds();
+  const { adTypeFilterItems, p2pCryptoSymbolFilterItems } = useFilter();
+  const { myAds: myP2PAds, adsLoading, filterAdsByType } = useAds();
 
   const [adType, setAdType] = useState<FilterItem>(adTypeFilterItems[0]);
-  const [crypto, setCrypto] = useState<FilterItem>(p2pCryptosSymbolFilterItems[0]);
+  const [crypto, setCrypto] = useState<FilterItem>(p2pCryptoSymbolFilterItems[0]);
 
   const myAds = useMemo(
     () => filterAdsByType(myP2PAds, adType.id as AdType, crypto.id),
@@ -39,7 +39,7 @@ const MyAdvert = () => {
             />
           </View>
 
-          <ChipFilter value={crypto} items={p2pCryptosSymbolFilterItems} onChange={(item) => setCrypto(item)} />
+          <ChipFilter value={crypto} items={p2pCryptoSymbolFilterItems} onChange={(item) => setCrypto(item)} />
         </View>
 
         <MyAds myAds={myAds} isAdActive={adsLoading || isAdActive} />

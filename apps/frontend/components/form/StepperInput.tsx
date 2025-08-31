@@ -22,7 +22,7 @@ const StepperInput = (props: StepperInputProps) => {
   return (
     <View className='gap-y-2'>
       <Text className='font-clashDisplay text-sm text-label dark:text-label-dark'>{props.label}</Text>
-      <View className='w-3/4 flex-row items-center justify-between gap-x-4 rounded-lg border border-stroke bg-base-white p-3 px-4 py-3 dark:border-stroke-dark dark:bg-base-dark'>
+      <View className='w-56 flex-row items-center justify-between gap-x-4 rounded-lg border border-stroke bg-base-white p-3 px-4 py-3 dark:border-stroke-dark dark:bg-base-dark'>
         <IndexIconButton disabled={disabledDecrement} icon={decrementIcon} onPress={props.onDecrement} />
         <Text className='txt-label text-sm'>{props.items[props.index]}</Text>
         <IndexIconButton disabled={disabledIncrement} icon={incrementIcon} onPress={props.onIncrement} />
