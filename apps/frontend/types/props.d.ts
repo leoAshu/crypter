@@ -313,8 +313,10 @@ interface NotificationModalProps {
   visible: boolean;
   title?: string;
   label?: string;
+  ctaLabel?: string;
   icon?: ImageSourcePropType;
-  onLabelPress?: () => void;
+  maxHeight?: number;
+  ctaOnPress?: () => void;
   onClose?: () => void;
 }
 
