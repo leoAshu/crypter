@@ -8,11 +8,11 @@ import {
   SecondaryInputField,
   SelectPayMethodModal,
 } from '@/components';
-import { AlertStrings, Strings } from '@/constants';
-import { usePaymentTimeLimits, usePayMethod, usePayMethodType } from '@/hooks';
+import { AlertStrings, ComponentStrings, Strings } from '@/constants';
+import { useAds, useFilter, usePaymentTimeLimits, usePayMethod, usePayMethodType } from '@/hooks';
 import cn from 'clsx';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Alert,
   Image,
@@ -29,21 +29,10 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PostAdvertInfo = () => {
-  const isDark = useColorScheme() === 'dark';
-  const params = useLocalSearchParams();
-  const receivedCrypto = params.selectedCrypto ? JSON.parse(params.selectedCrypto as string) : null;
-  const receivedFiat = params.selectedFiat ? JSON.parse(params.selectedFiat as string) : null;
-  const [totalAmount, setTotalAmount] = useState<string>('');
-  const [orderLimitFrom, setOrderLimitFrom] = useState<string>('');
-  const [orderLimitTo, setOrderLimitTo] = useState<string>('');
-  const { getPayMethodTypeById, payMethodTypes } = usePayMethodType();
+  const { newAd } = useAds();
+  const { getFilterItemById, cryptoNameFilterItemsStrict: cryptos, fiatSymbolFilterItemsStrict: fiats } = useFilter();
+  const { getPayMethodTypeById, getFilteredPayMethodTypesByIds } = usePayMethodType();
   const { getActivePayMethodTypeIds } = usePayMethod();
-  const [selectedPayMethods, setSelectedPayMethods] = useState<string[]>([]);
-  const activeUserPayMethods = getActivePayMethodTypeIds();
-  const [availablePayMethods, setAvailablePayMethods] = useState<string[]>(activeUserPayMethods);
-
-  const [openBottomSheetPayMethod, setOpenBottomSheetPayMethod] = useState(false);
-  const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
   const {
     payTimeLimits,
     selectedPayTimeLimitData,
@@ -53,7 +42,45 @@ const PostAdvertInfo = () => {
     closeBottomSheet: closePayTimeLimitBottomSheet,
   } = usePaymentTimeLimits();
 
+  const activeUserPayMethods = getActivePayMethodTypeIds();
+  const isDark = useColorScheme() === 'dark';
+  const params = useLocalSearchParams();
+  const initialFormData = useMemo(() => {
+    if (params.formData) {
+      try {
+        return JSON.parse(params.formData as string) as AdFormData;
+      } catch (error) {
+        console.error('Failed to parse form data:', error);
+        return newAd;
+      }
+    }
+    return newAd;
+  }, [params.formData, newAd]);
+
+  const [formData, setFormData] = useState<AdFormData>(initialFormData);
+  const [selectedPayMethods, setSelectedPayMethods] = useState<string[]>([]);
+  const [availablePayMethods, setAvailablePayMethods] = useState<string[]>(activeUserPayMethods);
+  const [openBottomSheetPayMethod, setOpenBottomSheetPayMethod] = useState(false);
+  const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
+
+  const selectedCrypto = getFilterItemById(cryptos, formData.cryptoId);
+  const selectedFiat = getFilterItemById(fiats, formData.countryId);
+
+  const updateForm = (key: keyof AdFormData, val: any) => {
+    setFormData((prev) => ({ ...prev, [key]: val }));
+  };
+
   const handleCreateAdvert = async () => {
+    const finalFormData = {
+      ...formData,
+      minLimit: formData.minLimit,
+      maxLimit: formData.maxLimit,
+      available: formData.available,
+      payMethodTypeIds: selectedPayMethods,
+      releaseTime: selectedPayTimeLimitData?.value || '',
+    };
+
+    console.log('Final form data:', JSON.stringify(finalFormData, null, 2));
     setIsNotificationModalVisible(true);
   };
 
@@ -62,27 +89,15 @@ const PostAdvertInfo = () => {
     router.back();
   };
 
-  const sortByOriginal = (arr: string[]) => {
-    return arr.sort();
-  };
-
   const selectPayMethod = (id: string) => {
-    setSelectedPayMethods((prev) => sortByOriginal([...prev, id]));
-    setAvailablePayMethods((prev) => sortByOriginal(prev.filter((item) => item !== id)));
+    setSelectedPayMethods((prev) => [...prev, id]);
+    setAvailablePayMethods((prev) => prev.filter((item) => item !== id));
   };
 
   const deselectPayMethod = (id: string) => {
-    setAvailablePayMethods((prev) => sortByOriginal([...prev, id]));
-    setSelectedPayMethods((prev) => sortByOriginal(prev.filter((item) => item !== id)));
+    setAvailablePayMethods((prev) => [...prev, id]);
+    setSelectedPayMethods((prev) => prev.filter((item) => item !== id));
   };
-
-  useEffect(() => {
-    // To Parse: JSON.parse(params.formData as string) as AdFormData
-
-    console.log(
-      params.formData ? JSON.stringify(JSON.parse(params.formData as string) as AdFormData, null, 2) : 'no form data',
-    );
-  }, []);
 
   return (
     <SafeAreaView className='screen-wrapper' edges={['bottom']}>
@@ -93,9 +108,9 @@ const PostAdvertInfo = () => {
               <View className='gap-y-4'>
                 <SecondaryInputField
                   label='Total Amount'
-                  secondarylabel={receivedCrypto}
-                  value={totalAmount}
-                  onChangeText={setTotalAmount}
+                  secondarylabel={selectedCrypto?.label}
+                  value={formData.available}
+                  onChangeText={(val) => updateForm('available', val)}
                   keyboardType='numeric'
                 />
 
@@ -103,9 +118,9 @@ const PostAdvertInfo = () => {
                   <View className='flex-1'>
                     <SecondaryInputField
                       label='Order Limit'
-                      secondarylabel={receivedFiat}
-                      value={orderLimitFrom}
-                      onChangeText={setOrderLimitFrom}
+                      secondarylabel={selectedFiat?.label}
+                      value={formData.minLimit}
+                      onChangeText={(val) => updateForm('minLimit', val)}
                       keyboardType='numeric'
                     />
                   </View>
@@ -113,9 +128,9 @@ const PostAdvertInfo = () => {
                   <View className='flex-1'>
                     <SecondaryInputField
                       label=''
-                      secondarylabel={receivedFiat}
-                      value={orderLimitTo}
-                      onChangeText={setOrderLimitTo}
+                      secondarylabel={selectedFiat?.label}
+                      value={formData.maxLimit}
+                      onChangeText={(val) => updateForm('maxLimit', val)}
                       keyboardType='numeric'
                     />
                   </View>
@@ -129,10 +144,7 @@ const PostAdvertInfo = () => {
                 onRemovePayMethod={deselectPayMethod}
                 onOpenBottomSheet={() => {
                   if (!activeUserPayMethods.length) {
-                    Alert.alert(
-                      AlertStrings.TITLE.ERROR,
-                      'Please add a payment method first to continue posting your ad.',
-                    );
+                    Alert.alert(AlertStrings.TITLE.ERROR, Strings.postAd.PAYMENT_METHOD_ERROR);
                     return;
                   }
                   Keyboard.dismiss();
@@ -146,7 +158,7 @@ const PostAdvertInfo = () => {
 
               <View className='gap-y-4'>
                 <View className='flex-row items-center justify-between'>
-                  <Text className='field-label'>Payment Time Limit</Text>
+                  <Text className='field-label'>{Strings.postAd.PAYMENT_TIME_LIMIT_LABEL}</Text>
                   <TouchableOpacity
                     onPress={() => {
                       Keyboard.dismiss();
@@ -169,7 +181,7 @@ const PostAdvertInfo = () => {
 
                 <View className='rounded-lg border border-dashed border-warning-500 bg-warning-500/10 px-3 py-4 dark:border-warning-100 dark:bg-warning-100/10'>
                   <Text className='font-satoshi text-sm text-label dark:text-label-dark'>
-                    Estimated Fee - 0.876 ALGO
+                    {Strings.postAd.ESTIMATED_FEE_LABEL} - 0.876 ALGO
                   </Text>
                 </View>
               </View>
@@ -182,9 +194,7 @@ const PostAdvertInfo = () => {
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
       <SelectPayMethodModal
-        payMethodTypes={sortByOriginal(availablePayMethods)
-          .map((payMethodTypeId) => getPayMethodTypeById(payMethodTypeId))
-          .filter((payMethodType): payMethodType is PayMethodType => payMethodType !== undefined)}
+        payMethodTypes={getFilteredPayMethodTypesByIds(availablePayMethods)}
         visible={openBottomSheetPayMethod}
         onClose={() => setOpenBottomSheetPayMethod(false)}
         onTapPayMethodType={selectPayMethod}
@@ -198,8 +208,8 @@ const PostAdvertInfo = () => {
       <NotificationModal
         visible={isNotificationModalVisible}
         onClose={() => setIsNotificationModalVisible(false)}
-        title='Your Ad has been published'
-        ctaLabel='View Ad here'
+        title={ComponentStrings.NotificationModal.AD_PUBLISHED}
+        ctaLabel={ComponentStrings.NotificationModal.VIEW_AD_LABEL}
         ctaOnPress={handleViewAdvert}
         icon={isDark ? icons.dark.tickHalo : icons.light.tickHalo}
       />
