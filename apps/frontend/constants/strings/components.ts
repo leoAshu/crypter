@@ -19,6 +19,10 @@ const ComponentStrings = {
     UPLOAD_DOC_LABEL: 'Upload Document',
     UPLOAD_DOC_HINT: 'PNG, JPG, or PDF  (under 10MB)',
   },
+  NotificationModal: {
+    AD_PUBLISHED: 'Your Ad has been published',
+    VIEW_AD_LABEL: 'View Ad here',
+  },
 };
 
 export { ComponentStrings };

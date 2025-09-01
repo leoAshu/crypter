@@ -18,11 +18,18 @@ const usePayMethodType = () => {
     return payMethodTypes.find((item) => item.id === id);
   };
 
+  const getFilteredPayMethodTypesByIds = (ids: string[]): PayMethodType[] => {
+    return ids
+      .map((id) => getPayMethodTypeById(id))
+      .filter((payMethodType): payMethodType is PayMethodType => payMethodType !== undefined);
+  };
+
   const getPayMethodTypeLogoUrlById = (payMethodId: string) => logoMap[payMethodId];
 
   return {
     payMethodTypes,
     getPayMethodTypeById,
+    getFilteredPayMethodTypesByIds,
     getPayMethodTypeLogoUrlById,
   };
 };

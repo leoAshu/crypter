@@ -99,6 +99,9 @@ const Strings = {
     HEADER_TITLE_INFO: 'Amount Info',
     PUBLISH_AD_LABEL: 'Publish Ad',
     AD_TYPE_LABEL: 'Ad Type',
+    PAYMENT_TIME_LIMIT_LABEL: 'Payment Time Limit',
+    ESTIMATED_FEE_LABEL: 'Estimated Fee',
+    PAYMENT_METHOD_ERROR: 'Please add a payment method first to continue posting your ad.',
   },
   errors: {
     EMAIL_ERROR: 'Please enter a valid email address',
