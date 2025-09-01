@@ -198,9 +198,9 @@ const PostAdvertInfo = () => {
       <NotificationModal
         visible={isNotificationModalVisible}
         onClose={() => setIsNotificationModalVisible(false)}
-        title='Your ad has been published'
-        label='View Advert here'
-        onLabelPress={handleViewAdvert}
+        title='Your Ad has been published'
+        ctaLabel='View Ad here'
+        ctaOnPress={handleViewAdvert}
         icon={isDark ? icons.dark.tickHalo : icons.light.tickHalo}
       />
     </SafeAreaView>
